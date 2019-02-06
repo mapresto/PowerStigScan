@@ -17,6 +17,8 @@ the DISA STIGViewer tool.
 ## How to Install
 
 ### Database Install
+Minimum Requirement - SQL Server Express 2016
+
 Using the PowerSTIG_DBobjectDeploy_#.sql script in the ..\SQL folder, modify the following lines:
 
 - :setvar MAIL_PROFILE        "sas"

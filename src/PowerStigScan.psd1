@@ -12,7 +12,7 @@
     RootModule = 'PowerStigScan.psm1'
     
     # Version number of this module.
-    ModuleVersion = '1.0.0.0'
+    ModuleVersion = '1.0.0.1'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -30,7 +30,9 @@
     Copyright = '(c) 2018 Matt Preston. All rights reserved.'
     
     # Description of the functionality provided by this module
-    Description = 'Module to add scanning functionality for PowerStig support. This is to be used with a database backend. Contact mapresto@microsoft.com for additional support'
+    Description = 'Module to Audit systems using the PowerStig engine. 
+PowerStigScan Repo: https://github.com/mapresto/PowerStigScan.
+PowerStig Repo: https://github.com/Microsoft/PowerStig'
     
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.1'

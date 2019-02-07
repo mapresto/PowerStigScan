@@ -1,5 +1,6 @@
 # Consolidated resource for MOF generation
-# Roles done: 
+# IISObject must include WebsiteName + WebAppPool
+# SQLObject must include SqlVersion, SqlRole, ServerInstance, Database
 
 param(
 
@@ -7,10 +8,18 @@ param(
     [String]
     $ComputerName,
     
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory=$false)]
     [ValidateSet("2012R2","2016")]
     [String]
     $OsVersion,
+
+    [Parameter(Mandatory=$true,ParameterSetName="IIS")]
+    [PSObject[]]
+    $IISObject,
+
+    [Parameter(Mandatory=$true,ParameterSetName="SQL")]
+    [PSObject[]]
+    $SQLObject,
 
     [Parameter(Mandatory=$true)]
     [String]

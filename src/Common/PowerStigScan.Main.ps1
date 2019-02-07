@@ -668,8 +668,33 @@ function Invoke-PowerStigScan
     {
         try
         {
-            # Determine install Directory
-            $InstallDirectory = Invoke-Command -ComputerName $Servername -Scriptblock {(get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox\$((get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox").currentversion)\Main")."Install Directory"}
+            # Determine install Directory. CurrentVersion key in Mozilla Firefox is not there in older versions, must grab folderpath name.
+            if((get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox").currentversion)
+            {
+                $InstallDirectory = (get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox\$((get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox").currentversion)\Main")."Install Directory"
+            }
+            else
+            {
+                #Grab all keys that have a version number in the name
+                $CurrentVersions = Get-ChildItem "HKLM:\Software\Mozilla\Mozilla Firefox" | Where-Object {$_.name -match "([1-9])?[0-9]\.[0-9]([0-9])?"}
+                
+                [Version]$ffHighVer = 0.0.0.0
+
+                #Process through each key and determine the highest version from the list.
+                foreach($c in $CurrentVersions)
+                {
+                    [Version]$testVer = [regex]::match($c,"([1-9])?[0-9]\.[0-9]([0-9])?").Value
+
+                    if($testVer -gt $ffHighVer)
+                    {
+                        $ffHighVer = $testVer
+                        $KeyPath = $c.Name.Replace("HKEY_LOCAL_MACHINE","HKLM:")
+                    }
+                }
+
+                $InstallDirectory = (get-itemproperty "$keyPath\Main")."Install Directory"
+
+            }
             try {
                 if($DebugScript)
                 {

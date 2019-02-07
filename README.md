@@ -48,5 +48,3 @@ Invoke-PowerStigBatch cmdlet.
 ## Known Issues
 IIS, JRE, and SQL scans are not complete. We need to determine the information dynamically as storing static information will
 be too burdensome for most administrators.
-
-DotNet currently not generating mofs, issue is passed to PowerStig team.

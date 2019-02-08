@@ -1,5 +1,5 @@
 # Consolidated resource for MOF generation
-# IISObject must include WebsiteName + WebAppPool
+# IISObject must include WebsiteName + WebAppPool - Get-Website -> foreach($i in $sites) {(inv-cmd -comp $serv -scr {get-website $i}).applicationpool}
 # SQLObject must include SqlVersion, SqlRole, ServerInstance, Database
 
 param(

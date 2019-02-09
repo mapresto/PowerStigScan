@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--DISA STIG Viewer :: 2.7.1-->
+<!--DISA STIG Viewer :: 2.8-->
+<!--2.14 MS-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -50,7 +51,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>3f6b9255-afff-4f4e-b1bd-ab8cc1cac495</SID_DATA>
+					<SID_DATA>05dfbb89-4e07-447c-b866-56170efcd05d</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>
@@ -151,7 +152,7 @@
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -264,7 +265,7 @@ Document required shared accounts with the ISSO. Documentation must include the 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -381,7 +382,7 @@ Windows 2012 - any release candidates or versions prior to the initial release.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -490,7 +491,7 @@ If there is no anti-virus solution installed on the system, this is a finding.</
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -605,7 +606,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -716,7 +717,7 @@ Backups must be consistent with organizational recovery time and recovery point 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -831,7 +832,7 @@ This does not apply to system partitions such as the Recovery and EFI System Par
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -974,7 +975,7 @@ By using this IS (which includes any device attached to this IS), you consent to
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1117,7 +1118,7 @@ Configure the policy value for Computer Configuration &gt;&gt; Windows Settings 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1232,7 +1233,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1344,7 +1345,7 @@ If the "Account lockout threshold" is "0" or more than "3" attempts, this is a f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1456,7 +1457,7 @@ If the "Reset account lockout counter after" value is less than "15" minutes, th
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1576,7 +1577,7 @@ A value of "0" is also acceptable, requiring an administrator to unlock the acco
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1699,7 +1700,7 @@ The application account must meet requirements for application account passwords
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1811,7 +1812,7 @@ If the value for the "Maximum password age" is greater than "60" days, this is a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1923,7 +1924,7 @@ If the value for the "Minimum password age" is set to "0" days ("Password can be
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2035,7 +2036,7 @@ If the value for "Enforce password history" is less than "24" passwords remember
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2175,7 +2176,7 @@ Inactive accounts that have been reviewed and deemed to be required must be docu
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2287,7 +2288,7 @@ If the value for "Accounts: Guest account status" is not set to "Disabled", this
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2399,7 +2400,7 @@ If the value for "Accounts: Rename guest account" is not set to a value other th
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2511,7 +2512,7 @@ If the value for "Accounts: Rename administrator account" is not set to a value 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2626,7 +2627,7 @@ If the drop-down list box "Default operating system:" shows any operating system
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2766,7 +2767,7 @@ If accounts with administrator privileges are used to access FTP, this is a CAT 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2905,7 +2906,7 @@ If the FTP session indicates access to areas of the system other than the specif
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3030,7 +3031,7 @@ Remove any standard user accounts.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3141,7 +3142,7 @@ If an alternate method is used to configure a system (e.g., manually using the D
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3262,7 +3263,7 @@ Standard users will typically be given "Print" permission through the Everyone g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3377,7 +3378,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3492,7 +3493,7 @@ Value:  0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3616,7 +3617,7 @@ Value Name: DefaultPassword
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3730,7 +3731,7 @@ Note: If an external password filter is in use that enforces all 4 character typ
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3857,7 +3858,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3993,7 +3994,7 @@ LOCAL SERVICE - Read - This key and subkeys</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4108,7 +4109,7 @@ Value: 5</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4223,7 +4224,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4366,7 +4367,7 @@ Microsoft Security Advisory Patch 2871997 adds the new security groups to Window
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4483,7 +4484,7 @@ If configuring this on servers causes issues such as terminating users' remote s
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4598,7 +4599,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4719,7 +4720,7 @@ If the value for "Domain Member: Digitally encrypt or sign secure channel data (
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4840,7 +4841,7 @@ If the value for "Domain Member: Digitally encrypt or sign secure channel data (
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4959,7 +4960,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5074,7 +5075,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5187,7 +5188,7 @@ Any accounts that are members of the Backup Operators group, including applicati
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5302,7 +5303,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5417,7 +5418,7 @@ Value: 14 (or greater)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5532,7 +5533,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5647,7 +5648,7 @@ Value:  0x0000000f (15) (or less)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5763,7 +5764,7 @@ If the value for "Store password using reversible encryption" is not set to "Dis
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5878,7 +5879,7 @@ Value: 0x000000ff (255)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5987,7 +5988,7 @@ A properly configured HBSS Policy Auditor 5.2 or later File Integrity Monitor (F
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6110,7 +6111,7 @@ Remove any unnecessary non-system-created shares.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6223,7 +6224,7 @@ If a host-based Intrusion Detection System is not installed on the system, this 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6335,7 +6336,7 @@ If the value for "Network access: Allow anonymous SID/Name translation" is not s
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6452,7 +6453,7 @@ Legitimate applications may add entries to this registry value. If an applicatio
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6577,7 +6578,7 @@ Software\Microsoft\Windows NT\CurrentVersion</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6694,7 +6695,7 @@ Value: (Blank)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6809,7 +6810,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6924,7 +6925,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7039,7 +7040,7 @@ Value: 30 (or less, but not 0)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7156,7 +7157,7 @@ This setting may prevent a system from being joined to a domain if not configure
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7275,7 +7276,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7390,7 +7391,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7505,7 +7506,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7620,7 +7621,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7732,7 +7733,7 @@ If the value for "Network security: Force logoff when logon hours expire" is not
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7847,7 +7848,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7962,7 +7963,7 @@ Value: 0x20080000 (537395200)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8079,7 +8080,7 @@ Warning: Clients with this setting enabled will not be able to communicate via d
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8194,7 +8195,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8309,7 +8310,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8424,7 +8425,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8539,7 +8540,7 @@ Value: 3</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8658,7 +8659,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8773,7 +8774,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8890,7 +8891,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9005,7 +9006,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9124,7 +9125,7 @@ The US Naval Observatory operates stratum 1 time servers, identified at http://t
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9241,7 +9242,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9358,7 +9359,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9473,7 +9474,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9717,7 +9718,7 @@ Workstation - Automatic</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9832,7 +9833,7 @@ Value: 0x20080000 (537395200)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9951,7 +9952,7 @@ Value: 90 (or less)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10076,7 +10077,7 @@ Value: 2</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10193,7 +10194,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10310,7 +10311,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10427,7 +10428,7 @@ Value: 300000 (or less)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10544,7 +10545,7 @@ Value:  1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10661,7 +10662,7 @@ Value:  3 (or less)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10778,7 +10779,7 @@ Value: 5 (or less)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10919,7 +10920,7 @@ System\CurrentControlSet\Services\Sysmonlog</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11034,7 +11035,7 @@ Value: (Blank)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11149,7 +11150,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11264,7 +11265,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11379,7 +11380,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11498,7 +11499,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11617,7 +11618,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11736,7 +11737,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11848,7 +11849,7 @@ If the value for the "Minimum password length," is less than "14" characters, th
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11976,7 +11977,7 @@ Uncheck "Password never expires" for all enabled user accounts in Active Directo
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12103,7 +12104,7 @@ The password required flag can be set by entering the following on a command lin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12218,7 +12219,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12347,7 +12348,7 @@ Automated tools, such as Microsoft's LAPS, may be used on domain-joined member s
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12463,7 +12464,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12579,7 +12580,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12695,7 +12696,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12812,7 +12813,7 @@ Value: 3</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12931,7 +12932,7 @@ Configure the policy value for Computer Configuration -&gt; Windows Settings -&g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13055,7 +13056,7 @@ More secure options for this setting would also be acceptable (e.g., Prompt for 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13174,7 +13175,7 @@ Configure the policy value for Computer Configuration -&gt; Windows Settings -&g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13293,7 +13294,7 @@ Configure the policy value for Computer Configuration -&gt; Windows Settings -&g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13412,7 +13413,7 @@ Configure the policy value for Computer Configuration -&gt; Windows Settings -&g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13531,7 +13532,7 @@ Configure the policy value for Computer Configuration -&gt; Windows Settings -&g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13650,7 +13651,7 @@ Configure the policy value for Computer Configuration -&gt; Windows Settings -&g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13769,7 +13770,7 @@ Configure the policy value for Computer Configuration -&gt; Windows Settings -&g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13884,7 +13885,7 @@ Value: 0x00000000 (0)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13999,7 +14000,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14114,7 +14115,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14229,7 +14230,7 @@ Value:  1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14345,7 +14346,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14461,7 +14462,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14577,7 +14578,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14692,7 +14693,7 @@ Value: 2</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14807,7 +14808,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14922,7 +14923,7 @@ Value: 3</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -15037,7 +15038,7 @@ If the service is not listed or does not have a Status of "Started", this is a f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -15152,7 +15153,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -15267,7 +15268,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -15382,7 +15383,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -15498,7 +15499,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -15617,7 +15618,7 @@ Configure the policy value for Computer Configuration &gt;&gt; Administrative Te
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -15732,7 +15733,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -15847,7 +15848,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -15962,7 +15963,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -16077,7 +16078,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -16192,7 +16193,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -16310,7 +16311,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -16428,7 +16429,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -16546,7 +16547,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -16665,7 +16666,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -16780,7 +16781,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -16895,7 +16896,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -17010,7 +17011,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -17126,7 +17127,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -17242,7 +17243,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -17358,7 +17359,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -17473,7 +17474,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -17588,7 +17589,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -17703,7 +17704,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -17824,7 +17825,7 @@ Configure the policy value for Computer Configuration -&gt; Administrative Templ
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -17939,7 +17940,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -18055,7 +18056,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -18170,7 +18171,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -18283,7 +18284,7 @@ This does not apply to server-based applications that have a requirement for cer
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -18402,7 +18403,7 @@ Configure the policy value for Computer Configuration -&gt; Windows Settings -&g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -18517,7 +18518,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -18632,7 +18633,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -18747,7 +18748,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -18862,7 +18863,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -18981,7 +18982,7 @@ Configure the policy value for Computer Configuration -&gt; Windows Settings -&g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -19097,7 +19098,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -19213,7 +19214,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -19329,7 +19330,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -19456,7 +19457,7 @@ Administrators</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -19571,7 +19572,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -19686,7 +19687,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -19801,7 +19802,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -19916,7 +19917,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -20041,7 +20042,7 @@ Note: Removing the previously allowed RC4_HMAC_MD5 encryption suite may have ope
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -20158,7 +20159,7 @@ Value: 2</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -20275,7 +20276,7 @@ Value:  3 (or less)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -20390,7 +20391,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -20505,7 +20506,7 @@ Value: Enabled</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -20621,7 +20622,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -20737,7 +20738,7 @@ Value:  1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -20853,7 +20854,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -20969,7 +20970,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -21085,7 +21086,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -21201,7 +21202,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -21317,7 +21318,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -21432,7 +21433,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -21547,7 +21548,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -21662,7 +21663,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -21802,7 +21803,7 @@ ALL APPLICATION PACKAGES - Read</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -21917,7 +21918,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -22040,7 +22041,7 @@ If a site-defined title is used, it can in no case contravene or modify the lang
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -22175,7 +22176,7 @@ If any accounts or groups are granted the "Access Credential Manager as a truste
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -22304,7 +22305,7 @@ Authenticated Users</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -22431,7 +22432,7 @@ Administrators</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -22557,7 +22558,7 @@ Organizations may grant this to other groups, such as more restrictive groups wi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -22684,7 +22685,7 @@ Administrators</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -22803,7 +22804,7 @@ Administrators</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -22926,7 +22927,7 @@ The application account must meet requirements for application account passwords
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -23059,7 +23060,7 @@ Network Service</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -23174,7 +23175,7 @@ If any accounts or groups are granted the "Create permanent shared objects" user
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -23297,7 +23298,7 @@ Systems that have the Hyper-V role will also have "Virtual Machines" given this 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -23429,7 +23430,7 @@ Guests Group</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -23557,7 +23558,7 @@ Configure the "Deny log on as a service" for nondomain systems to include no ent
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -23690,7 +23691,7 @@ Guests Group</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -23833,7 +23834,7 @@ Microsoft Security Advisory Patch 2871997 adds the new security groups to Window
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -23947,7 +23948,7 @@ If any accounts or groups are granted the "Enable computer and user accounts to 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -24066,7 +24067,7 @@ Administrators</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -24195,7 +24196,7 @@ Network Service</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -24328,7 +24329,7 @@ Network Service</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -24455,7 +24456,7 @@ Administrators</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -24574,7 +24575,7 @@ Administrators</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -24697,7 +24698,7 @@ The application account must meet requirements for application account passwords
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -24826,7 +24827,7 @@ Administrators</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -24962,7 +24963,7 @@ Administrators
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -25081,7 +25082,7 @@ Administrators</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -25200,7 +25201,7 @@ Administrators</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -25327,7 +25328,7 @@ Administrators</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -25454,7 +25455,7 @@ Administrators</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -25571,7 +25572,7 @@ Account Logon -&gt; Credential Validation - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -25688,7 +25689,7 @@ Account Logon -&gt; Credential Validation - Failure</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -25805,7 +25806,7 @@ Account Management -&gt; Other Account Management Events - Success</ATTRIBUTE_DA
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -25926,7 +25927,7 @@ Account Management -&gt; Security Group Management - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -26067,7 +26068,7 @@ Account Management -&gt; User Account Management - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -26208,7 +26209,7 @@ Account Management -&gt; User Account Management - Failure</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -26349,7 +26350,7 @@ Detailed Tracking -&gt; Process Creation - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -26466,7 +26467,7 @@ Logon/Logoff -&gt; Logoff - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -26587,7 +26588,7 @@ Logon/Logoff -&gt; Logon - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -26708,7 +26709,7 @@ Logon/Logoff -&gt; Logon - Failure</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -26829,7 +26830,7 @@ Logon/Logoff -&gt; Special Logon - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -26946,7 +26947,7 @@ Policy Change -&gt; Audit Policy Change - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -27063,7 +27064,7 @@ Policy Change -&gt; Audit Policy Change - Failure</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -27184,7 +27185,7 @@ Policy Change -&gt; Authentication Policy Change - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -27305,7 +27306,7 @@ Privilege Use -&gt; Sensitive Privilege Use - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -27426,7 +27427,7 @@ Privilege Use -&gt; Sensitive Privilege Use - Failure</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -27547,7 +27548,7 @@ System -&gt; IPsec Driver - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -27664,7 +27665,7 @@ System -&gt; IPsec Driver - Failure</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -27781,7 +27782,7 @@ System -&gt; Security State Change - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -27902,7 +27903,7 @@ System -&gt; Security System Extension - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -28023,7 +28024,7 @@ System -&gt; System Integrity - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -28144,7 +28145,7 @@ System -&gt; System Integrity - Failure</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -28263,7 +28264,7 @@ Value: Disabled</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -28380,7 +28381,7 @@ Note: "IPHTTPS URL:" must be entered in the policy even if set to Disabled State
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -28495,7 +28496,7 @@ Value: Disabled</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -28610,7 +28611,7 @@ Value: Disabled</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -28727,7 +28728,7 @@ Value: 0x00008000 (32768) (or greater)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -28844,7 +28845,7 @@ Value: 0x00030000 (196608) (or greater)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -28961,7 +28962,7 @@ Value: 0x00008000 (32768) (or greater)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -29078,7 +29079,7 @@ Value: 0x00008000 (32768) (or greater)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -29191,7 +29192,7 @@ Fax (fax)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -29311,7 +29312,7 @@ Click "Next" and "Remove" as prompted.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -29424,7 +29425,7 @@ Peer Networking Identity Manager (p2pimsvc)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -29537,7 +29538,7 @@ Simple TCP/IP Services (simptcp)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -29650,7 +29651,7 @@ Telnet (tlntsvr)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -29766,7 +29767,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -29951,7 +29952,7 @@ The InstallRoot tool is available on IASE at http://iase.disa.mil/pki-pke/Pages/
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -30141,7 +30142,7 @@ The FBCA Cross-Certificate Remover tool and user guide is available on IASE at h
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -30271,7 +30272,7 @@ ALL APPLICATION PACKAGES - Read</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -30386,7 +30387,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -30508,7 +30509,7 @@ This policy setting requires the installation of the SecGuide custom templates i
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -30629,7 +30630,7 @@ Implement technical measures where feasible such as removal of applications or u
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -30749,7 +30750,7 @@ Applications requiring continuous, real-time screen display (e.g., network manag
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -30864,7 +30865,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -30971,7 +30972,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -31080,7 +31081,7 @@ If users with administrative privileges do not have separate accounts for admini
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -31187,7 +31188,7 @@ If users with administrative privileges do not have separate accounts for admini
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -31318,7 +31319,7 @@ It is recommended that system-managed service accounts be used where possible.</
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -31425,7 +31426,7 @@ It is recommended that system-managed service accounts be used where possible.</
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -31544,7 +31545,7 @@ Virtual machines or systems that use network attached storage may generate exces
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -31663,7 +31664,7 @@ Virtual machines or systems that use network attached storage may generate exces
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -31770,7 +31771,7 @@ Virtual machines or systems that use network attached storage may generate exces
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -31877,7 +31878,7 @@ Virtual machines or systems that use network attached storage may generate exces
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -31984,7 +31985,7 @@ Virtual machines or systems that use network attached storage may generate exces
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -32099,7 +32100,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -32214,7 +32215,7 @@ Value: 2</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -32329,7 +32330,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -32444,7 +32445,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -32563,7 +32564,7 @@ Alternately, uninstall the "Desktop Experience" feature from Windows 2012.  This
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -32678,7 +32679,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -32793,7 +32794,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -32908,7 +32909,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -33023,7 +33024,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -33138,7 +33139,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -33253,7 +33254,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -33368,7 +33369,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -33490,7 +33491,7 @@ v1703 of Windows 10 or later administrative templates changed the policy name to
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -33609,7 +33610,7 @@ If location services are approved by the organization for a device, this must be
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -33724,7 +33725,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -33859,7 +33860,7 @@ Configure the policy value for Computer Configuration -&gt; Administrative Templ
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -33977,7 +33978,7 @@ Configure the policy value for Computer Configuration -&gt; Administrative Templ
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -34092,7 +34093,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -34207,7 +34208,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -34326,7 +34327,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -34441,7 +34442,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -34556,7 +34557,7 @@ Value: 0</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -34675,7 +34676,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -34798,7 +34799,7 @@ If the location of the logs has been changed, when adding Eventlog to the permis
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -34929,7 +34930,7 @@ If the location of the logs has been changed, when adding Eventlog to the permis
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -35060,7 +35061,7 @@ If the location of the logs has been changed, when adding Eventlog to the permis
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -35179,7 +35180,7 @@ Backups shall be consistent with organizational recovery time and recovery point
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -35286,7 +35287,7 @@ Backups shall be consistent with organizational recovery time and recovery point
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -35393,7 +35394,7 @@ Backups shall be consistent with organizational recovery time and recovery point
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -35500,7 +35501,7 @@ Backups shall be consistent with organizational recovery time and recovery point
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -35615,7 +35616,7 @@ Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)</
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -35730,7 +35731,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -35845,7 +35846,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -35952,7 +35953,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -36063,7 +36064,7 @@ Backups shall be consistent with organizational recovery time and recovery point
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -36234,7 +36235,7 @@ ALL APPLICATION PACKAGES - Read &amp; execute - This folder, subfolders and file
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -36394,7 +36395,7 @@ CREATOR OWNER - Full Control - Subfolders and files only</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -36563,7 +36564,7 @@ ALL APPLICATION PACKAGES - Read &amp; execute - This folder, subfolders and file
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -36676,7 +36677,7 @@ Verify users with accounts in the Backup Operators group have a separate user ac
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -36793,7 +36794,7 @@ Object Access -&gt; Central Policy Staging - Failure</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -36910,7 +36911,7 @@ Object Access -&gt; Central Policy Staging - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -37025,7 +37026,7 @@ Value: 1</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -37136,7 +37137,7 @@ If the Startup Type for Smart Card Removal Policy is not set to Automatic, this 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -37310,7 +37311,7 @@ The FBCA Cross-Certificate Remover tool and user guide is available on IASE at h
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -37423,7 +37424,7 @@ The configuration requirements will be determined by the applicable firewall STI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -37542,7 +37543,7 @@ Configure the policy value for Computer Configuration -&gt; Administrative Templ
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -37661,7 +37662,7 @@ Value: 0x00000001 (1)</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -37780,7 +37781,7 @@ Configure the policy value for Computer Configuration -&gt; Administrative Templ
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -37899,7 +37900,7 @@ Configure the policy value for Computer Configuration -&gt; Administrative Templ
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -38018,7 +38019,7 @@ Configure the policy value for Computer Configuration -&gt; Administrative Templ
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -38135,7 +38136,7 @@ Policy Change -&gt; Authorization Policy Change - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -38275,7 +38276,7 @@ https://www.iad.gov/iad/library/ia-guidance/tech-briefs/application-whitelisting
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -38396,7 +38397,7 @@ Value:  2</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -38507,7 +38508,7 @@ Use of this requirement will be limited to situations where the data owner has a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -38620,7 +38621,7 @@ Selection of a cryptographic mechanism is based on the need to protect the integ
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -38771,7 +38772,7 @@ Delete any temporary user accounts that are no longer necessary.</ATTRIBUTE_DATA
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -38910,7 +38911,7 @@ Local accounts can be configured to expire with the command "Net user [username]
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -39017,7 +39018,7 @@ Local accounts can be configured to expire with the command "Net user [username]
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -39137,7 +39138,7 @@ Administrators, SYSTEM, Users, ALL APPLICATION PACKAGES - Read &amp; Execute</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -39262,7 +39263,7 @@ This policy setting requires the installation of the SecGuide custom templates i
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -39387,7 +39388,7 @@ This policy setting requires the installation of the SecGuide custom templates i
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -39530,7 +39531,7 @@ These policy settings requires the installation of the SecGuide custom templates
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -39662,7 +39663,7 @@ The system must be restarted for the changes to take effect.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -39776,7 +39777,7 @@ If any unresolved SIDs exist and are not for currently valid accounts or groups,
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -39898,7 +39899,7 @@ Logon/Logoff &gt;&gt; Account Lockout - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -40021,7 +40022,7 @@ Logon/Logoff &gt;&gt; Account Lockout - Failure</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -40146,7 +40147,7 @@ System &gt;&gt; Other System Events - Success</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -40271,7 +40272,7 @@ System &gt;&gt; Other System Events - Failure</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -40416,7 +40417,7 @@ https://docs.microsoft.com/en-us/powershell/wmf/5.1/productincompat</ATTRIBUTE_D
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -40555,7 +40556,7 @@ PowerShell 5.x does not require the installation of an additional patch.</ATTRIB
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -40680,7 +40681,7 @@ Use the "Remove Roles and Features Wizard" and deselect "Windows PowerShell 2.0 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide :: Version 2, Release: 14 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>

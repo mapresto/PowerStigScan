@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--DISA STIG Viewer :: 2.7-->
+<!--DISA STIG Viewer :: 2.7.1-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -50,7 +50,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>80240c69-96e1-4613-bde6-9cfa57e4f0d4</SID_DATA>
+					<SID_DATA>aaf4da68-aedd-4041-9d4f-83091a9cf602</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>

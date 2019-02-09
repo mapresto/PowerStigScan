@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--DISA STIG Viewer :: 2.8-->
-<!--1.13 Outlook-->
+<!--DISA STIG Viewer :: 2.7.1-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -51,7 +50,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>6947828a-ae5c-42b1-b495-2f5c7ec33650</SID_DATA>
+					<SID_DATA>6cd6b294-72f2-4c56-aefe-6d29758b7ee4</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>
@@ -160,7 +159,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -274,7 +273,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -387,7 +386,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -500,7 +499,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -613,7 +612,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -726,7 +725,7 @@ Criteria: If the value UnblockSafeZone is REG_DWORD = 1, this is not a finding.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -840,7 +839,7 @@ Criteria: If the value RestrictedAccessOnly is REG_DWORD = 1, this is not a find
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -954,7 +953,7 @@ Criteria: If the value JunkMailTrustOutgoingRecipients is REG_DWORD = 0, this is
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1067,7 +1066,7 @@ Criteria: If the value AllowActiveXOneOffForms is REG_DWORD = 0, this is not a f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1180,7 +1179,7 @@ Criteria: If the value EnableOneOffFormScripts is REG_DWORD = 0, this is not a f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1295,7 +1294,7 @@ Criteria: If the value TrustedZone is REG_DWORD = 0, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1408,7 +1407,7 @@ Criteria: If the value AddinTrust is REG_DWORD = 1, this is not a finding.</ATTR
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1526,7 +1525,7 @@ Criteria: If the value PromptOOMAddressBookAccess is REG_DWORD = 0, this is not 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1639,7 +1638,7 @@ Criteria: If the value AllowUsersToLowerAttachments is REG_DWORD = 0, this is no
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1758,7 +1757,7 @@ Criteria: If the value PromptOOMFormulaAccess is REG_DWORD = 0, this is not a fi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1876,7 +1875,7 @@ Criteria: If the value PromptOOMSaveAs is REG_DWORD = 0, this is not a finding.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1994,7 +1993,7 @@ Criteria: If the value PromptOOMAddressInformationAccess is REG_DWORD = 0, this 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2113,7 +2112,7 @@ Criteria: If the value PromptOOMMeetingTaskRequestResponse is REG_DWORD = 0, thi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2231,7 +2230,7 @@ Criteria: If the value PromptOOMSend is REG_DWORD = 0, this is not a finding.</A
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2349,7 +2348,7 @@ If the registry key exists, but with no entries, this is not a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2462,7 +2461,7 @@ Criteria: If the value EnableRememberPwd is REG_DWORD = 0, this is not a finding
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2576,7 +2575,7 @@ Criteria: If the value DontPromptLevel1AttachClose is REG_DWORD = 0, this is not
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2690,7 +2689,7 @@ Criteria: If the value DontPromptLevel1AttachSend is REG_DWORD = 0, this is not 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2804,7 +2803,7 @@ Criteria: If the value EnableFullTextHTML is REG_DWORD = 0, this is not a findin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2920,7 +2919,7 @@ Criteria: If the value JunkMailEnableLinks is REG_DWORD = 0, this is not a findi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3033,7 +3032,7 @@ Criteria: If the value EnableRPCEncryption is REG_DWORD = 1, this is not a findi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3147,7 +3146,7 @@ Criteria: If the value DisableAntiSpam is REG_DWORD = 0, this is not a finding.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3261,7 +3260,7 @@ Criteria: If the value Internet is REG_DWORD = 0, this is not a finding.</ATTRIB
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3375,7 +3374,7 @@ Criteria: If the value Intranet is REG_DWORD = 0, this is not a finding.</ATTRIB
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3489,7 +3488,7 @@ Criteria: If the value ShowLevel1Attach is REG_DWORD = 0, this is not a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3613,7 +3612,7 @@ Criteria: If the value BlockExtContent is REG_DWORD = 1, this is not a finding.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3726,7 +3725,7 @@ Criteria: If the value DisableSignatures is REG_DWORD = 0, this is not a finding
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3840,7 +3839,7 @@ Criteria: If the value NonDefaultStoreScript is REG_DWORD = 0, this is not a fin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3954,7 +3953,7 @@ Criteria: If the value PublicFolderScript is REG_DWORD = 0, this is not a findin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4068,7 +4067,7 @@ Criteria: If the value SharedFolderScript is REG_DWORD = 0, this is not a findin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4182,7 +4181,7 @@ Criteria: If the value Disable is REG_DWORD = 1, this is not a finding.</ATTRIBU
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4295,7 +4294,7 @@ Criteria: If the registry key exists, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4409,7 +4408,7 @@ Criteria: If the value AuthenticationService is REG_DWORD = 9, this is not a fin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4522,7 +4521,7 @@ Criteria: If the value EnableAttachments is REG_DWORD = 0, this is not a finding
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4636,7 +4635,7 @@ Criteria: If the value UnblockSpecificSenders is REG_DWORD = 0, this is not a fi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4750,7 +4749,7 @@ Criteria: If the value Check Default Client is REG_DWORD = 1, this is not a find
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4864,7 +4863,7 @@ Criteria: If the value MsgFormats is REG_DWORD = 1, this is not a finding.</ATTR
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4977,7 +4976,7 @@ Criteria: If the value SigStatusNoTrustDecision is REG_DWORD = 2, this is not a 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5090,7 +5089,7 @@ Criteria: If the value AdminSecurityMode is REG_DWORD = 3, this is not a finding
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5204,7 +5203,7 @@ Criteria: If the value for HKCU\Software\Policies\Microsoft\Office\15.0\common\m
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5317,7 +5316,7 @@ Criteria: If the value DisableDav is REG_DWORD = 1, this is not a finding.</ATTR
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5430,7 +5429,7 @@ Criteria: If the value DisableOfficeOnline is REG_DWORD = 1, this is not a findi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5543,7 +5542,7 @@ Criteria: If the value DisallowAttachmentCustomization is REG_DWORD = 1, this is
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5656,7 +5655,7 @@ Criteria: If the value ReadAsPlain is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5769,7 +5768,7 @@ Criteria: If the value ReadSignedAsPlain is REG_DWORD = 1, this is not a finding
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5885,7 +5884,7 @@ Criteria: If the registry value “FileExtensionsRemoveLevel1” exists, this is
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6002,7 +6001,7 @@ Criteria: If the registry value “FileExtensionsRemoveLevel2” exists, this is
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6119,7 +6118,7 @@ Criteria: If the value PublishCalendarDetailsPolicy is REG_DWORD = 4000 (hex) or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6232,7 +6231,7 @@ Criteria: If the value SingleUploadOnly is REG_DWORD = 1, this is not a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6345,7 +6344,7 @@ Criteria: If the value UseCRLChasing is REG_DWORD = 1, this is not a finding.</A
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6459,7 +6458,7 @@ Criteria: If the value FIPSMode is REG_DWORD = 1, this is not a finding.</ATTRIB
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6572,7 +6571,7 @@ Criteria: If the value ExternalSMime is REG_DWORD = 0, this is not a finding.</A
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6687,7 +6686,7 @@ Criteria: If the value RespondToReceiptRequests is REG_DWORD = 2, this is not a 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6801,7 +6800,7 @@ Criteria: If the value of "Level" is REG_DWORD = 2, this is not a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6914,7 +6913,7 @@ Criteria: If the value ClearSign is REG_DWORD = 1, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7028,7 +7027,7 @@ Criteria: If the value PromptOOMCustomAction is REG_DWORD = 0, this is not a fin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7141,7 +7140,7 @@ Criteria: If the value WarnAboutInvalid is REG_DWORD = 1, this is not a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7255,7 +7254,7 @@ Criteria: If the value SyncToSysCFL is REG_DWORD = 0, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7368,7 +7367,7 @@ Criteria: If the value JunkMailTrustContacts is REG_DWORD = 1, this is not a fin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7505,7 +7504,7 @@ Set the policy value for User Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7619,7 +7618,7 @@ Criteria: If the value MSGFormat is REG_DWORD = 0, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7733,7 +7732,7 @@ Criteria: If the value ServerUI is REG_DWORD = 2, this is not a finding.</ATTRIB
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7846,7 +7845,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7959,7 +7958,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8072,7 +8071,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8185,7 +8184,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8301,7 +8300,7 @@ Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8415,7 +8414,7 @@ Criteria: If the value EnableAttachments is REG_DWORD = 0, this is not a finding
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8530,7 +8529,7 @@ Criteria: If the value Message RTF Format is REG_DWORD = 1, this is not a findin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8644,7 +8643,7 @@ Criteria: If the value EditorPreference is REG_DWORD = 65536 (dec), this is not 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8758,7 +8757,7 @@ Criteria: If the value ForceDefaultProfile is REG_DWORD = 0, this is not a findi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8872,7 +8871,7 @@ Criteria: If the value MinEncKey is REG_DWORD = 168, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8985,7 +8984,7 @@ Criteria: If the value NoCheckOnSessionSecurity is REG_DWORD = 1, this is not a 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9099,7 +9098,7 @@ Criteria: If the value SupressNameChecks is REG_DWORD = 1, this is not a finding
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9212,7 +9211,7 @@ Criteria: If the value disableweather is REG_DWORD = 1, this is not a finding.</
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9325,7 +9324,7 @@ Criteria: If the value pgrfafo_25_1 is REG_DWORD = 0, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Version 1, Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Outlook 2013 STIG :: Release: 13 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>

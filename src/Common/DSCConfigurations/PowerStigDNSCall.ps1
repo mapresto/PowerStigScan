@@ -19,7 +19,7 @@ param(
 
 configuration PowerStigDNSCall
 {
-    Import-DscResource -ModuleName PowerStig -ModuleVersion 2.3.2.0
+    Import-DscResource -ModuleName PowerStig -ModuleVersion 2.4.0.0
 
     Node $ComputerName  
     {

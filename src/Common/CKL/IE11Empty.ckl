@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--DISA STIG Viewer :: 2.7.1-->
+<!--DISA STIG Viewer :: 2.8-->
+<!--1.16 IE11-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -50,7 +51,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>0e05e1cb-9486-4964-b66c-1911fe925859</SID_DATA>
+					<SID_DATA>29f2dc44-9e9d-4830-bc0f-23a574232aa2</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>
@@ -159,7 +160,7 @@ Select only "Use TLS 1.1" and "Use TLS 1.2" from the drop-down box.</ATTRIBUTE_D
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -266,7 +267,7 @@ Select only "Use TLS 1.1" and "Use TLS 1.2" from the drop-down box.</ATTRIBUTE_D
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -390,7 +391,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -497,7 +498,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -604,7 +605,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -711,7 +712,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -818,7 +819,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -925,7 +926,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1032,7 +1033,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1139,7 +1140,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1246,7 +1247,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1353,7 +1354,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1460,7 +1461,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1567,7 +1568,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1674,7 +1675,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1781,7 +1782,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1888,7 +1889,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1995,7 +1996,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2102,7 +2103,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2209,7 +2210,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2316,7 +2317,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2423,7 +2424,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2530,7 +2531,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2637,7 +2638,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2744,7 +2745,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2851,7 +2852,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2958,7 +2959,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3065,7 +3066,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3172,7 +3173,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3279,7 +3280,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3386,7 +3387,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3493,7 +3494,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3600,7 +3601,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3707,7 +3708,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3814,7 +3815,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3921,7 +3922,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4028,7 +4029,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4135,7 +4136,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4242,7 +4243,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4349,7 +4350,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4456,7 +4457,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4563,7 +4564,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4670,7 +4671,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4777,7 +4778,7 @@ HKCU\Software\Microsoft\Windows\Current Version\WinTrust\Trust Providers\Softwar
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4886,7 +4887,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4993,7 +4994,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5100,7 +5101,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5207,7 +5208,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5314,7 +5315,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5421,7 +5422,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5528,7 +5529,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5635,7 +5636,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5742,7 +5743,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5849,7 +5850,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5956,7 +5957,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6063,7 +6064,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6170,7 +6171,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6277,7 +6278,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6384,7 +6385,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6491,7 +6492,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6598,7 +6599,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6705,7 +6706,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6812,7 +6813,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6919,7 +6920,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7026,7 +7027,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7133,7 +7134,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7240,7 +7241,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7347,7 +7348,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7454,7 +7455,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7561,7 +7562,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7668,7 +7669,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7775,7 +7776,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7882,7 +7883,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7989,7 +7990,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8096,7 +8097,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8203,7 +8204,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8310,7 +8311,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8417,7 +8418,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8524,7 +8525,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8631,7 +8632,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8738,7 +8739,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8845,7 +8846,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -8952,7 +8953,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9059,7 +9060,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9166,7 +9167,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9273,7 +9274,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9380,7 +9381,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9487,7 +9488,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9594,7 +9595,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9701,7 +9702,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9809,7 +9810,7 @@ Procedure: Use the Windows Registry Editor to navigate to the following key: HKC
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -9926,7 +9927,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10033,7 +10034,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10140,7 +10141,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10247,7 +10248,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10354,7 +10355,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10461,7 +10462,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10568,7 +10569,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10675,7 +10676,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10782,7 +10783,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10889,7 +10890,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -10996,7 +10997,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11103,7 +11104,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11210,7 +11211,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11317,7 +11318,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11424,7 +11425,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11531,7 +11532,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11638,7 +11639,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11745,7 +11746,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11852,7 +11853,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -11959,7 +11960,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12066,7 +12067,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12173,7 +12174,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12280,7 +12281,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12387,7 +12388,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12494,7 +12495,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12601,7 +12602,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12708,7 +12709,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12815,7 +12816,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -12922,7 +12923,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13029,7 +13030,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13136,7 +13137,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13243,7 +13244,7 @@ Set the policy value for Computer Configuration &gt;&gt; Administrative Template
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13355,7 +13356,7 @@ Criteria: If the value "PreventOverride" is REG_DWORD = 1, this is not a finding
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13467,7 +13468,7 @@ Criteria: If the value "PreventOverrideAppRepUnknown" is REG_DWORD = 1, this is 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13579,7 +13580,7 @@ Criteria: If the value "BlockNonAdminActiveXInstall" is REG_DWORD = 1, this is n
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13691,7 +13692,7 @@ Criteria: If the value "PreventIgnoreCertErrors" is REG_DWORD = 1, this is not a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13803,7 +13804,7 @@ Criteria: If the value "2301" is REG_DWORD = 0, this is not a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -13915,7 +13916,7 @@ Criteria: If the value "2301" is REG_DWORD = 0, this is not a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14027,7 +14028,7 @@ Criteria: If the value "1201" is REG_DWORD = 3, this is not a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14139,7 +14140,7 @@ Criteria: If the value "1201" is REG_DWORD = 3, this is not a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14253,7 +14254,7 @@ Criteria: If the value "EnableSSL3Fallback" is REG_DWORD=0, this is not a findin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14366,7 +14367,7 @@ If the value "RunThisTimeEnabled" is REG_DWORD = 0, this is not a finding.</ATTR
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14479,7 +14480,7 @@ If the value "VersionCheckEnabled" is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14600,7 +14601,7 @@ In the Options window, select "Enable" from the “Only allow approved domains t
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14723,7 +14724,7 @@ In the Options windows, select "Enable" from the “Only allow approved domains 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14837,7 +14838,7 @@ Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -14951,7 +14952,7 @@ Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Internet Explorer 11 Security Technical Implementation Guide :: Version 1, Release: 16 Benchmark Date: 27 Jul 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>

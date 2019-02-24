@@ -256,7 +256,7 @@ function Get-PowerStigFindings
         $DatabaseName = $iniVar.DatabaseName
     }
 
-    $query = "PowerSTIG.GetComplianceStateByServer @TargetComputer = $ServerName, @GUID = '$GUID'"
+    $query = "PowerSTIG.GetComplianceStateByServer @TargetComputer = '$ServerName', @GUID = '$GUID'"
     $Results = Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query
 
     Return $Results

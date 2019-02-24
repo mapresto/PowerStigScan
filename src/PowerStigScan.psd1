@@ -12,7 +12,7 @@
     RootModule = 'PowerStigScan.psm1'
     
     # Version number of this module.
-    ModuleVersion = '1.0.0.1'
+    ModuleVersion = '2.0.0.0'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -65,7 +65,7 @@ PowerStig Repo: https://github.com/Microsoft/PowerStig'
         @{ModuleName = 'xPSDesiredStateConfiguration'; ModuleVersion = '8.3.0.0'},
         @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.3.0.0'},
         @{ModuleName = 'xWinEventLog'; ModuleVersion = '1.2.0.0'},
-        @{ModuleName = 'PowerStig'; ModuleVersion = '2.3.2.0'}
+        @{ModuleName = 'PowerStig'; ModuleVersion = '2.4.0.0'}
     
     )
     

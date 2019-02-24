@@ -161,7 +161,7 @@ function Update-PowerStigCkl
 
     if(-not(Test-Path -Path (Split-Path $outPath)))
     {
-        New-Item -ItemType Directory -Path (Split-Path $outPath)
+        New-Item -ItemType Directory -Path (Split-Path $outPath) -Force
     }
 
     $CKL.save($outPath)
@@ -256,7 +256,7 @@ function Get-PowerStigFindings
         $DatabaseName = $iniVar.DatabaseName
     }
 
-    $query = "PowerSTIG.GetComplianceStateByServer @TargetComputer = $ServerName, @GUID = '$GUID'"
+    $query = "PowerSTIG.GetComplianceStateByServer @TargetComputer = '$ServerName', @GUID = '$GUID'"
     $Results = Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query
 
     Return $Results

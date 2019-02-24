@@ -26,9 +26,20 @@ Functions:
         M02 - InsertLog
         M03 - Get-PowerStigXMLPath
         M04 - Get-PowerStigXMLVersion
+        M05 - Get-PowerStigServerRole
+        M06 - Get-ServerVersion
+        R01 - Get-PowerStigIsOffice
+        R02 - Get-PowerStigIsIE
+        R03 - Get-PowerStigIsDotNet
+        R04 - Get-PowerStigIsFireFox
+        R05 - Get-PowerStigIsFirewall
+        R06 - Get-PowerStigIsIIS
+        R07 - Get-PowerStigIsDNS
+        R08 - Get-PowerStigIsSQL
+        R09 - Get-PowerStigIsJRE
     Public:
-        M05 - Invoke-PowerStigScan
-        M06 - Invoke-PowerStigBatch
+        M07 - Invoke-PowerStigScan
+        M08 - Invoke-PowerStigBatch
 #>
 
 #region Private
@@ -94,86 +105,345 @@ function Get-PowerStigXmlVersion
     [cmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]
-        [ValidateSet("DC",
-                    "DNS",
-                    "MS",
-                    "IE11",
-                    "FW",
-                    "Client",
-                    "OracleJRE",
-                    "IIS",
-                    "SQL",
-                    "Outlook2013",
-                    "PowerPoint2013",
-                    "Excel2013",
-                    "Word2013",
-                    "FireFox",
-                    "DotNet")]
-        [string]$role,
-
-        [Parameter(Mandatory=$true)]
         [ValidateSet("2012R2","2016","Windows-10","All")]
         [string]$osVersion
     )
-    [System.Array]$StigXmlBase = (get-childitem -path (Get-PowerStigXMLPath)).name
-    # Regex pattern that tests for up to a two digit number followed by a decimal followed by up to a two digit number (i.e. 12.12,2.8,9.1)
-    [regex]$RegexTest = "([1-9])?[0-9]\.[0-9]([0-9])?"
-    # Holder variable for the current high value matching the previous regex
-    $highVer = $null
-    [System.Array]$StigXmlOs = @()
 
-    # Test if the role is similar to ADDomain, ADForest, IE, or FW. If so then ensure that the OS Version is set to all
-    if($role -eq "IE11" -or $role -eq "FW" -or $role -like "*2013" -or $role -eq "DotNet" -or $role -eq "FireFox" -or $role -eq "oracleJRE")
-    {
-        $osVersion = "All"
+    DynamicParam {
+        $ParameterName = 'Role'
+        $RuntimeParameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
+        $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
+        $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
+        $ParameterAttribute.Mandatory = $true
+        $AttributeCollection.Add($ParameterAttribute)
+        $roleSet = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
+        $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
+        $AttributeCollection.Add($ValidateSetAttribute)
+        $RuntimeParameter = New-Object System.Management.Automation.RuntimeDefinedParameter($ParameterName, [string], $AttributeCollection)
+        $RuntimeParameterDictionary.Add($ParameterName, $RuntimeParameter)
+        return $RuntimeParameterDictionary
     }
 
-    # Parse through repository for STIGs that match only the current OS that we are looking for
-    foreach($a in $StigXMLBase)
-    {
-        if ($a -like "*$osVersion*")
-        {
-            $StigXmlOs += $a
-        }
+    begin{
+        $Role = $PSBoundParameters[$ParameterName]
     }
 
-    # If previous check returns nothing, notify the user and terminate the function
-    if($StigXmlOs.Count -eq 0)
-    {
-        Write-Error -Message "No STIGs Matching Desired OS" 
-        Return $null
-    }
-
-    foreach($g in $StigXmlOs)
-    {
-        if($g -like "*$role*")
-        {
-            if($g -match $RegexTest)
-            {
-                [version]$wStigVer = ($RegexTest.Matches($g)).value
-            }
-
-            if($null -eq $highVer)
-            {
-                [version]$highVer = $wStigVer
-            }
-            elseif ($wStigVer -gt $highVer)
-            {
-                $highVer = $wStigVer
-            }
-        }
-    }
-    $stringout = $highVer.Major.ToString() + "." + $highVer.Minor.ToString()
+    process{
+        [System.Array]$StigXmlBase = (get-childitem -path (Get-PowerStigXMLPath)).name
+        # Regex pattern that tests for up to a two digit number followed by a decimal followed by up to a two digit number (i.e. 12.12,2.8,9.1)
+        [regex]$RegexTest = "([1-9])?[0-9]\.[0-9]([0-9])?"
+        # Holder variable for the current high value matching the previous regex
+        $highVer = $null
+        [System.Array]$StigXmlOs = @()
     
-    Return $stringout
+        # Test if the role is similar to ADDomain, ADForest, IE, or FW. If so then ensure that the OS Version is set to all
+        if($role -eq "IE11" -or $role -eq "FW" -or $role -like "*2013" -or $role -eq "DotNet" -or $role -eq "FireFox" -or $role -eq "oracleJRE")
+        {
+            $osVersion = "All"
+        }
+    
+        # Parse through repository for STIGs that match only the current OS that we are looking for
+        foreach($a in $StigXMLBase)
+        {
+            if ($a -like "*$osVersion*")
+            {
+                $StigXmlOs += $a
+            }
+        }
+    
+        # If previous check returns nothing, notify the user and terminate the function
+        if($StigXmlOs.Count -eq 0)
+        {
+            Write-Error -Message "No STIGs Matching Desired OS" 
+            Return $null
+        }
+    
+        foreach($g in $StigXmlOs)
+        {
+            if($g -like "*$role*")
+            {
+                if($g -match $RegexTest)
+                {
+                    [version]$wStigVer = ($RegexTest.Matches($g)).value
+                }
+    
+                if($null -eq $highVer)
+                {
+                    [version]$highVer = $wStigVer
+                }
+                elseif ($wStigVer -gt $highVer)
+                {
+                    $highVer = $wStigVer
+                }
+            }
+        }
+        $stringout = $highVer.Major.ToString() + "." + $highVer.Minor.ToString()
+        
+        Return $stringout
+    
+    }
+
 }
 
+function Get-PowerStigServerRole
+{
+    param(
+        [CmdletBinding()]
+        [Parameter(Mandatory=$true)]
+        [String]$ServerName
+    )
+
+    # Initialize Role Array
+    $arrRole = @()
+
+    # Gather domain role and OS version
+    $domainRole = (Get-WmiObject -Class Win32_ComputerSystem -ComputerName $ServerName).DomainRole
+    $osVersion = (Get-WmiObject -Class Win32_OperatingSystem -ComputerName $ServerName).Version
+
+    # Determine MemberServer/Client/DomainController
+    if($domainRole -eq 4 -or $domainRole -eq 5)
+    {
+        $arrRole += "DC"
+        $outVersion = Get-ServerVersion -osVersion $osVersion
+    }elseif($domainRole -eq 2 -or $domainRole -eq 3)
+    {
+        $arrRole += "MS"
+        $outVersion = Get-ServerVersion -osVersion $osVersion
+    }elseif($domainRole -eq 0 -or $domainRole -eq 1)
+    {
+        $arrRole += "Client"
+        if($osVersion -like "10.*")
+        {
+            $outVersion = "Windows10"
+        }else{
+            Return 100
+        }
+    }
+
+    if($arrRole -contains "MS" -or $arrRole -contains "DC")
+    {
+        if(Get-PowerStigIsOffice -ServerName $ServerName)
+        {
+            $arrRole += "Outlook2013"
+            $arrRole += "PowerPoint2013"
+            $arrRole += "Excel2013"
+            $arrRole += "Word2013"
+        }
+        if(Get-PowerStigIsIE -ServerName $ServerName)
+        {
+            $arrRole += "IE11"
+        }
+        if(Get-PowerStigIsDotNet -ServerName $ServerName)
+        {
+            $arrRole += "DotNet"
+        }
+        if(Get-PowerStigIsFireFox -ServerName $ServerName)
+        {
+            $arrRole += "FireFox"
+        }
+        if(Get-PowerStigIsFirewall -ServerName $ServerName)
+        {
+            $arrRole += "FW"
+        }
+        if(Get-PowerStigIsIIS -ServerName $ServerName)
+        {
+            $arrRole += "IIS"
+        }
+        if(Get-PowerStigIsSQL -ServerName $ServerName)
+        {
+            $arrRole += "SQL"
+        }
+        if(Get-PowerStigIsJRE -ServerName $ServerName)
+        {
+            $arrRole += "OracleJRE"
+        }
+        if(Get-PowerStigIsDNS -ServerName $ServerName)
+        {
+            $arrRole += "DNS"
+        }
+    }elseif($arrRole -contains "Client")
+    {
+        if(Get-PowerStigIsOffice -ServerName $ServerName)
+        {
+            $arrRole += "Outlook2013"
+            $arrRole += "PowerPoint2013"
+            $arrRole += "Excel2013"
+            $arrRole += "Word2013"
+        }
+        if(Get-PowerStigIsIE -ServerName $ServerName)
+        {
+            $arrRole += "IE11"
+        }
+        if(Get-PowerStigIsDotNet -ServerName $ServerName)
+        {
+            $arrRole += "DotNet"
+        }
+        if(Get-PowerStigIsFireFox -ServerName $ServerName)
+        {
+            $arrRole += "FireFox"
+        }
+        if(Get-PowerStigIsFirewall -ServerName $ServerName)
+        {
+            $arrRole += "FW"
+        }
+        if(Get-PowerStigIsSQL -ServerName $ServerName)
+        {
+            $arrRole += "SQL"
+        }
+        if(Get-PowerStigIsJRE -ServerName $ServerName)
+        {
+            $arrRole += "OracleJRE"
+        }
+    }
+
+    $outObj = New-Object -TypeName PSObject
+    Add-Member -InputObject $outObj -NotePropertyName "Version" -NotePropertyValue $OutVersion
+    Add-Member -InputObject $outObj -NotePropertyName "Roles" -NotePropertyValue $arrRole
+
+    Return $outObj
+
+}
+
+# M06
+function Get-ServerVersion
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$osVersion
+    )
+
+    if ($osVersion -like "6.3*")
+    {
+        Return "2012R2"
+    }elseif ($osVersion -like "10.*")
+    {
+        Return "2016"
+    }
+}
+
+# R01
+function Get-PowerStigIsOffice
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$ServerName
+    )
+
+    $uninstallPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+    $keys = @(Invoke-Command -computername $ServerName -scriptblock {param($uninstallPath) Get-ChildItem -path $uninstallPath | Where-Object {$_.name -like "*0FF1CE}"}} -ArgumentList $uninstallPath)
+    if($keys.count -ge 1)
+    {
+        Return $true
+    }
+    else {
+        Return $false
+    }
+}
+
+# R02
+function Get-PowerStigIsIE
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$ServerName
+    )
+
+    Return (Invoke-Command -ComputerName $ServerName -Scriptblock {(Get-windowsoptionalfeature -FeatureName Internet-Explorer-Optional-amd64 -online).state -eq "Enabled"})
+}
+
+# R03
+function Get-PowerStigIsDotNet
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$ServerName
+    )
+
+    # DotNet is currently unsupported by PowerStig. This will return false until further notice.
+
+    Return $false
+}
+
+# R04
+function Get-PowerStigIsFireFox
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$ServerName
+    )
+
+    Return Invoke-Command -ComputerName $ServerName -scriptblock {Test-Path -path "HKLM:\Software\Mozilla\Mozilla Firefox\"}
+}
+
+# R05
+function Get-PowerStigIsFirewall
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$ServerName
+    )
+
+    Return $true
+}
+
+# R06
+function Get-PowerStigIsIIS
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$ServerName
+    )
+
+    Return (Get-WindowsFeature -ComputerName $ServerName -Name Web-Server).installstate -eq "Installed"
+}
+
+# R07
+function Get-PowerStigIsDNS
+{
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$ServerName
+    )
+
+    Return (Get-WindowsFeature -ComputerName $ServerName -Name DNS).installstate -eq "Installed"
+}
+
+# R08
+function Get-PowerStigIsSQL
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$ServerName
+    )
+
+    Return $false
+}
+
+# R09
+function Get-PowerStigIsJRE
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$ServerName
+    )
+
+    Return Invoke-Command -ComputerName $ServerName -ScriptBlock {if ((Test-Path -Path "HKLM:\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment") -or (Test-Path -Path "HKLM:\SOFTWARE\JavaSoft\Java Runtime Environment")){Return $true}else{Return $false}}
+}
 #endregion Private
 
 
 #region Public
 
-#M05
+# M07
 <#
 .SYNOPSIS
 Uses PowerStig and PowerStigDSC modules to scan a target server and return data as a CSV file
@@ -201,87 +471,11 @@ function Invoke-PowerStigScan
         [ValidateNotNullorEmpty()]
         [String]$ServerName,
 
-        [Parameter(Mandatory=$true,ParameterSetName="Main")]
-        [ValidateNotNullorEmpty()]
-        [ValidateSet("MemberServer",
-                    "DomainController",
-                    "Client",
-                    "Word",
-                    "Excel",
-                    "PowerPoint",
-                    "Outlook",
-                    "DNS",
-                    "IE",
-                    "DotNet",
-                    "FireFox",
-                    "Firewall")]
-        [String]$Role,
-
-        [Parameter(Mandatory=$true,ParameterSetName="IIS")]
-        [ValidateNotNullorEmpty()]
-        [ValidateSet("IIS")]
-        [Switch]$IIS,
-
-        [Parameter(Mandatory=$true,ParameterSetName="SQL")]
-        [ValidateNotNullorEmpty()]
-        [ValidateSet("SQL")]
-        [Switch]$SQL,
-
-        [Parameter(Mandatory=$true,ParameterSetName="IIS")]
-        [ValidateNotNullOrEmpty()]
-        [String]$WebsiteName,
-
-        [Parameter(Mandatory=$true,ParameterSetName="IIS")]
-        [ValidateNotNullOrEmpty()]
-        [String]$WebAppPool,
-
-        [Parameter(Mandatory=$true,ParameterSetName="SQL")]
-        [ValidateNotNullorEmpty()]
-        [String]$SqlInstance,
-
-        [Parameter(Mandatory=$true,ParameterSetName="SQL")]
-        [ValidateNotNullorEmpty()]
-        [ValidateSet("Database","Instance")]
-        [String]$SqlRole,
-
-        [Parameter(Mandatory=$true,ParameterSetName="SQL")]
-        [ValidateNotNullorEmpty()]
-        [ValidateSet("2012")]
-        [String]$SqlVersion,
-
-        [Parameter(Mandatory=$true,ParameterSetName="SQL")]
-        [ValidateNotNullorEmpty()]
-        [String[]]$Database,
-
-        [Parameter(Mandatory=$true,ParameterSetName="JRE")]
-        [ValidateNotNullorEmpty()]
-        [Switch]$JRE,
-
-        [Parameter(Mandatory=$true,ParameterSetName="JRE")]
-        [ValidateNotNullorEmpty()]
-        [String]$ConfigurationPath,
-
-        [Parameter(Mandatory=$true,ParameterSetName="JRE")]
-        [ValidateNotNullorEmpty()]
-        [String]$PropertiesPath,
-
         [Parameter(Mandatory=$false)]
         [Switch]$DebugScript
 
     )
 
-    if($PSCmdlet.ParameterSetName -eq "SQL")
-    {
-        $Role = "SQL"
-    }
-    elseif ($PSCmdlet.ParameterSetName -eq "IIS") 
-    {
-        $Role = "IIS"    
-    }
-    elseif ($PSCmdlet.ParameterSetName -eq "JRE")
-    {
-        $Role = "JRE"
-    }
 
     #########################
     #Initialize Variables   #
@@ -302,26 +496,16 @@ function Invoke-PowerStigScan
         $logFilePath = get-item -Path $logPath\$logFileName
     }
     #Initialize Logging
-    Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: New Scan - $ServerName"
-    Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: PowerStig scan started on $ServerName for role $Role."
+    Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][Info]: New Scan - $ServerName"
     if($DebugScript)
     {
-        Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Debug]: Config.ini Variables Are: $iniVar"
-        Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Debug]: WorkingPath is: $workingPath"
+        Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: Config.ini Variables Are: $iniVar"
+        Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: WorkingPath is: $workingPath"
     }
 
     ##############################
     #Initialize Logging Complete #
     ##############################
-
-    ##############################
-    #Check if currently supported#
-    ##############################
-    if($role -eq "SQL" -or $role -eq "IIS" -or $role -eq "JRE")
-    {
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $Role is currently unavailable in this release. It will be added in an upcoming version."
-        Return
-    }
 
     ##############################
     #Test Connection to Server   #
@@ -330,21 +514,28 @@ function Invoke-PowerStigScan
     #Test Connection
     if($DebugScript)
     {
-        Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Debug]: Running (Test-NetConnection -ComputerName $serverName -CommonTCPPort WINRM).TcpTestSucceeded -eq `$false"
+        Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: Running (Test-NetConnection -ComputerName $serverName -CommonTCPPort WINRM).TcpTestSucceeded -eq `$false"
     }
     if((Test-NetConnection -ComputerName $serverName -CommonTCPPort WINRM).TcpTestSucceeded -eq $false)
     {
-        Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Error]: Connection to $serverName Failed. Check network connectivity and that the server is listening for WinRM"
+        Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][Error]: Connection to $serverName Failed. Check network connectivity and that the server is listening for WinRM"
         Return
     }
     else 
     {
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: Connection to $serverName successful"
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Connection to $serverName successful"
     }
 
     ###########################
     #Test Connection Complete #
     ###########################
+
+    ###########################
+    #Get server roles
+    ###########################
+
+    $roles = Get-PowerStigServerRole -ServerName $ServerName
+    Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][Info]: PowerStig scan started on $ServerName for role $($roles.roles) and version $($roles.version)."
 
     ###########################
     #Test WSMAN Settings      #
@@ -356,8 +547,8 @@ function Invoke-PowerStigScan
             [int]$maxEnvelope = (get-childitem wsman:\localhost\MaxEnvelopeSizekb).value
         }
         catch {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$Servername][$Role][ERROR]: Query for WSMAN properties failed. Check user context that this is running under."
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$Servername][ERROR]: Query for WSMAN properties failed. Check user context that this is running under."
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: $_"
             Return
         }
         
@@ -370,386 +561,86 @@ function Invoke-PowerStigScan
     #Configure WSMAN if necessary
     if($maxEnvelope -lt 10000 -and $ServerName -ne $ENV:ComputerName)
     {
-        Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Warning]: Attempting to set MaxEnvelopeSizeKb on $ServerName."
+        Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][Warning]: Attempting to set MaxEnvelopeSizeKb on $ServerName."
         try 
         {
             invoke-command -computername $serverName -ScriptBlock {Set-Item -Path WSMAN:\localhost\MaxEnvelopeSizekb -Value 10000}
-            Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MaxEnvelopeSizeKb successfully configured on $ServerName."
+            Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: MaxEnvelopeSizeKb successfully configured on $ServerName."
         }
         catch 
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: Setting WSMAN failed on $ServerName."
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: Setting WSMAN failed on $ServerName."
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: $_"
             Return
         }
     }
     elseif($maxEnvelope -lt 10000 -and $ServerName -eq $ENV:ComputerName)
     {
-        Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Warning]: Attempting to set MaxEnvelopeSizeKb on $ServerName."
+        Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][Warning]: Attempting to set MaxEnvelopeSizeKb on $ServerName."
         try 
         {
             Set-Item -Path WSMAN:\localhost\MaxEnvelopeSizekb -Value 10000
-            Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MaxEnvelopeSizeKb successfully configured on $ServerName."
+            Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: MaxEnvelopeSizeKb successfully configured on $ServerName."
         }
         catch 
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: Setting WSMAN failed on $ServerName."
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: Setting WSMAN failed on $ServerName."
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: $_"
             Return
         }
     }
     else
     {
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: WSMan is correctly configured."
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: WSMan is correctly configured."
     }
 
     ###############################
     #Test WSMan Settings Complete #
     ###############################
 
-    ###############################
-    #Convert SqlRole to DSCRole   #
-    ###############################
-
-    #Determine STIG Version
-    $dscRole = Convert-PowerStigSqlToRole -SqlRole $Role
-    if($DebugScript)
-    {
-        Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Debug]: DSCRole is $dscRole"
-    }
-
     if(-not(test-path "$logPath\$ServerName"))
     {
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: Creating file path for this server at $logPath\$ServerName"
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Creating file path for this server at $logPath\$ServerName"
         New-Item -ItemType Directory -Path "$logpath\$ServerName"
     }
-
-    ########################
-    #Convert Role Complete #
-    ########################
 
     ########################
     #Check OSVersion       #
     ########################
 
-    
-    [bool]$is2012 = $true
-    if($Role -like "*2016*")
-    {
-            $is2012 = $false
-    }
-    elseif($role -eq "Client")
-    {
-        $osVersion = "Windows-10"
-    }
-
-    if($is2012 -eq $true -and $osVersion -ne "Windows-10")
-    {
-        $osVersion = "2012R2"
-    }
-    elseif($is2012 -eq $false -and $osVersion -ne "Windows-10")
-    {
-        $osVersion = "2016"
-    }
+    $osVersion = $roles.version
 
     ###########################
     #Check OSVersion Complete #
     ###########################
 
-    Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: OS Version is $osVersion"
+    Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: OS Version is $osVersion"
 
     #Build MOF
     Push-Location $logPath\$serverName
 
-    ##########################
-    #Get Stig Version Number #
-    ##########################
-
-    try 
-    {
-        $stigVersion = Get-PowerStigXmlVersion -role $dscRole -osVersion $osVersion
-    }
-    catch 
-    {
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: dscRole is $dscRole"
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: osVersion is $osVersion"
-        Return
-    }
-
-    ############################
-    #Get Stig Version Complete #
-    ############################
-    
     ############################
     #Create MOF                #
     ############################
 
-    Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: Stig Version is $stigVersion"
+    try
+    {
+        & $workingPath\DSCCall.ps1 -ComputerName $ServerName -osVersion $osVersion -Role $($roles.Roles) -LogPath $logFilePath
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: MOF Created for $ServerName for role $dscRole"
+        $mofPath = "$logPath\$ServerName\PowerSTIG\"
+    }
+    catch
+    {
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: mof generation failed when running:"
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: & $workingPath\DSCCall.ps1 -ComputerName $ServerName -osVersion $osVersion -Role $($roles.Role) -LogPath $logFilePath"
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: $_"
+        Return
 
-    if($dscRole -eq "DNS")
-    {
-        #Run DNSDSC
-        try 
-        {
-            if($DebugScript)
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Debug]: Running: $workingPath\DSCConfigurations\PowerStigDNSCall.ps1 -ComputerName $ServerName -OsVersion $osVersion -StigVersion $stigVersion"
-            }
-            & $workingPath\DSCConfigurations\PowerStigDNSCall.ps1 -ComputerName $ServerName -OsVersion $osVersion -StigVersion $stigVersion
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole"
-            $mofPath = "$logPath\$ServerName\PowerStigDNSCall"
-        }
-        catch
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
     }
-    elseif($dscRole -eq "IE11")
-    {
-        #run IEDSC
-        try 
-        {
-            if($DebugScript)
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Debug]: Running: $workingPath\DSCConfigurations\PowerStigBrowserCall.ps1 -ComputerName $ServerName -Role $dscRole -StigVersion $stigVersion"
-            }
-            & $workingPath\DSCConfigurations\PowerStigBrowserCall.ps1 -ComputerName $ServerName -Role $dscRole -StigVersion $stigVersion
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole"
-            $mofPath = "$logPath\$ServerName\PowerStigBrowserCall"
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
-    }
-    elseif($dscRole -eq "MS" -or $dscRole -eq "DC")
-    {
-        #run MSDCDSC
-        try 
-        {
-            if($DebugScript)
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Debug]: Running: $workingPath\DSCConfigurations\PowerStigMSDCCall.ps1 -ComputerName $ServerName -Role $dscRole -OsVersion $osVersion -StigVersion $stigVersion"
-            }
-            & $workingPath\DSCConfigurations\PowerStigMSDCCall.ps1 -ComputerName $ServerName -Role $dscRole -OsVersion $osVersion -StigVersion $stigVersion
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole"
-            $mofPath = "$logPath\$ServerName\PowerStigMSDCCall"
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
-    }
-    elseif($dscRole -eq "FW")
-    {
-        try
-        {
-            if($DebugScript)
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Debug]: Running: $workingPath\DSCConfigurations\PowerStigFWCall.ps1 -ComputerName $ServerName -StigVersion $stigVersion"
-            }
-            & $workingPath\DSCConfigurations\PowerStigFWCall.ps1 -ComputerName $ServerName -StigVersion $stigVersion
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole"
-            $mofPath = "$logPath\$ServerName\PowerStigFWCall"
-        }
-        catch
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
-    }
-    elseif($dscRole -eq "Word2013")
-    {
-        try {
-            if($DebugScript)
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName[$Role][Debug]: Running: $WorkingPath\DSCConfigurations\PowerStigOfficeCall.ps1 -ComputerName $ServerName -OfficeApp $app -StigVersion $stigVersion"
-            }
-            & $WorkingPath\DSCConfigurations\PowerStigOfficeCall.ps1 -ComputerName $ServerName -OfficeApp $dscRole -StigVersion $stigVersion
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole"
-            $MofPath = "$logPath\$ServerName\PowerStigOfficeCall"
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
-    }
-    elseif($dscRole -eq "Excel2013")
-    {
-        try {
-            if($DebugScript)
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName[$Role][Debug]: Running: $WorkingPath\DSCConfigurations\PowerStigOfficeCall.ps1 -ComputerName $ServerName -OfficeApp $app -StigVersion $stigVersion"
-            }
-            & $WorkingPath\DSCConfigurations\PowerStigOfficeCall.ps1 -ComputerName $ServerName -OfficeApp $dscRole -StigVersion $stigVersion
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole"
-            $MofPath = "$logPath\$ServerName\PowerStigOfficeCall"
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
-    }
-    elseif($dscRole -eq "PowerPoint2013")
-    {
-        try {
-            if($DebugScript)
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName[$Role][Debug]: Running: $WorkingPath\DSCConfigurations\PowerStigOfficeCall.ps1 -ComputerName $ServerName -OfficeApp $app -StigVersion $stigVersion"
-            }
-            & $WorkingPath\DSCConfigurations\PowerStigOfficeCall.ps1 -ComputerName $ServerName -OfficeApp $dscRole -StigVersion $stigVersion
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole"
-            $MofPath = "$logPath\$ServerName\PowerStigOfficeCall"
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
-    }
-    elseif($dscRole -eq "Outlook2013")
-    {
-        try {
-            if($DebugScript)
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName[$Role][Debug]: Running: $WorkingPath\DSCConfigurations\PowerStigOfficeCall.ps1 -ComputerName $ServerName -OfficeApp $app -StigVersion $stigVersion"
-            }
-            & $WorkingPath\DSCConfigurations\PowerStigOfficeCall.ps1 -ComputerName $ServerName -OfficeApp $dscRole -StigVersion $stigVersion
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole"
-            $MofPath = "$logPath\$ServerName\PowerStigOfficeCall"
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
-    }
-    elseif($dscRole -eq "Client")
-    {
-        try {
-            if($DebugScript)
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName[$Role][Debug]: Running: $WorkingPath\DSCConfigurations\PowerStigWinCliCall.ps1 -ComputerName $ServerName -StigVersion $stigVersion"
-            }
-            & $WorkingPath\DSCConfigurations\PowerStigWinCliCall.ps1 -ComputerName $ServerName -StigVersion $stigVersion
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole"
-            $MofPath = "$logPath\$ServerName\PowerStigWinCliCall"
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
-    }
-    elseif($dscRole -eq "DotNet")
-    {
-        try {
-            if($DebugScript)
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName[$Role][Debug]: Running: $WorkingPath\DSCConfigurations\PowerStigDotNetCall.ps1 -ComputerName $ServerName -StigVersion $stigVersion"
-            }
-            & $WorkingPath\DSCConfigurations\PowerStigDotNetCall.ps1 -ComputerName $ServerName -StigVersion $stigVersion
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole"
-            $MofPath = "$logPath\$ServerName\PowerStigDotNetCall"
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
-    }
-    elseif($dscRole -eq "FireFox")
-    {
-        try
-        {
-            # Determine install Directory
-            $InstallDirectory = Invoke-Command -ComputerName $Servername -Scriptblock {(get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox\$((get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox").currentversion)\Main")."Install Directory"}
-            try {
-                if($DebugScript)
-                {
-                    Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName[$Role][Debug]: Running: $WorkingPath\DSCConfigurations\PowerStigFiFoCall.ps1 -ComputerName $ServerName -StigVersion $stigVersion -InstallDirectory $InstallDirectory"
-                }
-                & $WorkingPath\DSCConfigurations\PowerStigFiFoCall.ps1 -ComputerName $ServerName -StigVersion $stigVersion -InstallDirectory $InstallDirectory
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole"
-                $MofPath = "$logPath\$ServerName\PowerStigFiFoCall"
-            }
-            catch 
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-                Return
-            }
-        }
-        catch
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
-    }
-    <#elseif($dscRole -eq "IIS")
-    {
-        try {
-            if($DebugScript)
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName[$Role][Debug]: Running: $WorkingPath\DSCConfigurations\PowerStigOfficeCall.ps1 -ComputerName $ServerName -OfficeApp $app -StigVersion $stigVersion"
-            }
-            & $WorkingPath\DSCConfigurations\PowerStigOfficeCall.ps1 -ComputerName $ServerName -OfficeApp $app -StigVersion $stigVersion
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole"
-            $tempMofPath = "$logPath\$ServerName\PowerStigOfficeCall"
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
-    }#>
-    elseif($dscRole -eq "OracleJRE")
-    {
-        try {
-            if($DebugScript)
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName[$Role][Debug]: Running: $WorkingPath\DSCConfigurations\PowerStigOraJRECall.ps1 -ComputerName $ServerName -ConfigPath $ConfigurationPath -PropertiesPath $PropertiesPath -StigVersion $stigVersion"
-            }
-            & $WorkingPath\DSCConfigurations\PowerStigOraJRECall.ps1 -ComputerName $ServerName -ConfigPath $ConfigurationPath -PropertiesPath $PropertiesPath -StigVersion $stigVersion
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole"
-            $MofPath = "$logPath\$ServerName\PowerStigOraJRECall"
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
-    }
-    elseif($dscRole -eq "SQL")
-    {
-        try {
-            if($DebugScript)
-            {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName[$Role][Debug]: Running: $WorkingPath\DSCConfigurations\PowerStigSqlSerCall.ps1  -ComputerName $ServerName -SqlVersion $SqlVersion -SqlRole $SqlRole -SqlInstance $SqlInstance -Database $Database -StigVersion $stigVersion"
-            }
-            & $WorkingPath\DSCConfigurations\PowerStigSqlSerCall.ps1 -ComputerName $ServerName -SqlVersion $SqlVersion -SqlRole $SqlRole -SqlInstance $SqlInstance -Database $Database -StigVersion $stigVersion
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: MOF Created for $ServerName for role $dscRole, Instance $SqlInstance, Database $Database"
-            $MofPath = "$logPath\$ServerName\PowerStigSqlSerCall"
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-            Return
-        }
-    }
-    else 
-    {
-        Add-content -Path $logFilePath -value "$(Get-Time):[$ServerName][$Role][Warning]: Skipping $dscRole on $ServerName. Role $dscRole is not a supported technology at this time."
-        continue
-    }
+
     if($DebugScript)
     {
-        Add-Content -Path $logFilePath -value "$(Get-Time):[$ServerName][$Role][Debug]: mofPath is $mofPath"
+        Add-Content -Path $logFilePath -value "$(Get-Time):[$ServerName][Debug]: mofPath is $mofPath"
     }
     Pop-Location
 
@@ -758,7 +649,7 @@ function Invoke-PowerStigScan
         
     Push-location $mofPath
 
-    Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: Starting Scan for $mof"
+    Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Starting Scan for $mof"
     try 
     {
         $scanMof = (Get-ChildItem -Path $mofPath)[0]
@@ -767,14 +658,14 @@ function Invoke-PowerStigScan
     }
     catch 
     {
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: mof variable is $mof"
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: $_"
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: mof variable is $mof"
         Return
     }
 
     Pop-Location
 
-    Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: Converting results to PSObjects"
+    Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Converting results to PSObjects"
 
     try
     {
@@ -782,12 +673,12 @@ function Invoke-PowerStigScan
     }
     catch
     {
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][ERROR]: $_"
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: $_"
         Return
     }
     if($DebugScript)
     {
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Debug]: Object Results:"
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: Object Results:"
         Add-Content -Path $logFilePath -Value "DesiredState`tFindingSeverity,`tStigDefinition,`tStigType,`tScanDate"
         foreach($o in $convertObj)
         {
@@ -795,13 +686,13 @@ function Invoke-PowerStigScan
         }
     }
 
-    Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$Role][Info]: Importing Results to Database for $ServerName and role $Role."
+    Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Importing Results to Database for $ServerName and role $Role."
 
     Import-PowerStigObject -Servername $ServerName -InputObj $convertObj
 
 }
 
-#M06
+# M08
 function Invoke-PowerStigBatch
 {
     [CmdletBinding()]

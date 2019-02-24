@@ -13,49 +13,27 @@ param(
     [String]
     $OsVersion,
 
-    [Parameter(Mandatory=$true,ParameterSetName="IIS")]
-    [PSObject[]]
-    $IISObject,
-
-    [Parameter(Mandatory=$true,ParameterSetName="SQL")]
-    [PSObject[]]
-    $SQLObject,
-
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory=$false)]
     [String]
-    $StigVersion
+    $LogPath
 
 )
 
 DynamicParam {
-    # Set the dynamic parameters' name
     $ParameterName = 'Role'
-
-    # Create the dictionary 
     $RuntimeParameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
-
-    # Create the collection of attributes
     $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
-
-    # Create and set the parameters' attributes
     $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
     $ParameterAttribute.Mandatory = $true
-
-    # Add the attributes to the attributes collection
     $AttributeCollection.Add($ParameterAttribute)
-
-    # Generate and set the ValidateSet 
-    $roleSet = Import-CSV C:\Users\mapresto\desktop\DynamicParamTest\Roles.csv -Header Role | Select -ExpandProperty Role
+    $roleSet = @(Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role)
     $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
-
-    # Add the ValidateSet to the attributes collection
     $AttributeCollection.Add($ValidateSetAttribute)
-
-    # Create and return the dynamic parameter
-    $RuntimeParameter = New-Object System.Management.Automation.RuntimeDefinedParameter($ParameterName, [string], $AttributeCollection)
+    $RuntimeParameter = New-Object System.Management.Automation.RuntimeDefinedParameter($ParameterName, [string[]], $AttributeCollection)
     $RuntimeParameterDictionary.Add($ParameterName, $RuntimeParameter)
     return $RuntimeParameterDictionary
 }
+
 
 Begin
 {
@@ -65,131 +43,227 @@ Begin
 
 process
 {
+
+    if($LogPath -ne $null -and $LogPath -ne "")
+    {
+        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Starting mof generation for $ComputerName"
+    }
+
     Configuration PowerSTIG
     {
-        Import-DscResource -ModuleName PowerStig -ModuleVersion 2.3.2.0
+        Import-DscResource -ModuleName PowerStig -ModuleVersion 2.4.0.0
 
         Node $ComputerName
         {
             Switch($Role){
                 "DC" {
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding DomainController Configuration"
+                    }
+                
                     WindowsServer DomainController
                     {
                         OsVersion       = $OsVersion
-                        OsRole          = $Role
-                        StigVersion     = $StigVersion
+                        OsRole          = 'DC'
+                        StigVersion     = (Get-PowerStigXMLVersion -Role DC -OSVersion $osVersion)
+                        if($role -contains "DNS")
+                        {
+                            DependsOn   = 'DNS'
+                        }
                     } 
                 }
                 "DNS" {
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding DNS Configuration"
+                    }
+                
                     WindowsDnsServer DNS
                     {
                         OsVersion   = $OsVersion
-                        StigVersion = $StigVersion
+                        StigVersion = (Get-PowerStigXMLVersion -Role DNS -OSVersion $osVersion)
                     }
                 }
                 "MS" {
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding MemberServer Configuration"
+                    }
+                
                     WindowsServer MemberServer
                     {
                         OsVersion       = $OsVersion
-                        OsRole          = $Role
-                        StigVersion     = $StigVersion
+                        OsRole          = 'MS'
+                        StigVersion     = (Get-PowerStigXMLVersion -Role MS -OSVersion $osVersion)
                     } 
                 }
                 "IE11" {
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding InternetExplorer Configuration"
+                    }
+                
                     Browser IE
                     {
-                        BrowserVersion = $Role
-                        StigVersion = $StigVersion
+                        BrowserVersion = 'IE11'
+                        StigVersion = (Get-PowerStigXMLVersion -Role IE11 -OSVersion "All")
                         SkipRule = 'V-46477'
                     } 
                 }
                 "FW" {
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding FireWall Configuration"
+                    }
+                
                     WindowsFirewall Firewall
                     {
-                        StigVersion = $StigVersion
+                        StigVersion = (Get-PowerStigXMLVersion -Role FW -OSVersion "All")
                     } 
                 }
                 "Client" {
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Windows10 Configuration"
+                    }
+                
                     WindowsClient Client
                     {
                         OsVersion       = '10'
-                        StigVersion     = $StigVersion
+                        StigVersion     = (Get-PowerStigXMLVersion -Role Client -OSVersion "Windows-10")
                     }
                 }
                 "OracleJRE" {
+
+                    #continue until this is finalized - must find config and properties path
+
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding OracleJRE Configuration"
+                    }
+                
                     OracleJRE JRE
                     {
                         ConfigPath = $ConfigPath
                         PropertiesPath = $PropertiesPath
-                        StigVersion = $StigVersion
+                        StigVersion = (Get-PowerStigXMLVersion -Role OracleJRE8 -OSVersion "All")
                     }
                 }
                 "IIS" {
-                    IisServer IIS-Server
+
+                    #continue until this is finalized - must find app pool website relationships
+                    continue
+
+                    if($LogPath -ne $null -and $LogPath -ne "")
                     {
-                        StigVersion = $StigVersion
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding IIS Configuration"
                     }
-                    IisSite IIS-Site
+                
+                    IisServer IIS-Server-$ComputerName
+                    {
+                        StigVersion = (Get-PowerStigXMLVersion -Role IISServer -OSVersion $osVersion)
+                    }
+                    IisSite IIS-Site-$WebsiteName
                     {
                         WebsiteName = $WebsiteName
                         WebAppPool = $WebAppPool
-                        StigVersion = $StigVersion
+                        StigVersion = (Get-PowerStigXMLVersion -Role IISSite -OSVersion $osVersion)
                     } 
                 }
                 "SQL" {
-                    SqlServer Sql
+                    #continue until finalized, must find instance and database relationships
+                    continue
+
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding SQL Configuration"
+                    }
+                
+                    SqlServer Sql-$Database
                     {
                         SqlVersion = $SqlVersion
                         SqlRole = $SqlRole
                         ServerInstance = $SqlInstance
                         Database = $Database
-                        StigVersion = $StigVersion
+                        StigVersion = (Get-PowerStigXMLVersion -Role SQL -OSVersion $SqlVersion)
                     }
                 }
                 "Outlook2013" {
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Outlook2013 Configuration"
+                    }
+                
                     Office Outlook
                     {
                         OfficeApp       = "Outlook2013"
-                        StigVersion     = $StigVersion
+                        StigVersion     = (Get-PowerStigXMLVersion -Role Outlook2013 -OSVersion "All")
                     }
                 }
                 "PowerPoint2013"{
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding PowerPoint2013 Configuration"
+                    }
+                
                     Office PowerPoint
                     {
                         OfficeApp       = "PowerPoint2013"
-                        StigVersion     = $StigVersion
+                        StigVersion     = (Get-PowerStigXMLVersion -Role PowerPoint2013 -OSVersion "All")
                     } 
                 }
                 "Excel2013" {
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Excel2013 Configuration"
+                    }
+                
                     Office Excel
                     {
                         OfficeApp       = "Excel2013"
-                        StigVersion     = $StigVersion
+                        StigVersion     = (Get-PowerStigXMLVersion -Role Excel2013 -OSVersion "All")
                     }
                 }
                 "Word2013" {
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Word2013 Configuration"
+                    }
+                
                     Office Word
                     {
                         OfficeApp       = "Word2013"
-                        StigVersion     = $StigVersion
+                        StigVersion     = (Get-PowerStigXMLVersion -Role Word2013 -OSVersion "All")
                     } 
                 }
                 "FireFox" {
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding FireFox Configuration"
+                    }
+                
                     FireFox Firefox
                     {
-                        StigVersion         = $StigVersion
+                        StigVersion         = (Get-PowerStigXMLVersion -Role FireFox -OSVersion "All")
                         InstallDirectory    = $InstallDirectory
                     }
                 }
                 "DotNet" {
+                    if($LogPath -ne $null -and $LogPath -ne "")
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding DotNet Configuration"
+                    }
                     DotNetFramework DotNet
                     {
                         FrameworkVersion    = 'DotNet4'
-                        StigVersion         = $StigVersion
+                        StigVersion         = (Get-PowerStigXMLVersion -Role DotNet -OSVersion "All")
                     }
                 }
             }
         
         }
     }
+
+    PowerSTIG
 }

@@ -12,7 +12,7 @@
     RootModule = 'PowerStigScan.psm1'
     
     # Version number of this module.
-    ModuleVersion = '1.0.0.1'
+    ModuleVersion = '1.0.0.2'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -136,8 +136,10 @@ PowerStig Repo: https://github.com/Microsoft/PowerStig'
     
             # ReleaseNotes of this module
             ReleaseNotes = 'Removed dependencies on DSCEA.
-                            Added support for PowerStig 2.3.2.0
-                            Added Support for Win10, Office, Firefox, IIS site and server, .Net, SqlServer Composites'
+            Added support for PowerStig 2.3.2.0
+            Added Support for Win10, Office, Firefox, IIS site and server, .Net, SqlServer Composites
+            Fixed bug with special characters in servername.'
+            
     
         } # End of PSData hashtable
     

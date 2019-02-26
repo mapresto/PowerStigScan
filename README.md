@@ -2,6 +2,7 @@
 
 ### Release History
 1.0.0.0 - Released February 8, 2019
+1.0.0.2 - Released Feburary 25, 2019
 
 
 ## How It Works
@@ -49,4 +50,8 @@ Invoke-PowerStigBatch cmdlet.
 IIS, JRE, and SQL scans are not complete. We need to determine the information dynamically as storing static information will
 be too burdensome for most administrators.
 
-DotNet currently not generating mofs, issue is passed to PowerStig team.
+## ChangeLog
+Added support for PowerSTIG 2.4
+Fixed bugs related to Firefox install directory
+Fixed bug related to computer names with hyphens
+Updated Config functions for current Configuration Sets

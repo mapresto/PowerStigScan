@@ -136,7 +136,10 @@ PowerStig Repo: https://github.com/Microsoft/PowerStig'
     
             # ReleaseNotes of this module
             ReleaseNotes = 'Update for PowerStig 2.4 support
-            Removed V-46477 from IE skip rules'
+            Removed V-46477 from IE skip rules
+            Fixed bugs related to Firefox install directory
+            Fixed bug related to computer names with hyphens
+            Updated Config functions for current Configuration Sets'
     
         } # End of PSData hashtable
     

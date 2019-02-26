@@ -32,7 +32,6 @@ Functions:
         H03 - Invoke-PowerStigSqlCommand
 #>
 
-Import-Module PowerSTIG
 #H01
 <#
 .SYNOPSIS

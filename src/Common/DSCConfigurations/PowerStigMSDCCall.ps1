@@ -20,12 +20,9 @@ param(
 
 )
 
-## V-1073 and V-1081 are skipped due to issues with scripted resources
-## V-3472.b is skipped due to issues with org settings in secure environment, to be fixed in org settings file
-
 configuration PowerStigMSDCCall
 {
-    Import-DscResource -ModuleName PowerStig -ModuleVersion 2.3.2.0
+    Import-DscResource -ModuleName PowerStig -ModuleVersion 2.4.0.0
 
     Node $ComputerName
     {

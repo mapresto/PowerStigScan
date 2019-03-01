@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--DISA STIG Viewer :: 2.7.1-->
+<!--DISA STIG Viewer :: 2.8-->
+<!--1.6 FW-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -39,11 +40,11 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>filename</SID_NAME>
-					<SID_DATA>U_Windows_Firewall_STIG_V1R7_Manual-xccdf.xml</SID_DATA>
+					<SID_DATA>U_Windows_Firewall_STIG_V1R6_Manual-xccdf.xml</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>releaseinfo</SID_NAME>
-					<SID_DATA>Release: 7 Benchmark Date: 27 Apr 2018</SID_DATA>
+					<SID_DATA>Release: 6 Benchmark Date: 28 Apr 2017</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>title</SID_NAME>
@@ -51,7 +52,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>96ff5741-5ab5-4cad-8164-ead9faf9c095</SID_DATA>
+					<SID_DATA>1c8a5fcf-61f0-4699-9719-d0ec1914dbf3</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>
@@ -182,15 +183,14 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-001414</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -317,15 +317,14 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-001414</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -452,15 +451,14 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-001414</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -592,15 +590,14 @@ Both inbound and outbound parameters must be specified to execute this command.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-000382</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -732,15 +729,14 @@ Both inbound and outbound parameters must be specified to execute this command.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-001094</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -869,15 +865,14 @@ The following Netsh command may also be used to configure this setting:
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-000140</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -1008,15 +1003,14 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -1147,15 +1141,14 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-001462</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -1285,15 +1278,14 @@ Both inbound and outbound parameters must be specified to execute this command.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-000382</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -1423,15 +1415,14 @@ Both inbound and outbound parameters must be specified to execute this command.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-001094</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -1558,15 +1549,14 @@ The following Netsh command may also be used to configure this setting:
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-000140</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -1695,15 +1685,14 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -1832,15 +1821,14 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-001462</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -1970,15 +1958,14 @@ Both inbound and outbound parameters must be specified to execute this command.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-000382</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -2108,15 +2095,14 @@ Both inbound and outbound parameters must be specified to execute this command.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-001094</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -2231,15 +2217,14 @@ Configure the policy value for Computer Configuration -&gt; Windows Settings -&g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-001190</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -2354,15 +2339,14 @@ Configure the policy value for Computer Configuration -&gt; Windows Settings -&g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-001190</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -2489,15 +2473,14 @@ The following Netsh command may also be used to configure this setting:
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-000140</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -2626,15 +2609,14 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-000172</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -2763,15 +2745,14 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>2565</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-001462</ATTRIBUTE_DATA>
+					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE><ATTRIBUTE_DATA/>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -2882,7 +2863,7 @@ One method for restricting inbound connections is to only allow exceptions for a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 28 Apr 2017</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2890,7 +2871,7 @@ One method for restricting inbound connections is to only allow exceptions for a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-000067</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>CCI-000366</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>

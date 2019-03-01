@@ -73,9 +73,6 @@ function Add-PowerStigComputer
         [Parameter(Mandatory=$false)]
         [String]$DatabaseName
 
-        #To be used in the future
-        #[Parameter]
-        #[Switch]$FireWall
     )
 
     $workingPath = Split-Path $PsCommandPath

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--DISA STIG Viewer :: 2.8-->
-<!--1.6 DotNet-->
+<!--DISA STIG Viewer :: 2.7.1-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -53,7 +52,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>db62eea8-40f0-4069-8c72-6eca2f0a9aa0</SID_DATA>
+					<SID_DATA>7db80fb5-5a62-4f28-9410-a34014c88acf</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>
@@ -167,7 +166,7 @@ Strong name assemblies that do not require verification in a development or test
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -298,7 +297,7 @@ Using regedit, change the hexadecimal value of the "HKEY_USER\[UNIQUE USER SID V
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -450,7 +449,7 @@ If the Publisher Membership Condition is used on a non-default Code Group and th
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -626,7 +625,7 @@ The private key(s) used to sign the assembly must be protected.  Utilize central
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -740,7 +739,7 @@ CAS policy configuration files must be included in disaster recovery plan docume
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -900,7 +899,7 @@ Change the channel ref parameter to utilize an SSL port and leverage SSL on the 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1031,7 +1030,7 @@ If any versions of the .Net Framework are installed and support is no longer ava
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1185,7 +1184,7 @@ Delete the "enforceFIPSPolicy" runtime element, change the setting to "true" or 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1323,7 +1322,7 @@ Approval documentation will include complete list of all installed .Net applicat
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1439,7 +1438,7 @@ If the .NET application configuration file utilizes the legacy policy element an
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1572,7 +1571,7 @@ Obtain documented IAO approvals for all remotely loaded code.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1700,7 +1699,7 @@ The IAO must provide documented approvals of any non-default proxy servers.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1834,7 +1833,7 @@ Document the applications security control requirements (restricting application
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1958,7 +1957,7 @@ Enable ETW Tracing by setting the etwEnable flag to "true" or obtain documented 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2114,7 +2113,7 @@ Include the secure="true" flag in the channel ref parameter of the machine.confi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2236,7 +2235,7 @@ Set the REG_DWORD value for “SchUseStrongCrypto” to “1”.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Version 1, Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft DotNet Framework 4.0 STIG :: Release: 6 Benchmark Date: 26 Oct 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>

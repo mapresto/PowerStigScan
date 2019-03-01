@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--DISA STIG Viewer :: 2.7.1-->
+<!--DISA STIG Viewer :: 2.8-->
+<!--1.6 PowerPoint-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -50,7 +51,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>53378fb0-9e0e-44b7-a572-2e7472d9328d</SID_DATA>
+					<SID_DATA>a6f13258-446f-4a80-8b75-ba22840ecb27</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>
@@ -159,7 +160,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -273,7 +274,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -386,7 +387,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -499,7 +500,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -612,7 +613,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -725,7 +726,7 @@ Criteria: If the value notbpromptunsignedaddin is REG_DWORD = 1, this is not a f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -838,7 +839,7 @@ Criteria: If the value powerpoint12betafilesfromconverters is REG_DWORD = 1, thi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -951,7 +952,7 @@ Criteria: If the value AllLocationsDisabled is REG_DWORD = 1, this is not a find
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1064,7 +1065,7 @@ Criteria: If the value PowerPointBypassEncryptedMacroScan is REG_DWORD = 0, this
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1177,7 +1178,7 @@ Criteria: If the value AllowNetworkLocations is REG_DWORD = 0, this is not a fin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1290,7 +1291,7 @@ Criteria: If the value DefaultFormat is REG_DWORD = 1b (hex) 27 (dec), this is n
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1403,7 +1404,7 @@ Criteria: If the value AccessVBOM is REG_DWORD=0, this is not a finding.</ATTRIB
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1516,7 +1517,7 @@ Criteria: If the value VBAWarnings is REG_DWORD = 2, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1632,7 +1633,7 @@ Criteria: If the value MarkupOpenSave is REG_DWORD = 1, this is not a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1745,7 +1746,7 @@ Criteria: If the value RunPrograms is REG_DWORD = 0, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1859,7 +1860,7 @@ Criteria: If the value DownloadImages is REG_DWORD = 0, this is not a finding.</
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1972,7 +1973,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2085,7 +2086,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2198,7 +2199,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2311,7 +2312,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2427,7 +2428,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2540,7 +2541,7 @@ Criteria: If the value RequireAddinSig is REG_DWORD = 1, this is not a finding.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2653,7 +2654,7 @@ Criteria: If the value EnableOnLoad is REG_DWORD = 1, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2766,7 +2767,7 @@ Criteria: If the value OpenInProtectedView is REG_DWORD = 0, this is not a findi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2879,7 +2880,7 @@ Criteria: If the value DisableInternetFilesInPV is REG_DWORD = 0, this is not a 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2993,7 +2994,7 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3108,7 +3109,7 @@ If either, or both keys are not set to REG_DWORD = 1, this is an open finding.</
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3221,7 +3222,7 @@ Criteria: If the value DisableAttachmentsInPV  is REG_DWORD = 0, this is not a f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3334,7 +3335,7 @@ Criteria: If the value DisableSlideUpdate is REG_DWORD = 1, this is not a findin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3450,7 +3451,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3563,7 +3564,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3676,7 +3677,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3789,7 +3790,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3902,7 +3903,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4016,7 +4017,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4129,7 +4130,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4242,7 +4243,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4358,7 +4359,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4471,7 +4472,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4585,7 +4586,7 @@ Criteria: If the value blockcontentexecutionfrominternet is REG_DWORD = 1, this 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft PowerPoint 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>

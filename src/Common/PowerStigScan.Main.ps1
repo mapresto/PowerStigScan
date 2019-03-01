@@ -669,14 +669,18 @@ function Invoke-PowerStigScan
         try
         {
             # Determine install Directory. CurrentVersion key in Mozilla Firefox is not there in older versions, must grab folderpath name.
+
             if(invoke-command -ComputerName $ServerName -scriptblock {((get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox").currentversion)})
             {
                 $InstallDirectory = invoke-command -ComputerName $ServerName -scriptblock {(get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox\$((get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox").currentversion)\Main")."Install Directory"}
+
             }
             else
             {
                 #Grab all keys that have a version number in the name
+
                 $CurrentVersions = invoke-command -ComputerName $ServerName -scriptblock {Get-ChildItem "HKLM:\Software\Mozilla\Mozilla Firefox" | Where-Object {$_.name -match "([1-9])?[0-9]\.[0-9]([0-9])?"}}
+
                 [Version]$ffHighVer = 0.0.0.0
 
                 #Process through each key and determine the highest version from the list.
@@ -691,8 +695,10 @@ function Invoke-PowerStigScan
                     }
                 }
 
+
                 $InstallDirectory = invoke-command -ComputerName $ServerName -scriptblock {param($keyPath)(get-itemproperty "$keyPath\Main")."Install Directory"} -ArgumentList $keyPath
             }
+
 
             try {
                 if($DebugScript)

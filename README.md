@@ -50,8 +50,10 @@ Invoke-PowerStigBatch cmdlet.
 IIS, JRE, and SQL scans are not complete. We need to determine the information dynamically as storing static information will
 be too burdensome for most administrators.
 
+
 ## ChangeLog
 Added support for PowerSTIG 2.4
 Fixed bugs related to Firefox install directory
 Fixed bug related to computer names with hyphens
 Updated Config functions for current Configuration Sets
+

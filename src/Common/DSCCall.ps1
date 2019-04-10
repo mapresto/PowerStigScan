@@ -4,7 +4,7 @@
 
 param(
 
-    [Parameter(Mandatory=$true,Position=1)]
+    [Parameter(Mandatory=$true,Position=0)]
     [String]
     $ComputerName,
     
@@ -12,6 +12,14 @@ param(
     [ValidateSet("2012R2","2016")]
     [String]
     $OsVersion,
+
+    [Parameter(Mandatory=$false)]
+    [String]
+    $OrgSettingsFilePath,
+
+    [Parameter(Mandatory=$false)]
+    [String[]]
+    $SkipRules,
 
     [Parameter(Mandatory=$false)]
     [String]
@@ -44,19 +52,19 @@ Begin
 process
 {
 
-    if($LogPath -ne $null -and $LogPath -ne "")
+    if($null -ne $LogPath -and $LogPath -ne "")
     {
         Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Starting mof generation for $ComputerName"
     }
 
     Configuration PowerSTIG
     {
-        Import-DscResource -ModuleName PowerStig -ModuleVersion 2.4.0.0
+        Import-DscResource -ModuleName PowerStig -ModuleVersion 3.0.1
 
         Node $ComputerName
         {
             Switch($Role){
-                "DC" {
+                "WindowsServer-DC" {
                     if($LogPath -ne $null -and $LogPath -ne "")
                     {
                         Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding DomainController Configuration"
@@ -66,14 +74,11 @@ process
                     {
                         OsVersion       = $OsVersion
                         OsRole          = 'DC'
-                        StigVersion     = (Get-PowerStigXMLVersion -Role DC -OSVersion $osVersion)
-                        if($role -contains "DNS")
-                        {
-                            DependsOn   = 'DNS'
-                        }
-                    } 
+                        StigVersion     = (Get-PowerStigXMLVersion -Role "WindowsServer-DC" -OSVersion $osVersion)
+                    }
+                    
                 }
-                "DNS" {
+                "WindowsDNSServer" {
                     if($LogPath -ne $null -and $LogPath -ne "")
                     {
                         Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding DNS Configuration"
@@ -82,10 +87,10 @@ process
                     WindowsDnsServer DNS
                     {
                         OsVersion   = $OsVersion
-                        StigVersion = (Get-PowerStigXMLVersion -Role DNS -OSVersion $osVersion)
+                        StigVersion = (Get-PowerStigXMLVersion -Role "WindowsDNSServer" -OSVersion $osVersion)
                     }
                 }
-                "MS" {
+                "WindowsServer-MS" {
                     if($LogPath -ne $null -and $LogPath -ne "")
                     {
                         Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding MemberServer Configuration"
@@ -95,23 +100,23 @@ process
                     {
                         OsVersion       = $OsVersion
                         OsRole          = 'MS'
-                        StigVersion     = (Get-PowerStigXMLVersion -Role MS -OSVersion $osVersion)
+                        StigVersion     = (Get-PowerStigXMLVersion -Role "WindowsServer-MS" -OSVersion $osVersion)
                     } 
                 }
-                "IE11" {
+                "InternetExplorer" {
                     if($LogPath -ne $null -and $LogPath -ne "")
                     {
                         Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding InternetExplorer Configuration"
                     }
                 
-                    Browser IE
+                    InternetExplorer IE
                     {
-                        BrowserVersion = 'IE11'
-                        StigVersion = (Get-PowerStigXMLVersion -Role IE11 -OSVersion "All")
+                        BrowserVersion = '11'
+                        StigVersion = (Get-PowerStigXMLVersion -Role "InternetExplorer")
                         SkipRule = 'V-46477'
                     } 
                 }
-                "FW" {
+                "WindowsFirewall" {
                     if($LogPath -ne $null -and $LogPath -ne "")
                     {
                         Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding FireWall Configuration"
@@ -119,10 +124,10 @@ process
                 
                     WindowsFirewall Firewall
                     {
-                        StigVersion = (Get-PowerStigXMLVersion -Role FW -OSVersion "All")
+                        StigVersion = (Get-PowerStigXMLVersion -Role "WindowsFirewall")
                     } 
                 }
-                "Client" {
+                "WindowsClient" {
                     if($LogPath -ne $null -and $LogPath -ne "")
                     {
                         Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Windows10 Configuration"
@@ -131,7 +136,7 @@ process
                     WindowsClient Client
                     {
                         OsVersion       = '10'
-                        StigVersion     = (Get-PowerStigXMLVersion -Role Client -OSVersion "Windows-10")
+                        StigVersion     = (Get-PowerStigXMLVersion -Role "WindowsClient" -OSVersion "10")
                     }
                 }
                 "OracleJRE" {
@@ -147,10 +152,10 @@ process
                     {
                         ConfigPath = $ConfigPath
                         PropertiesPath = $PropertiesPath
-                        StigVersion = (Get-PowerStigXMLVersion -Role OracleJRE8 -OSVersion "All")
+                        StigVersion = (Get-PowerStigXMLVersion -Role "OracleJRE")
                     }
                 }
-                "IIS" {
+                "IISServer" {
 
                     #continue until this is finalized - must find app pool website relationships
                     continue
@@ -162,16 +167,16 @@ process
                 
                     IisServer IIS-Server-$ComputerName
                     {
-                        StigVersion = (Get-PowerStigXMLVersion -Role IISServer -OSVersion $osVersion)
+                        StigVersion = (Get-PowerStigXMLVersion -Role "IISServer")
                     }
                     IisSite IIS-Site-$WebsiteName
                     {
                         WebsiteName = $WebsiteName
                         WebAppPool = $WebAppPool
-                        StigVersion = (Get-PowerStigXMLVersion -Role IISSite -OSVersion $osVersion)
+                        StigVersion = (Get-PowerStigXMLVersion -Role "IISSite")
                     } 
                 }
-                "SQL" {
+                "SqlServer-2012-Database" {
                     #continue until finalized, must find instance and database relationships
                     continue
 
@@ -186,7 +191,7 @@ process
                         SqlRole = $SqlRole
                         ServerInstance = $SqlInstance
                         Database = $Database
-                        StigVersion = (Get-PowerStigXMLVersion -Role SQL -OSVersion $SqlVersion)
+                        StigVersion = (Get-PowerStigXMLVersion -Role "SqlServer-2012-Database")
                     }
                 }
                 "Outlook2013" {
@@ -198,7 +203,7 @@ process
                     Office Outlook
                     {
                         OfficeApp       = "Outlook2013"
-                        StigVersion     = (Get-PowerStigXMLVersion -Role Outlook2013 -OSVersion "All")
+                        StigVersion     = (Get-PowerStigXMLVersion -Role "Outlook2013")
                     }
                 }
                 "PowerPoint2013"{
@@ -210,7 +215,7 @@ process
                     Office PowerPoint
                     {
                         OfficeApp       = "PowerPoint2013"
-                        StigVersion     = (Get-PowerStigXMLVersion -Role PowerPoint2013 -OSVersion "All")
+                        StigVersion     = (Get-PowerStigXMLVersion -Role "PowerPoint2013")
                     } 
                 }
                 "Excel2013" {
@@ -222,7 +227,7 @@ process
                     Office Excel
                     {
                         OfficeApp       = "Excel2013"
-                        StigVersion     = (Get-PowerStigXMLVersion -Role Excel2013 -OSVersion "All")
+                        StigVersion     = (Get-PowerStigXMLVersion -Role "Excel2013")
                     }
                 }
                 "Word2013" {
@@ -234,7 +239,7 @@ process
                     Office Word
                     {
                         OfficeApp       = "Word2013"
-                        StigVersion     = (Get-PowerStigXMLVersion -Role Word2013 -OSVersion "All")
+                        StigVersion     = (Get-PowerStigXMLVersion -Role "Word2013")
                     } 
                 }
                 "FireFox" {
@@ -245,11 +250,11 @@ process
                 
                     FireFox Firefox
                     {
-                        StigVersion         = (Get-PowerStigXMLVersion -Role FireFox -OSVersion "All")
+                        StigVersion         = (Get-PowerStigXMLVersion -Role "FireFox")
                         InstallDirectory    = $InstallDirectory
                     }
                 }
-                "DotNet" {
+                "DotNetFramework" {
                     if($LogPath -ne $null -and $LogPath -ne "")
                     {
                         Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding DotNet Configuration"
@@ -257,7 +262,7 @@ process
                     DotNetFramework DotNet
                     {
                         FrameworkVersion    = 'DotNet4'
-                        StigVersion         = (Get-PowerStigXMLVersion -Role DotNet -OSVersion "All")
+                        StigVersion         = (Get-PowerStigXMLVersion -Role "DotNetFramework")
                     }
                 }
             }

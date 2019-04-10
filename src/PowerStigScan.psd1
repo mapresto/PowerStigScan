@@ -55,7 +55,7 @@ PowerStig Repo: https://github.com/Microsoft/PowerStig'
     # Modules that must be imported into the global environment prior to importing this module
     RequiredModules = @(
         @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.2.0.0'},
-        @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.1.0.0'},
+        @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.3.0.0'},
         @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.1.0.108'},
         @{ModuleName = 'PolicyFileEditor'; ModuleVersion = '3.0.1'},
         @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.4.0.0'},
@@ -63,9 +63,9 @@ PowerStig Repo: https://github.com/Microsoft/PowerStig'
         @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
         @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
         @{ModuleName = 'xPSDesiredStateConfiguration'; ModuleVersion = '8.3.0.0'},
-        @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.3.0.0'},
+        @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'},
         @{ModuleName = 'xWinEventLog'; ModuleVersion = '1.2.0.0'},
-        @{ModuleName = 'PowerStig'; ModuleVersion = '2.4.0.0'}
+        @{ModuleName = 'PowerStig'; ModuleVersion = '3.0.1'}
     
     )
     
@@ -135,9 +135,8 @@ PowerStig Repo: https://github.com/Microsoft/PowerStig'
             # IconUri = ''
     
             # ReleaseNotes of this module
-            ReleaseNotes = 'Removed dependencies on DSCEA.
-            Added support for PowerStig 2.3.2.0
-            Added Support for Win10, Office, Firefox, IIS site and server, .Net, SqlServer Composites'
+            ReleaseNotes = 'Added Support for DSCEA
+            Added additional, optional integration with SCAP'
     
         } # End of PSData hashtable
     

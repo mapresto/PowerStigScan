@@ -339,6 +339,8 @@ function Get-PowerStigConfig
     $configObject = New-Object PSobject
     Add-Member -InputObject $configObject -NotePropertyName "CKLOutPath" -NotePropertyValue $iniVar.CKLOutPath
     Add-Member -InputObject $configObject -NotePropertyName "LogPath" -NotePropertyValue $iniVar.LogPath
+    Add-Member -InputObject $configObject -NotePropertyName "ScapProfile" -NotePropertyValue $iniVar.ScapProfile
+    Add-Member -InputObject $configObject -NotePropertyName "ScapInstallDir" -NotePropertyValue $iniVar.ScapInstallDir
     Add-Member -InputObject $configObject -NotePropertyName "SQLInstanceName" -NotePropertyValue $iniVar.SQLInstanceName
     Add-Member -InputObject $configObject -NotePropertyName "DatabaseName" -NotePropertyValue $iniVar.DatabaseName
 
@@ -360,14 +362,27 @@ function Set-PowerStigConfig
         [Parameter(Mandatory=$false)]
         [ValidateNotNullorEmpty()]
         [String]$LogPath,
-        
+
         [Parameter(Mandatory=$false)]
         [ValidateNotNullorEmpty()]
-        [String]$DSCEAResultsPath,
-        
+        [ValidateSet('CAT_I_Only',
+                    'Disable_EMET',
+                    'Disable_Slow_Rules',
+                    'MAC-1_Classified',
+                    'MAC-1_Public',
+                    'MAC-1_Sensitive',
+                    'MAC-2_Classified',
+                    'MAC-2_Public',
+                    'MAC-2_Sensitive',
+                    'MAC-3_Classified',
+                    'MAC-3_Public',
+                    'MAC-3_Sensitive',
+                    'no_profile_selected')]
+        [String]$ScapProfile,
+
         [Parameter(Mandatory=$false)]
         [ValidateNotNullorEmpty()]
-        [String]$CsvOutFolderPath,
+        [String]$ScapInstallDir,
         
         [Parameter(Mandatory=$false)]
         [ValidateNotNullorEmpty()]
@@ -399,21 +414,13 @@ function Set-PowerStigConfig
         }
         $workingObj.LogPath = $LogPath
     }
-    if($DSCEAResultsPath -ne '')
+    if($ScapInstallDir -ne '')
     {
-        if (!($DSCEAResultsPath.EndsWith("\")))
+        if(!($LogPath.EndsWith("\")))
         {
-            $DSCEAResultsPath = $DSCEAResultsPath + "\"
+            $ScapInstallDir = $ScapInstallDir + "\"
         }
-        $workingObj.DSCEAResultsPath = $DSCEAResultsPath
-    }
-    if($CsvOutFolderPath -ne '')
-    {
-        if (!($CsvOutFolderPath.EndsWith("\")))
-        {
-            $CsvOutFolderPath = $CsvOutFolderPath + "\"
-        }
-        $workingObj.CsvOutFolderPath = $CsvOutFolderPath
+        $workingObj.ScapInstallDir = $ScapInstallDir
     }
     if($SQLInstanceName -ne '')
     {
@@ -423,16 +430,20 @@ function Set-PowerStigConfig
     {
         $workingObj.DatabaseName = $DatabaseName
     }
+    if($ScapProfile -ne '')
+    {
+        $workingObj.ScapProfile = $ScapProfile
+    }
 
-    $someFile = "; This file must be stored in the same path as the Invoke-PowerStigScan.ps1 file`r`n"
     $someFile += "; All Entries are space sensitive. Further versions will fix input validation.`r`n"
-    $someFile += "; When changed, close all active sessions of powershell to reload entries`r`n"
     $someFile += "`r`n"
     $someFile += "[general]`r`n"
     $someFile += "CKLOutPath=$($workingObj.CKLOutPath)`r`n"
     $someFile += "LogPath=$($workingObj.LogPath)`r`n"
-    $someFile += "DSCEAResultsPath=$($workingObj.DSCEAResultsPath)`r`n"
-    $someFile += "CsvOutFolderPath=$($workingObj.CsvOutFolderPath)`r`n"
+    $someFile += "`r`n"
+    $someFile += "[SCAP]`r`n"
+    $someFile += "ScapProfile=$($WorkingObj.ScapProfile)`r`n"
+    $someFile += "ScapInstallDir=$($workingObj.ScapInstallDir)`r`n"
     $someFile += "`r`n"
     $someFile += "[database]`r`n"
     $someFile += "SQLInstanceName=$($workingObj.SQLInstanceName)`r`n"

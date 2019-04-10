@@ -61,10 +61,6 @@ function Add-PowerStigComputer
         [ValidateSet("2012R2","2016")]
         [String]$OSVersion,
 
-        [Parameter(Mandatory=$true)]
-        [ValidateSet("MemberServer","DomainController","DotNet","Firefox","Firewall","IIS","Word","Excel","PowerPoint","Outlook","JRE","Sql","Client","DNS","IE")]
-        [String[]]$Role,
-
         [switch]$DebugScript,
 
         [Parameter(Mandatory=$false)]
@@ -72,85 +68,112 @@ function Add-PowerStigComputer
 
         [Parameter(Mandatory=$false)]
         [String]$DatabaseName
-
-        #To be used in the future
-        #[Parameter]
-        #[Switch]$FireWall
     )
 
-    $workingPath = Split-Path $PsCommandPath
-    $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
-
-    if($null -eq $sqlInstance -or $sqlInstance -eq '')
-    {
-        $sqlInstance = $iniVar.SqlInstanceName
-    }
-    if($null -eq $DatabaseName -or $DatabaseName -eq '')
-    {
-        $DatabaseName = $iniVar.DatabaseName
-    }
-
-    #Initialize Values
-    $MSOut          = 0
-    $DCOut          = 0
-    $DNSOut         = 0
-    $DotNetOut      = 0
-    $FireFoxOut     = 0
-    $FWOut          = 0
-    $IISOut         = 0
-    $WordOut        = 0
-    $ExcelOut       = 0
-    $PPOut          = 0
-    $OutlookOut     = 0
-    $JREOut         = 0
-    $SqlOut         = 0
-    $ClientOut      = 0
-    $IEOut          = 0
-
-    Switch($Role)
-    {
-        "MemberServer"      {$MSOut     =1}
-        "DomainController"  {$DCOut     =1}
-        "DotNet"            {$DotNetOut =1}
-        "Firefox"           {$FireFoxOut=1}
-        "Firewall"          {$FWOut     =1}
-        "IIS"               {$IISOut    =1}
-        "Word"              {$WordOut   =1}
-        "Excel"             {$ExcelOut  =1}
-        "PowerPoint"        {$PPOut     =1}
-        "Outlook"           {$OutlookOut=1}
-        "JRE"               {$JREOut    =1}
-        "Sql"               {$SqlOut    =1}
-        "Client"            {$ClientOut =1}
-        "DNS"               {$DNSOut    =1}
-        "IE"                {$IEOut     =1}
+    DynamicParam {
+        $ParameterName = 'Role'
+        $RuntimeParameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
+        $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
+        $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
+        $ParameterAttribute.Mandatory = $true
+        $AttributeCollection.Add($ParameterAttribute)
+        $roleSet = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
+        $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
+        $AttributeCollection.Add($ValidateSetAttribute)
+        $RuntimeParameter = New-Object System.Management.Automation.RuntimeDefinedParameter($ParameterName, [string[]], $AttributeCollection)
+        $RuntimeParameterDictionary.Add($ParameterName, $RuntimeParameter)
+        return $RuntimeParameterDictionary
     }
 
-    $Query = "PowerSTIG.sproc_AddTargetComputer @TargetComputerName     = $ServerName,`
-                                                @MemberServer           = $MSOut,`
-                                                @DomainController       = $DCOut,`
-                                                @DotNet                 = $DotNetOut,`
-                                                @Firefox                = $FireFoxOut,`
-                                                @Firewall               = $FWOut,`
-                                                @IIS                    = $IISOut,`
-                                                @Word                   = $WordOut,`
-                                                @Excel                  = $ExcelOut,`
-                                                @PowerPoint             = $PPOut,`
-                                                @Outlook                = $OutlookOut,`
-                                                @JRE                    = $JREOut,`
-                                                @Sql                    = $sqlOut,`
-                                                @Client                 = $ClientOut,`
-                                                @DNS                    = $DNSOut,`
-                                                @IE                     = $IEOut"
-
-    if($DebugScript)
-    {
-        Write-Host $query
+    begin{
+        $Role = $PSBoundParameters[$ParameterName]
     }
-    $Results = Invoke-PowerStigSqlCommand -Query $Query -SqlInstance $SqlInstance -DatabaseName $DatabaseName
-    return $Results 
 
+    process {
+        $workingPath = Split-Path $PsCommandPath
+        $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
 
+        if($null -eq $sqlInstance -or $sqlInstance -eq '')
+        {
+            $sqlInstance = $iniVar.SqlInstanceName
+        }
+        if($null -eq $DatabaseName -or $DatabaseName -eq '')
+        {
+            $DatabaseName = $iniVar.DatabaseName
+        }
+
+        #Initialize Values
+        $DotNetFramework        = 0
+        $FireFox                = 0
+        $IISServer              = 0
+        $IISSite                = 0
+        $InternetExplorer       = 0
+        $Excel2013              = 0
+        $Outlook2013            = 0
+        $PowerPoint2013         = 0
+        $Word2013               = 0
+        $OracleJRE              = 0
+        $SqlServer2012Database  = 0
+        $SqlServer2012Instance  = 0
+        $SqlServer2016Instance  = 0
+        $WindowsClient          = 0
+        $WindowsDefender        = 0
+        $WindowsDNSServer       = 0
+        $WindowsFirewall        = 0
+        $WindowsServerDC        = 0
+        $WindowsServerMS        = 0
+
+        Switch($Role)
+        {
+            "DotNetFramework"           {$DotNetFramework       = 1}
+            "FireFox"                   {$FireFox               = 1}
+            "IISServer"                 {$IISServer             = 1}
+            "IISSite"                   {$IISSite               = 1}
+            "InternetExplorer"          {$InternetExplorer      = 1}
+            "Excel2013"                 {$Excel2013             = 1}
+            "Outlook2013"               {$Outlook2013           = 1}
+            "PowerPoint2013"            {$PowerPoint2013        = 1}
+            "Word2013"                  {$Word2013              = 1}
+            "OracleJRE"                 {$OracleJRE             = 1}
+            "SqlServer-2012-Database"   {$SqlServer2012Database = 1}
+            "SqlServer-2012-Instance"   {$SqlServer2012Instance = 1}
+            "SqlServer-2016-Instance"   {$SqlServer2016Instance = 1}
+            "WindowsClient"             {$WindowsClient         = 1}
+            "WindowsDefender"           {$WindowsDefender       = 1}
+            "WindowsDNSServer"          {$WindowsDNSServer      = 1}
+            "WindowsFirewall"           {$WindowsFirewall       = 1}
+            "WindowsServer-DC"          {$WindowsServerDC       = 1}
+            "WindowsServer-MS"          {$WindowsServerMS       = 1}
+        }
+
+        $Query = "PowerSTIG.sproc_AddTargetComputer @TargetComputerName     = $ServerName,`
+                                                    @DotNetFramework        = $DotnetFramework,`
+                                                    @FireFox                = $FireFox,`
+                                                    @IISServer              = $IISServer,`
+                                                    @IISSite                = $IISSite,`
+                                                    @InternetExplorer       = $InternetExplorer,`
+                                                    @Excel2013              = $Excel2013,`
+                                                    @Outlook2013            = $Outlook2013,`
+                                                    @PowerPoint2013         = $PowerPoint2013,`
+                                                    @Word2013               = $Word2013,`
+                                                    @OracleJRE              = $OracleJRE,`
+                                                    @SqlServer2012Database  = $SqlServer2012Database,`
+                                                    @SqlServer2012Instance  = $SqlServer2012Instance,`
+                                                    @SqlServer2016Instance  = $SqlServer2016Instance,`
+                                                    @WindowsClient          = $WindowsClient,`
+                                                    @WindowsDefender        = $WindowsDefender,`
+                                                    @WindowsDNSServer       = $WindowsDNSServer,`
+                                                    @WindowsFirewall        = $WindowsFirewall,`
+                                                    @WindowsServerDC        = $WindowsServerDC,`
+                                                    @WindowsServerMS        = $WindowsServerMS"
+
+        if($DebugScript)
+        {
+            Write-Host $query
+        }
+        $Results = Invoke-PowerStigSqlCommand -Query $Query -SqlInstance $SqlInstance -DatabaseName $DatabaseName
+        return $Results 
+    }
 }
 
 #CM02
@@ -158,10 +181,6 @@ function Get-PowerStigComputer
 {
     [CmdletBinding()]
     param(
-        [Parameter(ParameterSetName="ByRole")]
-        [ValidateSet("MemberServer","DomainController","DotNet","Firefox","Firewall","IIS","Word","Excel","PowerPoint","Outlook","JRE","Sql","Client","DNS","IE")]
-        [String]$Role,
-
         [Parameter(ParameterSetName="ByName")]
         [ValidateNotNullorEmpty()]
         [String]$ServerName,
@@ -178,51 +197,73 @@ function Get-PowerStigComputer
         [String]$DatabaseName
         
     )
-
-    $workingPath = Split-Path $PsCommandPath
-    $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
-
-    if($null -eq $SqlInstance -or $SqlInstance -eq '')
-    {
-        $SqlInstance = $iniVar.SqlInstanceName
+    DynamicParam {
+        $ParameterName = 'Role'
+        $RuntimeParameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
+        $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
+        $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
+        $ParameterAttribute.Mandatory = $true
+        $ParameterAttribute.ParameterSetName = "ByRole"
+        $AttributeCollection.Add($ParameterAttribute)
+        $roleSet = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
+        $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
+        $AttributeCollection.Add($ValidateSetAttribute)
+        $RuntimeParameter = New-Object System.Management.Automation.RuntimeDefinedParameter($ParameterName, [string], $AttributeCollection)
+        $RuntimeParameterDictionary.Add($ParameterName, $RuntimeParameter)
+        return $RuntimeParameterDictionary
     }
-    if($null -eq $DatabaseName -or $DatabaseName -eq '')
-    {
-        $DatabaseName = $iniVar.DatabaseName
+
+    begin{
+        $Role = $PSBoundParameters[$ParameterName]
     }
 
-   
-     Switch($PSCmdlet.ParameterSetName)
-    {
-        "ByName" {
-            $GetComputerName = "EXEC PowerSTIG.sproc_GetRolesPerServer @TargetComputer = $ServerName"
-            if($DebugScript)
-            {
-                Write-Host $GetComputerName
-            }
-            $RunGetComputerName = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $GetComputerName )
-            $Output = $RunGetComputerName
+    process{
+        $workingPath = Split-Path $PsCommandPath
+        $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
+
+        if($null -eq $SqlInstance -or $SqlInstance -eq '')
+        {
+            $SqlInstance = $iniVar.SqlInstanceName
         }
-        "ByRole" {
-            $GetRoleData = "EXEC PowerSTIG.sproc_GetActiveRoles  @ComplianceType = $Role"
-            if($DebugScript)
-            {
-                Write-Host $GetRoleData
-            }
-            $RunGetRoleData = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $GetRoleData )
-            $Output = $RunGetRoleData
+        if($null -eq $DatabaseName -or $DatabaseName -eq '')
+        {
+            $DatabaseName = $iniVar.DatabaseName
         }
-        "GetAll" {
-            $GetAllServers = "EXEC PowerSTIG.sproc_GetActiveServers"
-            if($DebugScript)
-            {
-                Write-Host $GetAllServers
+
+    
+        Switch($PSCmdlet.ParameterSetName)
+        {
+            "ByName" {
+                $GetComputerName = "EXEC PowerSTIG.sproc_GetRolesPerServer @TargetComputer = $ServerName"
+                if($DebugScript)
+                {
+                    Write-Host $GetComputerName
+                }
+                $RunGetComputerName = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $GetComputerName )
+                $Output = $RunGetComputerName
             }
-            $RunGetAllServers = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $GetAllServers)
-            $Output = $RunGetAllServers
+            "ByRole" {
+                $Role = Convert-PowerStigRoleToSql -Role $Role
+                $GetRoleData = "EXEC PowerSTIG.sproc_GetActiveRoles  @ComplianceType = $Role"
+                if($DebugScript)
+                {
+                    Write-Host $GetRoleData
+                }
+                $RunGetRoleData = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $GetRoleData )
+                $Output = $RunGetRoleData
+            }
+            "GetAll" {
+                $GetAllServers = "EXEC PowerSTIG.sproc_GetActiveServers"
+                if($DebugScript)
+                {
+                    Write-Host $GetAllServers
+                }
+                $RunGetAllServers = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $GetAllServers)
+                $Output = $RunGetAllServers
+            }
         }
+        Return $OutPut
     }
-    Return $OutPut
 }
 
 #CM03
@@ -232,10 +273,6 @@ function Set-PowerStigComputer
     param(
         [Parameter(Mandatory=$true)]
         [String]$ServerName,
-
-        [Parameter(Mandatory=$true)]
-        [ValidateSet("MemberServer","DomainController","DotNet","Firefox","Firewall","IIS","Word","Excel","PowerPoint","Outlook","JRE","Sql","Client","DNS","IE")]
-        [String[]]$Role,
 
         [Parameter(Mandatory=$true)]
         [boolean]$Enable,
@@ -249,36 +286,57 @@ function Set-PowerStigComputer
         [String]$DatabaseName
     )
 
-    $workingPath = Split-Path $PsCommandPath
-    $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
+    DynamicParam {
+        $ParameterName = 'Role'
+        $RuntimeParameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
+        $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
+        $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
+        $ParameterAttribute.Mandatory = $true
+        $AttributeCollection.Add($ParameterAttribute)
+        $roleSet = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
+        $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
+        $AttributeCollection.Add($ValidateSetAttribute)
+        $RuntimeParameter = New-Object System.Management.Automation.RuntimeDefinedParameter($ParameterName, [string[]], $AttributeCollection)
+        $RuntimeParameterDictionary.Add($ParameterName, $RuntimeParameter)
+        return $RuntimeParameterDictionary
+    }
 
-    if($null -eq $SqlInstance -or $SqlInstance -eq '')
-    {
-        $SqlInstance = $iniVar.SqlInstanceName
-    }
-    if($null -eq $DatabaseName -or $DatabaseName -eq '')
-    {
-        $DatabaseName = $iniVar.DatabaseName
+    begin{
+        $Role = $PSBoundParameters[$ParameterName]
     }
 
+    process{
+        $workingPath = Split-Path $PsCommandPath
+        $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
 
-    if($Enable -eq $true)
-    {
-        $UpdateAction = '1'
-    }
-    else {
-        $UpdateAction = '0'
-    }
-    
-    foreach ($r in $Role)
-    {
-        
-        $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateServerRoles  @TargetComputer = $ServerName,@ComplianceType = $r,@UpdateAction=$UpdateAction"
-        if($DebugScript)
+        if($null -eq $SqlInstance -or $SqlInstance -eq '')
         {
-            Write-Host $UpdateComputer
+            $SqlInstance = $iniVar.SqlInstanceName
         }
-        Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $UpdateComputer 
+        if($null -eq $DatabaseName -or $DatabaseName -eq '')
+        {
+            $DatabaseName = $iniVar.DatabaseName
+        }
+
+
+        if($Enable -eq $true)
+        {
+            $UpdateAction = '1'
+        }
+        else {
+            $UpdateAction = '0'
+        }
+        
+        foreach ($r in $Role)
+        {
+            $updateRole = Convert-PowerStigRoleToSql -Role $r
+            $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateServerRoles  @TargetComputer = $ServerName,@ComplianceType = $updateRole,@UpdateAction=$UpdateAction"
+            if($DebugScript)
+            {
+                Write-Host $UpdateComputer
+            }
+            Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $UpdateComputer 
+        }
     }
 }
 

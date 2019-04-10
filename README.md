@@ -2,6 +2,8 @@
 
 ### Release History
 1.0.0.0 - Released February 8, 2019
+1.0.0.2 - Released Feburary 25, 2019
+1.1.0.0 - Released March 1, 2019
 
 
 ## How It Works

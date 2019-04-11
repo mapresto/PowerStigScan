@@ -31,8 +31,8 @@
     
     # Description of the functionality provided by this module
     Description = 'Module to Audit systems using the PowerStig engine. 
-PowerStigScan Repo: https://github.com/mapresto/PowerStigScan.
-PowerStig Repo: https://github.com/Microsoft/PowerStig'
+    PowerStigScan Repo: https://github.com/mapresto/PowerStigScan.
+    PowerStig Repo: https://github.com/Microsoft/PowerStig'
     
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.1'
@@ -86,7 +86,8 @@ PowerStig Repo: https://github.com/Microsoft/PowerStig'
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     FunctionsToExport = @(
-        'Invoke-PowerStigScan', 
+        'Invoke-PowerStigScan',
+        'Invoke-PowerStigScanV2', 
         'New-PowerStigCkl', 
         'Add-PowerStigComputer', 
         'Get-PowerStigSqlConfig', 
@@ -136,7 +137,8 @@ PowerStig Repo: https://github.com/Microsoft/PowerStig'
     
             # ReleaseNotes of this module
             ReleaseNotes = 'Added Support for DSCEA
-            Added additional, optional integration with SCAP'
+            Added additional, optional integration with SCAP
+            Added switches to make SQL and SCAP optional components'
     
         } # End of PSData hashtable
     

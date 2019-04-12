@@ -274,7 +274,11 @@ function Set-PowerStigComputer
         [Parameter(Mandatory=$true)]
         [String]$ServerName,
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,ParameterSetName="OS")]
+        [ValidateSet('2012R2','2016','10')]
+        [String]$osVersion,
+
+        [Parameter(Mandatory=$true,ParameterSetName='Role')]
         [boolean]$Enable,
 
         [switch]$DebugScript,
@@ -292,6 +296,7 @@ function Set-PowerStigComputer
         $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
         $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
         $ParameterAttribute.Mandatory = $true
+        $ParameterAttribute.ParameterSetName = 'Role'
         $AttributeCollection.Add($ParameterAttribute)
         $roleSet = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
         $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
@@ -318,24 +323,31 @@ function Set-PowerStigComputer
             $DatabaseName = $iniVar.DatabaseName
         }
 
-
-        if($Enable -eq $true)
+        if($PSCmdlet.ParameterSetName -eq "Role")
         {
-            $UpdateAction = '1'
-        }
-        else {
-            $UpdateAction = '0'
-        }
-        
-        foreach ($r in $Role)
-        {
-            $updateRole = Convert-PowerStigRoleToSql -Role $r
-            $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateServerRoles  @TargetComputer = $ServerName,@ComplianceType = $updateRole,@UpdateAction=$UpdateAction"
-            if($DebugScript)
+            if($Enable -eq $true)
             {
-                Write-Host $UpdateComputer
+                $UpdateAction = '1'
             }
-            Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $UpdateComputer 
+            else {
+                $UpdateAction = '0'
+            }
+            
+            foreach ($r in $Role)
+            {
+                $updateRole = Convert-PowerStigRoleToSql -Role $r
+                $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateServerRoles  @TargetComputer = $ServerName,@ComplianceType = $updateRole,@UpdateAction=$UpdateAction"
+                if($DebugScript)
+                {
+                    Write-Host $UpdateComputer
+                }
+                Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $UpdateComputer 
+            }
+        }
+        elseif($PSCmdlet.ParameterSetName -eq "OS")
+        {
+            $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateTargetOS @TargetComputer=$ServerName,@OSName=$osVersion"
+            Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $UpdateComputer
         }
     }
 }

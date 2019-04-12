@@ -339,6 +339,7 @@ function Get-PowerStigConfig
     $configObject = New-Object PSobject
     Add-Member -InputObject $configObject -NotePropertyName "CKLOutPath" -NotePropertyValue $iniVar.CKLOutPath
     Add-Member -InputObject $configObject -NotePropertyName "LogPath" -NotePropertyValue $iniVar.LogPath
+    Add-Member -InputObject $configObject -NotePropertyName "ConcurrentScans" -NotePropertyValue $iniVar.ConcurrentScans
     Add-Member -InputObject $configObject -NotePropertyName "ScapProfile" -NotePropertyValue $iniVar.ScapProfile
     Add-Member -InputObject $configObject -NotePropertyName "ScapInstallDir" -NotePropertyValue $iniVar.ScapInstallDir
     Add-Member -InputObject $configObject -NotePropertyName "SQLInstanceName" -NotePropertyValue $iniVar.SQLInstanceName
@@ -362,6 +363,10 @@ function Set-PowerStigConfig
         [Parameter(Mandatory=$false)]
         [ValidateNotNullorEmpty()]
         [String]$LogPath,
+
+        [Parameter(Mandatory=$false)]
+        [ValidateNotNullorEmpty()]
+        [String]$ConcurrentScans,
 
         [Parameter(Mandatory=$false)]
         [ValidateNotNullorEmpty()]
@@ -434,12 +439,19 @@ function Set-PowerStigConfig
     {
         $workingObj.ScapProfile = $ScapProfile
     }
+    if($ConcurrentScans -ne '')
+    {
+        $workingObj.ConcurrentScans = $ConcurrentScans
+    }
 
     $someFile += "; All Entries are space sensitive. Further versions will fix input validation.`r`n"
+    $someFile += "; Concurrent scan option is only used here if you are running a standalone function`r`n"
+    $someFile += "       ;   else it falls back to SQL configuration`r`n"
     $someFile += "`r`n"
     $someFile += "[general]`r`n"
     $someFile += "CKLOutPath=$($workingObj.CKLOutPath)`r`n"
     $someFile += "LogPath=$($workingObj.LogPath)`r`n"
+    $someFile += "ConcurrentScans=$($workingObj.ConcurrentScans)`r`n"
     $someFile += "`r`n"
     $someFile += "[SCAP]`r`n"
     $someFile += "ScapProfile=$($WorkingObj.ScapProfile)`r`n"

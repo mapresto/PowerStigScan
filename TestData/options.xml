@@ -13,7 +13,7 @@
       <offlineConfigPath></offlineConfigPath>
       <!-- *********** Remote Scanning Options (Windows Only) ***************** -->
       <hostName></hostName>
-      <hostFile>C:\Program Files\SCAP Compliance Checker 5.1\Test_hosts_2019-04-10_125026.txt</hostFile>
+      <hostFile>C:\Temp\PowerStig\SCC\Hosts.txt</hostFile>
       <remoteWMIEnabled>1</remoteWMIEnabled>
       <!-- *********** SCAP Processing Options ***************** -->
       <ignoreCPEOVALResults>0</ignoreCPEOVALResults>
@@ -58,8 +58,8 @@
       <suppress_warnings>0</suppress_warnings>
       <!-- *********** Output Options ***************** -->
       <sharedOptions>1</sharedOptions>
-      <userDataDirectory>C:\Users\Someone\SCC</userDataDirectory>
-      <userDataDirectoryValue>2</userDataDirectoryValue>
+      <userDataDirectory>C:\Temp\PowerStig\SCC</userDataDirectory>
+      <userDataDirectoryValue>4</userDataDirectoryValue>
       <setRestrictedPermissions>1</setRestrictedPermissions>
       <!-- *********** Output Subdirectory Options ***************** -->
       <dirResultsLogsEnabled>1</dirResultsLogsEnabled>

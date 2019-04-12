@@ -372,6 +372,8 @@ function Import-PowerStigObject
     $query = "EXEC PowerSTIG.sproc_ProcessFindings @GUID = `'$($guid.guid)`'"
     Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query | Out-Null
 
+    return $guid
+
 }
 
 #endregion Private

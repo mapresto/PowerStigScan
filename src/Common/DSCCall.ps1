@@ -9,7 +9,7 @@ param(
     $ComputerName,
     
     [Parameter(Mandatory=$false)]
-    [ValidateSet("2012R2","2016")]
+    [ValidateSet("2012R2","2016",'10')]
     [String]
     $OsVersion,
 

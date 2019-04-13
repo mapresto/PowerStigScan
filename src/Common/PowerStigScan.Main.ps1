@@ -209,10 +209,43 @@ function Get-PowerStigXmlVersion
 
 }
 
+function Get-PowerStigOSandFunction
+{
+    [cmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$ServerName
+    )
+
+    $osVersion = (Get-WmiObject -Class Win32_OperatingSystem -ComputerName $ServerName).Version
+    $domainRole = (Get-WmiObject -Class Win32_ComputerSystem -ComputerName $ServerName).DomainRole
+
+    if($domainRole -eq 4 -or $domainRole -eq 5)
+    {
+        $role = "DC"
+        $osVersion = Get-ServerVersion -osVersion $osVersion
+    }
+    elseif($domainRole -eq 2 -or $domainRole -eq 3)
+    {
+        $role = "MS"
+        $osVersion = Get-ServerVersion -osVersion $osVersion
+    }
+    elseif($domainRole -eq 0 -or $domainRole -eq 1)
+    {
+        $role = "Client"
+        $osVersion = "10"
+    }
+
+    Return New-Object -TypeName PSObject -Property @{
+        Role=$role
+        OSVersion=$osVersion
+    }
+}
+
 function Get-PowerStigServerRole
 {
+    [CmdletBinding()]
     param(
-        [CmdletBinding()]
         [Parameter(Mandatory=$true)]
         [String]$ServerName
     )
@@ -1001,6 +1034,110 @@ function Invoke-PowerStigScanV2
         $ServerName = Get-PowerStigComputer -All | Select-Object -ExpandProperty TargetComputer
     }
 
+            # If Scap enabled -
+    if($RunScap -eq $True)
+    {   
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP Processing initialized."
+        $scapPath = "$logPath\SCAP"
+
+        $runList = @{
+            "2012R2_MS" = 0
+            "2012R2_DC" = 0
+            "2016_MS"   = 0
+            "2016_DC"   = 0
+            "Client"    = 0
+        }
+        $2012MS = @()
+        $2012DC = @()
+        $2016MS = @()
+        $2016DC = @()
+        $Client = @()
+        # Determing type of batch
+        foreach($s in $ServerName)
+        {
+            $tempInfo = Get-PowerStigOSandFunction -ServerName $s
+            if($tempInfo.OsVersion -eq "2012R2" -and $runList."2012R2_MS" -ne 1 -and $runList."2012R2_DC" -ne 1)
+            {
+                if($tempinfo.Role -eq "DC")
+                {
+                    $runList."2012R2_DC" = 1
+                    $2012DC += $s
+                }
+                elseif($tempInfo.Role -eq "MS")
+                {
+                    $runList."2012R2_MS" = 1
+                    $2012MS += $s
+                }
+            }
+            elseif($tempInfo.OsVersion -eq "2016" -and $runList."2016_MS" -ne 1 -and $runList."2016_DC" -ne 1)
+            {
+                if($tempInfo.Role -eq "DC")
+                {
+                    $runList."2016_DC" = 1
+                    $2016DC += $s
+                }
+                elseif($tempInfo.Role -eq "MS")
+                {
+                    $runList."2016_MS" = 1
+                    $2016MS += $s
+                }
+            }
+            elseif($tempInfo.OsVersion -eq "10" -and $runList."Client" -ne 1)
+            {
+                $runList."Client" = 1
+                $Client += $s
+            }
+
+            if($runList."2012R2_DC" -eq 1 -and $runlist."2012R2_MS" -eq 1 -and $runList."2016_DC" -eq 1 -and $runList."2016_MS" -eq 1 -and $runList."Client" -eq 1)
+            {
+                Continue
+            }
+        }
+
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: The following option and hosts files will be generated and ran"
+        foreach($r in $runList.Keys)
+        {
+            if($testHash.$r -eq 1)
+            {
+                Add-Content -Path $logFilePath -Value "         $($testHash.$r)"
+                New-Item -Path "$LogPath\SCAP\$($r)_Hosts.txt" -ItemType File
+                if      ($r -eq "2012R2_MS"){Set-PowerStigScapRoleXML -OsVersion "2012R2" -isDomainController:$false
+                                            Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2012MS -Force
+                                            $runCommand = "& $ScapInstallDir\Cscc.exe -f $scapPath\$($r)_Hosts.txt -o $scapPath\2012R2_MS_options.xml"
+                                            Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                                            Start-Job -Name "SCAP_2012R2_MS" -ScriptBlock {$runCommand} -ArgumentList $runCommand
+                                        }
+                elseif  ($r -eq "2016_MS")  {Set-PowerStigScapRoleXML -OsVersion "2016"   -isDomainController:$false
+                                            Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2016MS -Force
+                                            $runCommand = "$ScapInstallDir\Cscc.exe -f $scapPath\$($r)_Hosts.txt -o $scapPath\2016_MS_options.xml"
+                                            Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                                            Start-Job -Name "SCAP_2016_MS" -ScriptBlock {$runCommand} -ArgumentList $runCommand
+                                        }
+                elseif  ($r -eq "2012R2_DC"){Set-PowerStigScapRoleXML -OsVersion "2012R2" -isDomainController:$true
+                                            Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2012DC -Force
+                                            $runCommand = "$ScapInstallDir\Cscc.exe -f $scapPath\$($r)_Hosts.txt -o $scapPath\2012R2_DC_options.xml"
+                                            Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                                            Start-Job -Name "SCAP_2012R2_DC" -ScriptBlock {$runCommand} -ArgumentList $runCommand
+                                        }
+                elseif  ($r -eq "2016_DC")  {Set-PowerStigScapRoleXML -OsVersion "2016"   -isDomainController:$true
+                                            Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2016DC -Force
+                                            $runCommand = "$ScapInstallDir\Cscc.exe -f $scapPath\$($r)_Hosts.txt -o $scapPath\2016_DC_options.xml"
+                                            Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                                            Start-Job -Name "SCAP_2016_DC" -ScriptBlock {$runCommand} -ArgumentList $runCommand
+                                        }
+                elseif  ($r -eq "Client")   {Set-PowerStigScapRoleXML -OsVersion "10"     -isDomainController:$false
+                                            Add-Content -Path "$scapPath\$($r)_Hosts.txt" -Value $Client -Force
+                                            $runCommand = "$ScapInstallDir\Cscc.exe -f $scapPath\$($r)_Hosts.txt -o $scapPath\Client_options.xml"
+                                            Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                                            Start-Job -Name "SCAP_Client" -ScriptBlock {$runCommand} -ArgumentList $runCommand
+                                        }
+            }
+        }
+
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]SCAP has started to run. Moving to next portion while the jobs complete."
+    }# End SCAP run job
+
+    # Start of PowerStig scans as traditional means.
     foreach($s in $ServerName)
     {
         # Check connection to remote server on WinRM
@@ -1094,69 +1231,172 @@ function Invoke-PowerStigScanV2
         # Gather Role information
         $roles = Get-PowerStigServerRole -ServerName $s
         Add-Content $logFilePath -Value "$(Get-Time):[$s][Info]: PowerStig scan started on $s for role $($roles.roles) and version $($roles.version)."
-    
 
-        # If Scap enabled -
-        if($RunScap -eq $True)
+        # If SQL - Update role and OS information
+        if($SqlBatch -eq $true)
         {
-        #   Compare Versions per role
-            foreach($r in $roles.roles)
-            {
-                if($null -ne (Convert-PowerStigRoleToScap -Role $r))
-                {
-                    $ContinueRun = $true
-                    $scapVer    = Get-PowerStigScapVersion -Role $r
-                    $PsXmlVersion  = Get-PowerStigScapVersion -OSversion $roles.version -Role $r
-                    if($scapVer -ne $PsXmlVersion -and $ScapConfigConfirmed -ne $true)
-                    {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Error]: Version mismatch between SCAP and PowerStig."
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Error]: PowerStig Version for Role $r is $PsXmlVersion."
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Error]: Scap Version for role $r is $scapVer."
-                        $ContinueRun = $False
-                    }
-                    elseif($scapVer -ne $PSVersion -and $ScapConfigConfirmed -eq $true)
-                    {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Warning]: Stig version mismatch confirmed for role $r"
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Warning]: PowerStig Version for Role $r is $PsXmlVersion."
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Warning]: Scap Version for role $r is $scapVer."
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Warning]: Scap Configuration confirmed... Continuing scan."
-                    }
-                    elseif($scapVer -eq $PsXmlVersion)
-                    {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Stig version for role $r match for SCAP and PowerSTIG."
-                    }
-                }
-                if($ContinueRun -eq $false)
-                {
-                    Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Error]: There was a version mismatch detected between SCAP and PowerSTIG."
-                    Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Error]: Please reconcile the errors higher in this log for SCAP configuration."
-                    Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Error]: If the configuration is correct, run this command again with the `"-ScapConfigConfirmed`" switch."
-                    Return
-                }
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Scap/PowerStig compatibility check passed"
-            }
-
-            # Configure SCAP profile according to config file
-            # We must assume that the content is correctly selected by the user... SPAWAR give no way to confirm
-            $ScapProfile = $iniVar.$ScapProfile
-            $ScapInstallDir = $iniVar.ScapInstallDir
-
-            # .\cscc.exe --SetProfileAll MAC-3_Sensitive
-            & $ScapInstallDir\cscc.exe --SetProfileAll $ScapProfile -q | out-null
-
-            # Generate SCAP Options.xml
-            # Start SCAP Scan as job, hold job name to check status after PowerStig Completion
-            # & $ScapInstallDir\cscc.exe -h $s -u "$ServerFilePath\Scap\Results" -o $ServerFilePath\Scap\Options\options.xml
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+            Set-PowerStigComputer -ServerName $s -osVersion $roles.Version
+            Set-PowerStigComputer -ServerName $s -Role $Roles.roles -Enable:$true            
         }
 
+        
+        $OrgPath = "$logPath\PSOrgSettings\"
+        if(-not(Test-Path $OrgPath))
+        {
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Creating Org Settings path at $OrgPath"
+            New-Item -Path $OrgPath -ItemType Directory -Force | Out-Null
+        }
+    
         # Scan Role via PowerSTIG
         # Generate Org File information per role, store in temp folder in $ServerFilePath\PSOrgSettings\$r_org.xml
+        ##########################################################################################################
+        # POWERSTIG PORTION ############################################################################ YAY #####
+        ##########################################################################################################
+
+        # This is the difficult spot, if SQL is enabled, store the data in the database and recall when scap is done
+        # If +SQL+SCAP Stor and check if SCAP complete (should check only once per run). 
+            # If not, dump var to retrieve from DB after all scanning complete
+            # Control number of PS scans from DB controlled metric
+        # If +SQL-SCAP Stor and process results into new CKL
+            # Send results to DB and proceed to build CKL file from the data present.
+            # Control number of PS scans from DB controlled metric
+        # If -SQL-SCAP process results into new CKL
+            # Control number of PS scans from config.ini controlled metric
+        # If -SQL+SCAP....
+            # Attempt to hold data in memory until SCAP completes?
+            # Wait to start PowerStig until SCAP completes?
+            # Write results to temp file until all scans complete?
+            # Refuse configuration???? Cry in a corner???? Who would do such a thing? oh yeah... users.
         
-        # If Sql enabled - Import role results as completion occurs on DSC Scan before starting next
-        #   Determine if holding result in memory is resonable with Scap - Assuming not
-        #   If Scap enabled, hold DSC results in jobs until SCAP job completes
-        #   If Scap and Sql enabled, process SCAP results into SQL followed by DSC jobs
-        #   If Scap disabled, generate CKL prior to moving to next scan
+        #If +SQL check for OrgSettings in Database, else see if there is a file generated in the local path.
+        #if Neither database nor fileExists, copy from PowerSTIG module path to OrgPath. This will allow for a persistent
+        #org settings file that can be reused, even after reinstall.
+        foreach($r in $roles.roles)
+        {
+            $orgFileName = "$orgPath\$($r)_org.xml"
+            try
+            {
+                # Do scripting magic to build the orgsettings from the database. However, if there is not a database run,
+                # check the orgPath to determine if there was a previous org file for the role and use that first.
+                # $OrgSettingsPath
+                if ($SqlBatch -eq $true)
+                {
+                    # build xml from OrgSettings in DB. Store in $OrgPath
+                    # [xml]$orgFile = sproc_generateXML @targetRole $r
+                    # $orgFile.save("$OrgPath\$($r)_org.xml")
+                }
+                else 
+                {
+                    # If OrgSettings file exist in $OrgPath, use that else, copy from PowerStig and use the copied version
+                    if(Test-Path $orgFileName)
+                    {
+                        $OrgSettingsPath = $orgFileName
+                    }
+                    elseif(-not(Test-Path $orgFileName))
+                    {
+                        if($r -like "*WindowsServer*")
+                        {
+                            $xmlEval = $r.split("-")[0] + "-" + $roles.Version + "-" + $r.split("-")[1]
+                            $highVer = Get-PowerStigXmlVersion -Role $r -osVersion $roles.Version
+                            $orgFileName = Get-ChildItem -Path "$(Get-PowerStigXMLPath)" | Where-Object {$_.Name -like "*$xmlEval*" -and $_.Name -like "*$highVer*"} | Select-Object -ExpandProperty Name
+                            Copy-Item -Path "$(Get-PowerStigXMLPath)\$orgFileName" -Destination $orgFileName
+                            $OrgSettingsPath = $orgFileName
+                        }
+                    }
+                }
+                
+                # This is here for future development.
+                $arrSkipRule = $null
+            }
+            catch
+            {
+                Write-Host "This shouldn't show..."
+            }
+
+            Push-Location $ServerFilePath
+            try
+            {
+                $RunExpression = "& `"$workingPath\DSCCall.ps1`" -ComputerName $s -osVersion $($roles.role) -Role $r -LogPath $logFilePath"
+                if($null -ne $OrgSettingsPath -and $OrgSettingsPath -ne "")
+                {
+                    $RunExpression += " -OrgSettingsFilePath $OrgSettingsPath"
+                }
+                if($null -ne $arrSkipRule -and $arrSkipRule -ne "")
+                {
+                    $RunExpression += " -SkipRules $arrSkipRule"
+                }
+                Invoke-Expression -Command $RunExpression
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: MOF Created for $s for role $r"
+                $mofPath = "$ServerFilePath\PowerSTIG\"
+            }
+            catch
+            {
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: mof generation failed when running:"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $RunExpression"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
+                Continue
+            }
+        
+
+            if($DebugScript)
+            {
+                Add-Content -Path $logFilePath -value "$(Get-Time):[$s][Debug]: mofPath is $mofPath"
+            }
+            Pop-Location
+
+            #Run scan against target server
+            $mof = get-childitem $mofPath
+                
+            Push-location $mofPath
+
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Starting Scan for $mof"
+            try 
+            {
+                $scanMof = (Get-ChildItem -Path $mofPath)[0]
+
+                $scanObj = Test-DscConfiguration -ComputerName $s -ReferenceConfiguration $scanMof
+            }
+            catch 
+            {
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: mof variable is $mof"
+                Continue
+            }
+
+            Pop-Location
+
+
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Converting results to PSObjects"
+
+            try
+            {
+                $convertObj = Convert-PowerStigTest -TestResults $scanObj
+            }
+            catch
+            {
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
+                Continue
+            }
+            if($DebugScript)
+            {
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Debug]: Object Results:"
+                Add-Content -Path $logFilePath -Value "VulnID`tDesiredState`tFindingSeverity,`tStigDefinition,`tStigType,`tScanDate"
+                foreach($o in $convertObj)
+                {
+                    Add-Content -Path $logFilePath -Value "$($o.VulnID),`t$($o.DesiredState),`t$($o.FindingSeverity),`t$($o.StigDefinition),`t$($o.StigType),`t$($o.ScanDate)"
+                }
+            }
+
+            # If Sql enabled - Import role results as completion occurs on DSC Scan before starting next
+            if($SqlBatch -eq $true)
+            {
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Importing Results to Database for $s and role $r."
+
+                Import-PowerStigObject -Servername $s-InputObj $convertObj
+            }
+        }
+
     }
 
 }

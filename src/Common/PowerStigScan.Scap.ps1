@@ -48,7 +48,7 @@ function Get-PowerStigScapResults
 }
 
 
-function Get-PowerStigScapVersion
+<#function Get-PowerStigScapVersion
 {
     [cmdletBinding()]
     param(
@@ -116,7 +116,7 @@ function Get-PowerStigScapVersion
             }
         }
     }
-}
+}#>
 
 function Get-PowerScapOutputPath
 {
@@ -160,11 +160,11 @@ function Convert-PowerStigRoleToScap
     process{
         switch($Role)
         {
-            "DotNetFramework"           {Return "DotNet_Framework_4"}
+            "DotNetFramework"           {Return "MS_Dot_Net_Framework"}
             "FireFox"                   {Return $null}
             "IISServer"                 {Return $null}
             "IISSite"                   {Return $null}
-            "InternetExplorer"          {Return "IE11"}
+            "InternetExplorer"          {Return "IE_11"}
             "Excel2013"                 {Return $null}
             "Outlook2013"               {Return $null}
             "PowerPoint2013"            {Return $null}
@@ -174,13 +174,132 @@ function Convert-PowerStigRoleToScap
             "SqlServer-2012-Instance"   {Return $null}
             "SqlServer-2016-Instance"   {Return $null}
             "WindowsClient"             {Return "Windows_10"}
-            "WindowsDefender"           {Return "Windows_Defender_AV"}
+            "WindowsDefender"           {Return "Windows_Defender_Antivirus"}
             "WindowsDNSServer"          {Return $null}
             "WindowsFirewall"           {Return "Windows_Firewall"}
             "WindowsServer-DC"          {if($OsVersion -eq "2016"){Return "Windows_Server_2016"}
-                                    elseif($OsVersion -eq "2012R2"){Return "Windows_2012_and_2012_R2_DC"} }
+                                    elseif($OsVersion -eq "2012R2"){Return "Windows_2012_DC"} }
             "WindowsServer-MS"          {if($OsVersion -eq "2016"){Return "Windows_Server_2016"}
-                                    elseif($OsVersion -eq "2012R2"){Return "Windows_2012_and_2012_R2_MS"} }
+                                    elseif($OsVersion -eq "2012R2"){Return "Windows_2012_MS_STIG"} }
         }
     }
+}
+
+Function Set-PowerStigScapBasicOptions
+{
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$ScapInstallDir
+    )
+
+    $ScapOptions = @{
+        "scapScan"                          = "1"
+        "ovalScan"                          = "0"
+        "ocilScan"                          = "1"
+        "allSettingsHTMLReport"             = "1"
+        "allSettingsTextReport"             = "0"
+        "nonComplianceHTMLReport"           = "0"
+        "nonComplianceTextReport"           = "0"
+        "allSettingsSummaryHTMLReport"      = "0"
+        "allSettingsSummaryTextReport"      = "0"
+        "nonComplianceSummaryHTMLReport"    = "0"
+        "nonComplianceSummaryTextReport"    = "0"
+        "keepXCCDFXML"                      = "1"
+        "keepOVALXML"                       = "0"
+        "keepOCILXML"                       = "0"
+        "keepARFXML"                        = "0"
+        "keepCPEXML"                        = "0"
+        "userDataDirectory"                 = "C:\Temp\PowerStig\SCC"
+        "userDataDirectoryValue"            = "4"
+        "dirResultsLogsEnabled"             = "1"
+        "dirTargetNameEnabled"              = "1"
+        "dirXMLEnabled"                     = "1"
+        "dirStreamNameEnabled"              = "0"
+        "dirContentTypeEnabled"             = "0"
+        "dirTimestampEnabled"               = "1"
+        "fileTargetNameEnabled"             = "1"
+        "fileSCCVersionEnabled"             = "0"
+        "fileContentVersionEnabled"         = "1"
+        "fileTimestampEnabled"              = "0"
+    }
+
+    $strSetOpt = ""
+    foreach($sOpt in $($ScapOptions.Keys))
+    {
+        $strSetOpt += " --setOpt $sOpt $($ScapOptions.$sOpt)"
+    }
+    $cmdStart = "& `"" + $ScapInstallDir + "\cscc.exe`" "
+    $configCommand = "$cmdStart$strSetOpt -q"    
+    Invoke-Expression $configCommand | Out-Null
+}
+
+function Set-PowerStigScapRoleXML
+{
+    [cmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [ValidateSet('2012R2','2016','10')]
+        [String]$OsVersion,
+
+        [Parameter(Mandatory=$false)]
+        [switch]$isDomainController = $false
+    )
+
+    
+    $fileName = "$($OsVersion)_$(if($isDomainController){"DC"}else{"MS"})_options.xml"
+    $iniVar = Import-PowerStigConfig -configFilePath "$(Split-Path $PsCommandPath)\Config.ini"
+    $scapInstallDir = $iniVar.ScapInstallDir
+    $ScapProfile = $iniVar.$ScapProfile
+    $logPath = $iniVar.LogPath
+    $outpath = "$logPath\SCAP\"
+
+    [xml]$configXML = Get-Content $ScapInstallDir\options.xml
+    $configXML.PreserveWhitespace = $true
+    $psRoles = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
+
+    $xmlRoles = @()
+
+    # Determine which roles exist in Scap
+    foreach($r in $psRoles)
+    {
+        if($r -like "WindowsServer-DC" -and $isDomainController -eq $false)
+        {
+            continue
+        }
+        elseif($r -like "WindowsServer-MS" -and $isDomainController -eq $true)
+        {
+            continue
+        }
+        elseif($r -like "*WindowsServer*")
+        {
+            $xmlRoles += Convert-PowerStigRoleToScap -Role $r -OsVersion $OsVersion
+        }
+        else 
+        {
+            $xmlRoles += Convert-PowerStigRoleToScap -Role $r
+        }
+        
+    }
+
+    foreach($i in $($configXML.options.contents.content))
+    {
+        $i.enabled = 0
+        foreach($r in $xmlRoles)
+        {
+            if($i -like "*$r*")
+            {
+                $i.enabled = 1
+                $i.selectedProfile = "xccdf_mil.disa.stig_profile_$ScapProfile"
+            }
+        }
+    }
+
+    if(-not(Test-Path -Path (Split-Path $outPath)))
+    {
+        New-Item -ItemType Directory -Path (Split-Path $outPath) -Force
+    }
+
+    $configXML.save("$outPath\$fileName")
+
+    return $fileName
 }

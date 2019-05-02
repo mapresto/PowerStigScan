@@ -459,7 +459,7 @@ function Get-PowerStigIsIIS
         [String]$ServerName
     )
 
-    Return (Get-WindowsFeature -ComputerName $ServerName -Name Web-Server).installstate -eq "Installed"
+    Return $false #(Get-WindowsFeature -ComputerName $ServerName -Name Web-Server).installstate -eq "Installed"
 }
 
 # R07
@@ -494,7 +494,7 @@ function Get-PowerStigIsJRE
         [String]$ServerName
     )
 
-    Return Invoke-Command -ComputerName $ServerName -ScriptBlock {if ((Test-Path -Path "HKLM:\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment") -or (Test-Path -Path "HKLM:\SOFTWARE\JavaSoft\Java Runtime Environment")){Return $true}else{Return $false}}
+    Return $false #Invoke-Command -ComputerName $ServerName -ScriptBlock {if ((Test-Path -Path "HKLM:\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment") -or (Test-Path -Path "HKLM:\SOFTWARE\JavaSoft\Java Runtime Environment")){Return $true}else{Return $false}}
 }
 #endregion Private
 
@@ -1031,14 +1031,36 @@ function Invoke-PowerStigScanV2
             $DatabaseName = $iniVar.DatabaseName
         }
 
-        $ServerName = Get-PowerStigComputer -All | Select-Object -ExpandProperty TargetComputer
+        $ServerName = [string[]](Get-PowerStigComputer -All | Select-Object -ExpandProperty TargetComputer)
+    }
+
+    if($DebugScript)
+    {
+        Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Variables Initialized as follows:"
+        Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: RunScap = $RunScap"
+        Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: ScapConfigConfirmed = $ScapConfigConfirmed"
+        Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: SqlBatch = $SqlBatch"
+        if($SqlBatch)
+        {
+            Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: SqlInstanceName = $SqlInstanceName"
+            Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: DatabaseName = $DatabaseName"
+        }
     }
 
             # If Scap enabled -
     if($RunScap -eq $True)
     {   
+        $ScapInstallDir = $iniVar.ScapInstallDir
         Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP Processing initialized."
         $scapPath = "$logPath\SCAP"
+
+        if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: scapPath = $scapPath"}
+
+        if(-not(Test-Path $scapPath))
+        {
+            New-Item -Path $scapPath -ItemType Directory | Out-Null
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Created Scap Path at $scapPath"
+        }
 
         $runList = @{
             "2012R2_MS" = 0
@@ -1055,87 +1077,140 @@ function Invoke-PowerStigScanV2
         # Determing type of batch
         foreach($s in $ServerName)
         {
+            if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Current Server is $s"}
             $tempInfo = Get-PowerStigOSandFunction -ServerName $s
-            if($tempInfo.OsVersion -eq "2012R2" -and $runList."2012R2_MS" -ne 1 -and $runList."2012R2_DC" -ne 1)
+            if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s version is $($s.OSVersion)"}
+            if($tempInfo.OsVersion -eq "2012R2")
             {
-                if($tempinfo.Role -eq "DC")
+                if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s is 2012R2 = True"}
+                if($tempinfo.Role -eq "DC" -and $runList."2012R2_DC" -ne 1)
                 {
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2012R2_DC"}
                     $runList."2012R2_DC" = 1
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012DC"}
                     $2012DC += $s
                 }
-                elseif($tempInfo.Role -eq "MS")
+                elseif($tempInfo.Role -eq "MS" -and $runList."2012R2_MS" -ne 1)
                 {
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2012R2_MS"}
                     $runList."2012R2_MS" = 1
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012MS"}
                     $2012MS += $s
                 }
-            }
-            elseif($tempInfo.OsVersion -eq "2016" -and $runList."2016_MS" -ne 1 -and $runList."2016_DC" -ne 1)
-            {
-                if($tempInfo.Role -eq "DC")
+                elseif($tempInfo.Role -eq "MS" -and $runList."2012R2_MS" -eq 1)
                 {
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012MS"}
+                    $2012MS += $s
+                }
+                elseif($tempInfo.Role -eq "DC" -and $runList."2012_DC" -eq 1)
+                {
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012DC"}
+                    $2012DC += $s
+                }
+            }
+            elseif($tempInfo.OsVersion -eq "2016")
+            {
+                if($tempInfo.Role -eq "DC" -and $runList."2016_DC" -ne 1)
+                {
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2016_DC"}
                     $runList."2016_DC" = 1
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016DC"}
                     $2016DC += $s
                 }
-                elseif($tempInfo.Role -eq "MS")
+                elseif($tempInfo.Role -eq "MS" -and $runList."2016_MS" -ne 1)
                 {
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2016_MS"}
                     $runList."2016_MS" = 1
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016MS"}
                     $2016MS += $s
+                }
+                elseif($tempInfo.Role -eq "MS" -and $runlist."2016_MS" -eq 1)
+                {
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016MS"}
+                    $2016MS += $s
+                }
+                elseif($tempInfo.Role -eq "DC" -and $runList."2016_DC" -eq 1)
+                {
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016DC"}
+                    $2016DC += $s
                 }
             }
             elseif($tempInfo.OsVersion -eq "10" -and $runList."Client" -ne 1)
             {
-                $runList."Client" = 1
-                $Client += $s
-            }
-
-            if($runList."2012R2_DC" -eq 1 -and $runlist."2012R2_MS" -eq 1 -and $runList."2016_DC" -eq 1 -and $runList."2016_MS" -eq 1 -and $runList."Client" -eq 1)
-            {
-                Continue
+                if($runList."Client" -ne 1)
+                {
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for Client"}
+                    $runList."Client" = 1
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable Client"}
+                    $Client += $s
+                }
+                else 
+                {
+                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable Client"}
+                    $Client += $s
+                }
             }
         }
 
         Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: The following option and hosts files will be generated and ran"
         foreach($r in $runList.Keys)
         {
-            if($testHash.$r -eq 1)
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Processing $r"
+            if(($runList.$r) -eq 1)
             {
                 Add-Content -Path $logFilePath -Value "         $($testHash.$r)"
-                New-Item -Path "$LogPath\SCAP\$($r)_Hosts.txt" -ItemType File
+                New-Item -Path "$LogPath\SCAP\$($r)_Hosts.txt" -ItemType File -Force | Out-Null
                 if      ($r -eq "2012R2_MS"){Set-PowerStigScapRoleXML -OsVersion "2012R2" -isDomainController:$false
                                             Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2012MS -Force
-                                            $runCommand = "& $ScapInstallDir\Cscc.exe -f $scapPath\$($r)_Hosts.txt -o $scapPath\2012R2_MS_options.xml"
+                                            $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2012R2_MS_options.xml`" -q"
                                             Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                                            Start-Job -Name "SCAP_2012R2_MS" -ScriptBlock {$runCommand} -ArgumentList $runCommand
+                                            if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                                            Start-Job -Name "SCAP_2012R2_MS" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
                                         }
                 elseif  ($r -eq "2016_MS")  {Set-PowerStigScapRoleXML -OsVersion "2016"   -isDomainController:$false
                                             Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2016MS -Force
-                                            $runCommand = "$ScapInstallDir\Cscc.exe -f $scapPath\$($r)_Hosts.txt -o $scapPath\2016_MS_options.xml"
+                                            $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2016_MS_options.xml`" -q"
                                             Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                                            Start-Job -Name "SCAP_2016_MS" -ScriptBlock {$runCommand} -ArgumentList $runCommand
+                                            if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                                            Start-Job -Name "SCAP_2016_MS" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
                                         }
                 elseif  ($r -eq "2012R2_DC"){Set-PowerStigScapRoleXML -OsVersion "2012R2" -isDomainController:$true
                                             Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2012DC -Force
-                                            $runCommand = "$ScapInstallDir\Cscc.exe -f $scapPath\$($r)_Hosts.txt -o $scapPath\2012R2_DC_options.xml"
+                                            $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2012R2_DC_options.xml`" -q"
                                             Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                                            Start-Job -Name "SCAP_2012R2_DC" -ScriptBlock {$runCommand} -ArgumentList $runCommand
+                                            if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                                            Start-Job -Name "SCAP_2012R2_DC" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
                                         }
                 elseif  ($r -eq "2016_DC")  {Set-PowerStigScapRoleXML -OsVersion "2016"   -isDomainController:$true
                                             Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2016DC -Force
-                                            $runCommand = "$ScapInstallDir\Cscc.exe -f $scapPath\$($r)_Hosts.txt -o $scapPath\2016_DC_options.xml"
+                                            $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2016_DC_options.xml`" -q"
                                             Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                                            Start-Job -Name "SCAP_2016_DC" -ScriptBlock {$runCommand} -ArgumentList $runCommand
+                                            if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                                            Start-Job -Name "SCAP_2016_DC" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
                                         }
                 elseif  ($r -eq "Client")   {Set-PowerStigScapRoleXML -OsVersion "10"     -isDomainController:$false
                                             Add-Content -Path "$scapPath\$($r)_Hosts.txt" -Value $Client -Force
-                                            $runCommand = "$ScapInstallDir\Cscc.exe -f $scapPath\$($r)_Hosts.txt -o $scapPath\Client_options.xml"
+                                            $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\Client_options.xml`" -q"
                                             Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                                            Start-Job -Name "SCAP_Client" -ScriptBlock {$runCommand} -ArgumentList $runCommand
+                                            if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                                            Start-Job -Name "SCAP_Client" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
                                         }
             }
         }
 
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]SCAP has started to run. Moving to next portion while the jobs complete."
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP has started to run. Waiting until all jobs complete."
+
+        while (((Get-Process | Where-Object {$_.ProcessName -like "cscc*"}).count) -gt 0 -or (Get-Job | Where-Object {$_.state -eq "Running" -and $_.name -like "SCAP*"}).count -gt 0)
+        {
+            Start-Sleep -Seconds 2
+        }
+
+        if($DebugScript){Write-Host "SCAP has ended."}
+        
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP scans have finished, moving to PowerStig portion"
     }# End SCAP run job
+
+    Return
 
     # Start of PowerStig scans as traditional means.
     foreach($s in $ServerName)
@@ -1158,7 +1233,7 @@ function Invoke-PowerStigScanV2
         if($s -eq $ENV:ComputerName)
         {
             try {
-                [int]$maxEnvelope = (get-childitem wsman:\localhost\MaxEnvelopeSizekb).value
+                [int]$maxEnvelope = (get-childitem "wsman:\localhost\MaxEnvelopeSizekb").value
             }
             catch {
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Query for WSMAN properties failed. Check user context that this is running under."
@@ -1170,7 +1245,7 @@ function Invoke-PowerStigScanV2
         else
         {
             try{
-                [int]$maxEnvelope = invoke-command -ComputerName $s -ScriptBlock {((get-childitem wsman:\localhost\MaxEnvelopeSizekb).value)}
+                [int]$maxEnvelope = invoke-command -ComputerName $s -ScriptBlock {((get-childitem "wsman:\localhost\MaxEnvelopeSizekb").value)}
             }
             catch {
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Query for WSMAN properties failed. Check user context that this is running under."
@@ -1185,7 +1260,7 @@ function Invoke-PowerStigScanV2
             Add-Content -path $logFilePath -Value "$(Get-Time):[$s][Warning]: Attempting to set MaxEnvelopeSizeKb on $s."
             try 
             {
-                invoke-command -computername $s -ScriptBlock {Set-Item -Path WSMAN:\localhost\MaxEnvelopeSizekb -Value 10000}
+                invoke-command -computername $s -ScriptBlock {Set-Item -Path "WSMAN:\localhost\MaxEnvelopeSizekb" -Value 10000}
                 Add-Content -path $logFilePath -Value "$(Get-Time):[$s][Info]: MaxEnvelopeSizeKb successfully configured on $s."
             }
             catch 
@@ -1200,7 +1275,7 @@ function Invoke-PowerStigScanV2
             Add-Content -path $logFilePath -Value "$(Get-Time):[$s][Warning]: Attempting to set MaxEnvelopeSizeKb on $s."
             try 
             {
-                Set-Item -Path WSMAN:\localhost\MaxEnvelopeSizekb -Value 10000
+                Set-Item -Path "WSMAN:\localhost\MaxEnvelopeSizekb" -Value 10000
                 Add-Content -path $logFilePath -Value "$(Get-Time):[$s][Info]: MaxEnvelopeSizeKb successfully configured on $s."
             }
             catch 
@@ -1236,6 +1311,8 @@ function Invoke-PowerStigScanV2
         if($SqlBatch -eq $true)
         {
             Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+            $resetSqlRole = "exec powerstig.sproc_ResetTargetRoles @targetcomputer=$s"
+            Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $resetSqlRole | Out-Null
             Set-PowerStigComputer -ServerName $s -osVersion $roles.Version
             Set-PowerStigComputer -ServerName $s -Role $Roles.roles -Enable:$true            
         }
@@ -1282,9 +1359,12 @@ function Invoke-PowerStigScanV2
                 # $OrgSettingsPath
                 if ($SqlBatch -eq $true)
                 {
+                    $complianceType = Convert-PowerStigRoleToSql -Role $r
                     # build xml from OrgSettings in DB. Store in $OrgPath
-                    # [xml]$orgFile = sproc_generateXML @targetRole $r
-                    # $orgFile.save("$OrgPath\$($r)_org.xml")
+                    $resetSqlRole = "sproc_GenerateORGxml @OSName $($roles.Version) @ComplianceType $complianceType"
+                    [xml]$orgFile = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $resetSqlRole)
+                    # $orgFile.encoding = "UTF-8"
+                    $orgFile.save("$OrgPath\$($r)_org.xml")
                 }
                 else 
                 {
@@ -1303,6 +1383,13 @@ function Invoke-PowerStigScanV2
                             Copy-Item -Path "$(Get-PowerStigXMLPath)\$orgFileName" -Destination $orgFileName
                             $OrgSettingsPath = $orgFileName
                         }
+                        else
+                        {
+                            $highVer = Get-PowerStigXmlVersion -Role $r -osVersion $roles.Version
+                            $orgFileName = Get-ChildItem -Path "$(Get-PowerStigXMLPath)" | Where-Object {$_.Name -like "*$r*" -and $_.Name -like "*highVer*"} | Select-Object -ExpandProperty Name
+                            Copy-Item -Path "$(Get-PowerStigXMLPath)\$orgFileName" -Destination $orgFileName
+                            $OrgSettingsPath = $orgFileName
+                        }
                     }
                 }
                 
@@ -1317,11 +1404,7 @@ function Invoke-PowerStigScanV2
             Push-Location $ServerFilePath
             try
             {
-                $RunExpression = "& `"$workingPath\DSCCall.ps1`" -ComputerName $s -osVersion $($roles.role) -Role $r -LogPath $logFilePath"
-                if($null -ne $OrgSettingsPath -and $OrgSettingsPath -ne "")
-                {
-                    $RunExpression += " -OrgSettingsFilePath $OrgSettingsPath"
-                }
+                $RunExpression = "& `"$workingPath\DSCCall.ps1`" -ComputerName $s -osVersion $($roles.role) -Role $r -LogPath $logFilePath  -OrgSettingsFilePath $OrgSettingsPath"
                 if($null -ne $arrSkipRule -and $arrSkipRule -ne "")
                 {
                     $RunExpression += " -SkipRules $arrSkipRule"
@@ -1393,11 +1476,18 @@ function Invoke-PowerStigScanV2
             {
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Importing Results to Database for $s and role $r."
 
-                Import-PowerStigObject -Servername $s-InputObj $convertObj
+                Import-PowerStigObject -Servername $s -InputObj $convertObj -ScanSource 'POWERSTIG'
             }
         }
 
     }
+
+    Return $convertObj
+
+    # ToDO!!!!
+    # Switch PowerStigScan portion to Jobs to allow for parallel
+    # foreach server/role
+    # retrieve ScapScan result, 
 
 }
 

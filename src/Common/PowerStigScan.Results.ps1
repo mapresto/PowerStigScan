@@ -122,7 +122,7 @@ function Update-PowerStigCkl
         }
 
         # Pull CKL to variable
-        [xml]$CKL = Get-Content -Path "$(Split-Path $psCommandPath)\CKL\$fileName"
+        [xml]$CKL = Get-Content -Path "$(Split-Path $psCommandPath)\CKL\$fileName" -Encoding UTF8
         # Without this line, Severity_override, severity_justification, comments, etc. will all format incorrectly.
         # And will not be able to sort by Category
         $CKL.PreserveWhitespace = $true
@@ -357,14 +357,18 @@ function Import-PowerStigObject
         [String]$ServerName,
 
         [Parameter(Mandatory=$true)]
-        [PSObject[]]$inputObj
+        [PSObject[]]$inputObj,
+
+        [Parameter(Mandatory=$true)]
+        [ValidateSet('SCAP','POWERSTIG')]
+        [String]$ScanSource
     )
 
     $guid = New-Guid
 
     foreach($o in $inputObj)
     {
-        $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ServerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @FindingSeverity = `'$($o.FindingSeverity)`', @StigDefinition = `'$($o.StigDefinition)`', @StigType = `'$($o.StigType)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`'"
+        $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ServerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`', @ScanSource = $ScanSource"
         Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query | Out-Null
     }
 

@@ -192,6 +192,8 @@ Function Set-PowerStigScapBasicOptions
         [String]$ScapInstallDir
     )
 
+    $outPutPath = "C:\Temp\PowerStig\SCC"
+
     $ScapOptions = @{
         "scapScan"                          = "1"
         "ovalScan"                          = "0"
@@ -209,18 +211,23 @@ Function Set-PowerStigScapBasicOptions
         "keepOCILXML"                       = "0"
         "keepARFXML"                        = "0"
         "keepCPEXML"                        = "0"
-        "userDataDirectory"                 = "C:\Temp\PowerStig\SCC"
+        "userDataDirectory"                 = $outPutPath
         "userDataDirectoryValue"            = "4"
         "dirResultsLogsEnabled"             = "1"
         "dirTargetNameEnabled"              = "1"
         "dirXMLEnabled"                     = "1"
         "dirStreamNameEnabled"              = "0"
         "dirContentTypeEnabled"             = "0"
-        "dirTimestampEnabled"               = "1"
+        "dirTimestampEnabled"               = "0"
         "fileTargetNameEnabled"             = "1"
         "fileSCCVersionEnabled"             = "0"
         "fileContentVersionEnabled"         = "1"
         "fileTimestampEnabled"              = "0"
+    }
+
+    if(-not(Test-Path -Path $outPutPath))
+    {
+        New-Item -Path $outPutPath -ItemType Directory -force | Out-Null
     }
 
     $strSetOpt = ""
@@ -249,7 +256,7 @@ function Set-PowerStigScapRoleXML
     $fileName = "$($OsVersion)_$(if($isDomainController){"DC"}else{"MS"})_options.xml"
     $iniVar = Import-PowerStigConfig -configFilePath "$(Split-Path $PsCommandPath)\Config.ini"
     $scapInstallDir = $iniVar.ScapInstallDir
-    $ScapProfile = $iniVar.$ScapProfile
+    $ScapProfile = $iniVar.ScapProfile
     $logPath = $iniVar.LogPath
     $outpath = "$logPath\SCAP\"
 
@@ -283,12 +290,12 @@ function Set-PowerStigScapRoleXML
 
     foreach($i in $($configXML.options.contents.content))
     {
-        $i.enabled = 0
+        $i.enabled = "0"
         foreach($r in $xmlRoles)
         {
             if($i -like "*$r*")
             {
-                $i.enabled = 1
+                $i.enabled = "1"
                 $i.selectedProfile = "xccdf_mil.disa.stig_profile_$ScapProfile"
             }
         }
@@ -299,7 +306,12 @@ function Set-PowerStigScapRoleXML
         New-Item -ItemType Directory -Path (Split-Path $outPath) -Force
     }
 
-    $configXML.save("$outPath\$fileName")
+    if(Test-Path -Path "$outPath\$fileName")
+    {
+        Remove-Item "$outPath\$fileName" -Force
+    }
 
-    return $fileName
+    $configXML.save("$outPath\$fileName") | Out-Null
+
+    return
 }

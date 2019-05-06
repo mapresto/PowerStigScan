@@ -465,5 +465,71 @@ function Set-PowerStigConfig
     $someFile | Out-File -FilePath $workingPath\Config.ini
 }
 
+Function Get-PowerStigOrgSettings
+{
+    [cmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [ValidateSet('2012R2','2016','10','All')]
+        [String]$Version,
 
+        [Parameter(Mandatory=$false)]
+        [String]$OutPath,
+
+        [Parameter(Mandatory=$false)]
+        [String]$SqlInstanceName,
+
+        [Parameter(Mandatory=$false)]
+        [String]$DatabaseName
+    )
+
+    DynamicParam {
+        $ParameterName = 'Role'
+        $RuntimeParameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
+        $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
+        $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
+        $ParameterAttribute.Mandatory = $true
+        $ParameterAttribute.ParameterSetName = 'Role'
+        $AttributeCollection.Add($ParameterAttribute)
+        $roleSet = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
+        $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
+        $AttributeCollection.Add($ValidateSetAttribute)
+        $RuntimeParameter = New-Object System.Management.Automation.RuntimeDefinedParameter($ParameterName, [string], $AttributeCollection)
+        $RuntimeParameterDictionary.Add($ParameterName, $RuntimeParameter)
+        return $RuntimeParameterDictionary
+    }
+
+    begin{
+        $Role = $PSBoundParameters[$ParameterName]
+    }
+
+    process{
+
+        $workingPath    = Split-Path $PsCommandPath
+        $iniVar         = Import-PowerStigConfig -configFilePath $workingPath\Config.ini    
+
+        if($null -eq $OutPath -or $OutPath -eq '')
+        {
+            $OutPath = "$($iniVar.LogPath)\PSOrgSettings\$($Role)_org.xml"
+        }
+
+        if($null -eq $sqlInstance -or $sqlInstance -eq '')
+        {
+            $sqlInstance = $iniVar.SqlInstanceName
+        }
+        if($null -eq $DatabaseName -or $DatabaseName -eq '')
+        {
+            $DatabaseName = $iniVar.DatabaseName
+        }
+    
+
+        $complianceType = Convert-PowerStigRoleToSql -Role $Role
+    
+        $generateOrgXML = "PowerSTIG.sproc_GenerateORGxml @OSName = `"$Version`", @ComplianceType = `"$complianceType`""
+        [xml]$orgFile = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $GenerateOrgXML).OrgXML
+    
+        $orgFile.Save($OutPath) | Out-Null
+    }
+
+}
 #endregion Public

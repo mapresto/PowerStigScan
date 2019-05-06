@@ -7,4 +7,4 @@
 
 Export-ModuleMember -Function @('Invoke-PowerStigScan','Invoke-PowerStigScanV2','New-PowerStigCkl','Add-PowerStigComputer','Get-PowerStigSqlConfig','Set-PowerStigSqlConfig','Get-PowerStigConfig',
                                 'Set-PowerStigConfig','Invoke-PowerStigBatch','Get-PowerStigComputer','Set-PowerStigComputer',
-                                'Remove-PowerStigComputer')
+                                'Remove-PowerStigComputer','Get-PowerStigOrgSettings')

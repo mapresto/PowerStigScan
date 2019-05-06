@@ -31,8 +31,6 @@ Functions:
         H02 - Import-PowerStigConfig
         H03 - Invoke-PowerStigSqlCommand
 #>
-
-Import-Module PowerSTIG -RequiredVersion 3.0.1
 #H01
 function Convert-PowerStigRoleToSql
 {

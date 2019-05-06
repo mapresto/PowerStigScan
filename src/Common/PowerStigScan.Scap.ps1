@@ -254,6 +254,10 @@ function Set-PowerStigScapRoleXML
 
     
     $fileName = "$($OsVersion)_$(if($isDomainController){"DC"}else{"MS"})_options.xml"
+    if($OsVersion -eq '10')
+    {
+        $fileName = "Client_options.xml"
+    }
     $iniVar = Import-PowerStigConfig -configFilePath "$(Split-Path $PsCommandPath)\Config.ini"
     $scapInstallDir = $iniVar.ScapInstallDir
     $ScapProfile = $iniVar.ScapProfile

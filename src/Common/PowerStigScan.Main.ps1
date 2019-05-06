@@ -105,7 +105,6 @@ function Get-PowerStigXmlVersion
     [cmdletBinding()]
     param(
         [Parameter(Mandatory=$false)]
-        [ValidateSet("2012R2","2016","10","All")]
         [string]$osVersion
     )
 
@@ -139,23 +138,23 @@ function Get-PowerStigXmlVersion
         # Test if the role is similar to ADDomain, ADForest, IE, or FW. If so then ensure that the OS Version is set to all
         Switch($Role)
         {
-            "DotNetFramework"           {$rRole = "DotNetFramework-4"}
-            "FireFox"                   {$rRole = "FireFox-All"}
-            "IISServer"                 {$rRole = "IISServer-8.5"}
-            "IISSite"                   {$rRole = "IISSite-8.5"}
-            "InternetExplorer"          {$rRole = "InternetExplorer-11"}
-            "Excel2013"                 {$rRole = "Office-Excel2013"}
-            "Outlook2013"               {$rRole = "Office-Outlook2013"}
-            "PowerPoint2013"            {$rRole = "Office-PowerPoint2013"}
-            "Word2013"                  {$rRole = "Office-Word2013"}
-            "OracleJRE"                 {$rRole = "OracleJRE-8"}
-            "SqlServer-2012-Database"   {$rRole = "SqlServer-2012-Database"}
-            "SqlServer-2012-Instance"   {$rRole = "SqlServer-2012-Instance"}
-            "SqlServer-2016-Instance"   {$rRole = "SqlServer-2016-Instance"}
-            "WindowsClient"             {$rRole = "WindowsClient-10"}
-            "WindowsDefender"           {$rRole = "WindowsDefender-All"}
-            "WindowsDNSServer"          {$rRole = "WindowsDNSServer-2012R2"}
-            "WindowsFirewall"           {$rRole = "WindowsFirewall-All"}
+            "DotNetFramework"           {$rRole = "DotNetFramework-4";      $osVersion = $null}
+            "FireFox"                   {$rRole = "FireFox";                $osVersion = $null}
+            "IISServer"                 {$rRole = "IISServer-8.5";          $osVersion = $null}
+            "IISSite"                   {$rRole = "IISSite-8.5";            $osVersion = $null}
+            "InternetExplorer"          {$rRole = "InternetExplorer-11";    $osVersion = $null}
+            "Excel2013"                 {$rRole = "Office-Excel2013";       $osVersion = $null}
+            "Outlook2013"               {$rRole = "Office-Outlook2013";     $osVersion = $null}
+            "PowerPoint2013"            {$rRole = "Office-PowerPoint2013";  $osVersion = $null}
+            "Word2013"                  {$rRole = "Office-Word2013";        $osVersion = $null}
+            "OracleJRE"                 {$rRole = "OracleJRE-8";            $osVersion = $null}
+            "SqlServer-2012-Database"   {$rRole = "SqlServer-2012-Database";$osVersion = $null}
+            "SqlServer-2012-Instance"   {$rRole = "SqlServer-2012-Instance";$osVersion = $null}
+            "SqlServer-2016-Instance"   {$rRole = "SqlServer-2016-Instance";$osVersion = $null}
+            "WindowsClient"             {$rRole = "WindowsClient-10";       $osVersion = $null}
+            "WindowsDefender"           {$rRole = "WindowsDefender-All";    $osVersion = $null}
+            "WindowsDNSServer"          {$rRole = "WindowsDNSServer-2012R2";$osVersion = $null}
+            "WindowsFirewall"           {$rRole = "WindowsFirewall-All";    $osVersion = $null}
             "WindowsServer-DC"          {if($osVersion = "2012R2"){$rRole = "WindowsServer-2012R2-DC"}else{$rRole = "WindowsServer-2016-DC"}}
             "WindowsServer-MS"          {if($osVersion = "2012R2"){$rRole = "WindowsServer-2012R2-MS"}else{$rRole = "WindowsServer-2016-MS"}}
         }
@@ -323,7 +322,7 @@ function Get-PowerStigServerRole
     {
         if(Get-PowerStigIsOffice -ServerName $ServerName)
         {
-            $arrRole += "Office2013"
+            $arrRole += "Outlook2013"
             $arrRole += "PowerPoint2013"
             $arrRole += "Excel2013"
             $arrRole += "Word2013"
@@ -390,7 +389,14 @@ function Get-PowerStigIsOffice
     )
 
     $uninstallPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
-    $keys = @(Invoke-Command -computername $ServerName -scriptblock {param($uninstallPath) Get-ChildItem -path $uninstallPath | Where-Object {$_.name -like "*0FF1CE}"}} -ArgumentList $uninstallPath)
+    if($ServerName -eq $env:COMPUTERNAME)
+    {
+        $keys = @(Get-ChildItem -path $uninstallPath | Where-Object {$_.name -like "*0FF1CE}"})
+    }
+    else 
+    {
+        $keys = @(Invoke-Command -computername $ServerName -scriptblock {param($uninstallPath) Get-ChildItem -path $uninstallPath | Where-Object {$_.name -like "*0FF1CE}"}} -ArgumentList $uninstallPath)
+    }
     if($keys.count -ge 1)
     {
         Return $true
@@ -409,7 +415,16 @@ function Get-PowerStigIsIE
         [String]$ServerName
     )
 
-    Return (Invoke-Command -ComputerName $ServerName -Scriptblock {(Get-windowsoptionalfeature -FeatureName Internet-Explorer-Optional-amd64 -online).state -eq "Enabled"})
+    if($ServerName -eq $env:COMPUTERNAME)
+    {
+        $outVal = (Get-windowsoptionalfeature -FeatureName Internet-Explorer-Optional-amd64 -online).state -eq "Enabled"
+    }
+    else 
+    {
+        $outVal = Invoke-Command -ComputerName $ServerName -Scriptblock {(Get-windowsoptionalfeature -FeatureName Internet-Explorer-Optional-amd64 -online).state -eq "Enabled"}
+    }
+
+    Return $outVal
 }
 
 # R03
@@ -435,7 +450,15 @@ function Get-PowerStigIsFireFox
         [String]$ServerName
     )
 
-    Return Invoke-Command -ComputerName $ServerName -scriptblock {Test-Path -path "HKLM:\Software\Mozilla\Mozilla Firefox\"}
+    if($ServerName -eq $env:COMPUTERNAME)
+    {
+        $outVal = Test-Path -path "HKLM:\Software\Mozilla\Mozilla Firefox\"
+    }
+    else 
+    {
+        $outVal = Invoke-Command -ComputerName $ServerName -scriptblock {Test-Path -path "HKLM:\Software\Mozilla\Mozilla Firefox\"}
+    }
+    Return $outVal
 }
 
 # R05
@@ -1158,7 +1181,6 @@ function Invoke-PowerStigScanV2
             Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Processing $r"
             if(($runList.$r) -eq 1)
             {
-                Add-Content -Path $logFilePath -Value "         $($testHash.$r)"
                 New-Item -Path "$LogPath\SCAP\$($r)_Hosts.txt" -ItemType File -Force | Out-Null
                 if      ($r -eq "2012R2_MS"){Set-PowerStigScapRoleXML -OsVersion "2012R2" -isDomainController:$false
                                             Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2012MS -Force
@@ -1208,9 +1230,15 @@ function Invoke-PowerStigScanV2
         if($DebugScript){Write-Host "SCAP has ended."}
         
         Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP scans have finished, moving to PowerStig portion"
+
+        ##################TODO#################
+        #   IMPORT SCAP RESULTS TO DATABASE
+        #   IF SQLBATCH ENABLED
+        ##################END##################
     }# End SCAP run job
 
-    Return
+    #initialize Hashtable to test for orgSettings creation. Prevents duplicate effort
+    $orgSettingsProcessed = @{}
 
     # Start of PowerStig scans as traditional means.
     foreach($s in $ServerName)
@@ -1300,7 +1328,7 @@ function Invoke-PowerStigScanV2
         {
             
             Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Creating file path for this server at $ServerFilePath"            
-            New-Item -ItemType Directory -Path $ServerFilePath
+            New-Item -ItemType Directory -Path $ServerFilePath | Out-Null
         }
     
         # Gather Role information
@@ -1357,38 +1385,68 @@ function Invoke-PowerStigScanV2
                 # Do scripting magic to build the orgsettings from the database. However, if there is not a database run,
                 # check the orgPath to determine if there was a previous org file for the role and use that first.
                 # $OrgSettingsPath
-                if ($SqlBatch -eq $true)
+                if ($SqlBatch -eq $true -and $orgSettingsProcessed.Contains("$r") -eq $false)
                 {
-                    $complianceType = Convert-PowerStigRoleToSql -Role $r
-                    # build xml from OrgSettings in DB. Store in $OrgPath
-                    $resetSqlRole = "sproc_GenerateORGxml @OSName $($roles.Version) @ComplianceType $complianceType"
-                    [xml]$orgFile = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $resetSqlRole)
-                    # $orgFile.encoding = "UTF-8"
-                    $orgFile.save("$OrgPath\$($r)_org.xml")
+                    try 
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Creating OrgSettings file for $r at $orgFileName"
+                        if($DebugScript)
+                        {
+                            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: Command Passed is: Get-PowerStigOrgSettings -Version $($roles.Version) -Role $r -OutPath $orgFileName"
+                        }
+                        Get-PowerStigOrgSettings -Version $roles.Version -Role $r -OutPath $orgFileName
+                        $orgSettingsProcessed.Add("$r","1")
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Org Settings generate from Database"
+                    }
+                    catch 
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: OrgSettings failed to generate:"
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
+                    }
                 }
-                else 
+                
+                if (-not(Test-Path $orgFileName))
                 {
+                    Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Processing Org Settings from local machine."
                     # If OrgSettings file exist in $OrgPath, use that else, copy from PowerStig and use the copied version
                     if(Test-Path $orgFileName)
                     {
-                        $OrgSettingsPath = $orgFileName
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: OrgSettings exist in $orgFileName"
                     }
                     elseif(-not(Test-Path $orgFileName))
                     {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: No previous org files in location. Attempting to copy from default PowerStig Location ($(Get-PowerStigXMLPath)"
                         if($r -like "*WindowsServer*")
                         {
                             $xmlEval = $r.split("-")[0] + "-" + $roles.Version + "-" + $r.split("-")[1]
                             $highVer = Get-PowerStigXmlVersion -Role $r -osVersion $roles.Version
-                            $orgFileName = Get-ChildItem -Path "$(Get-PowerStigXMLPath)" | Where-Object {$_.Name -like "*$xmlEval*" -and $_.Name -like "*$highVer*"} | Select-Object -ExpandProperty Name
-                            Copy-Item -Path "$(Get-PowerStigXMLPath)\$orgFileName" -Destination $orgFileName
-                            $OrgSettingsPath = $orgFileName
+                            if($DebugScript)
+                            {
+                                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: xml evaluation term is $xmlEval"
+                                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: High Version is $highVer"
+                            }
+                            $srcOrgFileName = Get-ChildItem -Path "$(Get-PowerStigXMLPath)" | Where-Object {$_.Name -like "*$xmlEval*" -and $_.Name -like "*$highVer*" -and $_.Name -like "*.org.default.xml"} | Select-Object -ExpandProperty Name
+                            if($DebugScript)
+                            {
+                                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: Source xml file is $srcOrgFileName"
+                            }
+                            Copy-Item -Path "$(Get-PowerStigXMLPath)\$srcOrgFileName" -Destination $orgFileName
+                            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Org Settings Copied from PowerStig Directory"
                         }
                         else
                         {
                             $highVer = Get-PowerStigXmlVersion -Role $r -osVersion $roles.Version
-                            $orgFileName = Get-ChildItem -Path "$(Get-PowerStigXMLPath)" | Where-Object {$_.Name -like "*$r*" -and $_.Name -like "*highVer*"} | Select-Object -ExpandProperty Name
-                            Copy-Item -Path "$(Get-PowerStigXMLPath)\$orgFileName" -Destination $orgFileName
-                            $OrgSettingsPath = $orgFileName
+                            if($DebugScript)
+                            {
+                                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: High Version is $highVer"
+                            }
+                            $srcOrgFileName = Get-ChildItem -Path "$(Get-PowerStigXMLPath)" | Where-Object {$_.Name -like "*$r*" -and $_.Name -like "*$highVer*" -and $_.Name -like "*.org.default.xml"} | Select-Object -ExpandProperty Name
+                            if($DebugScript)
+                            {
+                                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: Source xml file is $srcOrgFileName"
+                            }
+                            Copy-Item -Path "$(Get-PowerStigXMLPath)\$srcOrgFileName" -Destination $orgFileName
+                            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Org Settings Copied from PowerStig Directory"
                         }
                     }
                 }
@@ -1398,42 +1456,47 @@ function Invoke-PowerStigScanV2
             }
             catch
             {
-                Write-Host "This shouldn't show..."
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: OrgSettings failed when running:"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
             }
 
             Push-Location $ServerFilePath
             try
             {
-                $RunExpression = "& `"$workingPath\DSCCall.ps1`" -ComputerName $s -osVersion $($roles.role) -Role $r -LogPath $logFilePath  -OrgSettingsFilePath $OrgSettingsPath"
+                $RunExpression = "& `"$workingPath\DSCCall.ps1`" -ComputerName $s -osVersion $($roles.Version) -Role $r -LogPath $logFilePath  -OrgSettingsFilePath $orgFileName"
                 if($null -ne $arrSkipRule -and $arrSkipRule -ne "")
                 {
                     $RunExpression += " -SkipRules $arrSkipRule"
                 }
                 Invoke-Expression -Command $RunExpression
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: MOF Created for $s for role $r"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: MOF Created for $s for role $r"
                 $mofPath = "$ServerFilePath\PowerSTIG\"
             }
             catch
             {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: mof generation failed when running:"
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $RunExpression"
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: mof generation failed when running:"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $RunExpression"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
                 Continue
             }
         
 
             if($DebugScript)
             {
-                Add-Content -Path $logFilePath -value "$(Get-Time):[$s][Debug]: mofPath is $mofPath"
+                Add-Content -Path $logFilePath -value "$(Get-Time):[$s][$r][Debug]: mofPath is $mofPath"
             }
             Pop-Location
 
             #Run scan against target server
             $mof = get-childitem $mofPath
+
+                        ###############################################
+                        Continue
+                        ###############################################
                 
             Push-location $mofPath
 
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Starting Scan for $mof"
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Starting Scan for $mof"
             try 
             {
                 $scanMof = (Get-ChildItem -Path $mofPath)[0]
@@ -1442,15 +1505,17 @@ function Invoke-PowerStigScanV2
             }
             catch 
             {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: mof variable is $mof"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: mof variable is $mof"
                 Continue
             }
 
             Pop-Location
 
 
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Converting results to PSObjects"
+
+
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Converting results to PSObjects"
 
             try
             {
@@ -1458,7 +1523,7 @@ function Invoke-PowerStigScanV2
             }
             catch
             {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
                 Continue
             }
             if($DebugScript)

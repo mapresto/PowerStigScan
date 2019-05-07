@@ -146,7 +146,7 @@ function Add-PowerStigComputer
             "WindowsServer-MS"          {$WindowsServerMS       = 1}
         }
 
-        $Query = "PowerSTIG.sproc_AddTargetComputer @TargetComputerName     = $ServerName,`
+        $Query = "PowerSTIG.sproc_AddTargetComputer @TargetComputerName     = `"$ServerName`",`
                                                     @DotNetFramework        = $DotnetFramework,`
                                                     @FireFox                = $FireFox,`
                                                     @IISServer              = $IISServer,`
@@ -336,7 +336,7 @@ function Set-PowerStigComputer
             foreach ($r in $Role)
             {
                 $updateRole = Convert-PowerStigRoleToSql -Role $r
-                $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateServerRoles  @TargetComputer = $ServerName,@ComplianceType = $updateRole,@UpdateAction=$UpdateAction"
+                $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateServerRoles  @TargetComputer = `"$ServerName`" ,@ComplianceType = `"$updateRole`",@UpdateAction=`"$UpdateAction`""
                 if($DebugScript)
                 {
                     Write-Host $UpdateComputer
@@ -346,7 +346,7 @@ function Set-PowerStigComputer
         }
         elseif($PSCmdlet.ParameterSetName -eq "OS")
         {
-            $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateTargetOS @TargetComputer=$ServerName,@OSName=$osVersion"
+            $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateTargetOS @TargetComputer=`"$ServerName`",@OSName=`"$osVersion`""
             Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $UpdateComputer
         }
     }
@@ -406,7 +406,7 @@ function Remove-PowerStigComputer
     }
     
 
-    $deleteComputer = "EXEC PowerSTIG.sproc_DeleteTargetComputerAndData @TargetComputer = $ServerName"
+    $deleteComputer = "EXEC PowerSTIG.sproc_DeleteTargetComputerAndData @TargetComputer = `'$ServerName`'"
     if($DebugScript)
     {
         Write-Host $deleteComputer

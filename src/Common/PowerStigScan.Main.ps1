@@ -461,6 +461,17 @@ function Get-PowerStigIsFireFox
     Return $outVal
 }
 
+function Get-PowerStigFireFoxDirectory
+{
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$ServerName
+    )
+    $InstallDirectory = invoke-command -ComputerName $ServerName -scriptblock {(get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox\$((get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox").currentversion)\Main")."Install Directory"}
+
+    Return $InstallDirectory
+}
+
 # R05
 function Get-PowerStigIsFirewall
 {
@@ -1175,6 +1186,13 @@ function Invoke-PowerStigScanV2
             }
         }
 
+        if($DebugScript)
+        {
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: Setting base configuration for SCAP"
+        }
+
+        Set-PowerStigScapBasicOptions
+
         Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: The following option and hosts files will be generated and ran"
         foreach($r in $runList.Keys)
         {
@@ -1229,17 +1247,62 @@ function Invoke-PowerStigScanV2
 
         if($DebugScript){Write-Host "SCAP has ended."}
         
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP scans have finished, moving to PowerStig portion"
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP scans have finished."
 
-        ##################TODO#################
-        #   IMPORT SCAP RESULTS TO DATABASE
-        #   IF SQLBATCH ENABLED
-        ##################END##################
+        if($SqlBatch -eq $true)
+        {
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Attempting to import SCAP results to database"
+
+            $scapResultXccdf = Get-Childitem -path C:\Temp\PowerStig\SCC\Results -Include "*Xccdf*" -Recurse
+
+            foreach($x in $scapResultXccdf)
+            {
+                #"Windows_Server_2016"           {Return }
+                #"Windows_2012_MS"               {Return "WindowsServer-MS"}
+                #"Windows_2012_DC"               {Return "WindowsServer-DC"}
+                #"Windows_Firewall"              {Return "WindowsFirewall"}
+                #"Windows_Defender_Antivirus"    {Return "WindowsDefender"}
+                #"Windows_10"                    {Return "WindowsClient"}
+                #"IE*"                           {Return "InternetExplorer"}
+                #"MS_Dot_Net_Framework" 
+
+                $splitOption = [System.StringSplitOptions]::RemoveEmptyEntries
+                $splitSeparator = "_XCCDF-Results_"
+                $sScap = $x.Name.Split($splitSeparator,$splitOption)[0]
+                $workingRole = $x.Name.Split($splitSeparator,$splitOption)[1]
+
+                if($workingRole -eq "Windows")
+                {
+                    $workingRole += "_$($x.Name.Split($splitSeparator,$splitOption)[2])"
+                    if($workingRole -eq "Windows_2012")
+                    {
+                        $workingRole += "_$($x.Name.Split($splitSeparator,$splitOption)[3])"
+                    }
+                }
+
+                $psRole = Convert-ScapRoleToPowerStig -Role $workingRole
+
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Adding results for $psRole for $sScap"
+
+                $scapResults = Get-PowerStigScapResults -ScapResultsXccdf $x.FullName
+
+                Import-PowerStigObject -ServerName $sScap -InputObj $scapResults -ScanSource 'SCAP'
+
+                #Import-PowerStigObject -Servername $s -InputObj $convertObj -ScanSource 'POWERSTIG'
+            }
+            ##################TODO#################
+            #   IMPORT SCAP RESULTS TO DATABASE
+            #   IF SQLBATCH ENABLED
+            # SQL2012TEST_XCCDF-Results_IE_11_STIG-001.012.xml
+            # Get-PowerStigScapResults -ScapResultsXccdf
+            ##################END##################
+        }
     }# End SCAP run job
 
     #initialize Hashtable to test for orgSettings creation. Prevents duplicate effort
     $orgSettingsProcessed = @{}
 
+    $evalServers = @()
     # Start of PowerStig scans as traditional means.
     foreach($s in $ServerName)
     {
@@ -1254,6 +1317,7 @@ function Invoke-PowerStigScanV2
         else 
         {
             Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Connection to $s successful"
+            $evalServers += $s
         }
         # Check WSMan Settings
         Add-Content $logFilePath -Value "$(Get-Time):[$s][Info]: Testing WSMAN configuration on target server"
@@ -1470,7 +1534,10 @@ function Invoke-PowerStigScanV2
                 }
                 Invoke-Expression -Command $RunExpression
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: MOF Created for $s for role $r"
-                $mofPath = "$ServerFilePath\PowerSTIG\"
+                $mofPath = "$ServerFilePath\PowerStig\"
+                $origMof = Get-ChildItem $mofPath | Where-Object {$_.Name -like "$s.mof"} | Select-Object -ExpandProperty FullName
+                $mofName = $origMof.Replace(".mof","_$r.mof")
+                Rename-Item -Path $origMof -NewName $mofName -Force
             }
             catch
             {
@@ -1483,30 +1550,48 @@ function Invoke-PowerStigScanV2
 
             if($DebugScript)
             {
-                Add-Content -Path $logFilePath -value "$(Get-Time):[$s][$r][Debug]: mofPath is $mofPath"
+                Add-Content -Path $logFilePath -value "$(Get-Time):[$s][$r][Debug]: mofName is $mofName"
             }
             Pop-Location
 
-            #Run scan against target server
-            $mof = get-childitem $mofPath
 
-                        ###############################################
-                        Continue
-                        ###############################################
-                
+        }
+
+    }
+
+    ##############################################################################################
+    #
+    Continue
+    #
+    ##############################################################################################
+    
+    
+
+    foreach ($s in $evalServers)
+    {
+        # Start Job that will retrieve test results.
+        # Job must build the final results as well as import to SQL and create CKL
+        
+    }
+
+    <#foreach($s in $ServerName)
+    {
+            #Run scan against target server      
             Push-location $mofPath
 
             Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Starting Scan for $mof"
             try 
             {
-                $scanMof = (Get-ChildItem -Path $mofPath)[0]
-
-                $scanObj = Test-DscConfiguration -ComputerName $s -ReferenceConfiguration $scanMof
+                if($DebugScript)
+                {
+                    Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: Command to run is Test-DscConfiguration -ComputerName $s -ReferenceConfiguration $mofName"
+                }
+                $scanObj = Test-DscConfiguration -ComputerName $s -ReferenceConfiguration $mofName
             }
             catch 
             {
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: mof variable is $mof"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: mof variable is $mofName"
                 Continue
             }
 
@@ -1543,9 +1628,9 @@ function Invoke-PowerStigScanV2
 
                 Import-PowerStigObject -Servername $s -InputObj $convertObj -ScanSource 'POWERSTIG'
             }
-        }
+        
 
-    }
+    }#>
 
     Return $convertObj
 
@@ -1554,6 +1639,99 @@ function Invoke-PowerStigScanV2
     # foreach server/role
     # retrieve ScapScan result, 
 
+}
+
+Function Start-PowerStigDSCScan
+{
+    #The goal of this script is to take a MOF file and Generate results
+    #params required include logging information, is it SCAP/SQL based, MofName, ServerName
+    [cmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$ServerName,
+
+        [Parameter(Mandatory=$true)]
+        [String]$logFilePath,
+
+        [Parameter(Mandatory=$false)]
+        [Switch]$isScap,
+
+        [Parameter(Mandatory=$false)]
+        [Switch]$isSql,
+
+        [Parameter(Mandatory=$false)]
+        [Switch]$DebugScript
+    )
+
+    $workingPath                = Split-Path $PsCommandPath
+    $iniVar                     = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
+
+    if($isSql)
+    {
+        $SqlInstanceName = $iniVar.SqlInstanceName
+        $DatabaseName    = $iniVar.DatabaseName
+    }
+
+    Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][Info]: Starting DSC Scan for $ServerName"
+    if($DebugScript)
+    {
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: Initialized Values:"
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: isScap is $isScap"
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: isSql is $isSql"
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: SqlInstanceName is $SqlInstanceName"
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: DatabaseName is $DatabaseName"
+    }
+
+    $mofList = get-childitem -Path "C:\Temp\PowerStig\*" -Include "$ServerName*.mof" -Recurse
+
+    if($DebugScript)
+    {
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: Found the following mofs"
+        foreach($m in $mofList)
+        {
+            $tech = $m.Name.split("_")[$m.Name.Split("_").count - 1].replace(".mof","")
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: $tech"
+        }
+    }
+
+    foreach($m in $mofList)
+    {
+        $r = $m.Name.split("_")[$m.Name.Split("_").count - 1].replace(".mof","")
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DSC]: Starting scan for $r on $ServerName"
+        if($DebugScript)
+        {
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DSC][DEBUG]: Test-DscConfiguration -ComputerName $s -ReferenceConfiguration $($m.FullName)"
+        }
+        try
+        {
+            $ScanObj = Test-DscConfiguration -ComputerName $ServerName -ReferenceConfiguration $m.FullName
+        }
+        catch
+        {
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: mof variable is $($m.FullName)"
+            Continue
+        }
+
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Converting results to PSObjects"
+
+        try
+        {
+            $convertObj = Convert-PowerStigTest -TestResults $scanObj
+        }
+        catch
+        {
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
+            Continue
+        }
+
+        if($isSql)
+        {
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Importing Results to Database for $s and role $r."
+
+            Import-PowerStigObject -Servername $s -InputObj $convertObj -ScanSource 'POWERSTIG'
+        }
+    }
 }
 
 #endregion Public

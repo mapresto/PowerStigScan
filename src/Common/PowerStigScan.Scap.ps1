@@ -7,6 +7,7 @@ function Get-PowerStigScapResults
     )
 
     [xml]$ScapXML = Get-Content -Path $ScapResultsXccdf
+    $ScanDate = (Get-ChildItem $ScapResultsXccdf).LastWriteTime.ToString()
 
     #$ScapXML.Benchmark.TestResult.'rule-result'  #ruleID
 
@@ -44,7 +45,17 @@ function Get-PowerStigScapResults
         }
     }
 
-    Return $VIDHash
+    $outObj = @()
+
+    foreach($i in $VIDHash.Keys)
+    {
+        $props = @{VulnID = $i;
+             DesiredState = $VIDHash.$i;
+                 ScanDate = $ScanDate}
+        $outObj += New-Object -TypeName PSObject -Property $props
+    }
+
+    Return $outObj
 }
 
 
@@ -120,7 +131,8 @@ function Get-PowerStigScapResults
 
 function Get-PowerScapOutputPath
 {
-    $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
+    $workingPath                = Split-Path $PsCommandPath
+    $iniVar                     = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
     $scapPath = $iniVar.ScapInstallDir
 
     $results = & "$scapPath\cscc.exe --getopt userDataDirectory -q"
@@ -185,13 +197,36 @@ function Convert-PowerStigRoleToScap
     }
 }
 
-Function Set-PowerStigScapBasicOptions
+Function Convert-ScapRoleToPowerStig
 {
+    [cmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]
-        [String]$ScapInstallDir
+        [String]$Role
     )
 
+
+    
+    switch -Wildcard ($Role)
+    {
+        "Windows_Server_2016"           {Return }
+        "Windows_2012_MS"               {Return "WindowsServer-MS"}
+        "Windows_2012_DC"               {Return "WindowsServer-DC"}
+        "Windows_Firewall"              {Return "WindowsFirewall"}
+        "Windows_Defender_Antivirus"    {Return "WindowsDefender"}
+        "Windows_10"                    {Return "WindowsClient"}
+        "IE*"                           {Return "InternetExplorer"}
+        "MS_Dot_Net_Framework"          {Return "DotNetFramework"}
+    }
+
+}
+
+Function Set-PowerStigScapBasicOptions
+{
+    $workingPath = Split-Path $PsCommandPath
+    $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
+
+    $ScapInstallDir = $iniVar.ScapInstallDir
     $outPutPath = "C:\Temp\PowerStig\SCC"
 
     $ScapOptions = @{

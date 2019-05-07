@@ -210,7 +210,7 @@ process
                     FireFox Firefox
                     {
                         StigVersion         = (Get-PowerStigXMLVersion -Role "FireFox")
-                        InstallDirectory    = $InstallDirectory
+                        InstallDirectory    = (Get-PowerStigFireFoxDirectory -ServerName $ComputerName)
                         OrgSettings         = $OrgSettingsFilePath
                     }
                 }

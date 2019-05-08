@@ -354,11 +354,9 @@ function Import-PowerStigObject
 
     $guid = New-Guid
 
-    $sRole = Convert-PowerStigRoleToSql -Role $Role
-
     foreach($o in $inputObj)
     {
-        $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ServerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`', @StigType=`'$sRole`', @ScanSource = `'$ScanSource`', @ScanVersion=`'$ScanVersion`'"
+        $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ServerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`', @StigType=`'$Role`', @ScanSource = `'$ScanSource`', @ScanVersion=`'$ScanVersion`'"
         Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query | Out-Null
     }
 

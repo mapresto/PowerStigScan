@@ -1344,7 +1344,15 @@ function Invoke-PowerStigScanV2
                 }
             
                 $psRole = Convert-ScapRoleToPowerStig -Role $importRole -isDomainController:$isDC
-                $pStigVersion = Get-PowerStigXmlVersion -Role $psRole
+                if($null -ne $psRole -and $psRole -ne '')
+                {
+                    $pStigVersion = Get-PowerStigXmlVersion -Role $psRole
+                }
+                else 
+                {
+                    $psRole = $importRole
+                    $pStigVersion = $scapTech.$importRole
+                }
 
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Adding results for $psRole for $sScap"
 
@@ -1600,7 +1608,7 @@ function Invoke-PowerStigScanV2
                 $mofPath = "$ServerFilePath\PowerStig\"
                 $origMof = Get-ChildItem $mofPath | Where-Object {$_.Name -like "$s.mof"} | Select-Object -ExpandProperty FullName
                 $mofName = $origMof.Replace(".mof","_$r.mof")
-                Rename-Item -Path $origMof -NewName $mofName -Force
+                Move-Item -path $origMof -Destination $mofName -Force
             }
             catch
             {

@@ -96,13 +96,7 @@ function Get-PowerStigComputer
 {
     [CmdletBinding()]
     param(
-        [Parameter(ParameterSetName="ByName")]
-        [ValidateNotNullorEmpty()]
-        [String]$ServerName,
-
-        [Parameter(ParameterSetName="GetAll")]
-        [Switch]$All,
-
+        [Parameter()]
         [switch]$DebugScript,
 
         [Parameter()]
@@ -112,73 +106,28 @@ function Get-PowerStigComputer
         [String]$DatabaseName
         
     )
-    DynamicParam {
-        $ParameterName = 'Role'
-        $RuntimeParameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
-        $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
-        $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
-        $ParameterAttribute.Mandatory = $true
-        $ParameterAttribute.ParameterSetName = "ByRole"
-        $AttributeCollection.Add($ParameterAttribute)
-        $roleSet = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
-        $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
-        $AttributeCollection.Add($ValidateSetAttribute)
-        $RuntimeParameter = New-Object System.Management.Automation.RuntimeDefinedParameter($ParameterName, [string], $AttributeCollection)
-        $RuntimeParameterDictionary.Add($ParameterName, $RuntimeParameter)
-        return $RuntimeParameterDictionary
+
+    $workingPath = Split-Path $PsCommandPath
+    $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
+
+    if($null -eq $SqlInstance -or $SqlInstance -eq '')
+    {
+        $SqlInstance = $iniVar.SqlInstanceName
+    }
+    if($null -eq $DatabaseName -or $DatabaseName -eq '')
+    {
+        $DatabaseName = $iniVar.DatabaseName
     }
 
-    begin{
-        $Role = $PSBoundParameters[$ParameterName]
+
+    $GetAllServers = "EXEC PowerSTIG.sproc_GetActiveServers"
+    if($DebugScript)
+    {
+        Write-Host $GetAllServers
     }
+    $RunGetAllServers = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $GetAllServers)
 
-    process{
-        $workingPath = Split-Path $PsCommandPath
-        $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
-
-        if($null -eq $SqlInstance -or $SqlInstance -eq '')
-        {
-            $SqlInstance = $iniVar.SqlInstanceName
-        }
-        if($null -eq $DatabaseName -or $DatabaseName -eq '')
-        {
-            $DatabaseName = $iniVar.DatabaseName
-        }
-
-    
-        Switch($PSCmdlet.ParameterSetName)
-        {
-            "ByName" {
-                $GetComputerName = "EXEC PowerSTIG.sproc_GetRolesPerServer @TargetComputer = $ServerName"
-                if($DebugScript)
-                {
-                    Write-Host $GetComputerName
-                }
-                $RunGetComputerName = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $GetComputerName )
-                $Output = $RunGetComputerName
-            }
-            "ByRole" {
-                $Role = Convert-PowerStigRoleToSql -Role $Role
-                $GetRoleData = "EXEC PowerSTIG.sproc_GetActiveRoles  @ComplianceType = $Role"
-                if($DebugScript)
-                {
-                    Write-Host $GetRoleData
-                }
-                $RunGetRoleData = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $GetRoleData )
-                $Output = $RunGetRoleData
-            }
-            "GetAll" {
-                $GetAllServers = "EXEC PowerSTIG.sproc_GetActiveServers"
-                if($DebugScript)
-                {
-                    Write-Host $GetAllServers
-                }
-                $RunGetAllServers = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $GetAllServers)
-                $Output = $RunGetAllServers
-            }
-        }
-        Return $OutPut
-    }
+    Return $RunGetAllServers
 }
 
 #CM03

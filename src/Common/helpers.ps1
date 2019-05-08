@@ -35,50 +35,38 @@ Functions:
 function Convert-PowerStigRoleToSql
 {
     [cmdletBinding()]
-    param()
-    DynamicParam {
-        $ParameterName = 'Role'
-        $RuntimeParameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
-        $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
-        $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
-        $ParameterAttribute.Mandatory = $true
-        $AttributeCollection.Add($ParameterAttribute)
-        $roleSet = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
-        $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
-        $AttributeCollection.Add($ValidateSetAttribute)
-        $RuntimeParameter = New-Object System.Management.Automation.RuntimeDefinedParameter($ParameterName, [string], $AttributeCollection)
-        $RuntimeParameterDictionary.Add($ParameterName, $RuntimeParameter)
-        return $RuntimeParameterDictionary
-    }
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$Role
+    )
 
-    begin{
-        $Role = $PSBoundParameters[$ParameterName]
-    }
 
-    process{
-        switch($Role)
-        {
-            "DotNetFramework"           {Return $Role}
-            "FireFox"                   {Return $Role}
-            "IISServer"                 {Return $Role}
-            "IISSite"                   {Return $Role}
-            "InternetExplorer"          {Return $Role}
-            "Excel2013"                 {Return $Role}
-            "Outlook2013"               {Return $Role}
-            "PowerPoint2013"            {Return $Role}
-            "Word2013"                  {Return $Role}
-            "OracleJRE"                 {Return $Role}
-            "SqlServer-2012-Database"   {Return "SqlServer2012Database"}
-            "SqlServer-2012-Instance"   {Return "SqlServer2012Instance"}
-            "SqlServer-2016-Instance"   {Return "SqlServer2016Instance"}
-            "WindowsClient"             {Return $Role}
-            "WindowsDefender"           {Return $Role}
-            "WindowsDNSServer"          {Return $Role}
-            "WindowsFirewall"           {Return $Role}
-            "WindowsServer-DC"          {Return "WindowsServerDC"}
-            "WindowsServer-MS"          {Return "WindowsServerMS"}
-        }
+    switch($Role)
+    {
+        "DotNetFramework"                       {Return $Role}
+        "FireFox"                               {Return $Role}
+        "IISServer"                             {Return $Role}
+        "IISSite"                               {Return $Role}
+        "InternetExplorer"                      {Return $Role}
+        "Excel2013"                             {Return $Role}
+        "Outlook2013"                           {Return $Role}
+        "PowerPoint2013"                        {Return $Role}
+        "Word2013"                              {Return $Role}
+        "OracleJRE"                             {Return $Role}
+        "SqlServer-2012-Database"               {Return "SqlServer2012Database"}
+        "SqlServer-2012-Instance"               {Return "SqlServer2012Instance"}
+        "SqlServer-2016-Instance"               {Return "SqlServer2016Instance"}
+        "WindowsClient"                         {Return $Role}
+        "WindowsDefender"                       {Return $Role}
+        "WindowsDNSServer"                      {Return $Role}
+        "WindowsFirewall"                       {Return $Role}
+        "WindowsServer-DC"                      {Return "WindowsServerDC"}
+        "WindowsServer-MS"                      {Return "WindowsServerMS"}
+        "GoogleChrome"                          {Return $Role}
+        "AdobeAcrobatReaderDCCont"              {Return $Role}
+        "AdobeAcrobatReaderDCClassic"           {Return $Role}
     }
+    
 }
 
 

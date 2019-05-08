@@ -522,10 +522,8 @@ Function Get-PowerStigOrgSettings
             $DatabaseName = $iniVar.DatabaseName
         }
     
-
-        $complianceType = Convert-PowerStigRoleToSql -Role $Role
     
-        $generateOrgXML = "PowerSTIG.sproc_GenerateORGxml @OSName = `"$Version`", @ComplianceType = `"$complianceType`""
+        $generateOrgXML = "PowerSTIG.sproc_GenerateORGxml @OSName = `"$Version`", @ComplianceType = `"$Role`""
         [xml]$orgFile = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $GenerateOrgXML).OrgXML
     
         $orgFile.Save($OutPath) | Out-Null

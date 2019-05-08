@@ -1074,7 +1074,7 @@ function Invoke-PowerStigScanV2
             $DatabaseName = $iniVar.DatabaseName
         }
 
-        $ServerName = [string[]](Get-PowerStigComputer -All | Select-Object -ExpandProperty TargetComputer)
+        $ServerName = [string[]](Get-PowerStigComputer | Select-Object -ExpandProperty TargetComputer)
     }
 
     if($DebugScript)

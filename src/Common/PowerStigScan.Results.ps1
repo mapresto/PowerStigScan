@@ -52,27 +52,14 @@ function Update-PowerStigCkl
 
         [Parameter(Mandatory=$true)]
         [ValidateNotNullorEmpty()]
-        [String]$TargetServerName,
-
-        [Parameter(Mandatory=$false,ParameterSetName='BySql')]
-        [String]$SqlInstance,
-
-        [Parameter(Mandatory=$false,ParameterSetName='BySql')]
-        [String]$DatabaseName,
-
-        [Parameter(Mandatory=$true,ParameterSetName='BySql')]
-        [Switch]$SqlImport,
+        [String]$ServerName,
 
         [Parameter(Mandatory=$false,ParameterSetName='ByObj')]
         [PSObject]$InputObject,
 
         [Parameter(Mandatory=$true)]
         [ValidateNotNullorEmpty()]
-        [String]$OutPath,
-
-        [Parameter(Mandatory=$true,ParameterSetName='BySql')]
-        [ValidateNotNullorEmpty()]
-        [String]$GUID
+        [String]$OutPath
     )
 
     DynamicParam {
@@ -98,28 +85,22 @@ function Update-PowerStigCkl
         $workingPath = Split-Path $PsCommandPath
         $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
 
-        if($PSCmdlet.ParameterSetName -eq "BySql")
+        if($null -eq $outPath -or $outPath -eq '')
         {
-            if($null -eq $SqlInstance -or $SqlInstance -eq '')
-            {
-                $SqlInstance = $iniVar.SqlInstanceName
-            }
-            if($null -eq $DatabaseName -or $DatabaseName -eq '')
-            {
-                $DatabaseName = $iniVar.DatabaseName
-            }
+            $outPath = $iniVar.CKLOutPath
         }
-
 
         # generate file name
-        if($Role -ne "WindowsServer-MS" -and $Role -ne "WindowsServer-DC")
-        {
-            [String]$fileName = $Role + "Empty.ckl"
-        }
-        else
-        {
-            [String]$fileName = $osVersion + $Role + "Empty.ckl"
-        }
+        ######################################################FIX##############################################
+        if($Role -ne "WindowsServer-MS" -and $Role -ne "WindowsServer-DC")#####################################
+        {######################################################################################################
+            [String]$fileName = $Role + "Empty.ckl"############################################################
+        }######################################################################################################
+        else###################################################################################################
+        {######################################################################################################
+            [String]$fileName = $osVersion + $Role + "Empty.ckl"###############################################
+        }######################################################################################################
+        #######################################################################################################
 
         # Pull CKL to variable
         [xml]$CKL = Get-Content -Path "$(Split-Path $psCommandPath)\CKL\$fileName" -Encoding UTF8
@@ -359,16 +340,25 @@ function Import-PowerStigObject
         [Parameter(Mandatory=$true)]
         [PSObject[]]$inputObj,
 
+        # Role is not strictly defined due to SCAP
+        [Parameter(Mandatory=$true)]
+        [String]$Role,
+
         [Parameter(Mandatory=$true)]
         [ValidateSet('SCAP','POWERSTIG')]
-        [String]$ScanSource
+        [String]$ScanSource,
+
+        [Parameter(Mandatory=$true)]
+        [String]$ScanVersion
     )
 
     $guid = New-Guid
 
+    $sRole = Convert-PowerStigRoleToSql -Role $Role
+
     foreach($o in $inputObj)
     {
-        $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ServerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`', @ScanSource = `'$ScanSource`'"
+        $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ServerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`', @StigType=`'$sRole`', @ScanSource = `'$ScanSource`', @ScanVersion=`'$ScanVersion`'"
         Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query | Out-Null
     }
 
@@ -423,19 +413,9 @@ function New-PowerStigCkl
         [ValidateSet("2012R2","2016","10","All")]
         [String]$osVersion,
 
-        [Parameter(Mandatory=$true)]
-        [ValidateNotNullorEmpty()]
-        [String]$GUID,
-
         [Parameter(Mandatory=$false)]
         [ValidateNotNullorEmpty()]
-        [String]$outPath,
-        
-        [Parameter(Mandatory=$false)]
-        [String]$sqlInstance,
-
-        [Parameter(Mandatory=$false)]
-        [String]$DatabaseName
+        [String]$outPath
 
     )
 
@@ -463,21 +443,13 @@ function New-PowerStigCkl
         $workingPath = Split-Path $PsCommandPath
         $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
 
-        if($null -eq $sqlInstance -or $sqlInstance -eq '')
-        {
-            $sqlInstance = $iniVar.SqlInstanceName
-        }
-        if($null -eq $DatabaseName -or $DatabaseName -eq '')
-        {
-            $DatabaseName = $iniVar.DatabaseName
-        }
         if($null -eq $outPath -or $outPath -eq '')
         {
             $outPath = $iniVar.CKLOutPath
         }
 
 
-        Update-PowerStigCkl -TargetServerName $ServerName -osVersion $osVersion -Role $Role -OutPath $outPath -sqlInstance $sqlInstance -DatabaseName $DatabaseName -GUID $GUID
+        Update-PowerStigCkl -ServerName $ServerName -osVersion $osVersion -Role $Role -OutPath $outPath
     }
 }
 

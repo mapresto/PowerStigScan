@@ -1,3 +1,39 @@
+function Get-PowerStigScapVersionMap
+{
+    $verHash= @{
+        #PSTIGVer2.14 
+        "Windows_2012_MS"="2.14"
+        #PSTIGVer=2.15
+        "Windows_2012_DC"="2.15"
+        #PSTIGVer=1.7
+        "Windows_Server_2016"="1.8"
+        #PSTIGVer=1.7
+        "Windows_Firewall"="1.7"
+        #PSTIGVer=1.4
+        "Windows_Defender_Antivirus"="1.1"
+        #PSTIGVer=1.16 - There was not a new Benchmark to match January 2019 STIG release, defaulted to previous Benchmark
+        "Windows_10"="1.13"
+        #PSTIGVer=1.16
+        "IE_11"="1.12"
+        #PSTIGVer=1.6
+        "MS_Dot_Net_Framework"="1.5"
+        #Following does not have a corresponding PowerStig Equivilent
+        #StigVer=1.4
+        "Adobe_Acrobat_Reader_DC_Classic"="1.5"
+        #StigVer=1.5
+        "Adobe_Acrobat_Reader_DC_Continuous"="1.4"
+        #StigVer=1.15
+        "Google_Chrome"="1.11"
+    }
+
+    Return $verHash
+
+    
+}
+
+
+
+
 function Get-PowerStigScapResults
 {
     [cmdletBinding()]
@@ -59,75 +95,47 @@ function Get-PowerStigScapResults
 }
 
 
-<#function Get-PowerStigScapVersion
+function Get-PowerStigScapVersion
 {
     [cmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]
-        [ValidateSet('2016','2012R2','Other')]
-        [String]$OsVerion,
-
-        [Parameter(Mandatory=$false)]
-        [String]$ScapInstallDir
+        [String]$ScapRole
     )
 
-    DynamicParam {
-        $ParameterName = 'Role'
-        $RuntimeParameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
-        $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
-        $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
-        $ParameterAttribute.Mandatory = $true
-        $AttributeCollection.Add($ParameterAttribute)
-        $roleSet = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
-        $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
-        $AttributeCollection.Add($ValidateSetAttribute)
-        $RuntimeParameter = New-Object System.Management.Automation.RuntimeDefinedParameter($ParameterName, [string], $AttributeCollection)
-        $RuntimeParameterDictionary.Add($ParameterName, $RuntimeParameter)
-        return $RuntimeParameterDictionary
-    }
+    $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
 
-    begin{
-        $Role = $PSBoundParameters[$ParameterName]
-    }
+    $ScapInstallDir = $iniVar.ScapInstallDir
 
-    process{
-        $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
+    $ScapContent = Get-ChildItem "$ScapInstallDir\Resources\Content\SCAP12_Content"
 
-        $scapRole = Convert-PowerStigRoleToScap -Role $role -OsVerion 
+    [Regex]$VersionMatch = "V[1-9]?[0-9]R[0-9][0-9]?"
 
-        if($ScapInstallDir -eq "" -or $null -eq $ScapInstallDir)
+    foreach($c in $ScapContent)
+    {
+        if($c.name -like "*$scapRole*")
         {
-            $ScapInstallDir = $iniVar.ScapInstallDir
-        }
-
-        $ScapContent = Get-ChildItem "$ScapInstallDir\Resources\Content\SCAP12_Content"
-
-        [Regex]$VersionMatch = "V[1-9]?[0-9]R[0-9]{2}"
-
-        foreach($c in $ScapContent)
-        {
-            if($c.name -like "*$scapRole*")
+            
+            $fileVersion = ($VersionMatch.matches($c.name)).value
+            [int32]$tempMaj = $fileVersion.Split("R")[0].replace("V","")
+            [int32]$tempMin = $fileVersion.Split("R")[1]
+            [Version]$tempVer = "$tempMaj.$tempMin"
+            
+            if($null -eq $testVer)
             {
-                
-                $fileVersion = ($VersionMatch.matches($c.name)).value
-                $tempMaj = $fileVersion.Split("R")[0].replace("V","")
-                $tempMin = $fileVersion.Split("R")[1]
-                [Version]$tempVer = "$tempMaj.$tempMin.0.0"
-                
-                if($null -eq $testVer)
-                {
-                    $testVer = $tempVer
-                }
-                elseif($tempVer -gt $testVer)
-                {
-                    $testVer = $tempVer
-                }
-                
-                Return $testVer
+                $testVer = $tempVer
             }
+            elseif($tempVer -gt $testVer)
+            {
+                $testVer = $tempVer
+            }
+            
+            
         }
     }
-}#>
+    
+    Return $testVer
+}
 
 function Get-PowerScapOutputPath
 {
@@ -192,7 +200,7 @@ function Convert-PowerStigRoleToScap
             "WindowsServer-DC"          {if($OsVersion -eq "2016"){Return "Windows_Server_2016"}
                                     elseif($OsVersion -eq "2012R2"){Return "Windows_2012_DC"} }
             "WindowsServer-MS"          {if($OsVersion -eq "2016"){Return "Windows_Server_2016"}
-                                    elseif($OsVersion -eq "2012R2"){Return "Windows_2012_MS_STIG"} }
+                                    elseif($OsVersion -eq "2012R2"){Return "Windows_2012_MS"} }
         }
     }
 }
@@ -202,21 +210,24 @@ Function Convert-ScapRoleToPowerStig
     [cmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]
-        [String]$Role
+        [String]$Role,
+
+        [Parameter(Mandatory=$false)]
+        [Switch]$isDomainController
     )
 
 
     
     switch -Wildcard ($Role)
     {
-        "Windows_Server_2016"           {Return }
-        "Windows_2012_MS"               {Return "WindowsServer-MS"}
-        "Windows_2012_DC"               {Return "WindowsServer-DC"}
-        "Windows_Firewall"              {Return "WindowsFirewall"}
-        "Windows_Defender_Antivirus"    {Return "WindowsDefender"}
-        "Windows_10"                    {Return "WindowsClient"}
-        "IE*"                           {Return "InternetExplorer"}
-        "MS_Dot_Net_Framework"          {Return "DotNetFramework"}
+        "*Windows_Server_2016*"           {if($isDomainController){Return "WindowsServer-DC"}else{Return "WindowsServer-MS"}}
+        "*Windows_2012_MS*"               {Return "WindowsServer-MS"}
+        "*Windows_2012_DC*"               {Return "WindowsServer-DC"}
+        "*Windows_Firewall*"              {Return "WindowsFirewall"}
+        "*Windows_Defender_Antivirus*"    {Return "WindowsDefender"}
+        "*Windows_10*"                    {Return "WindowsClient"}
+        "IE_11*"                          {Return "InternetExplorer"}
+        "*MS_Dot_Net_Framework*"          {Return "DotNetFramework"}
     }
 
 }
@@ -225,9 +236,10 @@ Function Set-PowerStigScapBasicOptions
 {
     $workingPath = Split-Path $PsCommandPath
     $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
+    $basePath = $iniVar.LogPath
 
     $ScapInstallDir = $iniVar.ScapInstallDir
-    $outPutPath = "C:\Temp\PowerStig\SCC"
+    $outputPath = "$basepath\SCC"
 
     $ScapOptions = @{
         "scapScan"                          = "1"
@@ -246,7 +258,7 @@ Function Set-PowerStigScapBasicOptions
         "keepOCILXML"                       = "0"
         "keepARFXML"                        = "0"
         "keepCPEXML"                        = "0"
-        "userDataDirectory"                 = $outPutPath
+        "userDataDirectory"                 = $outputPath
         "userDataDirectoryValue"            = "4"
         "dirResultsLogsEnabled"             = "1"
         "dirTargetNameEnabled"              = "1"
@@ -284,7 +296,10 @@ function Set-PowerStigScapRoleXML
         [String]$OsVersion,
 
         [Parameter(Mandatory=$false)]
-        [switch]$isDomainController = $false
+        [switch]$isDomainController,
+
+        [Parameter(Mandatory=$false)]
+        [switch]$RunAll
     )
 
     
@@ -318,24 +333,68 @@ function Set-PowerStigScapRoleXML
         }
         elseif($r -like "*WindowsServer*")
         {
-            $xmlRoles += Convert-PowerStigRoleToScap -Role $r -OsVersion $OsVersion
+            $testRole = Convert-PowerStigRoleToScap -Role $r -OsVersion $OsVersion
+            if($null -ne $testRole)
+            {
+                $xmlRoles += $testRole
+            }
         }
         else 
         {
-            $xmlRoles += Convert-PowerStigRoleToScap -Role $r
+            $testRole = Convert-PowerStigRoleToScap -Role $r
+            if($null -ne $testRole)
+            {
+                $xmlRoles += $testRole
+            }
         }
         
     }
 
+    $workingVersions = Get-PowerStigScapVersionMap
+
     foreach($i in $($configXML.options.contents.content))
     {
+        
         $i.enabled = "0"
-        foreach($r in $xmlRoles)
+        if($i.benchmarkID -like "*USGCB*"){Continue}
+
+        [Version]$iVer = $i.version
+
+        if($RunAll -eq $true)
         {
-            if($i -like "*$r*")
+            if($i.benchmarkID -like "*Windows_2012*" -or $i.benchmarkID -like "*Windows_10*" -or $i.benchmarkID -like "*Windows_Server*")
             {
-                $i.enabled = "1"
-                $i.selectedProfile = "xccdf_mil.disa.stig_profile_$ScapProfile"
+                foreach($r in $xmlRoles)
+                {
+                    if($i.benchmarkID -like "*$r*" -and $iVer -eq $workingVersions."$r")
+                    {
+                        $i.enabled = "1"
+                        $i.selectedProfile = "xccdf_mil.disa.stig_profile_$ScapProfile"
+                    }
+                }        
+            }
+            else 
+            {
+                $hashRole = $null
+                $hashVer  = $null
+                $hashRole = $workingVersions.keys.Where({$i.benchmarkID -like "*$_*"})
+                $hashVer  = $workingVersions."$hashRole"
+                if($iVer -eq $hashVer)
+                {
+                    $i.enabled = "1"
+                    $i.selectedProfile = "xccdf_mil.disa.stig_profile_$ScapProfile"
+                }
+            }
+        }elseif($RunAll -eq $false)
+        {
+            foreach($r in $xmlRoles)
+            {
+                if($i.benchmarkID -like "*$r*" -and $iVer -eq $workingVersions."$r" -and $runAll -eq $false)
+                {
+                    Write-Host "$($i.benchmarkID) matches $r"
+                    $i.enabled = "1"
+                    $i.selectedProfile = "xccdf_mil.disa.stig_profile_$ScapProfile"
+                }
             }
         }
     }

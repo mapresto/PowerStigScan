@@ -164,4 +164,3 @@ function Invoke-PowerStigSqlCommand
     
     return $DataSet.Tables[0]
 }
-

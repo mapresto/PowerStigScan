@@ -1018,6 +1018,10 @@ function Invoke-PowerStigScanV2
 
         [Parameter(Mandatory=$false,ParameterSetName='SqlBatch')]
         [Parameter(Mandatory=$false,ParameterSetName='ByName')]
+        [Switch]$FullScap,
+
+        [Parameter(Mandatory=$false,ParameterSetName='SqlBatch')]
+        [Parameter(Mandatory=$false,ParameterSetName='ByName')]
         [Switch]$ScapConfigConfirmed,
 
         [Parameter(Mandatory=$true,ParameterSetName='SqlBatch')]
@@ -1052,6 +1056,11 @@ function Invoke-PowerStigScanV2
         $logFilePath = get-item -Path $logPath\$logFileName
     }
 
+    if($FullScap -eq $true)
+    {
+        $RunScap = $true
+    }
+
     Add-Content $logFilePath -Value "$(Get-Time):[Info]: New Scan Started - $(Get-Time)"
 
     if($PSCmdlet.ParameterSetName -eq "SqlBatch")
@@ -1072,6 +1081,7 @@ function Invoke-PowerStigScanV2
     {
         Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Variables Initialized as follows:"
         Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: RunScap = $RunScap"
+        Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: FullScap = $FullScap"
         Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: ScapConfigConfirmed = $ScapConfigConfirmed"
         Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: SqlBatch = $SqlBatch"
         if($SqlBatch)
@@ -1192,6 +1202,10 @@ function Invoke-PowerStigScanV2
         }
 
         Set-PowerStigScapBasicOptions
+        while(((Get-Process | Where-Object {$_.ProcessName -like "cscc*"}).count) -gt 0)
+        {
+            Start-Sleep -seconds 1
+        }
 
         Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: The following option and hosts files will be generated and ran"
         foreach($r in $runList.Keys)
@@ -1200,41 +1214,86 @@ function Invoke-PowerStigScanV2
             if(($runList.$r) -eq 1)
             {
                 New-Item -Path "$LogPath\SCAP\$($r)_Hosts.txt" -ItemType File -Force | Out-Null
-                if      ($r -eq "2012R2_MS"){Set-PowerStigScapRoleXML -OsVersion "2012R2" -isDomainController:$false
-                                            Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2012MS -Force
-                                            $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2012R2_MS_options.xml`" -q"
-                                            Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                                            if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
-                                            Start-Job -Name "SCAP_2012R2_MS" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
-                                        }
-                elseif  ($r -eq "2016_MS")  {Set-PowerStigScapRoleXML -OsVersion "2016"   -isDomainController:$false
-                                            Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2016MS -Force
-                                            $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2016_MS_options.xml`" -q"
-                                            Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                                            if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
-                                            Start-Job -Name "SCAP_2016_MS" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
-                                        }
-                elseif  ($r -eq "2012R2_DC"){Set-PowerStigScapRoleXML -OsVersion "2012R2" -isDomainController:$true
-                                            Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2012DC -Force
-                                            $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2012R2_DC_options.xml`" -q"
-                                            Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                                            if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
-                                            Start-Job -Name "SCAP_2012R2_DC" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
-                                        }
-                elseif  ($r -eq "2016_DC")  {Set-PowerStigScapRoleXML -OsVersion "2016"   -isDomainController:$true
-                                            Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2016DC -Force
-                                            $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2016_DC_options.xml`" -q"
-                                            Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                                            if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
-                                            Start-Job -Name "SCAP_2016_DC" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
-                                        }
-                elseif  ($r -eq "Client")   {Set-PowerStigScapRoleXML -OsVersion "10"     -isDomainController:$false
-                                            Add-Content -Path "$scapPath\$($r)_Hosts.txt" -Value $Client -Force
-                                            $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\Client_options.xml`" -q"
-                                            Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                                            if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
-                                            Start-Job -Name "SCAP_Client" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
-                                        }
+                if      ($r -eq "2012R2_MS")
+                {
+                    if($FullScap -eq $true)
+                    {
+                        Set-PowerStigScapRoleXML -OsVersion "2012R2" -isDomainController:$false -RunAll
+                    }
+                    else 
+                    {
+                        Set-PowerStigScapRoleXML -OsVersion "2012R2" -isDomainController:$false
+                    }
+                    Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2012MS -Force
+                    $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2012R2_MS_options.xml`" -q"
+                    Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                    if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                    Start-Job -Name "SCAP_2012R2_MS" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
+                }
+                elseif  ($r -eq "2016_MS")  
+                {
+                    if($FullScap -eq $true)
+                    {
+                        Set-PowerStigScapRoleXML -OsVersion "2016" -isDomainController:$false -RunAll
+                    }
+                    else 
+                    {
+                        Set-PowerStigScapRoleXML -OsVersion "2016" -isDomainController:$false
+                    }
+                    Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2016MS -Force
+                    $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2016_MS_options.xml`" -q"
+                    Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                    if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                    Start-Job -Name "SCAP_2016_MS" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
+                }
+                elseif  ($r -eq "2012R2_DC")
+                {
+                    if($FullScap -eq $true)
+                    {
+                        Set-PowerStigScapRoleXML -OsVersion "2012R2" -isDomainController:$true -RunAll
+                    }
+                    else 
+                    {
+                        Set-PowerStigScapRoleXML -OsVersion "2012R2" -isDomainController:$true
+                    }
+                    Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2012DC -Force
+                    $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2012R2_DC_options.xml`" -q"
+                    Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                    if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                    Start-Job -Name "SCAP_2012R2_DC" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
+                }
+                elseif  ($r -eq "2016_DC")  
+                {
+                    if($FullScap -eq $true)
+                    {
+                        Set-PowerStigScapRoleXML -OsVersion "2016" -isDomainController:$true -RunAll
+                    }
+                    else 
+                    {
+                        Set-PowerStigScapRoleXML -OsVersion "2016" -isDomainController:$true
+                    }
+                    Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2016DC -Force
+                    $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2016_DC_options.xml`" -q"
+                    Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                    if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                    Start-Job -Name "SCAP_2016_DC" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
+                }
+                elseif  ($r -eq "Client")   
+                {
+                    if($FullScap -eq $true)
+                    {
+                        Set-PowerStigScapRoleXML -OsVersion "10" -isDomainController:$false -RunAll
+                    }
+                    else 
+                    {
+                        Set-PowerStigScapRoleXML -OsVersion "10" -isDomainController:$false
+                    }
+                    Add-Content -Path "$scapPath\$($r)_Hosts.txt" -Value $Client -Force
+                    $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\Client_options.xml`" -q"
+                    Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                    if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                    Start-Job -Name "SCAP_Client" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
+                }
             }
         }
 
@@ -1254,48 +1313,55 @@ function Invoke-PowerStigScanV2
             Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Attempting to import SCAP results to database"
 
             $scapResultXccdf = Get-Childitem -path C:\Temp\PowerStig\SCC\Results -Include "*Xccdf*" -Recurse
+            $scapTech = Get-PowerStigScapVersionMap
+
 
             foreach($x in $scapResultXccdf)
             {
-                #"Windows_Server_2016"           {Return }
-                #"Windows_2012_MS"               {Return "WindowsServer-MS"}
-                #"Windows_2012_DC"               {Return "WindowsServer-DC"}
-                #"Windows_Firewall"              {Return "WindowsFirewall"}
-                #"Windows_Defender_Antivirus"    {Return "WindowsDefender"}
-                #"Windows_10"                    {Return "WindowsClient"}
-                #"IE*"                           {Return "InternetExplorer"}
-                #"MS_Dot_Net_Framework" 
-
-                $splitOption = [System.StringSplitOptions]::RemoveEmptyEntries
+                $isDC = $false
                 $splitSeparator = "_XCCDF-Results_"
-                $sScap = $x.Name.Split($splitSeparator,$splitOption)[0]
-                $workingRole = $x.Name.Split($splitSeparator,$splitOption)[1]
-
-                if($workingRole -eq "Windows")
+                $sScap = ($x.Name -Split $splitSeparator)[0]
+                $workingRole = ($x.Name -Split $splitSeparator)[1]
+                $importRole=$null
+            
+                foreach($k in $scapTech.keys)
                 {
-                    $workingRole += "_$($x.Name.Split($splitSeparator,$splitOption)[2])"
-                    if($workingRole -eq "Windows_2012")
+                    [regex]$RoleMatch = $k
+                    if($RoleMatch.Matches($workingRole).Success -eq $true)
                     {
-                        $workingRole += "_$($x.Name.Split($splitSeparator,$splitOption)[3])"
+                        $importRole = $RoleMatch.Matches($workingRole).value
+                        Continue
                     }
                 }
 
-                $psRole = Convert-ScapRoleToPowerStig -Role $workingRole
+                if($importRole -eq "Windows_Server_2016")
+                {
+                    $tempObj = Get-PowerStigOSandFunction -ServerName $sScap
+                    if($tempObj.Role -eq "DC")
+                    {
+                        $isDC = $true
+                    }
+                }
+            
+                $psRole = Convert-ScapRoleToPowerStig -Role $importRole -isDomainController:$isDC
+                $pStigVersion = Get-PowerStigXmlVersion -Role $psRole
 
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Adding results for $psRole for $sScap"
 
+                if($debugScript)
+                {
+                    Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: sScap=$sScap"
+                    Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: workingRole=$workingRole"
+                    Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: importRole=$importRole"
+                    Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: isDC=$isDC"
+                    Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: pStigVersion=$pStigVersion"
+                    Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: psRole=$psRole"
+                }
+
                 $scapResults = Get-PowerStigScapResults -ScapResultsXccdf $x.FullName
 
-                Import-PowerStigObject -ServerName $sScap -InputObj $scapResults -ScanSource 'SCAP'
-
-                #Import-PowerStigObject -Servername $s -InputObj $convertObj -ScanSource 'POWERSTIG'
+                Import-PowerStigObject -ServerName $sScap -InputObj $scapResults -Role $psRole -ScanSource 'SCAP' -ScanVersion $pStigVersion
             }
-            ##################TODO#################
-            #   IMPORT SCAP RESULTS TO DATABASE
-            #   IF SQLBATCH ENABLED
-            # SQL2012TEST_XCCDF-Results_IE_11_STIG-001.012.xml
-            # Get-PowerStigScapResults -ScapResultsXccdf
-            ##################END##################
         }
     }# End SCAP run job
 
@@ -1403,10 +1469,7 @@ function Invoke-PowerStigScanV2
         if($SqlBatch -eq $true)
         {
             Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
-            $resetSqlRole = "exec powerstig.sproc_ResetTargetRoles @targetcomputer=$s"
-            Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $resetSqlRole | Out-Null
             Set-PowerStigComputer -ServerName $s -osVersion $roles.Version
-            Set-PowerStigComputer -ServerName $s -Role $Roles.roles -Enable:$true            
         }
 
         
@@ -1731,6 +1794,15 @@ Function Start-PowerStigDSCScan
 
             Import-PowerStigObject -Servername $s -InputObj $convertObj -ScanSource 'POWERSTIG'
         }
+
+        if($isScap)
+        {
+
+        } #End isScap - Compare/Create Results
+        else 
+        {
+            
+        } #End -not isScap - Compare/Create Results
     }
 }
 

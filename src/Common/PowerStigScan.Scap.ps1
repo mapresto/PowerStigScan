@@ -27,8 +27,17 @@ function Get-PowerStigScapVersionMap
     }
 
     Return $verHash
+   
+}
 
-    
+Function Get-ScapOnlyRoles
+{
+    $sRoles =   "Adobe_Acrobat_Reader_DC_Classic",
+                "Adobe_Acrobat_Reader_DC_Continuous",
+                "Google_Chrome",
+                "MS_Dot_Net_Framework"
+
+    Return $sRoles
 }
 
 

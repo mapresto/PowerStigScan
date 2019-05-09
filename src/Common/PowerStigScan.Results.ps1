@@ -55,6 +55,10 @@ function Update-PowerStigCkl
         [String]$ServerName,
 
         [Parameter(Mandatory=$true)]
+        [ValidateNotNullorEmpty()]
+        [String]$Role,
+
+        [Parameter(Mandatory=$true)]
         [HashTable]$InputObject,
 
         [Parameter(Mandatory=$true)]
@@ -65,142 +69,124 @@ function Update-PowerStigCkl
         [String]$OutPath
     )
 
-    DynamicParam {
-        $ParameterName = 'Role'
-        $RuntimeParameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
-        $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
-        $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
-        $ParameterAttribute.Mandatory = $true
-        $AttributeCollection.Add($ParameterAttribute)
-        $roleSet = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
-        $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
-        $AttributeCollection.Add($ValidateSetAttribute)
-        $RuntimeParameter = New-Object System.Management.Automation.RuntimeDefinedParameter($ParameterName, [string], $AttributeCollection)
-        $RuntimeParameterDictionary.Add($ParameterName, $RuntimeParameter)
-        return $RuntimeParameterDictionary
+    
+    $workingPath = Split-Path $PsCommandPath
+    $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
+
+    if($null -eq $outPath -or $outPath -eq '')
+    {
+        $outPath = $iniVar.CKLOutPath
     }
 
-    begin{
-        $Role = $PSBoundParameters[$ParameterName]
+    $Timestamp = (get-date).ToString("MMddyyyyHHmmss")
+    $outFileName = $ServerName + "_" + $Role + "_" + $Timestamp + ".ckl"
+
+    # generate file name
+    If($role -notlike "WindowsServer*" -and $role -notlike "*WindowsDNSServer*")
+    {
+        [String]$fileName = $Role + "Empty.ckl"
     }
-
-    process{    
-        $workingPath = Split-Path $PsCommandPath
-        $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
-
-        if($null -eq $outPath -or $outPath -eq '')
+    elseif($Role -eq "WindowsDNSServer") 
+    {    
+        [String]$fileName = $osVersion + $role + "Empty.ckl"
+    }
+    elseif($Role -like "WindowsServer*")
+    {
+        if($osVersion -eq "2012R2")
         {
-            $outPath = $iniVar.CKLOutPath
-        }
-
-        $outFileName = $ServerName + "_" + $Role + ".ckl"
-
-        # generate file name
-        If($role -notlike "WindowsServer*" -and $role -notlike "*WindowsDNSServer*")
-        {
-            [String]$fileName = $Role + "Empty.ckl"
-        }
-        elseif($Role -eq "WindowsDNSServer") 
-        {    
             [String]$fileName = $osVersion + $role + "Empty.ckl"
         }
-        elseif($Role -like "WindowsServer*")
+        elseif($osVersion -eq '2016')
         {
-            if($osVersion -eq "2012R2")
-            {
-                [String]$fileName = $osVersion + $role + "Empty.ckl"
-            }
-            elseif($osVersion -eq '2016')
-            {
-            [String]$fileName = $osVersion + "WindowsServerEmpty.ckl"
-            }
+        [String]$fileName = $osVersion + "WindowsServerEmpty.ckl"
         }
-        
-
-        # Pull CKL to variable
-        [xml]$CKL = Get-Content -Path "$(Split-Path $psCommandPath)\CKL\$fileName" -Encoding UTF8
-        # Without this line, Severity_override, severity_justification, comments, etc. will all format incorrectly.
-        # And will not be able to sort by Category
-        $CKL.PreserveWhitespace = $true
-
-        # Strictly declare constants that are standard for CKL files
-        $isNotAFinding = "NotAFinding"
-        $isFinding = "Open"
-        $isNull = "Not_Reviewed"
-
-
-        ## Each Rule is covered at $ckl.CHECKLIST.STIGS.iSTIG
-        ## VulnID is under STIGDATA[0].ATTRIBUTE_DATA
-        ## Finding is under Status    
-        ## Search HashTable for VulnID
-        foreach($i in $CKL.CHECKLIST.STIGS.iSTIG.Vuln)
-        {
-            #initiate variables for current rules being evaluated
-            $boolNotAFinding = $null
-            $currentRule = $i.STIG_DATA[0].ATTRIBUTE_DATA
-
-            # $results.$currentRule will return either $true or $false if it exists as a result
-            $boolNotAFinding = $InputObject.$currentRule
-
-            # if it didn't find a rule, ensure that there is not an entry type like V-####.a
-            # if there are, evaluate all rules with the same number with a letter suffix and determine if all true
-            # if there is one false, rule evaluates as false
-            if($null -eq $boolNotAFinding)
-            {
-                $testRule = $InputObject.keys | Where-Object {$_ -like "$currentRule.*"}
-                if (-not($null -eq $testRule))
-                {
-                    $ruleResult = $true
-                    foreach($tRule in $testRule)
-                    {
-                        #if you evaluate one rule as false, output is a finding, break loop
-                        if($InputObject.$tRule -eq $false)
-                        {
-                            $ruleResult = $false
-                            continue
-                        }
-                    }
-                    $boolNotAFinding = $ruleResult
-                }
-            }
-            # Set status field in xml
-            if($boolNotAFinding -eq $true)
-            {
-                $i.STATUS = $isNotAFinding
-                if($SourceHash."$currentRule" -eq "0")
-                {
-                    $i.COMMENTS = "Result is from PowerStig"
-                }
-                elseif ($SourceHash."$CurrentRule" -eq "1") 
-                {
-                    $i.COMMENTS = "Result is from SCAP"
-                }
-            }
-            elseif($boolNotAFinding -eq $false)
-            {
-                $i.STATUS = $isFinding
-                if($SourceHash."$currentRule" -eq "0")
-                {
-                    $i.COMMENTS = "Result is from PowerStig"
-                }
-                elseif ($SourceHash."$CurrentRule" -eq "1") 
-                {
-                    $i.COMMENTS = "Result is from SCAP"
-                }
-            }
-            elseif($null -eq $boolNotAFinding)
-            {
-                $i.STATUS = $isNull
-            }
-        }
-
-        if(-not(Test-Path -Path $outPath))
-        {
-            New-Item -ItemType Directory -Path $outPath -Force
-        }
-
-        $CKL.save("$outPath\$outFileName")
     }
+    
+
+    # Pull CKL to variable
+    [xml]$CKL = Get-Content -Path "$(Split-Path $psCommandPath)\CKL\$fileName" -Encoding UTF8
+    # Without this line, Severity_override, severity_justification, comments, etc. will all format incorrectly.
+    # And will not be able to sort by Category
+    $CKL.PreserveWhitespace = $true
+
+    # Strictly declare constants that are standard for CKL files
+    $isNotAFinding = "NotAFinding"
+    $isFinding = "Open"
+    $isNull = "Not_Reviewed"
+
+
+    ## Each Rule is covered at $ckl.CHECKLIST.STIGS.iSTIG
+    ## VulnID is under STIGDATA[0].ATTRIBUTE_DATA
+    ## Finding is under Status    
+    ## Search HashTable for VulnID
+    foreach($i in $CKL.CHECKLIST.STIGS.iSTIG.Vuln)
+    {
+        #initiate variables for current rules being evaluated
+        $boolNotAFinding = $null
+        $currentRule = $i.STIG_DATA[0].ATTRIBUTE_DATA
+
+        # $results.$currentRule will return either $true or $false if it exists as a result
+        $boolNotAFinding = $InputObject.$currentRule
+
+        # if it didn't find a rule, ensure that there is not an entry type like V-####.a
+        # if there are, evaluate all rules with the same number with a letter suffix and determine if all true
+        # if there is one false, rule evaluates as false
+        if($null -eq $boolNotAFinding)
+        {
+            $testRule = $InputObject.keys | Where-Object {$_ -like "$currentRule.*"}
+            if (-not($null -eq $testRule))
+            {
+                $ruleResult = $true
+                foreach($tRule in $testRule)
+                {
+                    #if you evaluate one rule as false, output is a finding, break loop
+                    if($InputObject.$tRule -eq $false)
+                    {
+                        $ruleResult = $false
+                        continue
+                    }
+                }
+                $boolNotAFinding = $ruleResult
+            }
+        }
+        # Set status field in xml
+        if($boolNotAFinding -eq $true)
+        {
+            $i.STATUS = $isNotAFinding
+            if($SourceHash."$currentRule" -eq "0")
+            {
+                $i.COMMENTS = "Result is from PowerStig"
+            }
+            elseif ($SourceHash."$CurrentRule" -eq "1") 
+            {
+                $i.COMMENTS = "Result is from SCAP"
+            }
+        }
+        elseif($boolNotAFinding -eq $false)
+        {
+            $i.STATUS = $isFinding
+            if($SourceHash."$currentRule" -eq "0")
+            {
+                $i.COMMENTS = "Result is from PowerStig"
+            }
+            elseif ($SourceHash."$CurrentRule" -eq "1") 
+            {
+                $i.COMMENTS = "Result is from SCAP"
+            }
+        }
+        elseif($null -eq $boolNotAFinding)
+        {
+            $i.STATUS = $isNull
+        }
+    }
+
+    if(-not(Test-Path -Path $outPath))
+    {
+        New-Item -ItemType Directory -Path $outPath -Force
+    }
+
+    $CKL.save("$outPath\$outFileName")
+    
 }
 
 #R02

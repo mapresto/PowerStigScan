@@ -105,7 +105,6 @@ process
                     {
                         BrowserVersion  = '11'
                         StigVersion     = (Get-PowerStigXMLVersion -Role "InternetExplorer")
-                        SkipRule        = 'V-46477'
                         OrgSettings     = $OrgSettingsFilePath
                     } 
                 }

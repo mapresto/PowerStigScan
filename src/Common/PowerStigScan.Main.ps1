@@ -1090,6 +1090,8 @@ function Invoke-PowerStigScanV2
     if($RunScap -eq $True)
     {   
         $ScapInstallDir = $iniVar.ScapInstallDir
+        $ScapOnlyRoles = Get-ScapOnlyRoles
+        $cklOutPath = $iniVar.cklOutPath
         Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP Processing initialized."
         $scapPath = "$logPath\SCAP"
         if(Test-Path "$ScapPath\SCC")
@@ -1307,69 +1309,83 @@ function Invoke-PowerStigScanV2
         
         Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP scans have finished."
 
-        if($SqlBatch -eq $true)
+        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Processing SCAP results"
+
+        $scapResultXccdf = Get-Childitem -path C:\Temp\PowerStig\SCC\Results -Include "*Xccdf*" -Recurse
+        $scapTech = Get-PowerStigScapVersionMap
+
+
+        foreach($x in $scapResultXccdf)
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Attempting to import SCAP results to database"
-
-            $scapResultXccdf = Get-Childitem -path C:\Temp\PowerStig\SCC\Results -Include "*Xccdf*" -Recurse
-            $scapTech = Get-PowerStigScapVersionMap
-
-
-            foreach($x in $scapResultXccdf)
+            $isDC = $false
+            $splitSeparator = "_XCCDF-Results_"
+            $sScap = ($x.Name -Split $splitSeparator)[0]
+            $workingRole = ($x.Name -Split $splitSeparator)[1]
+            $importRole=$null
+        
+            foreach($k in $scapTech.keys)
             {
-                $isDC = $false
-                $splitSeparator = "_XCCDF-Results_"
-                $sScap = ($x.Name -Split $splitSeparator)[0]
-                $workingRole = ($x.Name -Split $splitSeparator)[1]
-                $importRole=$null
-            
-                foreach($k in $scapTech.keys)
+                [regex]$RoleMatch = $k
+                if($RoleMatch.Matches($workingRole).Success -eq $true)
                 {
-                    [regex]$RoleMatch = $k
-                    if($RoleMatch.Matches($workingRole).Success -eq $true)
-                    {
-                        $importRole = $RoleMatch.Matches($workingRole).value
-                        Continue
-                    }
+                    $importRole = $RoleMatch.Matches($workingRole).value
+                    Continue
                 }
+            }
 
-                if($importRole -eq "Windows_Server_2016")
+            if($importRole -eq "Windows_Server_2016")
+            {
+                $tempObj = Get-PowerStigOSandFunction -ServerName $sScap
+                if($tempObj.Role -eq "DC")
                 {
-                    $tempObj = Get-PowerStigOSandFunction -ServerName $sScap
-                    if($tempObj.Role -eq "DC")
-                    {
-                        $isDC = $true
-                    }
+                    $isDC = $true
                 }
-            
-                $psRole = Convert-ScapRoleToPowerStig -Role $importRole -isDomainController:$isDC
-                if($null -ne $psRole -and $psRole -ne '')
-                {
-                    $pStigVersion = Get-PowerStigXmlVersion -Role $psRole
-                }
-                else 
-                {
-                    $psRole = $importRole
-                    $pStigVersion = $scapTech.$importRole
-                }
+            }
+        
+            $psRole = Convert-ScapRoleToPowerStig -Role $importRole -isDomainController:$isDC
+            if($null -ne $psRole -and $psRole -ne '')
+            {
+                $pStigVersion = Get-PowerStigXmlVersion -Role $psRole
+            }
+            else 
+            {
+                $psRole = $importRole
+                $pStigVersion = $scapTech.$importRole
+            }
 
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Adding results for $psRole for $sScap"
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Adding results for $psRole for $sScap"
 
-                if($debugScript)
-                {
-                    Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: sScap=$sScap"
-                    Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: workingRole=$workingRole"
-                    Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: importRole=$importRole"
-                    Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: isDC=$isDC"
-                    Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: pStigVersion=$pStigVersion"
-                    Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: psRole=$psRole"
-                }
+            if($debugScript)
+            {
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: sScap=$sScap"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: workingRole=$workingRole"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: importRole=$importRole"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: isDC=$isDC"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: pStigVersion=$pStigVersion"
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: psRole=$psRole"
+            }
 
-                $scapResults = Get-PowerStigScapResults -ScapResultsXccdf $x.FullName
+            $scapResults = Get-PowerStigScapResults -ScapResultsXccdf $x.FullName
 
+            if($SqlBatch -eq $true)
+            {
                 Import-PowerStigObject -ServerName $sScap -InputObj $scapResults -Role $psRole -ScanSource 'SCAP' -ScanVersion $pStigVersion
             }
+
+            if($ScapOnlyRoles -contains $importRole)
+            {
+                $sourceHash = @{}
+                $scapHash = Set-PowerStigResultHashTableFromObject -InputObject $scapResults
+                $sInfo = Get-PowerStigOSandFunction -ServerName $sScap
+                foreach($k in $scapHash.keys)
+                {
+                    $SourceHash.add("$k","1")
+                }
+                Update-PowerStigCkl -ServerName $sScap -Role $importRole -osVersion $sInfo.OSVersion -InputObject $scapHash -outPath $cklOutPath -SourceHash $SourceHash
+
+            }
         }
+        
     }# End SCAP run job
 
     #initialize Hashtable to test for orgSettings creation. Prevents duplicate effort

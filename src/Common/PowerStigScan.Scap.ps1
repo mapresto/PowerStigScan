@@ -39,7 +39,10 @@ function Get-PowerStigScapResults
     [cmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]
-        [String]$ScapResultsXccdf
+        [String]$ScapResultsXccdf,
+
+        [Parameter(Mandatory=$false)]
+        [Switch]$OutHash
     )
 
     [xml]$ScapXML = Get-Content -Path $ScapResultsXccdf
@@ -79,6 +82,11 @@ function Get-PowerStigScapResults
             $vID = $VIDRegex.matches($($g.id[0])).Value
             $VIDHash.Add($vID,$gBoolOut)
         }
+    }
+
+    if($OutHash -eq $true)
+    {
+        Return $VIDHash
     }
 
     $outObj = @()
@@ -391,7 +399,6 @@ function Set-PowerStigScapRoleXML
             {
                 if($i.benchmarkID -like "*$r*" -and $iVer -eq $workingVersions."$r" -and $runAll -eq $false)
                 {
-                    Write-Host "$($i.benchmarkID) matches $r"
                     $i.enabled = "1"
                     $i.selectedProfile = "xccdf_mil.disa.stig_profile_$ScapProfile"
                 }

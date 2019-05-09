@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--DISA STIG Viewer :: 2.7.1-->
+<!--DISA STIG Viewer :: 2.9-->
+<!--STIG Version:1.6-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -50,7 +51,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>f56902e8-0f23-45db-a3bd-3c061b107f64</SID_DATA>
+					<SID_DATA>80ae7545-1d09-4265-af8f-2864b4e37bbb</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>
@@ -159,7 +160,7 @@ Criteria: If the value winword.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -273,7 +274,7 @@ Criteria: If the value winword.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -386,7 +387,7 @@ Criteria: If the value winword.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -499,7 +500,7 @@ Criteria: If the value winword.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -612,7 +613,7 @@ Criteria: If the value winword.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -725,7 +726,7 @@ Criteria: If the value NoTBPromptUnsignedAddin is REG_DWORD = 1, this is not a f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -838,7 +839,7 @@ Criteria: If the value AllLocationsDisabled is REG_DWORD = 1, this is not a find
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -951,7 +952,7 @@ Criteria: If the value WordBypassEncryptedMacroScan is REG_DWORD = 0, this is no
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1064,7 +1065,7 @@ Criteria: If the value AllowNetworkLocations is REG_DWORD = 0, this is not a fin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1177,7 +1178,7 @@ Criteria: If the value DefaultFormat is REG_SZ = (blank), this is not a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1290,7 +1291,7 @@ Criteria: If the value AccessVBOM is REG_DWORD = 0, this is not a finding.</ATTR
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1405,7 +1406,7 @@ Criteria: If the value VBAWarnings is REG_DWORD = 2, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1519,7 +1520,7 @@ Criteria: If the value DontUpdateLinks is REG_DWORD = 1, this is not a finding.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1632,7 +1633,7 @@ Criteria: If the value WarnRevisions is REG_DWORD = 1, this is not a finding</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1746,7 +1747,7 @@ Criteria: If the value winword.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1859,7 +1860,7 @@ Criteria: If the value winword.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1972,7 +1973,7 @@ Criteria: If the value winword.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2085,7 +2086,7 @@ Criteria: If the value winword.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2201,7 +2202,7 @@ Criteria: If the value winword.exe is REG_DWORD = 1, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2314,7 +2315,7 @@ Criteria: If the value RequireAddinSig is REG_DWORD = 1, this is not a finding.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2427,7 +2428,7 @@ Criteria: If the value EnableOnLoad is REG_DWORD = 1, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2540,7 +2541,7 @@ Criteria: If the value OpenInProtectedView is REG_DWORD = 0, this is not a findi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2654,7 +2655,7 @@ Criteria: If the value DisableInternetFilesInPV is REG_DWORD = 0, this is not a 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2768,7 +2769,7 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2882,7 +2883,7 @@ If either, or both keys is not set to REG_DWORD = 1, this is a finding.</ATTRIBU
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2995,7 +2996,7 @@ Criteria: If the value DisableAttachmentsInPV is REG_DWORD = 0, this is not a fi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3108,7 +3109,7 @@ Criteria: If the value useonline is REG_DWORD = 0, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3222,7 +3223,7 @@ Criteria: If the value Word2Files is REG_DWORD = 2, this is not a finding.</ATTR
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3335,7 +3336,7 @@ Criteria: If the value Word2000Files is REG_DWORD = 5, this is not a finding.</A
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3449,7 +3450,7 @@ Criteria: If the value Word60Files is REG_DWORD = 2, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3562,7 +3563,7 @@ Criteria: If the value Word95Files is REG_DWORD = 5, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3675,7 +3676,7 @@ Criteria: If the value Word97Files is REG_DWORD = 5, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3788,7 +3789,7 @@ Criteria: If the value WordXPFiles is REG_DWORD = 5, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3901,7 +3902,7 @@ Criteria: If the value custommarkupwarning is REG_DWORD = 1, this is not a findi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4017,7 +4018,7 @@ If the value "blockcontentexecutionfrominternet" is REG_DWORD = 1, this is not a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Word 2013 STIG :: Version 1, Release: 6 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>

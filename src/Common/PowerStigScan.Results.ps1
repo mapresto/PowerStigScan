@@ -54,10 +54,13 @@ function Update-PowerStigCkl
         [ValidateNotNullorEmpty()]
         [String]$ServerName,
 
-        [Parameter(Mandatory=$false,ParameterSetName='ByObj')]
-        [PSObject]$InputObject,
+        [Parameter(Mandatory=$true)]
+        [HashTable]$InputObject,
 
         [Parameter(Mandatory=$true)]
+        [HashTable]$SourceHash,
+
+        [Parameter(Mandatory=$false)]
         [ValidateNotNullorEmpty()]
         [String]$OutPath
     )
@@ -90,17 +93,29 @@ function Update-PowerStigCkl
             $outPath = $iniVar.CKLOutPath
         }
 
+        $outFileName = $ServerName + "_" + $Role + ".ckl"
+
         # generate file name
-        ######################################################FIX##############################################
-        if($Role -ne "WindowsServer-MS" -and $Role -ne "WindowsServer-DC")#####################################
-        {######################################################################################################
-            [String]$fileName = $Role + "Empty.ckl"############################################################
-        }######################################################################################################
-        else###################################################################################################
-        {######################################################################################################
-            [String]$fileName = $osVersion + $Role + "Empty.ckl"###############################################
-        }######################################################################################################
-        #######################################################################################################
+        If($role -notlike "WindowsServer*" -and $role -notlike "*WindowsDNSServer*")
+        {
+            [String]$fileName = $Role + "Empty.ckl"
+        }
+        elseif($Role -eq "WindowsDNSServer") 
+        {    
+            [String]$fileName = $osVersion + $role + "Empty.ckl"
+        }
+        elseif($Role -like "WindowsServer*")
+        {
+            if($osVersion -eq "2012R2")
+            {
+                [String]$fileName = $osVersion + $role + "Empty.ckl"
+            }
+            elseif($osVersion -eq '2016')
+            {
+            [String]$fileName = $osVersion + "WindowsServerEmpty.ckl"
+            }
+        }
+        
 
         # Pull CKL to variable
         [xml]$CKL = Get-Content -Path "$(Split-Path $psCommandPath)\CKL\$fileName" -Encoding UTF8
@@ -113,15 +128,7 @@ function Update-PowerStigCkl
         $isFinding = "Open"
         $isNull = "Not_Reviewed"
 
-        # Gather the results from SQL and create hash table of the results based on VulnID and isFinding
-        if($PSCmdlet.ParameterSetName -eq "BySql")
-        {
-            $Results = Set-PowerStigResultHashTable -inputObject (Get-PowerStigFindings -SqlInstance $SqlInstance -DatabaseName $DatabaseName -ServerName $TargetServerName -Guid $GUID)
-        }
-        elseif($PSCmdlet.ParameterSetName -eq "ByObj")
-        {
-            $results = $null #DO SOMETHING to put the results into a hash table
-        }
+
         ## Each Rule is covered at $ckl.CHECKLIST.STIGS.iSTIG
         ## VulnID is under STIGDATA[0].ATTRIBUTE_DATA
         ## Finding is under Status    
@@ -133,21 +140,21 @@ function Update-PowerStigCkl
             $currentRule = $i.STIG_DATA[0].ATTRIBUTE_DATA
 
             # $results.$currentRule will return either $true or $false if it exists as a result
-            $boolNotAFinding = $results.$currentRule
+            $boolNotAFinding = $InputObject.$currentRule
 
             # if it didn't find a rule, ensure that there is not an entry type like V-####.a
             # if there are, evaluate all rules with the same number with a letter suffix and determine if all true
             # if there is one false, rule evaluates as false
             if($null -eq $boolNotAFinding)
             {
-                $testRule = $results.keys | Where-Object {$_ -like "$currentRule.*"}
+                $testRule = $InputObject.keys | Where-Object {$_ -like "$currentRule.*"}
                 if (-not($null -eq $testRule))
                 {
                     $ruleResult = $true
                     foreach($tRule in $testRule)
                     {
                         #if you evaluate one rule as false, output is a finding, break loop
-                        if($results.$tRule -eq $false)
+                        if($InputObject.$tRule -eq $false)
                         {
                             $ruleResult = $false
                             continue
@@ -160,10 +167,26 @@ function Update-PowerStigCkl
             if($boolNotAFinding -eq $true)
             {
                 $i.STATUS = $isNotAFinding
+                if($SourceHash."$currentRule" -eq "0")
+                {
+                    $i.COMMENTS = "Result is from PowerStig"
+                }
+                elseif ($SourceHash."$CurrentRule" -eq "1") 
+                {
+                    $i.COMMENTS = "Result is from SCAP"
+                }
             }
             elseif($boolNotAFinding -eq $false)
             {
                 $i.STATUS = $isFinding
+                if($SourceHash."$currentRule" -eq "0")
+                {
+                    $i.COMMENTS = "Result is from PowerStig"
+                }
+                elseif ($SourceHash."$CurrentRule" -eq "1") 
+                {
+                    $i.COMMENTS = "Result is from SCAP"
+                }
             }
             elseif($null -eq $boolNotAFinding)
             {
@@ -171,12 +194,12 @@ function Update-PowerStigCkl
             }
         }
 
-        if(-not(Test-Path -Path (Split-Path $outPath)))
+        if(-not(Test-Path -Path $outPath))
         {
-            New-Item -ItemType Directory -Path (Split-Path $outPath) -Force
+            New-Item -ItemType Directory -Path $outPath -Force
         }
 
-        $CKL.save($outPath)
+        $CKL.save("$outPath\$outFileName")
     }
 }
 
@@ -210,6 +233,58 @@ function Set-PowerStigResultHashTable
     }
 
     return $hash
+}
+
+Function Set-PowerStigResultHashTableFromObject
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [ValidateNotNullorEmpty()]
+        [PSObject]$InputObject
+    )
+
+    $outHash = @{}
+    $tempHash = @{}
+    [Regex]$VIDRegex = "V-([1-9}])[0-9]{3}[0-9]?"
+
+    foreach($i in $InputObject)
+    {
+        [bool]$tempBool = $i.DesiredState
+        $tempHash.add($($i.VulnID),$tempBool)
+    }
+
+    foreach($i in $tempHash.keys)
+    {
+        $vID = $VIDRegex.Matches($i).value
+        
+        $testRule = $tempHash.keys | Where-Object {$_ -like "$vID.*"}
+        if($testRule.count -ge 2 -and $outHash.Contains($vID))
+        {
+            Continue
+        }
+        if (-not($null -eq $testRule))
+        {
+            $ruleResult = $true
+            foreach($tRule in $testRule)
+            {
+                #if you evaluate one rule as false, output is a finding, break loop
+                if($tempHash.$tRule -eq $false)
+                {
+                    $ruleResult = $false
+                    continue
+                }
+            }
+            $outHash.add($vID,$ruleResult)
+        }
+        else 
+        {
+            $outHash.add($i,$($tempHash.$i))
+        }
+    }
+
+
+    Return $outHash
 }
 
 #R03
@@ -283,7 +358,7 @@ function Convert-PowerStigTest
         [Parameter(Mandatory=$true)]
         [PSObject]$TestResults
     )
-
+    [Regex]$VIDRegex = "V-([1-9}])[0-9]{3}[0-9]?\.?[a-z]?"
     $FullResults = $TestResults.ResourcesInDesiredState + $TestResults.ResourcesNotInDesiredState
 
     $OutputArr = @()
@@ -292,6 +367,10 @@ function Convert-PowerStigTest
 
     foreach($i in $FullResults)
     {   
+        if($VIDRegex.match($i.InstanceName).success -eq $false)
+        {
+            Continue
+        }
         $BoolState = $i.InDesiredState
          
         $strMod = $i.InstanceName
@@ -300,17 +379,11 @@ function Convert-PowerStigTest
         { Continue }
         Else
         {
-            $VidOutPut = $strMod[1]
-            $Severity = $strMod[3]
-            $Definition = $strMod[5]
-            $sType = $strMod[8]
+            $VidOutPut = $VIDRegex.match($i.InstanceName).value
 
             $propHash = @{
                 VulnID = $VidOutPut
                 DesiredState = $BoolState
-                FindingSeverity = $Severity
-                StigDefinition = $Definition
-                StigType = $sType
                 ScanDate = $ScanDate
             }
 

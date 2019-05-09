@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--DISA STIG Viewer :: 2.7-->
+<!--DISA STIG Viewer :: 2.9-->
+<!--STIG Version:1.7-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -51,7 +52,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>11968fa4-562d-4dd7-bc9e-41af60c06ebb</SID_DATA>
+					<SID_DATA>ce8256ff-3402-4079-9d27-38b489b611e8</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>
@@ -182,7 +183,7 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -317,7 +318,7 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -452,7 +453,7 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -592,7 +593,7 @@ Both inbound and outbound parameters must be specified to execute this command.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -732,7 +733,7 @@ Both inbound and outbound parameters must be specified to execute this command.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -869,7 +870,7 @@ The following Netsh command may also be used to configure this setting:
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1008,7 +1009,7 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1147,7 +1148,7 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1285,7 +1286,7 @@ Both inbound and outbound parameters must be specified to execute this command.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1423,7 +1424,7 @@ Both inbound and outbound parameters must be specified to execute this command.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1558,7 +1559,7 @@ The following Netsh command may also be used to configure this setting:
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1695,7 +1696,7 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1832,7 +1833,7 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1970,7 +1971,7 @@ Both inbound and outbound parameters must be specified to execute this command.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2108,7 +2109,7 @@ Both inbound and outbound parameters must be specified to execute this command.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2231,7 +2232,7 @@ Configure the policy value for Computer Configuration -&gt; Windows Settings -&g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2354,7 +2355,7 @@ Configure the policy value for Computer Configuration -&gt; Windows Settings -&g
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2489,7 +2490,7 @@ The following Netsh command may also be used to configure this setting:
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2626,7 +2627,7 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2763,7 +2764,7 @@ Or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2882,7 +2883,7 @@ One method for restricting inbound connections is to only allow exceptions for a
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Windows Firewall with Advanced Security Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>

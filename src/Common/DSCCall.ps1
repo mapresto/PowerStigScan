@@ -61,7 +61,7 @@ process
 
     Configuration PowerSTIG
     {
-        Import-DscResource -ModuleName PowerStig -ModuleVersion 3.0.1
+        Import-DscResource -ModuleName PowerStig -ModuleVersion 3.1.0
 
         Node $ComputerName
         {

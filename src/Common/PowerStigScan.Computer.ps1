@@ -138,7 +138,7 @@ function Set-PowerStigComputer
         [Parameter(Mandatory=$true)]
         [String]$ServerName,
 
-        [Parameter(Mandatory=$true,ParameterSetName="OS")]
+        [Parameter(Mandatory=$true)]
         [ValidateSet('2012R2','2016','10')]
         [String]$osVersion,
 
@@ -163,11 +163,10 @@ function Set-PowerStigComputer
         $DatabaseName = $iniVar.DatabaseName
     }
 
-    elseif($PSCmdlet.ParameterSetName -eq "OS")
-    {
-        $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateTargetOS @TargetComputer=`"$ServerName`",@OSName=`"$osVersion`""
-        Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $UpdateComputer
-    }
+
+    $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateTargetOS @TargetComputer=`"$ServerName`", @OSname=`"$osVersion`""
+    Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $UpdateComputer
+    
 }
 
 #CM04

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--DISA STIG Viewer :: 2.7.1-->
+<!--DISA STIG Viewer :: 2.9-->
+<!--STIG Version:1.7-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -50,7 +51,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>c294a581-025a-4911-b765-b9f3678ca6fd</SID_DATA>
+					<SID_DATA>13d2bfca-55a1-4e27-8ee1-07d641f0c12f</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>
@@ -159,7 +160,7 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -273,7 +274,7 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -386,7 +387,7 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -499,7 +500,7 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding</ATTRIB
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -612,7 +613,7 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -725,7 +726,7 @@ Criteria: If the value NoTBPromptUnsignedAddin is REG_DWORD = 1, this is not a f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -838,7 +839,7 @@ Criteria: If the value excel12betafilesfromconverters is REG_DWORD = 1, this is 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -951,7 +952,7 @@ Criteria: If the value AllLocationsDisabled is REG_DWORD = 1, this is not a find
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1064,7 +1065,7 @@ Criteria: If the value ExcelBypassEncryptedMacroScan is REG_DWORD = 0, this is n
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1177,7 +1178,7 @@ Criteria: If the value AllowNetworkLocations is REG_DWORD = 0, this is not a fin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1290,7 +1291,7 @@ Criteria: If the value DefaultFormat is REG_DWORD =  0x00000033(hex) or 51 (Deci
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1403,7 +1404,7 @@ Criteria: If the value AccessVBOM is REG_DWORD = 0, this is not a finding.</ATTR
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1516,7 +1517,7 @@ Criteria: If the value VBAWarnings is REG_DWORD = 2, this is not a finding.</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1631,7 +1632,7 @@ Criteria: If the value ExtensionHardening is REG_DWORD = 1, this is not a findin
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1744,7 +1745,7 @@ If the value AutoHyperlink is REG_DWORD = 0, this is not a finding.</ATTRIBUTE_D
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1858,7 +1859,7 @@ Criteria: If the value DisableAutoRepublish is REG_DWORD = 1, this is not a find
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1972,7 +1973,7 @@ Criteria: If the value fupdateext_78_1 is REG_DWORD = 0, this is not a finding.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2089,7 +2090,7 @@ Criteria: If the value DisableAutoRepublishWarning is REG_DWORD = 0, this is not
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2202,7 +2203,7 @@ Criteria: If the value "DoNotLoadPictures" is REG_DWORD = 1, this is not a findi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2316,7 +2317,7 @@ Criteria: If the value fGlobalSheet_37_1 is REG_DWORD = 1, this is not a finding
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2429,7 +2430,7 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2542,7 +2543,7 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2655,7 +2656,7 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2768,7 +2769,7 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2884,7 +2885,7 @@ Criteria: If the value excel.exe is REG_DWORD = 1, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2997,7 +2998,7 @@ Criteria: If the value RequireAddinSig is REG_DWORD = 1, this is not a finding.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3110,7 +3111,7 @@ Criteria: If the value EnableOnLoad is REG_DWORD = 1, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3224,7 +3225,7 @@ Criteria: If the value DBaseFiles is REG_DWORD = 2, this is not a finding.</ATTR
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3337,7 +3338,7 @@ Criteria: If the value DifandSylkFiles is REG_DWORD = 2, this is not a finding.<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3450,7 +3451,7 @@ Criteria: If the value XL2Macros is REG_DWORD = 2, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3564,7 +3565,7 @@ Criteria: If the value XL2Worksheets is REG_DWORD = 2, this is not a finding.</A
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3677,7 +3678,7 @@ Criteria: If the value XL3Macros is REG_DWORD = 2, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3791,7 +3792,7 @@ Criteria: If the value XL3Worksheets is REG_DWORD = 2, this is not a finding.</A
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3905,7 +3906,7 @@ Criteria: If the value XL4Macros is REG_DWORD = 2, this is not a finding.</ATTRI
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4019,7 +4020,7 @@ Criteria: If the value XL4Workbooks is REG_DWORD = 2, this is not a finding.</AT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4133,7 +4134,7 @@ Criteria: If the value XL4Worksheets is REG_DWORD = 2, this is not a finding.</A
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4246,7 +4247,7 @@ Criteria: If the value XL95Workbooks is REG_DWORD = 5, this is not a finding.</A
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4359,7 +4360,7 @@ Criteria: If the value XL9597WorkbooksandTemplates is REG_DWORD = 5, this is not
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4472,7 +4473,7 @@ Criteria: If the value OpenInProtectedView is REG_DWORD = 0, this is not a findi
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4585,7 +4586,7 @@ Criteria: If the value HtmlandXmlssFiles is REG_DWORD = 2, this is not a finding
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4699,7 +4700,7 @@ Criteria: If the value DisableInternetFilesInPV is REG_DWORD = 0, this is not a 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4813,7 +4814,7 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4928,7 +4929,7 @@ If either, or both keys, is not set to REG_DWORD = 1, this is a finding.</ATTRIB
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5041,7 +5042,7 @@ Criteria: If the value DisableAttachmentsInPV  is REG_DWORD = 0, this is not a f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5154,7 +5155,7 @@ Criteria: If the value webservicefunctionwarnings is REG_DWORD = 1, this is not 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5263,7 +5264,7 @@ HKCU\software\policies\microsoft\office\15.0\excel\options                      
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5377,7 +5378,7 @@ Criteria: If the value blockcontentexecutionfrominternet is REG_DWORD = 1, this 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Microsoft Excel 2013 STIG :: Version 1, Release: 7 Benchmark Date: 27 Apr 2018</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>

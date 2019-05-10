@@ -555,7 +555,7 @@ Invoke-PowerStigScan -ServerName STIGDCTest01 -Role DC2012Check
 Invoke-PowerStigScan -ServerName SQL2012Test -Role MemberServer2012Check
 
 #>
-function Invoke-PowerStigScan
+<#function Invoke-PowerStigScan
 {
     [cmdletBinding()]
     Param(
@@ -804,10 +804,10 @@ function Invoke-PowerStigScan
         Import-PowerStigObject -Servername $ServerName -InputObj $convertObj
     }
 
-}
+}#>
 
 # M08
-function Invoke-PowerStigBatch
+<#function Invoke-PowerStigBatch
 {
     [CmdletBinding()]
     param(   
@@ -1002,9 +1002,9 @@ function Invoke-PowerStigBatch
         InsertLog -LogEntryTitle $StepName -LogMessage $StepMessage -ActionTaken "ERROR" -CMSServer $cmsServer -CMSDatabase $CMSDatabaseName
         #
     }
-}
+}#>
 
-function Invoke-PowerStigScanV2
+function Invoke-PowerStigScan
 {
     [cmdletBinding()]
     param(
@@ -1043,6 +1043,9 @@ function Invoke-PowerStigScanV2
     $logDate                    = get-date -UFormat %m%d
     $logFileName                = "PowerStig"+ $logDate + ".txt"
     $logPath                    = $iniVar.LogPath
+    $cklOutPath                 = $iniVar.cklOutPath
+
+    $StartTime = Get-Date
 
     if(!(Test-Path -Path $logPath\$logFileName))
     {
@@ -1091,7 +1094,7 @@ function Invoke-PowerStigScanV2
     {   
         $ScapInstallDir = $iniVar.ScapInstallDir
         $ScapOnlyRoles = Get-ScapOnlyRoles
-        $cklOutPath = $iniVar.cklOutPath
+        
         Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP Processing initialized."
         $scapPath = "$logPath\SCAP"
         if(Test-Path "$ScapPath\SCC")
@@ -1679,6 +1682,17 @@ function Invoke-PowerStigScanV2
         Start-Sleep -Seconds 2
         $newJobCount = (Get-Job | Where-Object {$_.state -eq "Running" -and $_.name -like "*PowerSTIG*"}).count
     }
+
+    $Timestamp = (get-date).ToString("yyyyMMdd")
+
+    $FolderName = "Results_$TimeStamp"
+
+    if(-not(Test-Path "$cklOutPath\$folderName"))
+    {
+        New-Item "$cklOutPath\$folderName" -ItemType Directory -Force
+    }
+
+    Get-ChildItem $cklOutPath | Where-Object {$_.mode -notlike "d*" -and $_.CreationTime -gt $startTime} | ForEach-Object {Move-Item -path $_.FullName -Destination "$cklOutPath\$folderName\$($_.Name)" -Force}
 
     Add-Content -Path $logFilePath -Value "$(Get-Time):[Info]: SCAN COMPLETE"
 

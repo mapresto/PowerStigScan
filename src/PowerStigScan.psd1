@@ -86,15 +86,13 @@
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     FunctionsToExport = @(
-        'Invoke-PowerStigScan',
-        'Invoke-PowerStigScanV2', 
+        'Invoke-PowerStigScan', 
         'New-PowerStigCkl', 
         'Add-PowerStigComputer', 
         'Get-PowerStigSqlConfig', 
         'Set-PowerStigSqlConfig',
         'Get-PowerStigConfig',
         'Set-PowerStigConfig',
-        'Invoke-PowerStigBatch',
         'Get-PowerStigComputer',
         'Set-PowerStigComputer',
         'Remove-PowerStigComputer',

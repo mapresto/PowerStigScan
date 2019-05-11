@@ -66,15 +66,12 @@ concerned with will be the SQL server and database that you will be connecting t
 these settings.
 
 ### Adding Target Computers
-Computer objects must exist in the SQL Database prior to importing findings, which currently occurs at the end of the
-Invoke-PowerStigScan and Invoke-PowerStigBatch cmdlets. You can use the Add-PowerStigComputer to populate the table with your
-preferred method of bulk import. This will also declare the roles that are to be scanned against for each server during the 
-Invoke-PowerStigBatch cmdlet.
+In order to use the SQL Batch functionality, the target servers must exist in the SQL database prior to attempting to running Invoke-PowerStigScan with the -SqlBatch switch. You can add servers to the database with the Add-PowerStigComputer cmdlet with the -ServerName parameter.
 
 ## Supported STIGs
 
 ### PowerStig and SCAP comparisons
-#### Can run in PowerStig only mode
+#### (Can run in PowerStig only or PowerStig + SCAP modes)
 Windows Server 2016 Member Server - 1.7  
 Windows Server 2016 Domain Controller -1.7  
 Windows Server 2012R2 Member Server - 2.14  

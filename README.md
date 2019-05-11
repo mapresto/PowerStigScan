@@ -1,12 +1,14 @@
 # PowerStigScan
 
 ### Release History
-1.0.0.0 - Released February 8, 2019
-1.0.0.2 - Released Feburary 25, 2019
-1.1.0.0 - Released March 1, 2019
-2.0.0.0 - Expected Release Early June
+1.0.0.0 - Released February 8, 2019  
+1.0.0.2 - Released Feburary 25, 2019  
+1.1.0.0 - Released March 1, 2019  
+2.0.0.0 - Expected Release Early June  
 
 ## What's New!
+## Support for PowerStig 3.1.0
+
 ### SCAP Integration
 With 2.0.0.0 we have introduced integration with the DISA SCAP Compliance Checker (SCC) tool. This is not a requirement to
 run but it will allow you to use SCAP as an authoritative source for rules that it does cover. SCC does not have a lot of
@@ -28,7 +30,7 @@ settings in the database for dynamic creation when a scan is triggered. Also, yo
 ## How It Works
 PowerStigScan is used to automate STIG auditing and checklist generation through the use of the PowerSTIG module. 
 PowerStig uses DSC to configure an environment to be compliant with DISA STIGs using an automated process to convert 
-the xccdf to a parsable xml file that is consumed by the module to generate the composite DSC resources.
+the xccdf to a parsable xml file that is consumed by the module to generate the composite DSC resources.  
 
 PowerStigScan uses that engine with the declarative nature of DSC to test your environment against the compiled MOFs.
 This module is made to be used with the companion Database, whose build script is in the SQL folder. The database
@@ -68,6 +70,34 @@ Computer objects must exist in the SQL Database prior to importing findings, whi
 Invoke-PowerStigScan and Invoke-PowerStigBatch cmdlets. You can use the Add-PowerStigComputer to populate the table with your
 preferred method of bulk import. This will also declare the roles that are to be scanned against for each server during the 
 Invoke-PowerStigBatch cmdlet.
+
+## Supported STIGs
+
+### PowerStig and SCAP comparisons
+#### Can run in PowerStig only mode
+Windows Server 2016 Member Server - 1.7  
+Windows Server 2016 Domain Controller -1.7  
+Windows Server 2012R2 Member Server - 2.14  
+Windows Server 2012R2 Domain Controller - 2.15  
+Windows 10 Client - 1.16  
+Internet Explorer 11 - 1.16  
+Windows Firewall - 1.7  
+Windows Defender - 1.4  
+
+### PowerStig Only
+Excel 2013 - 1.7  
+PowerPoint 2013 - 1.6  
+Word 2013 - 1.6  
+Outlook 2013 - 1.13  
+Mozilla Firefox - 4.24  
+Windows Server 2012R2 DNS Server - 1.11  
+Oracle Java Runtime - 1.5  
+
+### SCAP Only (Versions listed are for manual checklists)
+Adobe Acrobat Reader DC Classic - 1.4  
+Adobe Acrobat Reader DC Continuous - 1.5  
+Google Chrome - 1.15  
+.Net Framework - 1.6  
 
 ## Known Issues
 IIS, JRE, and SQL scans are not complete. We need to determine the information dynamically as storing static information will

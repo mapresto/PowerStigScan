@@ -19,13 +19,10 @@ Functions:
 Adds a new computer target to the PowerStig database
 
 .DESCRIPTION
-Adds a new computer target to the PowerStig database with the roles specified in the switches
+Adds a new computer target to the PowerStig database to be scanned with the -SQLBatch switch on Invoke-PowerStigScan
 
 .PARAMETER ServerName
 Name of server to add
-
-.PARAMETER OSVersion
-Operating System installed on new server. Valid options are 2012R2 and 2016
 
 .PARAMETER SqlInstance
 SQL instance name that hosts the PowerStig database. If empty, this will use the settings in the ModuleBase\Common\config.ini file.
@@ -33,20 +30,9 @@ SQL instance name that hosts the PowerStig database. If empty, this will use the
 .PARAMETER DatabaseName
 Name of the database that hosts the PowerStig tables. If empty, this will use the settings in the ModuleBase\Common\config.ini file.
 
-.PARAMETER DomainController
-Will flag the server as a domain controller. If member server is also marked, this switch will take precedence.
-
-.PARAMETER MemberServer
-Will flag the server as a member server. If domain controller is also marked, this switch will not take effect
-
-.PARAMETER DNS
-Will flag the server as a DNS server.
-
-.PARAMETER IE
-Will flag the server as having IE installed.
-
 .EXAMPLE
-Add-PowerStigComputer -ServerName DC2012Test -OSVersion 2012R2 -SqlInstance SQLTest -DatabaseName Master -DomainController -DNS -IE
+Add-PowerStigComputer -ServerName DC2012Test -SqlInstance SQLTest -DatabaseName Master
+Add-PowerStigComputer -ServerName PowerStigTest
 
 #>
 function Add-PowerStigComputer

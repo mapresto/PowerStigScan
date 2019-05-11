@@ -19,40 +19,6 @@ Command to retrieve configuration data from the PowerStig database
 .DESCRIPTION
 Retrieves information from the ConfigData table in the PowerStig database. This can only retrieve one configuration setting at a time.
 
-.PARAMETER OutputDropLoc
-Location to scan for csv files to be imported into the database.
-
-.PARAMETER OutputArchiveLoc
-Location to store scanned csv files in compressed format after import.
-
-.PARAMETER ArchiveDirectoryRetentionDays
-
-.PARAMETER FindingRepoTableRetentionDays
-
-.PARAMETER LastComplianceCheckAlert
-
-.PARAMETER LastComplianceCheckInDays
-
-.PARAMETER LastComplianceCheckAlertRecipients
-
-.PARAMETER OutputFileExtension
-
-.PARAMETER DuplicateFileExtension
-Extension that will be added to potential duplicate files that are found in the OutputDropLoc
-
-.PARAMETER DuplicateFileAlert
-
-.PARAMETER DuplicateFileAlertRecipients
-
-.PARAMETER ComplianceCheckLogTableRetentionDays
-
-.PARAMETER FindingImportFilesTableRetentionDays
-
-.PARAMETER MailProfileName
-
-.PARAMETER CKLfileLoc
-
-.PARAMETER CKLfileArchiveLoc
 
 .PARAMETER SqlInstance
 SQL instance name that hosts the PowerStig database. If empty, this will use the settings in the ModuleBase\Common\config.ini file. 
@@ -70,23 +36,17 @@ function Get-PowerStigSqlConfig
 {
     [CmdletBinding()]
     Param(
-        [Parameter(ParameterSetName='1',Mandatory=$false)][switch]$OutputDropLoc,
-        [Parameter(ParameterSetName='2',Mandatory=$false)][switch]$OutputArchiveLoc,
-        [Parameter(ParameterSetName='3',Mandatory=$false)][switch]$ArchiveDirectoryRetentionDays,
-        [Parameter(ParameterSetName='4',Mandatory=$false)][switch]$FindingRepoTableRetentionDays,
-        [Parameter(ParameterSetName='5',Mandatory=$false)][switch]$LastComplianceCheckAlert,
-        [Parameter(ParameterSetName='6',Mandatory=$false)][switch]$LastComplianceCheckInDays,
-        [Parameter(ParameterSetName='7',Mandatory=$false)][switch]$LastComplianceCheckAlertRecipients,
-        [Parameter(ParameterSetName='8',Mandatory=$false)][switch]$OutputFileExtension,
-        [Parameter(ParameterSetName='9',Mandatory=$false)][switch]$DuplicateFileExtension,
-        [Parameter(ParameterSetName='10',Mandatory=$false)][switch]$DuplicateFileAlert,
-        [Parameter(ParameterSetName='11',Mandatory=$false)][switch]$DuplicateFileAlertRecipients,
-        [Parameter(ParameterSetName='12',Mandatory=$false)][switch]$ComplianceCheckLogTableRetentionDays,
-        [Parameter(ParameterSetName='13',Mandatory=$false)][switch]$FindingImportFilesTableRetentionDays,
-        [Parameter(ParameterSetName='14',Mandatory=$false)][switch]$MailProfileName,
-        [Parameter(ParameterSetName='15',Mandatory=$false)][switch]$CKLfileLoc,
-        [Parameter(ParameterSetName='16',Mandatory=$false)][switch]$CKLfileArchiveLoc,
-        [Parameter(ParameterSetName='17',Mandatory=$false)][switch]$ConcurrentScans,
+        [Parameter(ParameterSetName='1',Mandatory=$false)][switch]$ORGsettingXML,
+        [Parameter(ParameterSetName='2',Mandatory=$false)][switch]$FindingRepoTableRetentionDays,
+        [Parameter(ParameterSetName='3',Mandatory=$false)][switch]$LastComplianceCheckAlert,
+        [Parameter(ParameterSetName='4',Mandatory=$false)][switch]$LastComplianceCheckInDays,
+        [Parameter(ParameterSetName='5',Mandatory=$false)][switch]$LastComplianceCheckAlertRecipients,
+        [Parameter(ParameterSetName='6',Mandatory=$false)][switch]$ScanImportErrorLogRetentionDays,
+        [Parameter(ParameterSetName='7',Mandatory=$false)][switch]$ScanImportLogRetentionDays,
+        [Parameter(ParameterSetName='8',Mandatory=$false)][switch]$ScanLogRetentionDays,
+        [Parameter(ParameterSetName='9',Mandatory=$false)][switch]$ComplianceCheckLogTableRetentionDays,
+        [Parameter(ParameterSetName='10',Mandatory=$false)][switch]$FindingImportFilesTableRetentionDays,
+        [Parameter(ParameterSetName='11',Mandatory=$false)][switch]$MailProfileName,
 
         [Parameter(Mandatory=$false)][switch]$DebugScript,
         
@@ -111,23 +71,18 @@ function Get-PowerStigSqlConfig
 
 
     Switch($PSCmdlet.ParameterSetName){
-        "1"     { $checkConfig = "OutputDropLoc" }
-        "2"     { $checkConfig = "OutputArchiveLoc" }
-        "3"     { $checkConfig = "ArchiveDirectoryRetentionDays" }
-        "4"     { $checkConfig = "FindingRepoTableRetentionDays" }
-        "5"     { $checkConfig = "LastComplianceCheckAlert" }
-        "6"     { $checkConfig = "LastComplianceCheckInDays" }
-        "7"     { $checkConfig = "LastComplianceCheckAlertRecipients" }
-        "8"     { $checkConfig = "OutputFileExtension" }
-        "9"     { $checkConfig = "DuplicateFileExtension" }
-        "10"    { $checkConfig = "DuplicateFileAlert" }
-        "11"    { $checkConfig = "DuplicateFileAlertRecipients" }
-        "12"    { $checkConfig = "ComplianceCheckLogTableRetentionDays" }
-        "13"    { $checkConfig = "FindingImportFilesTableRetentionDays" }
-        "14"    { $checkConfig = "MailProfileName" }
-        "15"    { $checkConfig = "CKLfileLoc" }
-        "16"    { $checkConfig = "CKLfileArchiveLoc" }
-        "17"    { $checkConfig = "ConcurrentScans" }
+        "1"     { $checkConfig = "ORGsettingXML" }
+        "2"     { $checkConfig = "FindingRepoTableRetentionDays" }
+        "3"     { $checkConfig = "LastComplianceCheckAlert" }
+        "4"     { $checkConfig = "LastComplianceCheckInDays" }
+        "5"     { $checkConfig = "LastComplianceCheckAlertRecipients" }
+        "6"     { $checkConfig = "ScanImportErrorLogRetentionDays" }
+        "7"     { $checkConfig = "ScanImportLogRetentionDays" }
+        "8"     { $checkConfig = "ScanLogRetentionDays" }
+        "9"     { $checkConfig = "ComplianceCheckLogTableRetentionDays" }
+        "10"    { $checkConfig = "FindingImportFilesTableRetentionDays" }
+        "11"    { $checkConfig = "MailProfileName" }
+
     }
 
     $Query = "powerstig.sproc_GetConfigSetting @ConfigProperty = $checkConfig"
@@ -150,41 +105,6 @@ Command to allow changes to the configuration database for PowerStig
 .DESCRIPTION
 Allows for changes to the ConfigData table in the PowerStig database. This can only impact one configuration setting at a time.
 
-.PARAMETER OutputDropLoc
-Location to scan for csv files to be imported into the database. Should be a folder path.
-
-.PARAMETER OutputArchiveLoc
-Location to store scanned csv files in compressed format after import. Should be a folder path. 
-
-.PARAMETER ArchiveDirectoryRetentionDays
-
-.PARAMETER FindingRepoTableRetentionDays
-
-.PARAMETER LastComplianceCheckAlert
-
-.PARAMETER LastComplianceCheckInDays
-
-.PARAMETER LastComplianceCheckAlertRecipients
-
-.PARAMETER OutputFileExtension
-
-.PARAMETER DuplicateFileExtension
-Extension that should be added to potential duplicate files that are found in the OutputDropLoc
-
-.PARAMETER DuplicateFileAlert
-
-.PARAMETER DuplicateFileAlertRecipients
-
-.PARAMETER ComplianceCheckLogTableRetentionDays
-
-.PARAMETER FindingImportFilesTableRetentionDays
-
-.PARAMETER MailProfileName
-
-.PARAMETER CKLfileLoc
-
-.PARAMETER CKLfileArchiveLoc
-
 .PARAMETER SqlInstance
 SQL instance name that hosts the PowerStig database. If empty, this will use the settings in the ModuleBase\Common\config.ini file. 
 
@@ -202,23 +122,17 @@ function Set-PowerStigSqlConfig
 {
     [CmdletBinding()]
     Param(
-        [Parameter(ParameterSetName='1',Mandatory=$false)][ValidateNotNullorEmpty()][String]$OutputDropLoc,
-        [Parameter(ParameterSetName='2',Mandatory=$false)][ValidateNotNullorEmpty()][String]$OutputArchiveLoc,
-        [Parameter(ParameterSetName='3',Mandatory=$false)][ValidateNotNullorEmpty()][String]$ArchiveDirectoryRetentionDays,
-        [Parameter(ParameterSetName='4',Mandatory=$false)][ValidateNotNullorEmpty()][String]$FindingRepoTableRetentionDays,
-        [Parameter(ParameterSetName='5',Mandatory=$false)][ValidateNotNullorEmpty()][String]$LastComplianceCheckAlert,
-        [Parameter(ParameterSetName='6',Mandatory=$false)][ValidateNotNullorEmpty()][String]$LastComplianceCheckInDays,
-        [Parameter(ParameterSetName='7',Mandatory=$false)][ValidateNotNullorEmpty()][String]$LastComplianceCheckAlertRecipients,
-        [Parameter(ParameterSetName='8',Mandatory=$false)][ValidateNotNullorEmpty()][String]$OutputFileExtension,
-        [Parameter(ParameterSetName='9',Mandatory=$false)][ValidateNotNullorEmpty()][String]$DuplicateFileExtension,
-        [Parameter(ParameterSetName='10',Mandatory=$false)][ValidateNotNullorEmpty()][String]$DuplicateFileAlert,
-        [Parameter(ParameterSetName='11',Mandatory=$false)][ValidateNotNullorEmpty()][String]$DuplicateFileAlertRecipients,
-        [Parameter(ParameterSetName='12',Mandatory=$false)][ValidateNotNullorEmpty()][String]$ComplianceCheckLogTableRetentionDays,
-        [Parameter(ParameterSetName='13',Mandatory=$false)][ValidateNotNullorEmpty()][String]$FindingImportFilesTableRetentionDays,
-        [Parameter(ParameterSetName='14',Mandatory=$false)][ValidateNotNullorEmpty()][String]$MailProfileName,
-        [Parameter(ParameterSetName='15',Mandatory=$false)][ValidateNotNullorEmpty()][String]$CKLfileLoc,
-        [Parameter(ParameterSetName='16',Mandatory=$false)][ValidateNotNullorEmpty()][String]$CKLfileArchiveLoc,
-        [Parameter(ParameterSetName='17',Mandatory=$false)][ValidateNotNullorEmpty()][String]$ConcurrentScans,
+        [Parameter(ParameterSetName='1',Mandatory=$false)][ValidateNotNullorEmpty()][String]$ORGsettingXML,
+        [Parameter(ParameterSetName='2',Mandatory=$false)][ValidateNotNullorEmpty()][String]$FindingRepoTableRetentionDays,
+        [Parameter(ParameterSetName='3',Mandatory=$false)][ValidateNotNullorEmpty()][String]$LastComplianceCheckAlert,
+        [Parameter(ParameterSetName='4',Mandatory=$false)][ValidateNotNullorEmpty()][String]$LastComplianceCheckInDays,
+        [Parameter(ParameterSetName='5',Mandatory=$false)][ValidateNotNullorEmpty()][String]$LastComplianceCheckAlertRecipients,
+        [Parameter(ParameterSetName='6',Mandatory=$false)][ValidateNotNullorEmpty()][String]$ScanImportErrorLogRetentionDays,
+        [Parameter(ParameterSetName='7',Mandatory=$false)][ValidateNotNullorEmpty()][String]$ScanImportLogRetentionDays,
+        [Parameter(ParameterSetName='8',Mandatory=$false)][ValidateNotNullorEmpty()][String]$ScanLogRetentionDays,
+        [Parameter(ParameterSetName='9',Mandatory=$false)][ValidateNotNullorEmpty()][String]$ComplianceCheckLogTableRetentionDays,
+        [Parameter(ParameterSetName='10',Mandatory=$false)][ValidateNotNullorEmpty()][String]$FindingImportFilesTableRetentionDays,
+        [Parameter(ParameterSetName='11',Mandatory=$false)][ValidateNotNullorEmpty()][String]$MailProfileName,
 
         [Parameter(Mandatory=$false)][switch]$DebugScript,
         
@@ -246,73 +160,49 @@ function Set-PowerStigSqlConfig
     #TODO switch to a foreach loop per parameter
     Switch($PSCmdlet.ParameterSetName){
         "1"     { 
-                    $setConfig = "OutputDropLoc" 
-                    $newConfig = $OutputDropLoc
+                    $setConfig = "ORGsettingXML" 
+                    $newConfig = $ORGsettingXML
                 }
         "2"     { 
-                    $setConfig = "OutputArchiveLoc"
-                    $newConfig = $OutputArchiveLoc
+                    $setConfig = "FindingRepoTableRetentionDays"
+                    $newConfig = $FindingRepoTableRetentionDays
                 }
         "3"     { 
-                    $setConfig = "ArchiveDirectoryRetentionDays" 
-                    $newConfig = $ArchiveDirectoryRetentionDays
-                }
-        "4"     { 
-                    $setConfig = "FindingRepoTableRetentionDays"
-                    $newConfig = $FindingRepoTableRetentionDays 
-                }
-        "5"     { 
                     $setConfig = "LastComplianceCheckAlert" 
                     $newConfig = $LastComplianceCheckAlert
                 }
-        "6"     { 
-                    $setConfig = "LastComplianceCheckInDays" 
-                    $newConfig = $LastComplianceCheckInDays  
+        "4"     { 
+                    $setConfig = "LastComplianceCheckInDays"
+                    $newConfig = $LastComplianceCheckInDays 
                 }
-        "7"     { 
+        "5"     { 
                     $setConfig = "LastComplianceCheckAlertRecipients" 
                     $newConfig = $LastComplianceCheckAlertRecipients
                 }
+        "6"     { 
+                    $setConfig = "ScanImportErrorLogRetentionDays" 
+                    $newConfig = $ScanImportErrorLogRetentionDays  
+                }
+        "7"     { 
+                    $setConfig = "ScanImportLogRetentionDays" 
+                    $newConfig = $ScanImportLogRetentionDays
+                }
         "8"     { 
-                    $setConfig = "OutputFileExtension" 
-                    $newConfig = $OutputFileExtension
+                    $setConfig = "ScanLogRetentionDays" 
+                    $newConfig = $ScanLogRetentionDays
                 }
         "9"     { 
-                    $setConfig = "DuplicateFileExtension" 
-                    $newConfig = $DuplicateFileExtension
-                }
-        "10"    { 
-                    $setConfig = "DuplicateFileAlert" 
-                    $newConfig = $DuplicateFileAlert
-                }
-        "11"    { 
-                    $setConfig = "DuplicateFileAlertRecipients" 
-                    $newConfig = $DuplicateFileAlertRecipients
-                }
-        "12"    { 
                     $setConfig = "ComplianceCheckLogTableRetentionDays" 
                     $newConfig = $ComplianceCheckLogTableRetentionDays
                 }
-        "13"    { 
+        "10"    { 
                     $setConfig = "FindingImportFilesTableRetentionDays" 
                     $newConfig = $FindingImportFilesTableRetentionDays
                 }
-        "14"    { 
+        "11"    { 
                     $setConfig = "MailProfileName" 
                     $newConfig = $MailProfileName
                 }
-        "15"    { 
-                    $setConfig = "CKLfileLoc" 
-                    $newConfig = $CKLfileLoc
-                }
-        "16"    { 
-                    $setConfig = "CKLfileArchiveLoc" 
-                    $newConfig = $CKLfileArchiveLoc
-                }
-        "17"    {
-                    $setConfig = "ConcurrentScans"
-                    $newConfig = $ConcurrentScans
-                }   
     }
 
     # ' is escaped around $newConfig to prevent issues with Strings being passed, removal will cause filepaths to parse incorrectly

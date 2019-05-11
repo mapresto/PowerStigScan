@@ -86,16 +86,14 @@
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     FunctionsToExport = @(
-        'Invoke-PowerStigScan', 
-        'New-PowerStigCkl', 
+        'Invoke-PowerStigScan',  
         'Add-PowerStigComputer', 
+        'Get-PowerStigComputer',
+        'Remove-PowerStigComputer',
         'Get-PowerStigSqlConfig', 
         'Set-PowerStigSqlConfig',
         'Get-PowerStigConfig',
         'Set-PowerStigConfig',
-        'Get-PowerStigComputer',
-        'Set-PowerStigComputer',
-        'Remove-PowerStigComputer',
         'Get-PowerStigOrgSettings',
         'Start-PowerStigDSCScan'
         )
@@ -136,8 +134,11 @@
             # IconUri = ''
     
             # ReleaseNotes of this module
-            ReleaseNotes = 'Added Support for DSCEA
+            ReleaseNotes = 'Added support for PowerSTIG 3.1.0
+            Consolidated file management for key files used
+            Consolidated scanning functions to a single function
             Added additional, optional integration with SCAP
+            Removed dependency on SQL for bulk scan and CKL generation
             Added switches to make SQL and SCAP optional components'
     
         } # End of PSData hashtable

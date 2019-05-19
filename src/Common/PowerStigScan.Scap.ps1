@@ -256,7 +256,7 @@ Function Set-PowerStigScapBasicOptions
     $basePath = $iniVar.LogPath
 
     $ScapInstallDir = $iniVar.ScapInstallDir
-    $outputPath = "$basepath\SCC"
+    $outputPath = Join-Path -Path $basepath -ChildPath "SCC"
 
     $ScapOptions = @{
         "scapScan"                          = "1"
@@ -299,7 +299,10 @@ Function Set-PowerStigScapBasicOptions
     {
         $strSetOpt += " --setOpt $sOpt $($ScapOptions.$sOpt)"
     }
-    $cmdStart = "& `"" + $ScapInstallDir + "\cscc.exe`" "
+
+    $exePath = Join-Path -Path $ScapInstallDir -ChildPath "cscc.exe"
+
+    $cmdStart = "& `"" + $exePath + "`" "
     $configCommand = "$cmdStart$strSetOpt -q"    
     Invoke-Expression $configCommand | Out-Null
 }
@@ -329,7 +332,7 @@ function Set-PowerStigScapRoleXML
     $scapInstallDir = $iniVar.ScapInstallDir
     $ScapProfile = $iniVar.ScapProfile
     $logPath = $iniVar.LogPath
-    $outpath = "$logPath\SCAP\"
+    $outpath = Join-Path -Path $logPath -ChildPath "SCAP\"
 
     [xml]$configXML = Get-Content $ScapInstallDir\options.xml
     $configXML.PreserveWhitespace = $true

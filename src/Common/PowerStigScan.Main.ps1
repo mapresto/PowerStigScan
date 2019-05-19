@@ -155,8 +155,8 @@ function Get-PowerStigXmlVersion
             "WindowsDefender"           {$rRole = "WindowsDefender-All";    $osVersion = $null}
             "WindowsDNSServer"          {$rRole = "WindowsDNSServer-2012R2";$osVersion = $null}
             "WindowsFirewall"           {$rRole = "WindowsFirewall-All";    $osVersion = $null}
-            "WindowsServer-DC"          {if($osVersion = "2012R2"){$rRole = "WindowsServer-2012R2-DC"}else{$rRole = "WindowsServer-2016-DC"}}
-            "WindowsServer-MS"          {if($osVersion = "2012R2"){$rRole = "WindowsServer-2012R2-MS"}else{$rRole = "WindowsServer-2016-MS"}}
+            "WindowsServer-DC"          {if($osVersion -eq "2012R2"){$rRole = "WindowsServer-2012R2-DC"}else{$rRole = "WindowsServer-2016-DC"}}
+            "WindowsServer-MS"          {if($osVersion -eq "2012R2"){$rRole = "WindowsServer-2012R2-MS"}else{$rRole = "WindowsServer-2016-MS"}}
         }
 
         # Parse through repository for STIGs that match only the current OS that we are looking for
@@ -538,474 +538,53 @@ function Get-PowerStigIsJRE
 # M07
 <#
 .SYNOPSIS
-Uses PowerStig and PowerStigDSC modules to scan a target server and return data as a CSV file
+Scans the target Computers with PowerStig reference configurations and, optionally, SCAP 5.1
 
 .DESCRIPTION
-Uses PowerStig and PowerStigDSC modules to scan a target server and return the data as a CSV file. The file can then be processed by the related Import-PowerStigScans script to import results into SQL.
+This function will use PowerStig to build reference configurations for the roles that the server holds. These reference configurations will be used to determine if the Target has deviated from the expected configuration. A deviation is considered a finding when generating the checklist file. CKL files will be located in the location set in the CKLOutPath of the config.ini file in the $ModulePath\Common directory.
 
 .PARAMETER ServerName
-Short name or FQDN of server that is to be scanned. Should ensure that WinRM is enabled on the target server prior to running
+Short name or FQDN of server that is to be scanned. Should ensure that WinRM is enabled on the target server prior to running.
 
-.PARAMETER Role
-Role that is being checked for compliance. Valid Roles include MemberServer2012Check, MemberServer2016Check, DNScheck, DC2012Check, DC2016Check, and IECheck
+.PARAMETER RunScap
+Utilizes SCAP 5.1 to run a scan against the target server. In order to run properly ensure that the ScapInstallDir and ScapProfile settings are set properly for the computer you are running this from and the environment that you are running against. Will only run Scans that have an equivilent PowerStig Scan.
+
+.PARAMETER FullScap
+Similar to RunScap, with the exception that it will run scans that do not match to a PowerStig scan as well, generating the checklists for those scans as well.
+
+.PARAMETER SqlBatch
+Will pull ServerNames from the Sql Database that is configured. This will also implement storage of findings for historical and reporting purposes.
+
+.PARAMETER SqlInstanceName
+Sql Instance to be used for the scan in coordination with SqlBatch. If no value is set, this will use the SqlInstanceName option in the config.ini in the $ModulePath\Common directory.
+
+.PARAMETER DatabaseName
+Database to be used for the scan in coordination with SqlBatch. If no value is set, this will use the DatabaseName option in the config.ini in the $ModulePath\Common directory.
+
+.PARAMETER DebugScript
+Enhanced logging is enabled for the PowerStig log located in the logPath configured in the $ModulePath\Common directory.
 
 .EXAMPLE
-Invoke-PowerStigScan -ServerName STIGDCTest01 -Role DC2012Check
+Invoke-PowerStigScan -ServerName STIGDCTest01,Sql2012Test,Win10 -RunScap
 
-Invoke-PowerStigScan -ServerName SQL2012Test -Role MemberServer2012Check
+Will run a scan against STIGDCTest01, Sql2012Test, and Win10 and will also run a SCAP scan at the same time. The Scap results will take precedence over the PowerStig results if there is a conflict
+
+Invoke-PowerStigScan -SqlBatch -FullScap
+
+Will run a scan against every target that exists in the database. This will also run a SCAP scan against all eligible SCAP compliance types and generate checklists for SCAP only and PowerStig/SCAP comparisons.
+
+Invoke-PowerStigScan -SqlBatch
+
+Will run only the PowerStig scans against every target in the database. This will generate a CKL file for each scan completed
 
 #>
-<#function Invoke-PowerStigScan
-{
-    [cmdletBinding()]
-    Param(
-        [Parameter(Mandatory=$true,Position=0)]
-        [ValidateNotNullorEmpty()]
-        [String]$ServerName,
-
-        [Parameter(Mandatory=$false)]
-        [Switch]$DebugScript
-
-    )
-
-
-    #########################
-    #Initialize Variables   #
-    #########################
-
-    $workingPath                = Split-Path $PsCommandPath
-    $iniVar                     = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
-    
-    $logDate                    = get-date -UFormat %m%d
-    $logFileName                = "PowerStig"+ $logDate + ".txt"
-    $logPath                    = $iniVar.LogPath
-
-    if(!(Test-Path -Path $logPath\$logFileName))
-    {
-        $logFilePath = new-item -ItemType File -Path $logPath\$logFileName -Force
-    }
-    else {
-        $logFilePath = get-item -Path $logPath\$logFileName
-    }
-    #Initialize Logging
-    Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][Info]: New Scan - $ServerName"
-    if($DebugScript)
-    {
-        Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: Config.ini Variables Are: $iniVar"
-        Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: WorkingPath is: $workingPath"
-    }
-
-    ##############################
-    #Initialize Logging Complete #
-    ##############################
-
-    ##############################
-    #Test Connection to Server   #
-    ##############################
-
-    #Test Connection
-    if($DebugScript)
-    {
-        Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: Running (Test-NetConnection -ComputerName $serverName -CommonTCPPort WINRM).TcpTestSucceeded -eq `$false"
-    }
-    if((Test-NetConnection -ComputerName $serverName -CommonTCPPort WINRM).TcpTestSucceeded -eq $false)
-    {
-        Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][Error]: Connection to $serverName Failed. Check network connectivity and that the server is listening for WinRM"
-        Return
-    }
-    else 
-    {
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Connection to $serverName successful"
-    }
-
-    ###########################
-    #Test Connection Complete #
-    ###########################
-
-    ###########################
-    #Get server roles
-    ###########################
-
-    $roles = Get-PowerStigServerRole -ServerName $ServerName
-    Add-Content $logFilePath -Value "$(Get-Time):[$ServerName][Info]: PowerStig scan started on $ServerName for role $($roles.roles) and version $($roles.version)."
-
-    ###########################
-    #Test WSMAN Settings      #
-    ###########################
-
-    if($ServerName -eq $ENV:ComputerName)
-    {
-        try {
-            [int]$maxEnvelope = (get-childitem wsman:\localhost\MaxEnvelopeSizekb).value
-        }
-        catch {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$Servername][ERROR]: Query for WSMAN properties failed. Check user context that this is running under."
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: $_"
-            Return
-        }
-        
-    }
-    else
-    {
-        [int]$maxEnvelope = invoke-command -ComputerName $ServerName -ScriptBlock {((get-childitem wsman:\localhost\MaxEnvelopeSizekb).value)}
-    }
-
-    #Configure WSMAN if necessary
-    if($maxEnvelope -lt 10000 -and $ServerName -ne $ENV:ComputerName)
-    {
-        Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][Warning]: Attempting to set MaxEnvelopeSizeKb on $ServerName."
-        try 
-        {
-            invoke-command -computername $serverName -ScriptBlock {Set-Item -Path WSMAN:\localhost\MaxEnvelopeSizekb -Value 10000}
-            Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: MaxEnvelopeSizeKb successfully configured on $ServerName."
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: Setting WSMAN failed on $ServerName."
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: $_"
-            Return
-        }
-    }
-    elseif($maxEnvelope -lt 10000 -and $ServerName -eq $ENV:ComputerName)
-    {
-        Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][Warning]: Attempting to set MaxEnvelopeSizeKb on $ServerName."
-        try 
-        {
-            Set-Item -Path WSMAN:\localhost\MaxEnvelopeSizekb -Value 10000
-            Add-Content -path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: MaxEnvelopeSizeKb successfully configured on $ServerName."
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: Setting WSMAN failed on $ServerName."
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: $_"
-            Return
-        }
-    }
-    else
-    {
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: WSMan is correctly configured."
-    }
-
-    ###############################
-    #Test WSMan Settings Complete #
-    ###############################
-
-    if(-not(test-path "$logPath\$ServerName"))
-    {
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Creating file path for this server at $logPath\$ServerName"
-        New-Item -ItemType Directory -Path "$logpath\$ServerName"
-    }
-
-    ########################
-    #Check OSVersion       #
-    ########################
-
-    $osVersion = $roles.version
-
-    ###########################
-    #Check OSVersion Complete #
-    ###########################
-
-    Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: OS Version is $osVersion"
-
-    #Build MOF
-    
-
-    ############################
-    #Create MOF                #
-    ############################
-    foreach($r in $roles.Roles)
-    {
-        Push-Location $logPath\$serverName
-        try
-        {
-            $OrgSettings    = $null
-            $SkipRule       = $null
-        }
-        catch
-        {
-            Write-Host "This shouldn't show..."
-        }
-
-        try
-        {
-            $RunExpression = "& `"$workingPath\DSCCall.ps1`" -ComputerName $ServerName -osVersion $osVersion -Role $r -LogPath $logFilePath"
-            if($null -ne $OrgSettings -and $OrgSettings -ne "")
-            {
-                $RunExpression += " -OrgSettingsFilePath $OrgSettings"
-            }
-            if($null -ne $SkipRule -and $SkipRule -ne "")
-            {
-                $RunExpression += " -SkipRules $SkipRule"
-            }
-            Invoke-Expression -Command $RunExpression
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: MOF Created for $ServerName for role $r"
-            $mofPath = "$logPath\$ServerName\PowerSTIG\"
-        }
-        catch
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: mof generation failed when running:"
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: $RunExpression"
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: $_"
-            Continue
-        }
-    
-
-        if($DebugScript)
-        {
-            Add-Content -Path $logFilePath -value "$(Get-Time):[$ServerName][Debug]: mofPath is $mofPath"
-        }
-        Pop-Location
-
-        #Run scan against target server
-        $mof = get-childitem $mofPath
-            
-        Push-location $mofPath
-
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Starting Scan for $mof"
-        try 
-        {
-            $scanMof = (Get-ChildItem -Path $mofPath)[0]
-
-            $scanObj = Test-DscConfiguration -ComputerName $ServerName -ReferenceConfiguration $scanMof
-        }
-        catch 
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: $_"
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: mof variable is $mof"
-            Continue
-        }
-
-        Pop-Location
-
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Converting results to PSObjects"
-
-        try
-        {
-            $convertObj = Convert-PowerStigTest -TestResults $scanObj
-        }
-        catch
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][ERROR]: $_"
-            Continue
-        }
-        if($DebugScript)
-        {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: Object Results:"
-            Add-Content -Path $logFilePath -Value "DesiredState`tFindingSeverity,`tStigDefinition,`tStigType,`tScanDate"
-            foreach($o in $convertObj)
-            {
-                Add-Content -Path $logFilePath -Value "$($o.DesiredState),`t$($o.FindingSeverity),`t$($o.StigDefinition),`t$($o.StigType),`t$($o.ScanDate)"
-            }
-        }
-
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Importing Results to Database for $ServerName and role $r."
-
-        Import-PowerStigObject -Servername $ServerName -InputObj $convertObj
-    }
-
-}#>
-
-# M08
-<#function Invoke-PowerStigBatch
-{
-    [CmdletBinding()]
-    param(   
-        [Parameter(ParameterSetName='Set1',Position=0,Mandatory=$false)]
-        [String]$cmsServer,
-
-        [parameter(ParameterSetName='Set1',Position=1,Mandatory=$false)]
-        [String]$CMSDatabaseName
-    )
-
-    $workingPath = Split-Path $PsCommandPath
-    $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
-
-    if($null -eq $cmsServer -or $cmsServer -eq '')
-    {
-        $cmsServer = $iniVar.SqlInstanceName
-    }
-    if($null -eq $CMSDatabaseName -or $CMSDatabaseName -eq '')
-    {
-        $CMSDatabaseName = $iniVar.DatabaseName
-    }
-
-
-    #========================================================================
-    # Create logging functions
-    #========================================================================
-
-
-    #========================================================================
-    # Name the PowerSTIG scan jobs
-    #========================================================================
-    # This needs to be "something else", like pulled from database or not sure in a future release
-    $JobName = "$(get-date -uformat %m%d)_PowerSTIGscan"
-    [int]$concurrentJobs = (Get-PowerStigSqlConfig -ConcurrentScans).ConfigSetting
-
-    #========================================================================
-    $StepName = 'Start queued scans'
-    $StepMessage = 'Scans Started'
-    #========================================================================
-    #D
-    try
-    {
-        #
-        # Logging
-        #
-        InsertLog -LogEntryTitle $StepName -LogMessage $StepMessage -ActionTaken 'UPDATE' -CMSServer $cmsServer -CMSDatabase $CMSDatabaseName
-        #
-        $GetQueuedScans = "EXEC PowerStig.sproc_GetScanQueue"
-        $RunGetQueuedScans = (Invoke-PowerStigSqlCommand -SqlInstance $cmsServer -DatabaseName $CMSDatabaseName -Query $GetQueuedScans )
-        $QueuedScans = @($RunGetQueuedScans)
-        $uniqueComplianceTypes = $QueuedScans | Select-Object ComplianceType -Unique
-
-        foreach($ct in $uniqueComplianceTypes)
-        {
-            $compTypeJobs = @($QueuedScans | Where-Object {$_.compliancetype -eq $ct.ComplianceType.ToString()})
-            $numJobs = $compTypeJobs.Length
-
-            for($i = 0; $i -lt $numJobs;$i++)
-            {
-                While((Get-Job | Where-Object {$_.state -eq "Running" -and $_.name -like "*PowerSTIG*"}).count -ge $concurrentJobs)
-                {
-                    Start-Sleep -Seconds 10
-                }
-                try
-                {
-                    $stepMessage = "Starting Job $($i+1) of $numJobs for Role $($ct.ComplianceType)"
-                    InsertLog -LogEntryTitle $StepName -LogMessage $StepMessage -ActionTaken 'UPDATE' -CMSServer $cmsServer -CMSDatabase $CMSDatabaseName
-
-                    $TargetToScan = $compTypeJobs[$i].TargetComputer
-                    $ComplianceType = $compTypeJobs[$i].ComplianceType
-
-                    Start-Job -Name $JobName -scriptblock { Param ($TargetToScan, $ComplianceType) Invoke-PowerStigScan -Servername $TargetToScan -Role $ComplianceType} -ArgumentList $TargetToScan, $ComplianceType | Out-Null
-                }
-                catch
-                {
-                    $StepMessage = $_.Exception.Message
-                    $StepMessage = $StepMessage -replace '['']',''
-                    InsertLog -LogEntryTitle $StepName -LogMessage $StepMessage -ActionTaken 'ERROR' -CMSServer $cmsServer -CMSDatabase $CMSDatabaseName    
-                }
-
-            }
-
-            $StepMessage = $null
-            $JobCount = 0
-            ## Wait for Jobs to Complete
-            While((Get-Job | Where-Object {$_.state -eq "Running" -and $_.name -like "*PowerSTIG*"}).count -gt 0)
-            {
-                $JobCountNew = (Get-Job | Where-Object {$_.state -eq "Running" -and $_.name -like "*PowerSTIG*"}).count
-                If($JobCountNew -ne $JobCount)
-                {
-                    $JobCount = $JobCountNew
-                    $StepMessage = "Waiting on $JobCount jobs to finish for role $($ct.ComplianceType). Checking job status every 2 seconds."
-                    InsertLog -LogEntryTitle $StepName -LogMessage $StepMessage -ActionTaken 'UPDATE' -CMSServer $cmsServer -CMSDatabase $CMSDatabaseName       
-                }
-
-                Start-Sleep -Seconds 2
-            }
-        }
-
-
-        #
-        # Logging
-        #
-        $StepMessage = "Scans Complete"
-        InsertLog -LogEntryTitle $StepName -LogMessage $StepMessage -ActionTaken 'UPDATE' -CMSServer $cmsServer -CMSDatabase $CMSDatabaseName
-        #
-
-    }
-    catch
-    {
-        #
-        # Logging
-        #
-        $StepMessage = $_.Exception.Message
-        $StepMessage = $StepMessage -replace '['']',''
-        InsertLog -LogEntryTitle $StepName -LogMessage $StepMessage -ActionTaken 'ERROR' -CMSServer $cmsServer -CMSDatabase $CMSDatabaseName
-        #
-    }
-
-    #========================================================================
-    $StepName ='Retrieve CKL path'
-    $StepMessage = 'Retrieving CKL path from config database'
-    #========================================================================
-    try
-    {
-        #
-        # Logging
-        #
-        InsertLog -LogEntryTitle $StepName -LogMessage $StepMessage -ActionTaken 'UPDATE' -CMSServer $cmsServer -CMSDatabase $CMSDatabaseName
-        #	
-        $GetCKLpath = "EXEC PowerSTIG.sproc_GetConfigSetting @ConfigProperty = 'CKLfileLoc'"
-        $RunGetCKLpath = (Invoke-PowerStigSqlCommand -SqlInstance $CMSserver -DatabaseName $CMSDatabaseName -Query $GetCKLpath )
-        $CKLpath = @($RunGetCKLpath) | Select-Object -ExpandProperty ConfigSetting
-        #
-        # Logging
-        #
-        $StepMessage = "CKL Path retrieval complete"
-        InsertLog -LogEntryTitle $StepName -LogMessage $StepMessage -ActionTaken 'UPDATE' -CMSServer $cmsServer -CMSDatabase $CMSDatabaseName
-        #
-    }
-    catch
-    {
-        #
-        # Logging
-        #
-        $StepMessage = $_.Exception.Message
-        $StepMessage = $StepMessage -replace '['']',''
-        InsertLog -LogEntryTitle $StepName -LogMessage $StepMessage -ActionTaken "ERROR" -CMSServer $cmsServer -CMSDatabase $CMSDatabaseName
-        #
-    }
-    #========================================================================
-    $StepName =  'Generate Checklist files (CKLs)'
-    $StepMessage = 'Generating Checklist files'
-    #========================================================================
-    try
-    {
-        #
-        # Logging
-        #
-        InsertLog -LogEntryTitle $StepName -LogMessage $StepMessage -ActionTaken "UPDATE" -CMSServer $cmsServer -CMSDatabase $CMSDatabaseName
-        #	
-            $GetLastCKLdata = "EXEC PowerStig.sproc_GetLastDataForCKL"
-            $RunGetLastCKLdata = (Invoke-PowerStigSqlCommand -SqlInstance $CMSserver -DatabaseName $CMSDatabaseName -Query $GetLastCKLdata )
-            $LastCKLdata = @($RunGetLastCKLdata)
-            #
-            foreach ($CKL in $LastCKLdata)
-            {
-                $TargetComputer = $CKL.TargetComputer
-                $ComplianceType = $CKL.ComplianceType
-                $Guid = $CKL.ScanGUID
-                $Timestamp = (get-date).ToString("MMddyyyyHHmmss")
-                $CKLfile = $CKLpath+$TargetComputer+"_"+$ComplianceType+"_"+$Timestamp+".CKL"
-
-                $CKLRole = Convert-PowerStigSqlToRole -SqlRole $ComplianceType
-
-                New-PowerStigCKL -Servername $TargetComputer -OSversion 2012R2 -Role $CKLRole -Outpath $CKLfile -GUID $Guid
-
-            }
-        #
-        # Logging
-        #
-        InsertLog -LogEntryTitle $StepName -LogMessage $StepMessage -ActionTaken "UPDATE" -CMSServer $cmsServer -CMSDatabase $CMSDatabaseName
-        #
-    }
-    catch
-    {
-        #
-        # Logging
-        #
-        $StepMessage = $_.Exception.Message
-        $StepMessage = $StepMessage -replace '['']',''
-        InsertLog -LogEntryTitle $StepName -LogMessage $StepMessage -ActionTaken "ERROR" -CMSServer $cmsServer -CMSDatabase $CMSDatabaseName
-        #
-    }
-}#>
-
 function Invoke-PowerStigScan
 {
+    # Two ways to get ServerName info is by Name or by SQL.
+    # By Name can take an array of ServerNames passed to the property
+    # Example: $ServerName = Get-AdComputer -filter * | Select-Object -ExpandProperty Name
+    # RunScap will only run SCAP scans that coordinate with a PowerStig Scan
+    # FullScap will run all valid SCAP scans on the target
     [cmdletBinding()]
     param(
         [Parameter(Mandatory=$true,Position=0,ParameterSetName='ByName')]
@@ -1039,7 +618,6 @@ function Invoke-PowerStigScan
 
     $workingPath                = Split-Path $PsCommandPath
     $iniVar                     = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
-    
     $logDate                    = get-date -UFormat %m%d
     $logFileName                = "PowerStig"+ $logDate + ".txt"
     $logPath                    = $iniVar.LogPath
@@ -1047,14 +625,16 @@ function Invoke-PowerStigScan
 
     $StartTime = Get-Date
 
-    if(!(Test-Path -Path $logPath\$logFileName))
+    # Create the log path and file if they do not already exist.
+    if(!(Test-Path -Path (Join-Path -Path $logPath -ChildPath $logFileName)))
     {
-        $logFilePath = new-item -ItemType File -Path $logPath\$logFileName -Force
+        $logFilePath = new-item -ItemType File -Path (Join-Path -Path $logPath -ChildPath $logFileName) -Force
     }
     else {
-        $logFilePath = get-item -Path $logPath\$logFileName
+        $logFilePath = get-item -Path (Join-Path -Path $logPath -ChildPath $logFileName)
     }
 
+    # If FullScap is selected, make RunScap true so any SCAP related items run for both options.
     if($FullScap -eq $true)
     {
         $RunScap = $true
@@ -1062,6 +642,7 @@ function Invoke-PowerStigScan
 
     Add-Content $logFilePath -Value "$(Get-Time):[Info]: New Scan Started - $(Get-Time)"
 
+    # Initialize SQL options
     if($PSCmdlet.ParameterSetName -eq "SqlBatch")
     {
         if($null -eq $SqlInstanceName -or $SqlInstanceName -eq '')
@@ -1073,6 +654,8 @@ function Invoke-PowerStigScan
             $DatabaseName = $iniVar.DatabaseName
         }
 
+        # Get list of Servers from SQL.
+        # If you do not cast the result as [String[]], ServerName will not take it due to the Parameter value
         $ServerName = [string[]](Get-PowerStigComputer | Select-Object -ExpandProperty TargetComputer)
     }
 
@@ -1089,27 +672,37 @@ function Invoke-PowerStigScan
         }
     }
 
-            # If Scap enabled -
+    # If Scap enabled
     if($RunScap -eq $True)
     {   
+        # Initialize SCAP variables
         $ScapInstallDir = $iniVar.ScapInstallDir
         $ScapOnlyRoles = Get-ScapOnlyRoles
         
         Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP Processing initialized."
-        $scapPath = "$logPath\SCAP"
-        if(Test-Path "$ScapPath\SCC")
+        # scapPath will hold SCAP settings such as hosts file and options.xml
+        # logPath\SCC will hold all SCAP results. Remove the old results to ensure there are no conflicts
+        ################  TODO  #####################
+        #                                           #
+        # Move Old SCAP results to compressed folder#
+        #                                           #
+        ################  END   #####################
+        $scapPath = Join-Path -Path $logPath -ChildPath "SCAP"
+        if(Test-Path (Join-Path -Path $logPath -ChildPath "SCC"))
         {
-            Remove-Item "$ScapPath\SCC" -Recurse -Force
+            Remove-Item (Join-Path -Path $logPath -ChildPath "SCC") -Recurse -Force
         }
 
         if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: scapPath = $scapPath"}
 
+        # Create scapPath if it does not exist
         if(-not(Test-Path $scapPath))
         {
             New-Item -Path $scapPath -ItemType Directory | Out-Null
             Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Created Scap Path at $scapPath"
         }
 
+        # Initialize Hash Table to get list of SCAP scans that are required
         $runList = @{
             "2012R2_MS" = 0
             "2012R2_DC" = 0
@@ -1117,14 +710,21 @@ function Invoke-PowerStigScan
             "2016_DC"   = 0
             "Client"    = 0
         }
+        # Initialize Arrays that will hold list of computers for each scan type to be added to hosts file consumed by SCAP
         $2012MS = @()
         $2012DC = @()
         $2016MS = @()
         $2016DC = @()
         $Client = @()
+        
         # Determing type of batch
         foreach($s in $ServerName)
         {
+            if($s -eq 'localhost')
+            {
+                $s = $ENV:ComputerName
+            }
+            # Get-PowerStigOS and Function is the lightweight information grab that just returns OSVerion and domain role (DC,MS,Client)
             if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Current Server is $s"}
             $tempInfo = Get-PowerStigOSandFunction -ServerName $s
             if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s version is $($s.OSVersion)"}
@@ -1398,6 +998,10 @@ function Invoke-PowerStigScan
     # Start of PowerStig scans as traditional means.
     foreach($s in $ServerName)
     {
+        if($s -eq 'localhost')
+        {
+            $s = $ENV:ComputerName
+        }
         # Check connection to remote server on WinRM
         Add-Content $logFilePath -Value "$(Get-Time):[$s][Info]: Testing Connectivity on port 5985 (WinRM)"
 

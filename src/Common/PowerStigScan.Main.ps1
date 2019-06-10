@@ -672,6 +672,9 @@ function Invoke-PowerStigScan
         }
     }
 
+    Add-Content $logFilePath -Value "$(Get-Time):[Info]: Cleaning old files."
+    Get-ChildItem $logPath -Directory -Recurse | Where-Object {$_.Name -notlike "*SCAP*" -and $_.Name -notlike "*SCC*" -and $CKLOutPath -notlike "$($_.FullName)*" -and $_.FullName -notlike "$CKLOutPath*" -and $_.Name -notlike "*PSOrgSettings*"} | Remove-Item -Force -Recurse
+    
     # If Scap enabled
     if($RunScap -eq $True)
     {   
@@ -691,6 +694,10 @@ function Invoke-PowerStigScan
         if(Test-Path (Join-Path -Path $logPath -ChildPath "SCC"))
         {
             Remove-Item (Join-Path -Path $logPath -ChildPath "SCC") -Recurse -Force
+        }
+        if(Test-Path $scapPath)
+        {
+            Remove-Item $scapPath -Recurse -Force
         }
 
         if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: scapPath = $scapPath"}
@@ -1293,7 +1300,7 @@ function Invoke-PowerStigScan
 
     if(-not(Test-Path "$cklOutPath\$folderName"))
     {
-        New-Item "$cklOutPath\$folderName" -ItemType Directory -Force
+        New-Item "$cklOutPath\$folderName" -ItemType Directory -Force | Out-Null
     }
 
     Get-ChildItem $cklOutPath | Where-Object {$_.mode -notlike "d*" -and $_.CreationTime -gt $startTime} | ForEach-Object {Move-Item -path $_.FullName -Destination "$cklOutPath\$folderName\$($_.Name)" -Force}

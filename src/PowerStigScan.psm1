@@ -1,4 +1,4 @@
-Import-Module PowerStig -RequiredVersion 3.1.0
+Import-Module PowerStig -RequiredVersion 3.2.0
 
 . $PsScriptRoot\Common\helpers.ps1
 . $PsScriptRoot\Common\PowerStigScan.Computer.ps1

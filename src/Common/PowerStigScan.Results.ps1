@@ -182,7 +182,7 @@ function Update-PowerStigCkl
 
     if(-not(Test-Path -Path $outPath))
     {
-        New-Item -ItemType Directory -Path $outPath -Force
+        New-Item -ItemType Directory -Path $outPath -Force | Out-Null
     }
 
     $CKL.save("$outPath\$outFileName")

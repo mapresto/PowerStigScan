@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--DISA STIG Viewer :: 2.9-->
-<!--STIG Version:4.24-->
+<!--STIG Version:4.25-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -39,11 +39,11 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>filename</SID_NAME>
-					<SID_DATA>U_Mozilla_FireFox_STIG_V4R24_Manual-xccdf.xml</SID_DATA>
+					<SID_DATA>U_Mozilla_FireFox_STIG_V4R25_Manual-xccdf.xml</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>releaseinfo</SID_NAME>
-					<SID_DATA>Release: 24 Benchmark Date: 25 Jan 2019</SID_DATA>
+					<SID_DATA>Release: 25 Benchmark Date: 26 Apr 2019</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>title</SID_NAME>
@@ -51,7 +51,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>a3b338f4-1862-4324-b97c-db0e05b54a9f</SID_DATA>
+					<SID_DATA>b85b664c-c78c-4dfc-867f-8ec186e8575d</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>
@@ -162,7 +162,7 @@ Note: In a Windows environment, use of policy setting "security.enterprise_roots
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -274,7 +274,7 @@ Criteria: If the value of "security.default_personal_cert" is set incorrectly or
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -402,7 +402,7 @@ If an extension exists and the entry in the Action column is associated with an 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -513,7 +513,7 @@ Criteria: If the value of "network.protocol-handler.external.shell" is not "fals
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -624,7 +624,7 @@ PDF, FDF, XFDF, LSL, LSO, LSS, IQY, RQY, XLK, XLS, XLT, POT, PPS, PPT, DOS, DOT,
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -736,7 +736,7 @@ Criteria: If the Mozilla ActiveX control and plugin support is present and enabl
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -846,7 +846,7 @@ Criteria: If the parameter is set incorrectly, then this is a finding.  If the s
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -955,7 +955,7 @@ If the setting is not locked, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1066,7 +1066,7 @@ If the setting is not locked, then this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1176,7 +1176,7 @@ Criteria: If the parameter is set incorrectly, then this is a finding.  If the s
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1287,7 +1287,7 @@ Criteria: If the parameter is set incorrectly, then this is a finding.  If the s
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1406,7 +1406,7 @@ LockPref "security.tls.version.max" is set to "3". </ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1516,7 +1516,7 @@ Criteria: If the parameter is set incorrectly, then this is a finding.  If the s
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1629,7 +1629,7 @@ If the setting is not locked, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1738,7 +1738,7 @@ Criteria: If the parameter is set incorrectly, then this is a finding.  If the s
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1848,7 +1848,7 @@ Criteria:  If the parameter is set incorrectly, then this is a finding.  If the 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1879,7 +1879,7 @@ Criteria:  If the parameter is set incorrectly, then this is a finding.  If the 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>Rule_ID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>SV-19509r2_rule</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>SV-19509r3_rule</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>Rule_Ver</VULN_ATTRIBUTE>
@@ -1902,9 +1902,9 @@ Criteria:  If the parameter is set incorrectly, then this is a finding.  If the 
 					<ATTRIBUTE_DATA>Method 1: View the following registry key: 
 HKLM\Software\Mozilla\Mozilla Firefox\CurrentVersion
 
-Method 2: Search for the firefox.exe file using the search feature of the operating system. Examine the files properties for the product version (not the file version. For Windows OS, determine the version of the file by examining navigating to Properties/Version/Product Version. Examine for all instances of firefox.exe that are present on the endpoint.
+Method 2: Search for the firefox.exe file using the search feature of the operating system. Examine the files properties for the product version (not the file version). For Windows OS, determine the version of the file by examining navigating to Properties/Version/Product Version. Examine for all instances of firefox.exe that are present on the endpoint.
 
-Criteria: If the version number of the firefox.exe file is less than 50.1.x (or ESR 45.7.x), this is a finding.</ATTRIBUTE_DATA>
+Criteria: If the FireFox version is not a supported Extended Service Release (ESR), this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>Fix_Text</VULN_ATTRIBUTE>
@@ -1960,7 +1960,7 @@ Criteria: If the version number of the firefox.exe file is less than 50.1.x (or 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1969,123 +1969,6 @@ Criteria: If the version number of the firefox.exe file is less than 50.1.x (or 
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
 					<ATTRIBUTE_DATA>CCI-003376</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STATUS>Not_Reviewed</STATUS>
-				<FINDING_DETAILS></FINDING_DETAILS>
-				<COMMENTS></COMMENTS>
-				<SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
-				<SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
-			</VULN>
-			<VULN>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Vuln_Num</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>V-19741</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Severity</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>medium</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Group_Title</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>DTBF080 - Firefox Preferences  Auto-update of Firefox</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Rule_ID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>SV-21887r3_rule</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Rule_Ver</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>DTBF080</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Rule_Title</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Firefox application is set to auto-update.</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Vuln_Discuss</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Allowing software updates from non-trusted sites can introduce settings that will override a secured installation of the application. This can place DoD information at risk. If this setting is enabled, then there are many other default settings which point to untrusted sites which must be changed to point to an authorized update site that is not publicly accessible.</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>IA_Controls</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Check_Content</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Type "about:config" in the browser window.
-
-Verify that:
-
-1. The preference name "app.update.enabled" is set to ”true” and locked.
-
-2. Verify that "app.update.url", "app.update.url.details", and "app.update.url.manual" contain url information that point to a trusted internal server or the default setting of “Mozilla.com” or “Mozilla.org”.
-
-Criteria: If the parameter is set incorrectly, this is a finding.
-
-If this setting is not locked, this is a finding.</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Fix_Text</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Ensure the preference "app.update.enable" is set and locked to the value of “True” or that a trusted server is used. </ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>False_Positives</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>False_Negatives</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Documentable</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>false</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Mitigations</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Potential_Impact</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Third_Party_Tools</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Mitigation_Control</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Responsibility</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>System Administrator</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Security_Override_Guidance</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA></ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Check_Content_Ref</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>M</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Weight</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>10.0</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>Class</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Unclass</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>205</ATTRIBUTE_DATA>
-				</STIG_DATA>
-				<STIG_DATA>
-					<VULN_ATTRIBUTE>CCI_REF</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>CCI-000381</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STATUS>Not_Reviewed</STATUS>
 				<FINDING_DETAILS></FINDING_DETAILS>
@@ -2188,7 +2071,7 @@ Criteria: If the parameter is set incorrectly, then this is a finding. If this s
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2315,7 +2198,7 @@ Note: Append line into local-settings.js file to include in the Mozilla config f
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2425,7 +2308,7 @@ Criteria: If the parameter is set incorrectly, then this is a finding. If the se
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2537,7 +2420,7 @@ If the value is locked, this is not a finding.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2650,7 +2533,7 @@ Ensure the preferences "datareporting.healthreport.uploadEnabled" is set and loc
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 24 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>Mozilla FireFox Security Technical Implementation Guide :: Version 4, Release: 25 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>

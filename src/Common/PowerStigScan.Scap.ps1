@@ -1,9 +1,9 @@
 function Get-PowerStigScapVersionMap
 {
     $verHash= @{
-        #PSTIGVer2.14 
+        #PSTIGVer2.15 
         "Windows_2012_MS"="2.14"
-        #PSTIGVer=2.15
+        #PSTIGVer=2.16
         "Windows_2012_DC"="2.15"
         #PSTIGVer=1.7
         "Windows_Server_2016"="1.8"
@@ -15,15 +15,17 @@ function Get-PowerStigScapVersionMap
         "Windows_10"="1.13"
         #PSTIGVer=1.16
         "IE_11"="1.12"
-        #PSTIGVer=1.6
+        #PSTIGVer=1.7
         "MS_Dot_Net_Framework"="1.5"
+        #PSTIGVer=4.25
+        "Mozilla_FireFox_Windows"="1.2"
         #Following does not have a corresponding PowerStig Equivilent
         #StigVer=1.4
         "Adobe_Acrobat_Reader_DC_Classic"="1.5"
         #StigVer=1.5
         "Adobe_Acrobat_Reader_DC_Continuous"="1.4"
         #StigVer=1.15
-        "Google_Chrome"="1.11"
+        "Google_Chrome_Current_Windows"="1.11"
     }
 
     Return $verHash
@@ -34,7 +36,7 @@ Function Get-ScapOnlyRoles
 {
     $sRoles =   "Adobe_Acrobat_Reader_DC_Classic",
                 "Adobe_Acrobat_Reader_DC_Continuous",
-                "Google_Chrome",
+                "Google_Chrome_Current_Windows",
                 "MS_Dot_Net_Framework"
 
     Return $sRoles
@@ -198,7 +200,7 @@ function Convert-PowerStigRoleToScap
         switch($Role)
         {
             "DotNetFramework"           {Return "MS_Dot_Net_Framework"}
-            "FireFox"                   {Return $null}
+            "FireFox"                   {Return "Mozilla_FireFox_Windows"}
             "IISServer"                 {Return $null}
             "IISSite"                   {Return $null}
             "InternetExplorer"          {Return "IE_11"}
@@ -237,14 +239,15 @@ Function Convert-ScapRoleToPowerStig
     
     switch -Wildcard ($Role)
     {
-        "*Windows_Server_2016*"           {if($isDomainController){Return "WindowsServer-DC"}else{Return "WindowsServer-MS"}}
-        "*Windows_2012_MS*"               {Return "WindowsServer-MS"}
-        "*Windows_2012_DC*"               {Return "WindowsServer-DC"}
-        "*Windows_Firewall*"              {Return "WindowsFirewall"}
-        "*Windows_Defender_Antivirus*"    {Return "WindowsDefender"}
-        "*Windows_10*"                    {Return "WindowsClient"}
-        "IE_11*"                          {Return "InternetExplorer"}
-        "*MS_Dot_Net_Framework*"          {Return "DotNetFramework"}
+        "*Windows_Server_2016*"             {if($isDomainController){Return "WindowsServer-DC"}else{Return "WindowsServer-MS"}}
+        "*Windows_2012_MS*"                 {Return "WindowsServer-MS"}
+        "*Windows_2012_DC*"                 {Return "WindowsServer-DC"}
+        "*Windows_Firewall*"                {Return "WindowsFirewall"}
+        "*Windows_Defender_Antivirus*"      {Return "WindowsDefender"}
+        "*Windows_10*"                      {Return "WindowsClient"}
+        "IE_11*"                            {Return "InternetExplorer"}
+        "*MS_Dot_Net_Framework*"            {Return "DotNetFramework"}
+        "*Mozilla_FireFox_Windows*"         {Return "FireFox"}
     }
 
 }

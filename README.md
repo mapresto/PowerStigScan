@@ -7,7 +7,7 @@
 2.0.0.0 - Expected Release Early June  
 
 ## What's New!
-## Support for PowerStig 3.1.0
+## Support for PowerStig 3.2.0
 
 ### SCAP Integration
 With 2.0.0.0 we have introduced integration with the DISA SCAP Compliance Checker (SCC) tool. This is not a requirement to
@@ -74,27 +74,26 @@ In order to use the SQL Batch functionality, the target servers must exist in th
 #### (Can run in PowerStig only or PowerStig + SCAP modes)
 Windows Server 2016 Member Server - 1.7  
 Windows Server 2016 Domain Controller -1.7  
-Windows Server 2012R2 Member Server - 2.14  
-Windows Server 2012R2 Domain Controller - 2.15  
+Windows Server 2012R2 Member Server - 2.15  
+Windows Server 2012R2 Domain Controller - 2.16  
 Windows 10 Client - 1.16  
 Internet Explorer 11 - 1.16  
 Windows Firewall - 1.7  
-Windows Defender - 1.4  
+Windows Defender - 1.4
+Mozilla Firefox - 4.25   
 
 ### PowerStig Only
 Excel 2013 - 1.7  
 PowerPoint 2013 - 1.6  
 Word 2013 - 1.6  
 Outlook 2013 - 1.13  
-Mozilla Firefox - 4.24  
-Windows Server 2012R2 DNS Server - 1.11  
-Oracle Java Runtime - 1.5  
+Windows Server 2012R2 DNS Server - 1.11    
 
 ### SCAP Only (Versions listed are for manual checklists)
 Adobe Acrobat Reader DC Classic - 1.4  
 Adobe Acrobat Reader DC Continuous - 1.5  
 Google Chrome - 1.15  
-.Net Framework - 1.6  
+.Net Framework - 1.7  
 
 ## Known Issues
 IIS, JRE, and SQL scans are not complete. We need to determine the information dynamically as storing static information will

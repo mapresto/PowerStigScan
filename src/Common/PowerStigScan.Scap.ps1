@@ -2,9 +2,9 @@ function Get-PowerStigScapVersionMap
 {
     $verHash= @{
         #PSTIGVer2.15 
-        "Windows_2012_MS"="2.14"
+        "Windows_2012_MS"="2.15"
         #PSTIGVer=2.16
-        "Windows_2012_DC"="2.15"
+        "Windows_2012_DC"="2.16"
         #PSTIGVer=1.7
         "Windows_Server_2016"="1.8"
         #PSTIGVer=1.7
@@ -16,7 +16,7 @@ function Get-PowerStigScapVersionMap
         #PSTIGVer=1.16
         "IE_11"="1.12"
         #PSTIGVer=1.7
-        "MS_Dot_Net_Framework"="1.5"
+        "MS_Dot_Net_Framework"="1.7"
         #PSTIGVer=4.25
         "Mozilla_FireFox_Windows"="1.2"
         #Following does not have a corresponding PowerStig Equivilent

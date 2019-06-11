@@ -206,10 +206,27 @@ process
                 }
                 "FireFox" {
                     Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding FireFox Configuration"
+                    
+                    try
+                    {
+                        $installDirectory = (Get-PowerStigFireFoxDirectory -ServerName $ComputerName)
+                    }
+                    catch
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ComputerName][FireFoxDSC][ERROR]:$_"
+                        Return
+                    }
+
+                    if($null -eq $installDirectory -or $installDirectory -eq "")
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ComputerName][FireFoxDSC][ERROR]:Could not find FireFox install directory."
+                        Return
+                    }
+                    
                     FireFox Firefox
                     {
                         StigVersion         = (Get-PowerStigXMLVersion -Role "FireFox")
-                        InstallDirectory    = (Get-PowerStigFireFoxDirectory -ServerName $ComputerName)
+                        InstallDirectory    = $installDirectory
                         OrgSettings         = $OrgSettingsFilePath
                     }
                 }

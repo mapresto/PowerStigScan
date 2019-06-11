@@ -534,6 +534,26 @@ function Get-PowerStigIsJRE
 
 
 #region Public
+    # Scan Role via PowerSTIG
+    # Generate Org File information per role, store in temp folder in $ServerFilePath\PSOrgSettings\$r_org.xml
+    # This is the difficult spot, if SQL is enabled, store the data in the database and recall when scap is done
+    # If +SQL+SCAP Stor and check if SCAP complete (should check only once per run). 
+        # If not, dump var to retrieve from DB after all scanning complete
+        # Control number of PS scans from DB controlled metric
+    # If +SQL-SCAP Stor and process results into new CKL
+        # Send results to DB and proceed to build CKL file from the data present.
+        # Control number of PS scans from DB controlled metric
+    # If -SQL-SCAP process results into new CKL
+        # Control number of PS scans from config.ini controlled metric
+    # If -SQL+SCAP....
+        # Attempt to hold data in memory until SCAP completes?
+        # Wait to start PowerStig until SCAP completes?
+        # Write results to temp file until all scans complete?
+        # Refuse configuration???? Cry in a corner???? Who would do such a thing? oh yeah... users.
+    
+    #If +SQL check for OrgSettings in Database, else see if there is a file generated in the local path.
+    #if Neither database nor fileExists, copy from PowerSTIG module path to OrgPath. This will allow for a persistent
+    #org settings file that can be reused, even after reinstall.
 
 # M07
 <#
@@ -1003,6 +1023,11 @@ function Invoke-PowerStigScan
 
     $evalServers = @()
     # Start of PowerStig scans as traditional means.
+    ########################################################################
+    ##
+    ## Start of MOF Generation
+    ##
+    ########################################################################
     foreach($s in $ServerName)
     {
         if($s -eq 'localhost')
@@ -1117,30 +1142,6 @@ function Invoke-PowerStigScan
             New-Item -Path $OrgPath -ItemType Directory -Force | Out-Null
         }
     
-        # Scan Role via PowerSTIG
-        # Generate Org File information per role, store in temp folder in $ServerFilePath\PSOrgSettings\$r_org.xml
-        ##########################################################################################################
-        # POWERSTIG PORTION ############################################################################ YAY #####
-        ##########################################################################################################
-
-        # This is the difficult spot, if SQL is enabled, store the data in the database and recall when scap is done
-        # If +SQL+SCAP Stor and check if SCAP complete (should check only once per run). 
-            # If not, dump var to retrieve from DB after all scanning complete
-            # Control number of PS scans from DB controlled metric
-        # If +SQL-SCAP Stor and process results into new CKL
-            # Send results to DB and proceed to build CKL file from the data present.
-            # Control number of PS scans from DB controlled metric
-        # If -SQL-SCAP process results into new CKL
-            # Control number of PS scans from config.ini controlled metric
-        # If -SQL+SCAP....
-            # Attempt to hold data in memory until SCAP completes?
-            # Wait to start PowerStig until SCAP completes?
-            # Write results to temp file until all scans complete?
-            # Refuse configuration???? Cry in a corner???? Who would do such a thing? oh yeah... users.
-        
-        #If +SQL check for OrgSettings in Database, else see if there is a file generated in the local path.
-        #if Neither database nor fileExists, copy from PowerSTIG module path to OrgPath. This will allow for a persistent
-        #org settings file that can be reused, even after reinstall.
         foreach($r in $roles.roles)
         {
             $orgFileName = "$orgPath\$($r)_org.xml"
@@ -1258,6 +1259,11 @@ function Invoke-PowerStigScan
         }
 
     }
+    #####################################################################################################
+    ##
+    ##  End MOF Creation
+    ##
+    #####################################################################################################
 
     
     $concurrentScans = $iniVar.ConcurrentScans

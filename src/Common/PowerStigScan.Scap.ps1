@@ -42,7 +42,88 @@ Function Get-ScapOnlyRoles
     Return $sRoles
 }
 
+function Convert-PowerStigRoleToScap
+{
+    [cmdletBinding()]
+    param(
+        [Parameter(Mandatory=$false)]
+        [ValidateSet("2016","2012R2","10","All")]
+        [String]$OsVersion
+    )
+    DynamicParam {
+        $ParameterName = 'Role'
+        $RuntimeParameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
+        $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
+        $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
+        $ParameterAttribute.Mandatory = $true
+        $AttributeCollection.Add($ParameterAttribute)
+        $roleSet = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
+        $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
+        $AttributeCollection.Add($ValidateSetAttribute)
+        $RuntimeParameter = New-Object System.Management.Automation.RuntimeDefinedParameter($ParameterName, [string], $AttributeCollection)
+        $RuntimeParameterDictionary.Add($ParameterName, $RuntimeParameter)
+        return $RuntimeParameterDictionary
+    }
 
+    begin{
+        $Role = $PSBoundParameters[$ParameterName]
+    }
+
+    process{
+        switch($Role)
+        {
+            "DotNetFramework"           {Return "MS_Dot_Net_Framework"}
+            "FireFox"                   {Return "Mozilla_FireFox_Windows"}
+            "IISServer"                 {Return $null}
+            "IISSite"                   {Return $null}
+            "InternetExplorer"          {Return "IE_11"}
+            "Excel2013"                 {Return $null}
+            "Outlook2013"               {Return $null}
+            "PowerPoint2013"            {Return $null}
+            "Word2013"                  {Return $null}
+            "OracleJRE"                 {Return $null}
+            "SqlServer-2012-Database"   {Return $null}
+            "SqlServer-2012-Instance"   {Return $null}
+            "SqlServer-2016-Instance"   {Return $null}
+            "WindowsClient"             {Return "Windows_10"}
+            "WindowsDefender"           {Return "Windows_Defender_Antivirus"}
+            "WindowsDNSServer"          {Return $null}
+            "WindowsFirewall"           {Return "Windows_Firewall"}
+            "WindowsServer-DC"          {if($OsVersion -eq "2016"){Return "Windows_Server_2016"}
+                                    elseif($OsVersion -eq "2012R2"){Return "Windows_2012_DC"} }
+            "WindowsServer-MS"          {if($OsVersion -eq "2016"){Return "Windows_Server_2016"}
+                                    elseif($OsVersion -eq "2012R2"){Return "Windows_2012_MS"} }
+        }
+    }
+}
+
+Function Convert-ScapRoleToPowerStig
+{
+    [cmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [String]$Role,
+
+        [Parameter(Mandatory=$false)]
+        [Switch]$isDomainController
+    )
+
+
+    
+    switch -Wildcard ($Role)
+    {
+        "*Windows_Server_2016*"             {if($isDomainController){Return "WindowsServer-DC"}else{Return "WindowsServer-MS"}}
+        "*Windows_2012_MS*"                 {Return "WindowsServer-MS"}
+        "*Windows_2012_DC*"                 {Return "WindowsServer-DC"}
+        "*Windows_Firewall*"                {Return "WindowsFirewall"}
+        "*Windows_Defender_Antivirus*"      {Return "WindowsDefender"}
+        "*Windows_10*"                      {Return "WindowsClient"}
+        "IE_11*"                            {Return "InternetExplorer"}
+        "*MS_Dot_Net_Framework*"            {Return "DotNetFramework"}
+        "*Mozilla_FireFox_Windows*"         {Return "FireFox"}
+    }
+
+}
 
 
 function Get-PowerStigScapResults
@@ -167,89 +248,6 @@ function Get-PowerScapOutputPath
     $directory = $results[$results.count - 1].replace("userDataDirectory = ","")
 
     return $directory
-}
-
-function Convert-PowerStigRoleToScap
-{
-    [cmdletBinding()]
-    param(
-        [Parameter(Mandatory=$false)]
-        [ValidateSet("2016","2012R2","10","All")]
-        [String]$OsVersion
-    )
-    DynamicParam {
-        $ParameterName = 'Role'
-        $RuntimeParameterDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
-        $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
-        $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
-        $ParameterAttribute.Mandatory = $true
-        $AttributeCollection.Add($ParameterAttribute)
-        $roleSet = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
-        $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
-        $AttributeCollection.Add($ValidateSetAttribute)
-        $RuntimeParameter = New-Object System.Management.Automation.RuntimeDefinedParameter($ParameterName, [string], $AttributeCollection)
-        $RuntimeParameterDictionary.Add($ParameterName, $RuntimeParameter)
-        return $RuntimeParameterDictionary
-    }
-
-    begin{
-        $Role = $PSBoundParameters[$ParameterName]
-    }
-
-    process{
-        switch($Role)
-        {
-            "DotNetFramework"           {Return "MS_Dot_Net_Framework"}
-            "FireFox"                   {Return "Mozilla_FireFox_Windows"}
-            "IISServer"                 {Return $null}
-            "IISSite"                   {Return $null}
-            "InternetExplorer"          {Return "IE_11"}
-            "Excel2013"                 {Return $null}
-            "Outlook2013"               {Return $null}
-            "PowerPoint2013"            {Return $null}
-            "Word2013"                  {Return $null}
-            "OracleJRE"                 {Return $null}
-            "SqlServer-2012-Database"   {Return $null}
-            "SqlServer-2012-Instance"   {Return $null}
-            "SqlServer-2016-Instance"   {Return $null}
-            "WindowsClient"             {Return "Windows_10"}
-            "WindowsDefender"           {Return "Windows_Defender_Antivirus"}
-            "WindowsDNSServer"          {Return $null}
-            "WindowsFirewall"           {Return "Windows_Firewall"}
-            "WindowsServer-DC"          {if($OsVersion -eq "2016"){Return "Windows_Server_2016"}
-                                    elseif($OsVersion -eq "2012R2"){Return "Windows_2012_DC"} }
-            "WindowsServer-MS"          {if($OsVersion -eq "2016"){Return "Windows_Server_2016"}
-                                    elseif($OsVersion -eq "2012R2"){Return "Windows_2012_MS"} }
-        }
-    }
-}
-
-Function Convert-ScapRoleToPowerStig
-{
-    [cmdletBinding()]
-    param(
-        [Parameter(Mandatory=$true)]
-        [String]$Role,
-
-        [Parameter(Mandatory=$false)]
-        [Switch]$isDomainController
-    )
-
-
-    
-    switch -Wildcard ($Role)
-    {
-        "*Windows_Server_2016*"             {if($isDomainController){Return "WindowsServer-DC"}else{Return "WindowsServer-MS"}}
-        "*Windows_2012_MS*"                 {Return "WindowsServer-MS"}
-        "*Windows_2012_DC*"                 {Return "WindowsServer-DC"}
-        "*Windows_Firewall*"                {Return "WindowsFirewall"}
-        "*Windows_Defender_Antivirus*"      {Return "WindowsDefender"}
-        "*Windows_10*"                      {Return "WindowsClient"}
-        "IE_11*"                            {Return "InternetExplorer"}
-        "*MS_Dot_Net_Framework*"            {Return "DotNetFramework"}
-        "*Mozilla_FireFox_Windows*"         {Return "FireFox"}
-    }
-
 }
 
 Function Set-PowerStigScapBasicOptions

@@ -467,7 +467,7 @@ function Get-PowerStigFireFoxDirectory
         [Parameter(Mandatory=$true)]
         [String]$ServerName
     )
-    $InstallDirectory = invoke-command -ComputerName $ServerName -scriptblock {(get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox\$((get-itemproperty "HKLM:\Software\Mozilla\Mozilla Firefox").currentversion)\Main")."Install Directory"}
+    $InstallDirectory = invoke-command -ComputerName $ServerName -scriptblock {(get-itemproperty "$((Get-ChildItem "HKLM:\SOFTWARE\Mozilla\Mozilla FireFox").Name.Replace("HKEY_LOCAL_MACHINE","HKLM:"))\Main")."Install Directory"}
 
     Return $InstallDirectory
 }

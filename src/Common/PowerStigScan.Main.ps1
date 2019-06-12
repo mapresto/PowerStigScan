@@ -1040,7 +1040,7 @@ function Invoke-PowerStigScan
         if((Test-NetConnection -ComputerName $s -CommonTCPPort WINRM).TcpTestSucceeded -eq $false)
         {
             Add-Content -path $logFilePath -Value "$(Get-Time):[$s][Error]: Connection to $s Failed. Check network connectivity and that the server is listening for WinRM"
-            Return
+            Continue
         }
         else 
         {
@@ -1058,7 +1058,7 @@ function Invoke-PowerStigScan
             catch {
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Query for WSMAN properties failed. Check user context that this is running under."
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
-                Return
+                Continue
             }
             
         }
@@ -1070,7 +1070,7 @@ function Invoke-PowerStigScan
             catch {
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Query for WSMAN properties failed. Check user context that this is running under."
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
-                Return
+                Continue
             }
         }
     
@@ -1087,7 +1087,7 @@ function Invoke-PowerStigScan
             {
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Setting WSMAN failed on $s."
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
-                Return
+                Continue
             }
         }
         elseif($maxEnvelope -lt 10000 -and $s -eq $ENV:ComputerName)
@@ -1102,7 +1102,7 @@ function Invoke-PowerStigScan
             {
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Setting WSMAN failed on $s."
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
-                Return
+                Continue
             }
         }
         else

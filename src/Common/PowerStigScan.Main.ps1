@@ -1342,14 +1342,14 @@ Function Start-PowerStigDSCScan
     $cklOutPath     = $iniVar.CKLOutPath
     $logPath        = $iniVar.LogPath
     $logDate        = get-date -UFormat %m%d
-    $logFileName    = "PowerStig"+ $logDate + ".txt"
+    $logFileName    = "PowerStigJobLog"+ $logDate + ".txt"
     
-    if(!(Test-Path -Path "$logPath\$ServerName\$logFileName"))
+    if(!(Test-Path -Path "$logPath\$logFileName"))
     {
-        $logFilePath = new-item -ItemType File -Path "$logPath\$ServerName\$logFileName" -Force
+        $logFilePath = new-item -ItemType File -Path "$logPath\$logFileName" -Force
     }
     else {
-        $logFilePath = get-item -Path "$logPath\$ServerName\$logFileName"
+        $logFilePath = get-item -Path "$logPath\$logFileName"
     }
 
     if($isSql)
@@ -1358,36 +1358,59 @@ Function Start-PowerStigDSCScan
         $DatabaseName    = $iniVar.DatabaseName
     }
 
-    Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][Info]: Starting DSC Scan for $ServerName"
+    Function Write-PowerStigPSLog
+    {
+        param(
+            [String]$Path,
+            [String]$Value
+        )
+
+        $mutex = [System.Threading.Mutex]::new($false,'LogWrite')
+
+        $mutex.WaitOne()
+
+        try{
+            Add-Content -path $Path -Value $Value
+        }
+        catch{
+            Write-Host "Logging failed due to process holding the log file open"
+        }
+        finally{
+            $mutex.ReleaseMutex()
+            $mutex.Dispose()
+        }
+    }
+
+    Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][Info]: Starting DSC Scan for $ServerName"
     if($DebugScript)
     {
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: Initialized Values:"
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: isScap is $isScap"
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: isSql is $isSql"
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: SqlInstanceName is $SqlInstanceName"
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: DatabaseName is $DatabaseName"
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: cklOutPath is $cklOutPath"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: Initialized Values:"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: isScap is $isScap"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: isSql is $isSql"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: SqlInstanceName is $SqlInstanceName"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: DatabaseName is $DatabaseName"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: cklOutPath is $cklOutPath"
     }
 
     $mofList = @(get-childitem -Path "C:\Temp\PowerStig\$ServerName\PowerStig\*" -Include "$ServerName*.mof" -Recurse)
 
     if($DebugScript)
     {
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: Found the following mofs"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: Found the following mofs"
         foreach($m in $mofList)
         {
             $tech = $m.Name.split("_")[$m.Name.Split("_").count - 1].replace(".mof","")
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: $tech"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: $tech"
         }
     }
 
     foreach($m in $mofList)
     {
         $r = $m.Name.split("_")[$m.Name.Split("_").count - 1].replace(".mof","")
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][DSC]: Starting scan for $r on $ServerName"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][DSC]: Starting scan for $r on $ServerName"
         if($DebugScript)
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][DSC][DEBUG]: Test-DscConfiguration -ComputerName $Servername -ReferenceConfiguration $($m.FullName)"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][DSC][DEBUG]: Test-DscConfiguration -ComputerName $Servername -ReferenceConfiguration $($m.FullName)"
         }
         try
         {
@@ -1395,12 +1418,12 @@ Function Start-PowerStigDSCScan
         }
         catch
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][ERROR]: $_"
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][ERROR]: mof variable is $($m.FullName)"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][ERROR]: $_"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][ERROR]: mof variable is $($m.FullName)"
             Continue
         }
 
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][Info]: Converting results to PSObjects"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][Info]: Converting results to PSObjects"
 
         try
         {
@@ -1409,13 +1432,13 @@ Function Start-PowerStigDSCScan
         }
         catch
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][ERROR]: $_"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][ERROR]: $_"
             Continue
         }
 
         if($isSql)
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Importing Results to Database for $ServerName and role $r."
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Importing Results to Database for $ServerName and role $r."
 
             Import-PowerStigObject -Servername $ServerName -InputObj $convertObj -Role $r -ScanSource 'POWERSTIG' -ScanVersion (Get-PowerStigXmlVersion -Role $r -osVersion $osVersion)
         }
@@ -1431,20 +1454,31 @@ Function Start-PowerStigDSCScan
             {
                 # Determine SCAP Results File or Pass Hash
                 $ScapFile = Get-ChildItem "$logPath\SCC\Results\$ServerName\XML\" -Recurse | Where-Object {$_.Name -like "*XCCDF*" -and $_.Name -like "*$ScapRole*"}
-                $ScapHash = Get-PowerStigScapResults -ScapResultsXccdf $ScapFile.FullName -OutHash
-
-                foreach($k in $resultHash.Keys)
+                if($null -ne $ScapFile)
                 {
-                    if($ScapHash.ContainsKey($k))
+                    $ScapHash = Get-PowerStigScapResults -ScapResultsXccdf $ScapFile.FullName -OutHash
+
+                    foreach($k in $resultHash.Keys)
                     {
-                        $outHash.add("$k",$($ScapHash.$k))
-                        $SourceHash.add("$k","1")
+                        if($ScapHash.ContainsKey($k))
+                        {
+                            $outHash.add("$k",$($ScapHash.$k))
+                            $SourceHash.add("$k","1")
+                        }
+                        else
+                        {
+                            $outHash.add("$k",$($resultHash.$k))
+                            $SourceHash.add("$k","0")
+                        }
                     }
-                    else
+                }
+                else 
+                {
+                    foreach($k in $resultHash.keys)
                     {
-                        $outHash.add("$k",$($resultHash.$k))
                         $SourceHash.add("$k","0")
                     }
+                    $outHash = $resultHash 
                 }
 
                 # if DSC hash and SCAP hash has same key - Default to SCAP hash
@@ -1474,6 +1508,20 @@ Function Start-PowerStigDSCScan
         Update-PowerStigCkl -ServerName $ServerName -Role $r -osVersion $osVersion -InputObject $outHash -outPath $cklOutPath -SourceHash $SourceHash
         # End -not isScap - Compare/Create Results
     }
+}
+
+Function Install-PowerStigSQLDatabase
+{
+    param(
+        [Parameter(ParameterSetName='Set1',Position=0,Mandatory=$true)][String]$SqlInstanceName,
+        [parameter(ParameterSetName='Set1',Position=1,Mandatory=$true)][String]$DatabaseName    
+    )
+
+    $workingPath    = Split-Path $PsCommandPath
+
+    & $workingPath\..\SQL\DBdeployer.ps1 -DBServerName $SqlInstanceName -DatabaseName $DatabaseName
+
+    Set-PowerStigConfig -SqlInstanceName $SqlInstanceName -DatabaseName $DatabaseName
 }
 
 #endregion Public

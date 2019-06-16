@@ -8,5 +8,5 @@ Import-Module PowerStig -RequiredVersion 3.2.0
 . $PsScriptRoot\Common\PowerStigScan.Main.ps1
 
 Export-ModuleMember -Function @('Invoke-PowerStigScan','Add-PowerStigComputer','Get-PowerStigSqlConfig','Set-PowerStigSqlConfig',
-                                'Get-PowerStigConfig','Get-PowerStigComputer','Set-PowerStigComputer',
-                                'Remove-PowerStigComputer','Get-PowerStigOrgSettings','Start-PowerStigDSCScan')
+                                'Get-PowerStigConfig','Get-PowerStigComputer','Set-PowerStigComputer','Set-PowerStigConfig',
+                                'Remove-PowerStigComputer','Get-PowerStigOrgSettings','Start-PowerStigDSCScan','Install-PowerStigSQLDatabase')

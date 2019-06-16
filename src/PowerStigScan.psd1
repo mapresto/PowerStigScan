@@ -95,7 +95,8 @@
         'Get-PowerStigConfig',
         'Set-PowerStigConfig',
         'Get-PowerStigOrgSettings',
-        'Start-PowerStigDSCScan'
+        'Start-PowerStigDSCScan',
+        'Install-PowerStigSQLDatabase'
         )
     
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -139,7 +140,8 @@
             Consolidated scanning functions to a single function
             Added additional, optional integration with SCAP
             Removed dependency on SQL for bulk scan and CKL generation
-            Added switches to make SQL and SCAP optional components'
+            Added switches to make SQL and SCAP optional components
+            Added Install-PowerStigSQLDatabase to ease the creation of SQL objects'
     
         } # End of PSData hashtable
     

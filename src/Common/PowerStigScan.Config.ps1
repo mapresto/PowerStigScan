@@ -336,7 +336,7 @@ function Set-PowerStigConfig
 
     $someFile += "; All Entries are space sensitive. Further versions will fix input validation.`r`n"
     $someFile += "; Concurrent scan option is only used here if you are running a standalone function`r`n"
-    $someFile += "       ;   else it falls back to SQL configuration`r`n"
+    $someFile += ";   else it falls back to SQL configuration`r`n"
     $someFile += "`r`n"
     $someFile += "[general]`r`n"
     $someFile += "CKLOutPath=$($workingObj.CKLOutPath)`r`n"

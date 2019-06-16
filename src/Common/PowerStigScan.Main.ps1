@@ -1367,7 +1367,7 @@ Function Start-PowerStigDSCScan
 
         $mutex = [System.Threading.Mutex]::new($false,'LogWrite')
 
-        $mutex.WaitOne()
+        $mutex.WaitOne() | Out-Null
 
         try{
             Add-Content -path $Path -Value $Value

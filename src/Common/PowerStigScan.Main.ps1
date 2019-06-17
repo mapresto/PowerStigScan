@@ -1479,14 +1479,17 @@ Function Start-PowerStigDSCScan
                             $SourceHash.add("$k","0")
                         }
                     }
+                    if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: SCAP and PowerShell results have been compared and hash tables created."}
                 }
                 else 
                 {
                     foreach($k in $resultHash.keys)
                     {
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][Warning]: SCAP results not found for $ServerName and role $r."
                         $SourceHash.add("$k","0")
                     }
                     $outHash = $resultHash 
+                    if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: Results Hash table created for $ServerName and $r created."}
                 }
 
                 # if DSC hash and SCAP hash has same key - Default to SCAP hash
@@ -1501,6 +1504,8 @@ Function Start-PowerStigDSCScan
                     $SourceHash.add("$k","0")
                 }
                 $outHash = $resultHash
+                if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: Results Hash table created for $ServerName and $r created."}
+
             }
 
         } #End isScap - Compare/Create Results
@@ -1515,7 +1520,12 @@ Function Start-PowerStigDSCScan
         
         Update-PowerStigCkl -ServerName $ServerName -Role $r -osVersion $osVersion -InputObject $outHash -outPath $cklOutPath -SourceHash $SourceHash
         # End -not isScap - Compare/Create Results
+
+        
+
     }
+
+    Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Job complete for server $ServerName"
 }
 
 Function Install-PowerStigSQLDatabase

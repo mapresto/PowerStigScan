@@ -643,6 +643,8 @@ function Invoke-PowerStigScan
     $logPath                    = $iniVar.LogPath
     $cklOutPath                 = $iniVar.cklOutPath
 
+    $Global:ProgressPreference = 'SilentlyContinue'
+
     $StartTime = Get-Date
 
     # Create the log path and file if they do not already exist.
@@ -751,10 +753,15 @@ function Invoke-PowerStigScan
             {
                 $s = $ENV:ComputerName
             }
-            # Get-PowerStigOS and Function is the lightweight information grab that just returns OSVerion and domain role (DC,MS,Client)
+            # Get-PowerStigOSandFunction is the lightweight information grab that just returns OSVerion and domain role (DC,MS,Client)
             if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Current Server is $s"}
+            if((Test-NetConnection -ComputerName $s -CommonTCPPort WINRM -WarningAction SilentlyContinue).TcpTestSucceeded -eq $false)
+            {
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[ERROR]: Could not connect to $s over WINRM. Moving to next server."
+                Continue
+            }
             $tempInfo = Get-PowerStigOSandFunction -ServerName $s
-            if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s version is $($s.OSVersion)"}
+            if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s version is $($tempInfo.OSVersion)"}
             if($tempInfo.OsVersion -eq "2012R2")
             {
                 if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s is 2012R2 = True"}
@@ -1037,7 +1044,7 @@ function Invoke-PowerStigScan
         # Check connection to remote server on WinRM
         Add-Content $logFilePath -Value "$(Get-Time):[$s][Info]: Testing Connectivity on port 5985 (WinRM)"
 
-        if((Test-NetConnection -ComputerName $s -CommonTCPPort WINRM).TcpTestSucceeded -eq $false)
+        if((Test-NetConnection -ComputerName $s -CommonTCPPort WINRM -WarningAction SilentlyContinue).TcpTestSucceeded -eq $false)
         {
             Add-Content -path $logFilePath -Value "$(Get-Time):[$s][Error]: Connection to $s Failed. Check network connectivity and that the server is listening for WinRM"
             Continue
@@ -1245,6 +1252,7 @@ function Invoke-PowerStigScan
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: mof generation failed when running:"
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $RunExpression"
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
+                Pop-Location
                 Continue
             }
         
@@ -1522,6 +1530,9 @@ Function Install-PowerStigSQLDatabase
     & $workingPath\..\SQL\DBdeployer.ps1 -DBServerName $SqlInstanceName -DatabaseName $DatabaseName
 
     Set-PowerStigConfig -SqlInstanceName $SqlInstanceName -DatabaseName $DatabaseName
+
+    # TODO #
+    # Add function to import org settings automatically
 }
 
 #endregion Public

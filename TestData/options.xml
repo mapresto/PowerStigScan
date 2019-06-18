@@ -1,0 +1,1359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<options>
+      <!-- ******************************************************************************* -->
+      <!--   This file is created by and frequently overwritten by the SCC Application.  * -->
+      <!--                     Manual editing is not recommended.                        * -->
+      <!-- ******************************************************************************* -->
+      <!-- *********** General Scanning Options ***************** -->
+      <scapScan>1</scapScan>
+      <ovalScan>0</ovalScan>
+      <ocilScan>1</ocilScan>
+      <reviewType>multiremote</reviewType>
+      <offlineConfigPath></offlineConfigPath>
+      <!-- *********** Remote Scanning Options (Windows Only) ***************** -->
+      <hostName></hostName>
+      <hostFile>C:\Temp\PowerStig\SCC\Hosts.txt</hostFile>
+      <remoteWMIEnabled>1</remoteWMIEnabled>
+      <!-- *********** SCAP Processing Options ***************** -->
+      <ignoreCPEOVALResults>0</ignoreCPEOVALResults>
+      <downloadExternalFiles>0</downloadExternalFiles>
+      <forceOVAL510>0</forceOVAL510>
+      <!-- *********** OVAL Processing Options ***************** -->
+      <ignoreRemoteFileSystems>0</ignoreRemoteFileSystems>
+      <ignoreCase>0</ignoreCase>
+      <itemCreationThresholdEnabled>0</itemCreationThresholdEnabled>
+      <itemCreationThreshold>50000</itemCreationThreshold>
+      <!-- *********** OVAL Processing Options (UNIX Only) ***************** -->
+      <maskPasswords>1</maskPasswords>
+      <useGetpwent>0</useGetpwent>
+      <ignoreFileExtendedACL>1</ignoreFileExtendedACL>
+      <!-- *********** OVAL Processing Options (Windows Only) ***************** -->
+      <onlyCollectSecurityPrinciplesThatHavePrivilegesAssigned>0</onlyCollectSecurityPrinciplesThatHavePrivilegesAssigned>
+      <windowsRegistryUserAge>30</windowsRegistryUserAge>
+      <!-- *********** Scan Reporting Options ***************** -->
+      <allSettingsHTMLReport>1</allSettingsHTMLReport>
+      <allSettingsTextReport>0</allSettingsTextReport>
+      <nonComplianceHTMLReport>0</nonComplianceHTMLReport>
+      <nonComplianceTextReport>0</nonComplianceTextReport>
+      <allSettingsSummaryHTMLReport>0</allSettingsSummaryHTMLReport>
+      <allSettingsSummaryTextReport>0</allSettingsSummaryTextReport>
+      <nonComplianceSummaryHTMLReport>0</nonComplianceSummaryHTMLReport>
+      <nonComplianceSummaryTextReport>0</nonComplianceSummaryTextReport>
+      <!-- *********** XML Results Options ***************** -->
+      <keepXCCDFXML>1</keepXCCDFXML>
+      <keepOVALXML>0</keepOVALXML>
+      <keepOCILXML>0</keepOCILXML>
+      <keepARFXML>0</keepARFXML>
+      <keepCPEXML>0</keepCPEXML>
+      <!-- *********** Summary Viewer Options ***************** -->
+      <enableSummaryViewer>0</enableSummaryViewer>
+      <summaryViewerMaxReports>50000</summaryViewerMaxReports>
+      <summaryViewerSort1>Session</summaryViewerSort1>
+      <summaryViewerSort2>Stream</summaryViewerSort2>
+      <summaryViewerSort3>Host</summaryViewerSort3>
+      <!-- *********** Logging Options ***************** -->
+      <keepScreenLogs>0</keepScreenLogs>
+      <debugEnabled>0</debugEnabled>
+      <suppress_warnings>0</suppress_warnings>
+      <!-- *********** Output Options ***************** -->
+      <sharedOptions>1</sharedOptions>
+      <userDataDirectory>C:\Temp\PowerStig\SCC</userDataDirectory>
+      <userDataDirectoryValue>4</userDataDirectoryValue>
+      <setRestrictedPermissions>1</setRestrictedPermissions>
+      <!-- *********** Output Subdirectory Options ***************** -->
+      <dirResultsLogsEnabled>1</dirResultsLogsEnabled>
+      <dirTargetNameEnabled>1</dirTargetNameEnabled>
+      <dirXMLEnabled>1</dirXMLEnabled>
+      <dirStreamNameEnabled>0</dirStreamNameEnabled>
+      <dirContentTypeEnabled>0</dirContentTypeEnabled>
+      <dirTimestampEnabled>1</dirTimestampEnabled>
+      <!-- *********** Output Filename Options ***************** -->
+      <fileTargetNameEnabled>1</fileTargetNameEnabled>
+      <fileSCCVersionEnabled>0</fileSCCVersionEnabled>
+      <fileContentVersionEnabled>1</fileContentVersionEnabled>
+      <fileTimestampEnabled>0</fileTimestampEnabled>
+      <!-- *********** XML Validation Options ***************** -->
+      <contentDevModeSkipValidation>0</contentDevModeSkipValidation>
+      <validateContent>0</validateContent>
+      <validateContentOnInstall>1</validateContentOnInstall>
+      <validateDigitalSignature>1</validateDigitalSignature>
+      <failOnXMLDSig>0</failOnXMLDSig>
+      <validateXMLResults>0</validateXMLResults>
+      <!-- *********** SSH Result File Transfer Options ***************** -->
+      <sshEnabled>0</sshEnabled>
+      <deleteOnTransferReports>0</deleteOnTransferReports>
+      <htmlReportTransfer>1</htmlReportTransfer>
+      <xmlReportTransfer>1</xmlReportTransfer>
+      <textReportTransfer>0</textReportTransfer>
+      <debugLogTransfer>0</debugLogTransfer>
+      <errorLogTransfer>1</errorLogTransfer>
+      <sshServer></sshServer>
+      <sshPortNumber>22</sshPortNumber>
+      <sshConnectionType>1</sshConnectionType>
+      <username></username>
+      <sshUserPassword></sshUserPassword>
+      <sshPrivateKey></sshPrivateKey>
+      <sshUserKeyFile></sshUserKeyFile>
+      <sshKeyPassphrase></sshKeyPassphrase>
+      <sshServerDirectory></sshServerDirectory>
+      <deleteonTransferLogs>0</deleteonTransferLogs>
+      <!-- *********** Post Scan SCAP Summary Reporting Options ***************** -->
+      <summarySourceDirectory></summarySourceDirectory>
+      <summaryDestinationDirectory></summaryDestinationDirectory>
+      <openSummaryDestinationDirectory>1</openSummaryDestinationDirectory>
+      <computerListHistoricalHTMLReport>1</computerListHistoricalHTMLReport>
+      <computerListHistoricalExcelReport>1</computerListHistoricalExcelReport>
+      <computerListHTMLReport>1</computerListHTMLReport>
+      <computerListExcelReport>1</computerListExcelReport>
+      <siteSummaryHTMLReport>1</siteSummaryHTMLReport>
+      <siteSummaryNonComplianceHTMLReport>1</siteSummaryNonComplianceHTMLReport>
+      <siteSummaryExcelReport>1</siteSummaryExcelReport>
+      <siteSummaryNonComplianceExcelReport>1</siteSummaryNonComplianceExcelReport>
+      <!-- *********** Post Scan SCAP Detailed Reporting Options ***************** -->
+      <detailSummarySourceDirectory></detailSummarySourceDirectory>
+      <detailSummaryDestinationDirectory></detailSummaryDestinationDirectory>
+      <openDetailSummaryDestinationDirectory>1</openDetailSummaryDestinationDirectory>
+      <!-- *********** Post Scan OVAL Detailed Reporting Options ***************** -->
+      <detailSummaryOVALSourceDirectory></detailSummaryOVALSourceDirectory>
+      <detailSummaryOVALDestinationDirectory></detailSummaryOVALDestinationDirectory>
+      <openDetailSummaryOVALDestinationDirectory>1</openDetailSummaryOVALDestinationDirectory>
+      <!-- *********** Post Scan SCAP/OVAL Shared Report Generation Options ***************** -->
+      <allSettingsHTMLReportDetailSummary>1</allSettingsHTMLReportDetailSummary>
+      <allSettingsTextReportDetailSummary>0</allSettingsTextReportDetailSummary>
+      <nonComplianceHTMLReportDetailSummary>1</nonComplianceHTMLReportDetailSummary>
+      <nonComplianceTextReportDetailSummary>0</nonComplianceTextReportDetailSummary>
+      <allSettingsSummaryHTMLReportDetailSummary>0</allSettingsSummaryHTMLReportDetailSummary>
+      <allSettingsSummaryTextReportDetailSummary>0</allSettingsSummaryTextReportDetailSummary>
+      <nonComplianceSummaryHTMLReportDetailSummary>0</nonComplianceSummaryHTMLReportDetailSummary>
+      <nonComplianceSummaryTextReportDetailSummary>0</nonComplianceSummaryTextReportDetailSummary>
+      <!-- *********** Deviation Options ***************** -->
+      <deviationsEnabled>1</deviationsEnabled>
+      <deviationsProfile>default</deviationsProfile>
+      <!-- *********** Threshold Options ***************** -->
+      <thresholdsEnabled>1</thresholdsEnabled>
+      <thresholdsProfile>default</thresholdsProfile>
+      <thresholdsUnlockCode></thresholdsUnlockCode>
+      <!-- *********** SCC Service Options (Windows Only) ***************** -->
+      <frequency>2</frequency>
+      <schedule>12</schedule>
+      <randomizeSSHTransfer>0</randomizeSSHTransfer>
+      <randomizeValue>300</randomizeValue>
+      <timeout>86400</timeout>
+      <lastServiceScan>0</lastServiceScan>
+      <nextServiceScan>1555013175</nextServiceScan>
+      <!-- *********** Developer Options: (Remote WMI) ***************** -->
+      <remoteRefreshDelay>1</remoteRefreshDelay>
+      <remoteMaxThreads>25</remoteMaxThreads>
+      <remoteMaxThreads32>5</remoteMaxThreads32>
+      <!-- *********** Developer Options: (Logging) ***************** -->
+      <debugExcludeDateTime>0</debugExcludeDateTime>
+      <debugTraceEnabled>0</debugTraceEnabled>
+      <maxLogFileSize>20</maxLogFileSize>
+      <!-- *********** Developer Options: (Misc Thresholds) ***************** -->
+      <maximumRecentReports>24</maximumRecentReports>
+      <freeSpaceThreshold>100</freeSpaceThreshold>
+      <validationThreshold>15</validationThreshold>
+      <patchFileModifiedThreshold>60</patchFileModifiedThreshold>
+      <externalCmdTimeout>60</externalCmdTimeout>
+      <!-- *********** Developer Options: (Standalone OVAL Content Updates) ***************** -->
+      <ovalFileModifiedThresholdOC>7</ovalFileModifiedThresholdOC>
+      <useInternetOC>0</useInternetOC>
+      <useIntranetOC>0</useIntranetOC>
+      <intranetURLoneOC></intranetURLoneOC>
+      <intranetURLtwoOC></intranetURLtwoOC>
+      <internetURLoneOC></internetURLoneOC>
+      <internetURLtwoOC></internetURLtwoOC>
+      <!-- *********** Internal Options - Do Not Edit ***************** -->
+      <version>5.1</version>
+      <timeStamp>2019-04-10T13:10:51</timeStamp>
+      <expignore>0</expignore>
+      <domainName></domainName>
+      <createNewHostFile>0</createNewHostFile>
+      <scap12DBFilepath>Resources\DB\SCC_SCAP12_Content.db</scap12DBFilepath>
+      <iaControlDBLoaded>1</iaControlDBLoaded>
+      <iaControlDBFilepath>Resources\DB\SCC_IA_Control_Mappings.db</iaControlDBFilepath>
+      <nvdcceFile>nvdcce-0.1-feed.xml</nvdcceFile>
+      <cciFile>U_CCI_List.xml</cciFile>
+      <!-- *********** SCAP 1.0 Patch Content Update (soon to be obsolete) Options ***************** -->
+      <useIntranet>0</useIntranet>
+      <patchContentAgeWarning>60</patchContentAgeWarning>
+      <intranetURLone></intranetURLone>
+      <intranetURLtwo></intranetURLtwo>
+      <useInternet>0</useInternet>
+      <!-- *********** Cyberscope (soon to be obsolete) Options ***************** -->
+      <cyberscopeOrgName></cyberscopeOrgName>
+      <cyberscopeDepartment></cyberscopeDepartment>
+      <cyberscopeEnclave></cyberscopeEnclave>
+      <cyberscopeSummaryId>FISMA_auto_feed_fy10</cyberscopeSummaryId>
+      <cyberscopeSummaryVersion>1.0beta1</cyberscopeSummaryVersion>
+      <xccdfFileAgeWarning>45</xccdfFileAgeWarning>
+      <xccdfFileAgeAction>Warn</xccdfFileAgeAction>
+      <suppressCceErrors></suppressCceErrors>
+      <cyberscopeOrgPhone></cyberscopeOrgPhone>
+      <cyberscopeOrgURL></cyberscopeOrgURL>
+      <cyberscopeOrgEmail></cyberscopeOrgEmail>
+      <cyberscopeReport></cyberscopeReport>
+      <recentReport>C:/Users/matt.preston.da/SCC/Results/2019-04-10_125130/SCC_Summary_Viewer_2019-04-10_125130.html</recentReport>
+      <contents>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_Adobe_Acrobat_Reader_DC_Classic_V1R5_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Adobe_Acrobat_Reader_DC_Classic_Track_STIG</benchmarkID>
+                  <releaseInfo>Release: 1.5 Benchmark Date: 26 Oct 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_Adobe_Acrobat_Reader_DC_Classic_V1R5_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>7ed5bc152394218b30230179f4b20d79ff325e6148bda961f0e1221332ffa4f4</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Adobe Acrobat Reader DC Classic Track Security Technical Implementation Guide</title>
+                  <platform>Adobe Acrobat Reader DC Classic Track</platform>
+                  <publisher>DISA</publisher>
+                  <description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice></notice>
+                  <status>accepted (2018-10-26)</status>
+                  <version>001.005</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_Adobe_Acrobat_Reader_DC_Classic_V1R5_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_Adobe_Acrobat_Reader_DC_Classic_V1R5_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-10-26</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_Adobe_Acrobat_Reader_DC_Continuous_V1R4_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Adobe_Acrobat_Reader_DC_Continuous_Track_STIG</benchmarkID>
+                  <releaseInfo>Release: 1.4 Benchmark Date: 27 Jul 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_Adobe_Acrobat_Reader_DC_Continuous_V1R4_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>f73758d92d7f69a2531d25ebdfe3833daec1aded1a2a6c8e4346ee0cc18f6f56</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Adobe Acrobat Reader DC Continuous Track Security Technical Implementation Guide</title>
+                  <platform>Adobe Acrobat Reader DC Continuous Track</platform>
+                  <publisher>DISA</publisher>
+                  <description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice></notice>
+                  <status>accepted (2018-10-26)</status>
+                  <version>001.004</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_Adobe_Acrobat_Reader_DC_Continuous_V1R4_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_Adobe_Acrobat_Reader_DC_Continuous_V1R4_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-10-26</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_Google_Chrome_Windows_V1R11_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Google_Chrome_Current_Windows</benchmarkID>
+                  <releaseInfo>Release: 1.11 Benchmark Date: 25 Jan 2019</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_Google_Chrome_Windows_V1R11_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>944cc769e7db9feb5da6e42e3b0aa4d2b4dbc0d16515e9b01b9470bac260eaf3</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Google Chrome Current Windows STIG</title>
+                  <platform>Google Chrome</platform>
+                  <publisher>DISA</publisher>
+                  <description>The Google Chrome Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil</description>
+                  <notice></notice>
+                  <status>accepted (2019-01-25)</status>
+                  <version>001.011</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_Google_Chrome_Windows_V1R11_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_Google_Chrome_Windows_V1R11_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2019-01-25</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>U_MS_IE10_V1R9_STIG_SCAP_1-1_Benchmark-</stream>
+                  <benchmarkID>IE10_STIG</benchmarkID>
+                  <releaseInfo>Release: 1.9 Benchmark Date: 28 Apr 2017</releaseInfo>
+                  <scapVersion>1.1</scapVersion>
+                  <selectedProfile>MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>MAC-1_Classified</profile>
+                        <profile>MAC-1_Public</profile>
+                        <profile>MAC-1_Sensitive</profile>
+                        <profile>MAC-2_Classified</profile>
+                        <profile>MAC-2_Public</profile>
+                        <profile>MAC-2_Sensitive</profile>
+                        <profile>MAC-3_Classified</profile>
+                        <profile>MAC-3_Public</profile>
+                        <profile>MAC-3_Sensitive</profile>
+                        <profile>CAT_I_Only</profile>
+                        <profile>no_profile_selected</profile>
+                  </profiles>
+                  <checksumXCCDF>51db397f6b0b76a2b3f6e1b11dcd1a4c0c84d0d63098a505c719b1f8ad031613</checksumXCCDF>
+                  <checksumOVAL>9ec517771b8d8893d8b8631d6564cb8e52bd0b93f04bded2bf34c9a0e6ec7d4b</checksumOVAL>
+                  <checksumCPEOVAL>bb9448d62e6c215400284ad887f12bc3a1b2b916b7195a684a6b0291da02c335</checksumCPEOVAL>
+                  <checksumCPEDictionary>4cb6bca56e391197b8570ea07f4c89428dce4fe195f78e2faf98c7e7ec470580</checksumCPEDictionary>
+                  <installDate>2019-04-09</installDate>
+                  <title>Microsoft Internet Explorer 10 Security Technical Implementation Guide</title>
+                  <publisher>DISA</publisher>
+                  <description>The Microsoft Internet Explorer 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil</description>
+                  <notice></notice>
+                  <status>accepted (2017-04-28)</status>
+                  <version>001.009</version>
+                  <xccdf>Resources\Content\SCAP_Content\U_MS_IE10_V1R9_STIG_SCAP_1-1_Benchmark-xccdf.xml</xccdf>
+                  <ovalVersion>5.8</ovalVersion>
+                  <oval>Resources\Content\SCAP_Content\U_MS_IE10_V1R9_STIG_SCAP_1-1_Benchmark-oval.xml</oval>
+                  <date>2017-04-28</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus></xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_MS_IE11_V1R12_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>IE_11_STIG</benchmarkID>
+                  <releaseInfo>Release: 1.12 Benchmark Date: 27 Jul 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_MS_IE11_V1R12_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>f69792fc65210b9efa40783a59027f4bb885bcd6db7aeaca513ee996f3d9fc36</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Microsoft Internet Explorer 11 Security Technical Implementation Guide</title>
+                  <platform>Microsoft Internet Explorer 11</platform>
+                  <publisher>DISA</publisher>
+                  <description>The Microsoft Internet Explorer 11 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil</description>
+                  <notice></notice>
+                  <status>accepted (2018-07-27)</status>
+                  <version>001.012</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_MS_IE11_V1R12_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_MS_IE11_V1R12_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-07-27</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>1</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_MS_DotNet_Framework_4_V1R5_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>MS_Dot_Net_Framework</benchmarkID>
+                  <releaseInfo>Release: 1.5 Benchmark Date: 26 Oct 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_MS_DotNet_Framework_4_V1R5_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>493be06559f8ea2aaf17987c726b0a2f0dc85b3707d980279ce3e2578f887aa0</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Microsoft DotNet Framework 4.0 STIG</title>
+                  <platform>Microsoft .NET Framework 4.0</platform>
+                  <publisher>DISA</publisher>
+                  <description>Applicable to systems and applications utilizing the Microsoft .Net version 4.0 framework.</description>
+                  <notice></notice>
+                  <status>accepted (2018-10-26)</status>
+                  <version>001.005</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_MS_DotNet_Framework_4_V1R5_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_MS_DotNet_Framework_4_V1R5_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-10-26</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_gov.nist_datastream_USGCB-Windows-7-2.0.5.1.zip</stream>
+                  <benchmarkID>USGCB-Windows-7</benchmarkID>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\scap_gov.nist_USGCB-Windows-7.xml</filepath>
+                  <selectedProfile>xccdf_gov.nist_profile_united_states_government_configuration_baseline_version_2.0.5.1</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_gov.nist_profile_united_states_government_configuration_baseline_version_2.0.5.1</profile>
+                        <original_profile>xccdf_gov.nist_profile_united_states_government_configuration_baseline_version_2.0.5.1</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>e83e7a2dd0cd744a6f044406a8e41ab34311e7612cec2aff2541a1abce91e06f</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>USGCB: Guidance for Securing Microsoft Windows 7 Systems</title>
+                  <platform>Microsoft Windows 7</platform>
+                  <publisher>National Institute of Standards and Technology</publisher>
+                  <description>This guide has been created to assist IT professionals in effectively securing systems running Microsoft 7</description>
+                  <notice>Do not attempt to implement any of the settings in this guide without first testing them in a non-operational environment. NIST assumes no responsibility whatsoever for its use by other parties, and makes no guarantees, expressed or implied, about its quality, reliability, or any other characteristic. NIST would appreciate acknowledgement if the document and template are used.</notice>
+                  <status>accepted (2015-04-07)</status>
+                  <version>v2.0.5.1</version>
+                  <xccdf>scap_gov.nist_comp_USGCB-Windows-7-2.0.5.1-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.8">scap_gov.nist_comp_USGCB-Windows-7-2.0.5.1-oval.xml</oval>
+                  </oval_components>
+                  <date>2015-04-07</date>
+                  <patchModifiedDate>2015-04-07T10:00:00.000-04:00</patchModifiedDate>
+                  <ocilVersion>2.0</ocilVersion>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>1554917091</xmldsigValidationDate>
+                  <xmldsigStatus>VALID</xmldsigStatus>
+                  <certificates>
+                        <certificate>acbb962e_0130</certificate>
+                  </certificates>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_gov.nist_datastream_USGCB-Windows-7-Energy-2.0.5.1.zip</stream>
+                  <benchmarkID>USGCB-Windows-7-Energy</benchmarkID>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\scap_gov.nist_USGCB-Windows-7-Energy.xml</filepath>
+                  <selectedProfile>xccdf_gov.nist_profile_united_states_government_configuration_baseline_version_2.0.5.1</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_gov.nist_profile_united_states_government_configuration_baseline_version_2.0.5.1</profile>
+                        <original_profile>xccdf_gov.nist_profile_united_states_government_configuration_baseline_version_2.0.5.1</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>33552f26c15b0f4755fc25ad06d723d5233c1d4558580c591c705e1d0d85cd9f</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>USGCB: Guidance for Securing Microsoft Windows 7 energy settings</title>
+                  <platform>Microsoft Windows 7</platform>
+                  <publisher>National Institute of Standards and Technology</publisher>
+                  <description>This guide has been created to assist IT professionals, in effectively configuring energy conserving settings on systems with Microsoft Windows 7</description>
+                  <notice>Do not attempt to implement any of the settings in this guide without first testing them in a non-operational environment. NIST assumes no responsibility whatsoever for its use by other parties, and makes no guarantees, expressed or implied, about its quality, reliability, or any other characteristic. NIST would appreciate acknowledgement if the document and template are used.</notice>
+                  <status>accepted (2015-04-07)</status>
+                  <version>v2.0.5.1</version>
+                  <xccdf>scap_gov.nist_comp_USGCB-Windows-7-Energy-2.0.5.1-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.8">scap_gov.nist_comp_USGCB-Windows-7-Energy-2.0.5.1-oval.xml</oval>
+                  </oval_components>
+                  <date>2015-04-07</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>1554917095</xmldsigValidationDate>
+                  <xmldsigStatus>VALID</xmldsigStatus>
+                  <certificates>
+                        <certificate>acbb962e_0130</certificate>
+                  </certificates>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_gov.nist_datastream_USGCB-Windows-7-firewall-1.3.0.1.zip</stream>
+                  <benchmarkID>USGCB-Windows-7-firewall</benchmarkID>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\scap_gov.nist_USGCB-Windows-7-firewall.xml</filepath>
+                  <selectedProfile>xccdf_gov.nist_profile_united_states_government_configuration_baseline_version_1.3.0.1</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_gov.nist_profile_united_states_government_configuration_baseline_version_1.3.0.1</profile>
+                        <original_profile>xccdf_gov.nist_profile_united_states_government_configuration_baseline_version_1.3.0.1</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>c4c3571ef1acb30b1397e5f9bd7ca9ba685460cf6949ea3ae5bc750782174cdb</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>USGCB: Guidance for Securing Microsoft Windows 7 Firewall</title>
+                  <platform>Microsoft Windows 7</platform>
+                  <publisher>National Institute of Standards and Technology</publisher>
+                  <description>This guide has been created to assist IT professionals, in effectively securing systems with Microsoft Windows 7 Firewall</description>
+                  <notice>Do not attempt to implement any of the settings in this guide without first testing them in a non-operational environment. NIST assumes no responsibility whatsoever for its use by other parties, and makes no guarantees, expressed or implied, about its quality, reliability, or any other characteristic. NIST would appreciate acknowledgement if the document and template are used.</notice>
+                  <status>accepted (2015-04-07)</status>
+                  <version>v1.3.0.1</version>
+                  <xccdf>scap_gov.nist_comp_USGCB-Windows-7-firewall-1.3.0.1-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.4">scap_gov.nist_comp_USGCB-Windows-7-firewall-1.3.0.1-oval.xml</oval>
+                  </oval_components>
+                  <date>2015-04-07</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>1554917096</xmldsigValidationDate>
+                  <xmldsigStatus>VALID</xmldsigStatus>
+                  <certificates>
+                        <certificate>acbb962e_0130</certificate>
+                  </certificates>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_Windows_10_V1R13_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Windows_10_STIG</benchmarkID>
+                  <releaseInfo>Release: 1.13 Benchmark Date: 15 Nov 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_Windows_10_V1R13_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>a1d402414831d8c84642f2db13929f458c26492acf53e20261bd4067ba6718e4</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Windows 10 Security Technical Implementation Guide</title>
+                  <platform>Microsoft Windows 10</platform>
+                  <publisher>DISA</publisher>
+                  <description>The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice>Developed_by_DISA_for_the_DoD</notice>
+                  <status>accepted (2018-11-15)</status>
+                  <version>001.013</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_Windows_10_V1R13_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_Windows_10_V1R13_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-11-15</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_Windows_2008_DC_V6R42_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Windows_2008_DC_STIG</benchmarkID>
+                  <releaseInfo>Release: 6.42 Benchmark Date: 27 Jul 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_Windows_2008_DC_V6R42_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>daaf5521b37e84fabc93067cfb499bec67beaf9484fecbaa9f8e24992d3320a0</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Windows 2008 Domain Controller Security Technical Implementation Guide</title>
+                  <platform>Microsoft Windows Server 2008</platform>
+                  <publisher>DISA</publisher>
+                  <description>The Windows 2008 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements were developed from DoD consensus, as well as the Windows 2008 Security Guide and security templates published by Microsoft Corporation. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice>Developed_by_DISA_for_the_DoD</notice>
+                  <status>accepted (2018-07-27)</status>
+                  <version>006.042</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_Windows_2008_DC_V6R42_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_Windows_2008_DC_V6R42_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-07-27</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_Windows_2008_MS_V6R42_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Windows_2008_MS_STIG</benchmarkID>
+                  <releaseInfo>Release: 6.42 Benchmark Date: 27 Jul 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_Windows_2008_MS_V6R42_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>90814dcf0d84e5ef7b7ced68a2c9a814368637be610c17f248e324c931cea69c</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Windows 2008 Member Server Security Technical Implementation Guide</title>
+                  <platform>Microsoft Windows Server 2008</platform>
+                  <publisher>DISA</publisher>
+                  <description>The Windows 2008 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements were developed from DoD consensus, as well as the Windows 2008 Security Guide and security templates published by Microsoft Corporation. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice>Developed_by_DISA_for_the_DoD</notice>
+                  <status>accepted (2018-07-27)</status>
+                  <version>006.042</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_Windows_2008_MS_V6R42_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_Windows_2008_MS_V6R42_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-07-27</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_MS_Windows_2008_R2_DC_V1R30_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Windows_2008_R2_DC_STIG</benchmarkID>
+                  <releaseInfo>Release: 1.30 Benchmark Date: 26 Oct 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_MS_Windows_2008_R2_DC_V1R30_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>272471431a78da34d16b5f837282d651c125562cb6dc3991a814fbceb3ee3f95</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Windows Server 2008 R2 Domain Controller Security Technical Implementation Guide</title>
+                  <platform>Microsoft Windows Server 2008 R2</platform>
+                  <publisher>DISA</publisher>
+                  <description>The Windows Server 2008 R2 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements were developed from DoD consensus, as well as the Windows Server 2008 R2 Security Guide and security templates published by Microsoft Corporation. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice>Developed_by_DISA_for_the_DoD</notice>
+                  <status>accepted (2018-10-26)</status>
+                  <version>001.030</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_MS_Windows_2008_R2_DC_V1R30_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_MS_Windows_2008_R2_DC_V1R30_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-10-26</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_MS_Windows_2008_R2_MS_V1R31_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Windows_2008_R2_MS_STIG</benchmarkID>
+                  <releaseInfo>Release: 1.31 Benchmark Date: 26 Oct 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_MS_Windows_2008_R2_MS_V1R31_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>5713b9af970980933bb9dbb24d45b9a4da870af6e0a16db1a4dbeebd73d7fad4</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Windows Server 2008 R2 Member Server Security Technical Implementation Guide</title>
+                  <platform>Microsoft Windows Server 2008 R2</platform>
+                  <publisher>DISA</publisher>
+                  <description>The Windows Server 2008 R2 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements were developed from DoD consensus, as well as the Windows Server 2008 R2 Security Guide and security templates published by Microsoft Corporation. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice>Developed_by_DISA_for_the_DoD</notice>
+                  <status>accepted (2018-10-26)</status>
+                  <version>001.031</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_MS_Windows_2008_R2_MS_V1R31_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_MS_Windows_2008_R2_MS_V1R31_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-10-26</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_MS_Windows_2012_and_2012_R2_DC_V2R14_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Windows_2012_DC_STIG</benchmarkID>
+                  <releaseInfo>Release: 2.14 Benchmark Date: 26 Oct 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_MS_Windows_2012_and_2012_R2_DC_V2R14_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>2d323be88ff25da834e4aa052b9e6e984c8941ba754d3200a42a9f4c608df734</checksumSCAP12>
+                  <installDate>2019-04-10</installDate>
+                  <title>Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide</title>
+                  <platform></platform>
+                  <publisher>DISA</publisher>
+                  <description>The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice>Developed_by_DISA_for_the_DoD</notice>
+                  <status>accepted (2018-10-26)</status>
+                  <version>002.014</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_MS_Windows_2012_and_2012_R2_DC_V2R14_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_MS_Windows_2012_and_2012_R2_DC_V2R14_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-10-26</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_MS_Windows_2012_and_2012_R2_DC_V2R15_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Windows_2012_DC_STIG</benchmarkID>
+                  <releaseInfo>Release: 2.15 Benchmark Date: 26 Oct 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_MS_Windows_2012_and_2012_R2_DC_V2R15_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>46c3b85c24ed0bffaa15266200395559512bc83b17536e2e3d368bc79a268208</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide</title>
+                  <platform></platform>
+                  <publisher>DISA</publisher>
+                  <description>The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice>Developed_by_DISA_for_the_DoD</notice>
+                  <status>accepted (2019-01-25)</status>
+                  <version>002.015</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_MS_Windows_2012_and_2012_R2_DC_V2R15_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_MS_Windows_2012_and_2012_R2_DC_V2R15_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2019-01-25</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_MS_Windows_2012_and_2012_R2_MS_V2R14_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Windows_2012_MS_STIG</benchmarkID>
+                  <releaseInfo>Release: 2.14 Benchmark Date: 26 Oct 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_MS_Windows_2012_and_2012_R2_MS_V2R14_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>e8a314587ca9ae176047abdabaec5833aeccda7a44b7f110d287f359dddec3bc</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide</title>
+                  <platform></platform>
+                  <publisher>DISA</publisher>
+                  <description>The Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice>Developed_by_DISA_for_the_DoD</notice>
+                  <status>accepted (2018-10-26)</status>
+                  <version>002.014</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_MS_Windows_2012_and_2012_R2_MS_V2R14_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_MS_Windows_2012_and_2012_R2_MS_V2R14_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-10-26</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_Windows_7_V1R36_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Windows_7_STIG</benchmarkID>
+                  <releaseInfo>Release: 1.36 Benchmark Date: 27 Apr 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_Windows_7_V1R36_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <profile>xccdf_mil.disa.stig_profile_Disable_EMET</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_Disable_EMET</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>0966c702e4bb2ee7729007978501aaff509f1c61120751913b9020ebb377b86c</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Windows 7 Security Technical Implementation Guide</title>
+                  <platform>Microsoft Windows 7</platform>
+                  <publisher>DISA</publisher>
+                  <description>The Windows 7 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements were developed from DoD consensus, as well as the Windows 7 Security Guide and security templates published by Microsoft Corporation. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice>Developed_by_DISA_for_the_DoD</notice>
+                  <status>accepted (2018-04-27)</status>
+                  <version>001.036</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_Windows_7_V1R36_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_Windows_7_V1R36_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-04-27</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_Windows_8_and_8-1_V1R22_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Windows_8_STIG</benchmarkID>
+                  <releaseInfo>Release: 1.22 Benchmark Date: 27 Apr 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_Windows_8_and_8-1_V1R22_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <profile>xccdf_mil.disa.stig_profile_Disable_EMET</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_Disable_EMET</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>8080f877fe1023f53f44e648970fa5d5d607f85420394474651b6b4e1c32b3f5</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Windows 8/8.1 Security Technical Implementation Guide</title>
+                  <platform></platform>
+                  <publisher>DISA</publisher>
+                  <description>The Windows 8/8.1 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice>Developed_by_DISA_for_the_DoD</notice>
+                  <status>accepted (2018-04-27)</status>
+                  <version>001.022</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_Windows_8_and_8-1_V1R22_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_Windows_8_and_8-1_V1R22_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-04-27</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_MS_Windows_Defender_AV_V1R1_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Windows_Defender_Antivirus</benchmarkID>
+                  <releaseInfo>Release: 1.1 Benchmark Date: 27 Apr 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_MS_Windows_Defender_AV_V1R1_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>39fdd812ac6fbe2e267772da67e09903f9eddd8a0bea3fb8ef17c33815c22473</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Windows Defender Antivirus Security Technical Implementation Guide</title>
+                  <platform>Microsoft Windows Defender Antivirus</platform>
+                  <publisher>DISA</publisher>
+                  <description>The Windows Defender Antivirus Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be send via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice></notice>
+                  <status>accepted (2018-04-27)</status>
+                  <version>001.001</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_MS_Windows_Defender_AV_V1R1_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_MS_Windows_Defender_AV_V1R1_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-04-27</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_Windows_Firewall_V1R7_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Windows_Firewall</benchmarkID>
+                  <releaseInfo>Release: 1.7 Benchmark Date: 27 Jul 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_Windows_Firewall_V1R7_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>9ec1fa8d22123dfe9ac9454d686bc1b442118060fe3d60a5e2df643980baa25c</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Windows Firewall with Advanced Security Security Technical Implementation Guide</title>
+                  <platform></platform>
+                  <publisher>DISA</publisher>
+                  <description>The Windows Firewall with Advanced Security Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice>Developed_by_DISA_for_the_DoD</notice>
+                  <status>accepted (2018-07-27)</status>
+                  <version>001.007</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_Windows_Firewall_V1R7_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_Windows_Firewall_V1R7_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-07-27</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+            <content>
+                  <stream>scap_mil.disa.stig_datastream_U_MS_Windows_Server_2016_V1R7_STIG_SCAP_1-2_Benchmark</stream>
+                  <benchmarkID>Windows_Server_2016_STIG</benchmarkID>
+                  <releaseInfo>Release: 1.7 Benchmark Date: 26 Oct 2018</releaseInfo>
+                  <scapVersion>1.2</scapVersion>
+                  <filepath>Resources\Content\SCAP12_Content\U_MS_Windows_Server_2016_V1R7_STIG_SCAP_1-2_Benchmark.xml</filepath>
+                  <selectedProfile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</selectedProfile>
+                  <profiles>
+                        <profile>no_profile_selected</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Public</profile>
+                        <profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</profile>
+                        <profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</profile>
+                        <profile>xccdf_mil.disa.stig_profile_CAT_I_Only</profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-1_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-2_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Classified</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Public</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_MAC-3_Sensitive</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_Disable_Slow_Rules</original_profile>
+                        <original_profile>xccdf_mil.disa.stig_profile_CAT_I_Only</original_profile>
+                  </profiles>
+                  <xccdfTailoringEnabled>N</xccdfTailoringEnabled>
+                  <checksumSCAP12>a7be94837b0b9978bc53a0ebdf81dd0e5e6b219bfed32d477164ec0ede2e44af</checksumSCAP12>
+                  <installDate>2019-04-09</installDate>
+                  <title>Windows Server 2016 Security Technical Implementation Guide</title>
+                  <platform>Microsoft Windows Server 2016</platform>
+                  <publisher>DISA</publisher>
+                  <description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</description>
+                  <notice></notice>
+                  <status>accepted (2018-10-26)</status>
+                  <version>001.007</version>
+                  <xccdf>scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V1R7_STIG_SCAP_1-2_Benchmark-xccdf.xml</xccdf>
+                  <oval_components>
+                        <oval version="5.10">scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V1R7_STIG_SCAP_1-2_Benchmark-oval.xml</oval>
+                  </oval_components>
+                  <date>2018-10-26</date>
+                  <xmlSchemaValidationDate>0</xmlSchemaValidationDate>
+                  <xmlSchemaValidationResult></xmlSchemaValidationResult>
+                  <xmldsigValidationDate>0</xmldsigValidationDate>
+                  <xmldsigStatus>NOT DIGITALLY SIGNED</xmldsigStatus>
+                  <enabled>0</enabled>
+                  <review>1</review>
+                  <resume>0</resume>
+                  <resumeFile></resumeFile>
+            </content>
+      </contents>
+      <ovalContents></ovalContents>
+      <ocilContents></ocilContents>
+</options>

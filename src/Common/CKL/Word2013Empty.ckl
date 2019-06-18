@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--DISA STIG Viewer :: 2.8-->
-<!--1.6 Word-->
+<!--DISA STIG Viewer :: 2.9-->
+<!--STIG Version:1.6-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -51,7 +51,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>71972891-8a91-49ab-ab61-9bc5f6821907</SID_DATA>
+					<SID_DATA>80ae7545-1d09-4265-af8f-2864b4e37bbb</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>

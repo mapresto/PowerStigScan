@@ -27,72 +27,48 @@
 <#
 Functions:
     Private:
-        H01 - Convert-PowerStigSqlToRole
+        H01 - Convert-PowerStigRoleToSql
         H02 - Import-PowerStigConfig
         H03 - Invoke-PowerStigSqlCommand
 #>
-
 #H01
-<#
-.SYNOPSIS
-This will take the incoming SQL role and return the corresponding entry necessary for PowerStig
-
-.DESCRIPTION
-This will take the incoming SQL role and return the corresponding entry necessary for PowerStig
-
-.PARAMETER SqlRole
-The role as it is displayed in SQL, must be part of the validated set
-
-.EXAMPLE
-Convert-PowerStigSqlToRole -SqlRole DC2012Check
-
-.NOTES
-General notes
-#>
-function Convert-PowerStigSqlToRole
+function Convert-PowerStigRoleToSql
 {
-    [cmdletbinding()]
+    [cmdletBinding()]
     param(
-        [Parameter(Mandatory = $true, Position = 1)]
-        [ValidateSet("MemberServer",
-                    "DomainController",
-                    "Client",
-                    "Office",
-                    "Word",
-                    "Excel",
-                    "PowerPoint",
-                    "Outlook",
-                    "DNS",
-                    "IE",
-                    "DotNet",
-                    "FireFox",
-                    "Firewall",
-                    "IIS",
-                    "JRE",
-                    "Sql")]       
-        [String]$SqlRole
+        [Parameter(Mandatory=$true)]
+        [String]$Role
     )
 
-    switch -Wildcard ($SqlRole) {
-        "DomainController"  { $outRole = "DC"               }
-        "MemberServer"      { $outRole = "MS"               }
-        "DNS"               { $outRole = "DNS"              }
-        "IE"                { $outRole = "IE11"             }
-        "Firewall"          { $outRole = "FW"               }
-        "Word"              { $outRole = "Word2013"         }
-        "PowerPoint"        { $outRole = "PowerPoint2013"   }
-        "Excel"             { $outRole = "Excel2013"        }
-        "Outlook"           { $outRole = "Outlook2013"      }
-        "DotNet"            { $outRole = "DotNet"           }
-        "FireFox"           { $outRole = "FireFox"          }
-        "IIS"               { $outRole = "IIS"              }
-        "JRE"               { $outRole = "OracleJRE"        }
-        "Sql"               { $outRole = "SQL"              }
-        "Client"            { $outRole = "Client"           }
-    }
 
-    return $outRole
+    switch($Role)
+    {
+        "DotNetFramework"                       {Return $Role}
+        "FireFox"                               {Return $Role}
+        "IISServer"                             {Return $Role}
+        "IISSite"                               {Return $Role}
+        "InternetExplorer"                      {Return $Role}
+        "Excel2013"                             {Return $Role}
+        "Outlook2013"                           {Return $Role}
+        "PowerPoint2013"                        {Return $Role}
+        "Word2013"                              {Return $Role}
+        "OracleJRE"                             {Return $Role}
+        "SqlServer-2012-Database"               {Return "SqlServer2012Database"}
+        "SqlServer-2012-Instance"               {Return "SqlServer2012Instance"}
+        "SqlServer-2016-Instance"               {Return "SqlServer2016Instance"}
+        "WindowsClient"                         {Return $Role}
+        "WindowsDefender"                       {Return $Role}
+        "WindowsDNSServer"                      {Return $Role}
+        "WindowsFirewall"                       {Return $Role}
+        "WindowsServer-DC"                      {Return "WindowsServerDC"}
+        "WindowsServer-MS"                      {Return "WindowsServerMS"}
+        "GoogleChrome"                          {Return $Role}
+        "AdobeAcrobatReaderDCCont"              {Return $Role}
+        "AdobeAcrobatReaderDCClassic"           {Return $Role}
+    }
+    
 }
+
 
 #H02
 <#
@@ -127,7 +103,7 @@ function Import-PowerStigConfig
         $splitVar = [regex]::split($c,'=')
         if(($splitVar[0].CompareTo("") -ne 0) -and ($splitVar[0].StartsWith("[") -ne $True) -and ($splitVar[0].StartsWith(";") -ne $True))
         { 
-            $variables.Add($splitVar[0], $splitVar[1]) | out-null
+            $variables.Add($splitVar[0].trim(), $splitVar[1].trim()) | out-null
         } # End if
     } # End foreach
 
@@ -176,4 +152,3 @@ function Invoke-PowerStigSqlCommand
     
     return $DataSet.Tables[0]
 }
-

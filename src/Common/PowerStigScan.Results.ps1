@@ -47,57 +47,64 @@ function Update-PowerStigCkl
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory=$true)]
-        [ValidateSet("MS","DC","IE11","DNS","FW","Client","DotNet","Excel2013","PowerPoint2013","Word2013","Outlook2013","Firefox","IIS","OracleJRE","SQL")]
-        [String]$Role,
-
-        [Parameter(Mandatory=$true)]
-        [ValidateSet("2012R2","2016")]
+        [ValidateSet("2012R2","2016","10","All")]
         [String]$osVersion,
 
         [Parameter(Mandatory=$true)]
         [ValidateNotNullorEmpty()]
-        [String]$TargetServerName,
-
-        [Parameter(Mandatory=$false)]
-        [String]$sqlInstance,
-
-        [Parameter(Mandatory=$false)]
-        [String]$DatabaseName,
+        [String]$ServerName,
 
         [Parameter(Mandatory=$true)]
         [ValidateNotNullorEmpty()]
-        [String]$outPath,
+        [String]$Role,
 
         [Parameter(Mandatory=$true)]
+        [HashTable]$InputObject,
+
+        [Parameter(Mandatory=$true)]
+        [HashTable]$SourceHash,
+
+        [Parameter(Mandatory=$false)]
         [ValidateNotNullorEmpty()]
-        [String]$GUID
+        [String]$OutPath
     )
+
     
     $workingPath = Split-Path $PsCommandPath
     $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
 
-    if($SqlInstance -eq $null -or $SqlInstance -eq '')
+    if($null -eq $outPath -or $outPath -eq '')
     {
-        $SqlInstance = $iniVar.SqlInstanceName
-    }
-    if($DatabaseName -eq $null -or $DatabaseName -eq '')
-    {
-        $DatabaseName = $iniVar.DatabaseName
+        $outPath = $iniVar.CKLOutPath
     }
 
+    $Timestamp = (get-date).ToString("MMddyyyyHHmmss")
+    $outFileName = $ServerName + "_" + $Role + "_" + $Timestamp + ".ckl"
 
     # generate file name
-    if($Role -ne "MS" -and $Role -ne "DC")
+    If($role -notlike "WindowsServer*" -and $role -notlike "*WindowsDNSServer*")
     {
         [String]$fileName = $Role + "Empty.ckl"
     }
-    else
-    {
-        [String]$fileName = $osVersion + $Role + "Empty.ckl"
+    elseif($Role -eq "WindowsDNSServer") 
+    {    
+        [String]$fileName = $osVersion + $role + "Empty.ckl"
     }
+    elseif($Role -like "WindowsServer*")
+    {
+        if($osVersion -eq "2012R2")
+        {
+            [String]$fileName = $osVersion + $role + "Empty.ckl"
+        }
+        elseif($osVersion -eq '2016')
+        {
+        [String]$fileName = $osVersion + "WindowsServerEmpty.ckl"
+        }
+    }
+    
 
     # Pull CKL to variable
-    [xml]$CKL = Get-Content -Path "$(Split-Path $psCommandPath)\CKL\$fileName"
+    [xml]$CKL = Get-Content -Path "$(Split-Path $psCommandPath)\CKL\$fileName" -Encoding UTF8
     # Without this line, Severity_override, severity_justification, comments, etc. will all format incorrectly.
     # And will not be able to sort by Category
     $CKL.PreserveWhitespace = $true
@@ -107,8 +114,6 @@ function Update-PowerStigCkl
     $isFinding = "Open"
     $isNull = "Not_Reviewed"
 
-    # Gather the results from SQL and create hash table of the results based on VulnID and isFinding
-    $Results = Set-PowerStigResultHashTable -inputObject (Get-PowerStigFindings -SqlInstance $SqlInstance -DatabaseName $DatabaseName -ServerName $TargetServerName -Guid $GUID)
 
     ## Each Rule is covered at $ckl.CHECKLIST.STIGS.iSTIG
     ## VulnID is under STIGDATA[0].ATTRIBUTE_DATA
@@ -121,21 +126,21 @@ function Update-PowerStigCkl
         $currentRule = $i.STIG_DATA[0].ATTRIBUTE_DATA
 
         # $results.$currentRule will return either $true or $false if it exists as a result
-        $boolNotAFinding = $results.$currentRule
+        $boolNotAFinding = $InputObject.$currentRule
 
         # if it didn't find a rule, ensure that there is not an entry type like V-####.a
         # if there are, evaluate all rules with the same number with a letter suffix and determine if all true
         # if there is one false, rule evaluates as false
         if($null -eq $boolNotAFinding)
         {
-            $testRule = $results.keys | Where-Object {$_ -like "$currentRule.*"}
+            $testRule = $InputObject.keys | Where-Object {$_ -like "$currentRule.*"}
             if (-not($null -eq $testRule))
             {
                 $ruleResult = $true
                 foreach($tRule in $testRule)
                 {
                     #if you evaluate one rule as false, output is a finding, break loop
-                    if($results.$tRule -eq $false)
+                    if($InputObject.$tRule -eq $false)
                     {
                         $ruleResult = $false
                         continue
@@ -148,10 +153,26 @@ function Update-PowerStigCkl
         if($boolNotAFinding -eq $true)
         {
             $i.STATUS = $isNotAFinding
+            if($SourceHash."$currentRule" -eq "0")
+            {
+                $i.COMMENTS = "Result is from PowerStig"
+            }
+            elseif ($SourceHash."$CurrentRule" -eq "1") 
+            {
+                $i.COMMENTS = "Result is from SCAP"
+            }
         }
         elseif($boolNotAFinding -eq $false)
         {
             $i.STATUS = $isFinding
+            if($SourceHash."$currentRule" -eq "0")
+            {
+                $i.COMMENTS = "Result is from PowerStig"
+            }
+            elseif ($SourceHash."$CurrentRule" -eq "1") 
+            {
+                $i.COMMENTS = "Result is from SCAP"
+            }
         }
         elseif($null -eq $boolNotAFinding)
         {
@@ -159,12 +180,13 @@ function Update-PowerStigCkl
         }
     }
 
-    if(-not(Test-Path -Path (Split-Path $outPath)))
+    if(-not(Test-Path -Path $outPath))
     {
-        New-Item -ItemType Directory -Path (Split-Path $outPath)
+        New-Item -ItemType Directory -Path $outPath -Force | Out-Null
     }
 
-    $CKL.save($outPath)
+    $CKL.save("$outPath\$outFileName")
+    
 }
 
 #R02
@@ -197,6 +219,58 @@ function Set-PowerStigResultHashTable
     }
 
     return $hash
+}
+
+Function Set-PowerStigResultHashTableFromObject
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true)]
+        [ValidateNotNullorEmpty()]
+        [PSObject]$InputObject
+    )
+
+    $outHash = @{}
+    $tempHash = @{}
+    [Regex]$VIDRegex = "V-([1-9}])[0-9]{3}[0-9]?"
+
+    foreach($i in $InputObject)
+    {
+        [bool]$tempBool = $i.DesiredState
+        $tempHash.add($($i.VulnID),$tempBool)
+    }
+
+    foreach($i in $tempHash.keys)
+    {
+        $vID = $VIDRegex.Matches($i).value
+        
+        $testRule = $tempHash.keys | Where-Object {$_ -like "$vID.*"}
+        if($testRule.count -ge 2 -and $outHash.Contains($vID))
+        {
+            Continue
+        }
+        if (-not($null -eq $testRule))
+        {
+            $ruleResult = $true
+            foreach($tRule in $testRule)
+            {
+                #if you evaluate one rule as false, output is a finding, break loop
+                if($tempHash.$tRule -eq $false)
+                {
+                    $ruleResult = $false
+                    continue
+                }
+            }
+            $outHash.add($vID,$ruleResult)
+        }
+        else 
+        {
+            $outHash.add($i,$($tempHash.$i))
+        }
+    }
+
+
+    Return $outHash
 }
 
 #R03
@@ -247,16 +321,16 @@ function Get-PowerStigFindings
     $workingPath = Split-Path $PsCommandPath
     $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
 
-    if($SqlInstance -eq $null -or $SqlInstance -eq '')
+    if($null -eq $SqlInstance -or $SqlInstance -eq '')
     {
         $SqlInstance = $iniVar.SqlInstanceName
     }
-    if($DatabaseName -eq $null -or $DatabaseName -eq '')
+    if($null -eq $DatabaseName -or $DatabaseName -eq '')
     {
         $DatabaseName = $iniVar.DatabaseName
     }
 
-    $query = "PowerSTIG.GetComplianceStateByServer @TargetComputer = '$ServerName', @GUID = '$GUID'"
+    $query = "PowerSTIG.sproc_GetComplianceStateByServer @TargetComputer = '$ServerName', @GUID = '$GUID'"
     $Results = Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query
 
     Return $Results
@@ -270,7 +344,7 @@ function Convert-PowerStigTest
         [Parameter(Mandatory=$true)]
         [PSObject]$TestResults
     )
-
+    [Regex]$VIDRegex = "V-([1-9}])[0-9]{3}[0-9]?\.?[a-z]?"
     $FullResults = $TestResults.ResourcesInDesiredState + $TestResults.ResourcesNotInDesiredState
 
     $OutputArr = @()
@@ -279,6 +353,10 @@ function Convert-PowerStigTest
 
     foreach($i in $FullResults)
     {   
+        if($VIDRegex.match($i.InstanceName).success -eq $false)
+        {
+            Continue
+        }
         $BoolState = $i.InDesiredState
          
         $strMod = $i.InstanceName
@@ -287,17 +365,11 @@ function Convert-PowerStigTest
         { Continue }
         Else
         {
-            $VidOutPut = $strMod[1]
-            $Severity = $strMod[3]
-            $Definition = $strMod[5]
-            $sType = $strMod[8]
+            $VidOutPut = $VIDRegex.match($i.InstanceName).value
 
             $propHash = @{
                 VulnID = $VidOutPut
                 DesiredState = $BoolState
-                FindingSeverity = $Severity
-                StigDefinition = $Definition
-                StigType = $sType
                 ScanDate = $ScanDate
             }
 
@@ -325,104 +397,37 @@ function Import-PowerStigObject
         [String]$ServerName,
 
         [Parameter(Mandatory=$true)]
-        [PSObject[]]$inputObj
+        [PSObject[]]$inputObj,
+
+        # Role is not strictly defined due to SCAP
+        [Parameter(Mandatory=$true)]
+        [String]$Role,
+
+        [Parameter(Mandatory=$true)]
+        [ValidateSet('SCAP','POWERSTIG')]
+        [String]$ScanSource,
+
+        [Parameter(Mandatory=$true)]
+        [String]$ScanVersion
     )
 
     $guid = New-Guid
 
     foreach($o in $inputObj)
     {
-        $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ServerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @FindingSeverity = `'$($o.FindingSeverity)`', @StigDefinition = `'$($o.StigDefinition)`', @StigType = `'$($o.StigType)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`'"
-        $Results = Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query
+        $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ServerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`', @StigType=`'$Role`', @ScanSource = `'$ScanSource`', @ScanVersion=`'$ScanVersion`'"
+        Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query | Out-Null
     }
 
     #Process Finding
     $query = "EXEC PowerSTIG.sproc_ProcessFindings @GUID = `'$($guid.guid)`'"
-    $Results = Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query
+    Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query | Out-Null
+
+    return
 
 }
 
 #endregion Private
 
 #region Public
-
-#R06
-<#
-.SYNOPSIS
-Generated a DISA Checklist file from scan results stored in the target SQL Database
-
-.DESCRIPTION
-Pulls PowerStig scan data from a SQL database and parses the information to populate a DISA checklist file.
-
-.PARAMETER ServerName
-The server name that the checklist will be generated for.
-
-.PARAMETER osVersion
-Version of the operating system that was present on the server. Valid options are 2012R2 and 2016
-
-.PARAMETER Role
-The role for which a checklist file is to be generated.
-
-.PARAMETER outPath
-File path for the finished checklist file, should end with <Filename>.ckl
-
-.PARAMETER sqlInstance
-SQL Instance to be queried for results. If this is left empty, it will use the entries in the config.ini in the ModuleBase\Common directory.
-
-.PARAMETER DatabaseName
-
-.EXAMPLE
-#>
-function New-PowerStigCkl
-{
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory=$true)]
-        [ValidateNotNullorEmpty()]
-        [String]$ServerName,
-
-        [Parameter(Mandatory=$true)]
-        [ValidateSet("2012R2","2016")]
-        [String]$osVersion,
-
-        [Parameter(Mandatory=$true)]
-        [ValidateSet("MS","DC","FW","IE11","DNS","Client","Excel2013","PowerPoint2013","Word2013","Outlook2013","FireFox","DotNet","JRE","IIS","SQL")]
-        [String]$Role,
-
-        [Parameter(Mandatory=$true)]
-        [ValidateNotNullorEmpty()]
-        [String]$GUID,
-
-        [Parameter(Mandatory=$false)]
-        [ValidateNotNullorEmpty()]
-        [String]$outPath,
-        
-        [Parameter(Mandatory=$false)]
-        [String]$sqlInstance,
-
-        [Parameter(Mandatory=$false)]
-        [String]$DatabaseName
-
-    )
-    
-    $workingPath = Split-Path $PsCommandPath
-    $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
-
-    if($sqlInstance -eq $null -or $sqlInstance -eq '')
-    {
-        $sqlInstance = $iniVar.SqlInstanceName
-    }
-    if($DatabaseName -eq $null -or $DatabaseName -eq '')
-    {
-        $DatabaseName = $iniVar.DatabaseName
-    }
-    if($outPath -eq $null -or $outPath -eq '')
-    {
-        $outPath = $iniVar.CKLOutPath
-    }
-
-
-    Update-PowerStigCkl -TargetServerName $ServerName -osVersion $osVersion -Role $Role -OutPath $outPath -sqlInstance $sqlInstance -DatabaseName $DatabaseName -GUID $GUID
-}
-
 #endregion Public

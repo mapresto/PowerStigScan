@@ -12,9 +12,7 @@
     RootModule = 'PowerStigScan.psm1'
     
     # Version number of this module.
-
-    ModuleVersion = '1.1.0.0'
-
+    ModuleVersion = '2.0.0.0'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -33,8 +31,8 @@
     
     # Description of the functionality provided by this module
     Description = 'Module to Audit systems using the PowerStig engine. 
-PowerStigScan Repo: https://github.com/mapresto/PowerStigScan.
-PowerStig Repo: https://github.com/Microsoft/PowerStig'
+    PowerStigScan Repo: https://github.com/mapresto/PowerStigScan.
+    PowerStig Repo: https://github.com/Microsoft/PowerStig'
     
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.1'
@@ -57,17 +55,17 @@ PowerStig Repo: https://github.com/Microsoft/PowerStig'
     # Modules that must be imported into the global environment prior to importing this module
     RequiredModules = @(
         @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.2.0.0'},
-        @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.2.0.0'},
+        @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.4.0.0'},
+        @{ModuleName = 'ComputerManagementDsc'; ModuleVersion = '6.2.0.0'}
         @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.1.0.108'},
         @{ModuleName = 'PolicyFileEditor'; ModuleVersion = '3.0.1'},
+        @{ModuleName = 'PSDscResources'; ModuleVersion = '2.10.0.0'}
         @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.4.0.0'},
         @{ModuleName = 'SqlServerDsc'; ModuleVersion = '12.1.0.0'},
         @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
         @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
-        @{ModuleName = 'xPSDesiredStateConfiguration'; ModuleVersion = '8.3.0.0'},
-        @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.3.0.0'},
-        @{ModuleName = 'xWinEventLog'; ModuleVersion = '1.2.0.0'},
-        @{ModuleName = 'PowerStig'; ModuleVersion = '2.4.0.0'}
+        @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'},
+        @{ModuleName = 'PowerStig'; ModuleVersion = '3.2.0'}
     
     )
     
@@ -88,17 +86,17 @@ PowerStig Repo: https://github.com/Microsoft/PowerStig'
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
     FunctionsToExport = @(
-        'Invoke-PowerStigScan', 
-        'New-PowerStigCkl', 
+        'Invoke-PowerStigScan',  
         'Add-PowerStigComputer', 
+        'Get-PowerStigComputer',
+        'Remove-PowerStigComputer',
         'Get-PowerStigSqlConfig', 
         'Set-PowerStigSqlConfig',
         'Get-PowerStigConfig',
         'Set-PowerStigConfig',
-        'Invoke-PowerStigBatch',
-        'Get-PowerStigComputer',
-        'Set-PowerStigComputer',
-        'Remove-PowerStigComputer'
+        'Get-PowerStigOrgSettings',
+        'Start-PowerStigDSCScan',
+        'Install-PowerStigSQLDatabase'
         )
     
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -137,13 +135,13 @@ PowerStig Repo: https://github.com/Microsoft/PowerStig'
             # IconUri = ''
     
             # ReleaseNotes of this module
-
-            ReleaseNotes = 'Update for PowerStig 2.4 support
-            Removed V-46477 from IE skip rules
-            Fixed bugs related to Firefox install directory
-            Fixed bug related to computer names with hyphens
-            Updated Config functions for current Configuration Sets'
-
+            ReleaseNotes = 'Added support for PowerSTIG 3.2.0
+            Consolidated file management for key files used
+            Consolidated scanning functions to a single function
+            Added additional, optional integration with SCAP
+            Removed dependency on SQL for bulk scan and CKL generation
+            Added switches to make SQL and SCAP optional components
+            Added Install-PowerStigSQLDatabase to ease the creation of SQL objects'
     
         } # End of PSData hashtable
     

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--DISA STIG Viewer :: 2.8-->
-<!--1.13 Outlook-->
+<!--DISA STIG Viewer :: 2.9-->
+<!--STIG Version:1.13-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -51,7 +51,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>6947828a-ae5c-42b1-b495-2f5c7ec33650</SID_DATA>
+					<SID_DATA>399e8557-838b-4eff-b111-d3ed68c00d78</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>

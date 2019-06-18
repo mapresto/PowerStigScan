@@ -19,28 +19,6 @@
 #           that arise or result from the use or distribution of the Sample Code.
 # -----------------------------------------------------------------------------
 
-<#
-Functions:
-    Private:
-        M01 - Get-Time
-        M02 - InsertLog
-        M03 - Get-PowerStigXMLPath
-        M04 - Get-PowerStigXMLVersion
-        M05 - Get-PowerStigServerRole
-        M06 - Get-ServerVersion
-        R01 - Get-PowerStigIsOffice
-        R02 - Get-PowerStigIsIE
-        R03 - Get-PowerStigIsDotNet
-        R04 - Get-PowerStigIsFireFox
-        R05 - Get-PowerStigIsFirewall
-        R06 - Get-PowerStigIsIIS
-        R07 - Get-PowerStigIsDNS
-        R08 - Get-PowerStigIsSQL
-        R09 - Get-PowerStigIsJRE
-    Public:
-        M07 - Invoke-PowerStigScan
-        M08 - Invoke-PowerStigBatch
-#>
 
 #region Private
 

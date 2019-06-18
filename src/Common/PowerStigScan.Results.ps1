@@ -1,15 +1,3 @@
-<#
-Functions:
-    Private:
-        R01 - Update-PowerStigCKL
-        R02 - Set-PowerStigResultHashTable
-        R03 - Get-PowerStigFindings
-        R04 - Convert-PowerStigTest
-        R05 - Import-PowerStigObject
-    Public:
-        R06 - New-PowerStigCKL
-#>
-
 #region Private
 
 #R01

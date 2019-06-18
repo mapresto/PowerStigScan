@@ -24,13 +24,7 @@
 #           that arise or result from the use or distribution of the Sample Code.
 # -----------------------------------------------------------------------------
 
-<#
-Functions:
-    Private:
-        H01 - Convert-PowerStigRoleToSql
-        H02 - Import-PowerStigConfig
-        H03 - Invoke-PowerStigSqlCommand
-#>
+
 #H01
 function Convert-PowerStigRoleToSql
 {

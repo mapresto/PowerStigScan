@@ -1,12 +1,3 @@
-<#
-Functions:
-    Public:
-        CM01 - Add-PowerStigComputer
-        CM02 - Get-PowerStigComputer
-        CM03 - Set-PowerStigComputer
-        CM04 - Remove-PowerStigComputer
-#>
-
 #region Private
 
 #endregion Private

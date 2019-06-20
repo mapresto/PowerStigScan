@@ -878,10 +878,12 @@ DECLARE @Status varchar(25)
 DECLARE @Comments nvarchar(MAX)
 DECLARE @UpdatedComments nvarchar(MAX)
 DECLARE @ImportID smallint
+DECLARE @RevMapVuln varchar(13)
+DECLARE @CheckListInfoID INT
 SET @TargetComputerID = (SELECT TargetComputerID FROM PowerSTIG.ComplianceTargets WHERE TargetComputer = @TargetComputer)
 SET @ComplianceTypeID = (SELECT ComplianceTypeID FROM PowerSTIG.ComplianceTypes WHERE ComplianceType = @TargetRole)
 --SET @TargetComputerID = 1
---SET @ComplianceTypeID = 5
+--SET @ComplianceTypeID = 19
 --
 -- ----------------------------------------
 -- Find most recent scan
@@ -958,15 +960,17 @@ SELECT * INTO #RecentScan FROM
 					#ResultsForPivot
 				) 
 					AS SourceTable PIVOT(AVG([InDesiredState]) FOR ScanSource IN([POWERSTIG],[SCAP])) AS PivotTable;
-
 -- ----------------------------------------
 -- Load CKL to temp table for manipulation
 -- ----------------------------------------
-SET @Checklist = (SELECT CKLfile FROM PowerSTIG.CheckListInfo WHERE StigID = 'IE_11_STIG') --Need to pull the checklist file from CheckListInfo table AND pull the correct version
+						SET @RevMapVuln = (SELECT TOP 1 RuleID FROM #ResultsForPivot)
+						SET @CheckListInfoID = (SELECT MAX(CheckListInfoID) AS CheckListInfoID FROM PowerSTIG.CheckListAttributes WHERE VulnerabilityNum = @RevMapVuln)
+
+SET @Checklist = (SELECT CKLfile FROM PowerSTIG.CheckListInfo WHERE CheckListInfoID = @CheckListInfoID)
 SET @MaxiSTIG = (SELECT @Checklist.value('count(/CHECKLIST/STIGS/iSTIG)', 'int'))
 			--
 			DROP TABLE IF EXISTS ##__CreateCKL
-			create table ##__CreateCKL (CheckList XML NULL)
+			CREATE TABLE ##__CreateCKL (CheckList XML NULL)
 			--
 			INSERT INTO ##__CreateCKL (CheckList) VALUES (@Checklist)
 
@@ -1026,6 +1030,8 @@ WHILE @iSTIG <= @MaxiSTIG
 							WHEN T.PowerSTIG = 0 AND T.SCAP IS NULL THEN 'Results from PowerSTIG'
 							WHEN T.PowerSTIG = 1 AND T.SCAP IS NULL THEN 'Results from PowerSTIG'
 							WHEN T.PowerSTIG = 1 AND T.SCAP = 0 THEN 'Results from PowerSTIG'
+							WHEN T.PowerSTIG IS NULL AND T.SCAP = 0 THEN 'Results from SCAP'
+							WHEN T.PowerSTIG IS NULL AND T.SCAP = 1 THEN 'Results from SCAP'
 							END
 					FROM
 						##__ResultsCompare T
@@ -1036,7 +1042,6 @@ WHILE @iSTIG <= @MaxiSTIG
 				##__CreateCKL
            SET 
 				checklist.modify('insert text{sql:variable("@Comments")} into (/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/COMMENTS)[1]')
-
 
            SET @i += 1
 

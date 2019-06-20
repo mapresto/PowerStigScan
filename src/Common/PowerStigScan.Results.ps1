@@ -1,15 +1,3 @@
-<#
-Functions:
-    Private:
-        R01 - Update-PowerStigCKL
-        R02 - Set-PowerStigResultHashTable
-        R03 - Get-PowerStigFindings
-        R04 - Convert-PowerStigTest
-        R05 - Import-PowerStigObject
-    Public:
-        R06 - New-PowerStigCKL
-#>
-
 #region Private
 
 #R01
@@ -330,7 +318,7 @@ function Get-PowerStigFindings
         $DatabaseName = $iniVar.DatabaseName
     }
 
-    $query = "PowerSTIG.sproc_GetComplianceStateByServer @TargetComputer = '$ServerName', @GUID = '$GUID'"
+    $query = "EXEC PowerSTIG.sproc_GetComplianceStateByServer @TargetComputer = '$ServerName', @GUID = '$GUID'"
     $Results = Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query
 
     Return $Results

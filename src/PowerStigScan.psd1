@@ -135,13 +135,7 @@
             # IconUri = ''
     
             # ReleaseNotes of this module
-            ReleaseNotes = 'Added support for PowerSTIG 3.2.0
-            Consolidated file management for key files used
-            Consolidated scanning functions to a single function
-            Added additional, optional integration with SCAP
-            Removed dependency on SQL for bulk scan and CKL generation
-            Added switches to make SQL and SCAP optional components
-            Added Install-PowerStigSQLDatabase to ease the creation of SQL objects'
+            ReleaseNotes = ''
     
         } # End of PSData hashtable
     

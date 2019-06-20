@@ -1,11 +1,3 @@
-<#
-Functions:
-    CN01 - Get-PowerStigSqlConfig
-    CN02 - Set-PowerStigSqlConfig
-    CN03 - Get-PowerStigConfig
-    CN04 - Set-PowerStigConfig
-#>
-
 #region Private
 
 #endregion Private

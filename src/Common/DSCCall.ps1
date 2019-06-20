@@ -128,10 +128,24 @@ process
                 "OracleJRE" {
                     #continue until this is finalized - must find config and properties path
                     Return
+
+                    #HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+                    if(Test-Path "HKLM:\\SOFTWARE\JavaSoft\Java RunTime Environment\1.8")
+                    {
+                        $installPath = (Get-ItemProperty "HKLM:\\SOFTWARE\JavaSoft\Java RunTime Environment\1.8").javahome
+                    }
+                    elseif(Test-Path "HKLM:\\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment\1.8")
+                    {
+                        $installPath = (Get-ItemProperty "HKLM:\\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment\1.8").javahome
+                    }
+                    else
+                    {
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][ERROR]: Unable to determine Java install path."
+                    }
                     Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding OracleJRE Configuration"
                     OracleJRE JRE
                     {
-                        ConfigPath      = $ConfigPath
+                        ConfigPath      = "$installPath\deployment.config"
                         PropertiesPath  = $PropertiesPath
                         StigVersion     = (Get-PowerStigXMLVersion -Role "OracleJRE")
                         OrgSettings     = $OrgSettingsFilePath
@@ -201,6 +215,42 @@ process
                     {
                         OfficeApp       = "Word2013"
                         StigVersion     = (Get-PowerStigXMLVersion -Role "Word2013")
+                        OrgSettings     = $OrgSettingsFilePath
+                    } 
+                }
+                "Outlook2016" {
+                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Outlook2016 Configuration"
+                    Office Outlook
+                    {
+                        OfficeApp       = "Outlook2016"
+                        StigVersion     = (Get-PowerStigXMLVersion -Role "Outlook2016")
+                        OrgSettings     = $OrgSettingsFilePath
+                    }
+                }
+                "PowerPoint2016"{
+                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding PowerPoint2016 Configuration"
+                    Office PowerPoint
+                    {
+                        OfficeApp       = "PowerPoint2016"
+                        StigVersion     = (Get-PowerStigXMLVersion -Role "PowerPoint2016")
+                        OrgSettings     = $OrgSettingsFilePath
+                    } 
+                }
+                "Excel2016" {
+                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Excel2016 Configuration"
+                    Office Excel
+                    {
+                        OfficeApp       = "Excel2016"
+                        StigVersion     = (Get-PowerStigXMLVersion -Role "Excel2016")
+                        OrgSettings     = $OrgSettingsFilePath
+                    }
+                }
+                "Word2016" {
+                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Word2016 Configuration"
+                    Office Word
+                    {
+                        OfficeApp       = "Word2016"
+                        StigVersion     = (Get-PowerStigXMLVersion -Role "Word2016")
                         OrgSettings     = $OrgSettingsFilePath
                     } 
                 }

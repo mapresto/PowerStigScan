@@ -85,9 +85,14 @@ Mozilla Firefox - 4.25
 
 ### PowerStig Only
 Excel 2013 - 1.7  
+Excel 2016 - 1.2  
 PowerPoint 2013 - 1.6  
+PowerPoint 2016 - 1.1  
 Word 2013 - 1.6  
+Word 2016 - 1.1  
 Outlook 2013 - 1.13  
+Outlook 2016 - 1.2  
+Oracle JRE - 1.5  
 Windows Server 2012R2 DNS Server - 1.11    
 
 ### SCAP Only (Versions listed are for manual checklists)

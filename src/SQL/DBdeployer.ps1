@@ -203,10 +203,10 @@ $DeployScripts = Get-ChildItem "$(Split-Path $PsCommandPath)\" | Where-Object {$
                     
                 
                 Write-Host "Executing Script: " $Script.Name -BackgroundColor DarkGreen -ForegroundColor White
-                $script = $Script.FullName
+                $scriptPath = $Script.FullName
                 #write-host $script
 
-                $DatabaseScript = Get-Content $Script | Out-String
+                $DatabaseScript = Get-Content $ScriptPath | Out-String
                 $ScriptBatches = $DatabaseScript -split "GO\r\n"
                     foreach ($Batch in $ScriptBatches)
                     {
@@ -225,13 +225,13 @@ $DeployScripts = Get-ChildItem "$(Split-Path $PsCommandPath)\" | Where-Object {$
                     }
                     $CurTime = get-date
                     [console]::ForegroundColor = "Green"
-                    $LogMessage = "---> Script [$script] executed successfully."
+                    $LogMessage = "---> Script [$($script.Name)] executed successfully."
                     #Write-Host $LogMessage
                     [console]::ResetColor()
                     #
                     log [$CurTime]$LogMessage
                     #
-                    Write-Host "Execution successful for script: " $Script.Name -BackgroundColor DarkGreen -ForegroundColor White
+                    Write-Host "Execution successful for script: $($Script.Name)" -BackgroundColor DarkGreen -ForegroundColor White
                 }
             catch
                 {
@@ -247,7 +247,7 @@ $DeployScripts = Get-ChildItem "$(Split-Path $PsCommandPath)\" | Where-Object {$
                 {
                     $CurTime = get-date
                     [console]::ForegroundColor = "Green"
-                    $LogMessage = "---> Error encountered executing script [$script].  Please investigate."
+                    $LogMessage = "---> Error encountered executing script [$($script.name)].  Please investigate."
                     #Write-Host $LogMessage
                     [console]::ResetColor()
                     #

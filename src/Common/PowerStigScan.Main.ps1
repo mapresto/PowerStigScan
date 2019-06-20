@@ -125,6 +125,10 @@ function Get-PowerStigXmlVersion
             "Outlook2013"               {$rRole = "Office-Outlook2013";     $osVersion = $null}
             "PowerPoint2013"            {$rRole = "Office-PowerPoint2013";  $osVersion = $null}
             "Word2013"                  {$rRole = "Office-Word2013";        $osVersion = $null}
+            "Excel2016"                 {$rRole = "Office-Excel2016";       $osVersion = $null}
+            "Outlook2016"               {$rRole = "Office-Outlook2016";     $osVersion = $null}
+            "PowerPoint2016"            {$rRole = "Office-PowerPoint2016";  $osVersion = $null}
+            "Word2016"                  {$rRole = "Office-Word2016";        $osVersion = $null}
             "OracleJRE"                 {$rRole = "OracleJRE-8";            $osVersion = $null}
             "SqlServer-2012-Database"   {$rRole = "SqlServer-2012-Database";$osVersion = $null}
             "SqlServer-2012-Instance"   {$rRole = "SqlServer-2012-Instance";$osVersion = $null}
@@ -256,12 +260,23 @@ function Get-PowerStigServerRole
 
     if($arrRole -contains "WindowsServer-MS" -or $arrRole -contains "WindowsServer-DC")
     {
-        if(Get-PowerStigIsOffice -ServerName $ServerName)
+        $isOffice = Get-PowerStigIsOffice -ServerName $ServerName
+        if($null -ne $isOffice)
         {
-            $arrRole += "Outlook2013"
-            $arrRole += "PowerPoint2013"
-            $arrRole += "Excel2013"
-            $arrRole += "Word2013"
+            if($isOffice -eq '2013')
+            {
+                $arrRole += "Outlook2013"
+                $arrRole += "PowerPoint2013"
+                $arrRole += "Excel2013"
+                $arrRole += "Word2013"
+            }
+            elseif($isOffice -eq '2016')
+            {
+                $arrRole += "Outlook2016"
+                $arrRole += "PowerPoint2016"
+                $arrRole += "Excel2016"
+                $arrRole += "Word2016" 
+            }
         }
         if(Get-PowerStigIsIE -ServerName $ServerName)
         {
@@ -298,12 +313,23 @@ function Get-PowerStigServerRole
         }
     }elseif($arrRole -contains "WindowsClient")
     {
-        if(Get-PowerStigIsOffice -ServerName $ServerName)
+        $isOffice = Get-PowerStigIsOffice -ServerName $ServerName
+        if($null -ne $isOffice)
         {
-            $arrRole += "Outlook2013"
-            $arrRole += "PowerPoint2013"
-            $arrRole += "Excel2013"
-            $arrRole += "Word2013"
+            if($isOffice -eq '2013')
+            {
+                $arrRole += "Outlook2013"
+                $arrRole += "PowerPoint2013"
+                $arrRole += "Excel2013"
+                $arrRole += "Word2013"
+            }
+            elseif($isOffice -eq '2016')
+            {
+                $arrRole += "Outlook2016"
+                $arrRole += "PowerPoint2016"
+                $arrRole += "Excel2016"
+                $arrRole += "Word2016" 
+            }
         }
         if(Get-PowerStigIsIE -ServerName $ServerName)
         {
@@ -377,10 +403,15 @@ function Get-PowerStigIsOffice
     }
     if($keys.count -ge 1)
     {
-        Return $true
+        $Version =Get-ItemProperty $keys[0].toString().replace('HKEY_LOCAL_MACHINE','HKLM:') | Select-Object -ExpandProperty VersionMajor
+        Switch($Version){
+            '15' {Return '2013'}
+            '16' {Return '2016'}
+            'Default' {Return $null}
+        }
     }
     else {
-        Return $false
+        Return $null
     }
 }
 
@@ -1513,6 +1544,9 @@ Function Install-PowerStigSQLDatabase
         [parameter(ParameterSetName='Set1',Position=1,Mandatory=$true)][String]$DatabaseName    
     )
 
+    $PowerStigVersion = "3.2.0"
+    $CopyTest = $false
+    $ImportOrgXML = $false
     $workingPath    = Split-Path $PsCommandPath
 
     & $workingPath\..\SQL\DBdeployer.ps1 -DBServerName $SqlInstanceName -DatabaseName $DatabaseName
@@ -1521,6 +1555,103 @@ Function Install-PowerStigSQLDatabase
 
     # TODO #
     # Add function to import org settings automatically
+    $orgTest = Get-PowerStigOrgSettings -Version 2012R2 -Role WindowsServer-MS -ErrorAction SilentlyContinue
+
+    if($null -eq $orgTest)
+    {
+        if($SqlInstanceName -like "*$env:COMPUTERNAME*")
+        {
+            $moduleTest = Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq $PowerStigVersion}
+        }
+        else 
+        {
+            if($SqlInstanceName -like "*\*")
+            {
+                $ServerName = $SqlInstanceName.Split("\")[0]
+            }
+            else 
+            {
+                $ServerName = $SqlInstanceName    
+            }
+            $moduleTest = Invoke-Command -ComputerName $ServerName -ScriptBlock {Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq "3.2.0"}}    
+        }
+        if($null -eq $moduleTest)
+        {
+            Write-Warning -Message "PowerStig $PowerStigVersion is not installed on the target server. Attempting to install via Install-Module."
+            try 
+            {
+                if($SqlInstanceName -like "*$env:COMPUTERNAME*")
+                {
+                    Install-Module -Name PowerStig -RequiredVersion $PowerStigVersion -ErrorAction Stop
+                    $ImportOrgXML = $true
+                }
+                else 
+                {
+                    Invoke-Command -ComputerName $ServerName -ScriptBlock {param($PowerStigVersion)Install-Module -Name PowerStig -RequiredVersion $PowerStigVersion -ErrorAction Stop} -ArgumentList $PowerStigVersion -ErrorAction Stop
+                    $ImportOrgXML = $true
+                }
+            }
+            catch 
+            {
+                Write-Warning -Message "PowerStig $PowerStigVersion could not be installed via Install-Module."
+                $CopyTest = $true
+            }
+
+            if($ServerName -ne $env:COMPUTERNAME)
+            {
+                $localModTest = Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq $PowerStigVersion}
+                if($null -ne $localModTest -and $CopyTest -eq $true)
+                {
+                    Write-Warning -Message "Attempting to copy PowerStig $PowerStigVersion from local machine."
+                    try 
+                    {
+                        Copy-Item -Path (Get-Module PowerStig -listavailable| Where-Object {$_.Version -eq "3.2.0"} |Select-Object -ExpandProperty ModuleBase) -Destination "\\$ServerName\C$\Program Files\WindowsPowerShell\Modules\PowerStig\$PowerStigVersion\" -Recurse -Force
+                        $ImportOrgXML = $true
+                    }
+                    catch 
+                    {
+                        Write-Warning -Message "PowerStig $PowerStigVersion could not be copied to the target server."
+                    }
+                }
+            }
+            if(-not $ImportOrgXML)
+            {
+                Write-Warning -Message "PowerStig $PowerStigVersion could not be installed on the target server. Organizational settings import cannot run until it is installed. PowerStigScan can still run using local Organizational Settings xml files from the PowerStig directory."
+            }
+        }
+        if($ImportOrgXML)
+        {
+            Write-Warning -Message "Importing PowerStig Organizational Settings from PowerStig $PowerStigVersion module directory"
+            $query = "EXEC PowerStig.sproc_ImportOrgSettingsXML"
+            Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $query | Out-Null   
+            if($SqlInstanceName -like "*$env:COMPUTERNAME*")
+            {
+                $moduleTest = Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq $PowerStigVersion}
+            }
+            else 
+            {
+                if($SqlInstanceName -like "*\*")
+                {
+                    $ServerName = $SqlInstanceName.Split("\")[0]
+                }
+                else 
+                {
+                    $ServerName = $SqlInstanceName    
+                }
+                $moduleTest = Invoke-Command -ComputerName $ServerName -ScriptBlock {Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq "3.2.0"}}    
+            }
+            if($null -eq $moduleTest)
+            {
+                Write-Warning -Message "Organizational Settings were not imported into the Database. PowerStigScan can still function but the issue should be resolved to provide log term retention of organizational specific settings."
+            }
+            else 
+            {
+                Write-Warning -Message "Organizational Settings imported successfully."    
+            }
+        }
+    }
+
+    Write-Host "Database $DatabaseName on $SqlInstanceName has finished installing."
 }
 
 #endregion Public

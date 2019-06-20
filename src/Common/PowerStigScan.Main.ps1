@@ -403,7 +403,14 @@ function Get-PowerStigIsOffice
     }
     if($keys.count -ge 1)
     {
-        $Version =Get-ItemProperty $keys[0].toString().replace('HKEY_LOCAL_MACHINE','HKLM:') | Select-Object -ExpandProperty VersionMajor
+        if($ServerName -eq $env:COMPUTERNAME)
+        {
+            $Version = Get-ItemProperty $keys[0].toString().replace('HKEY_LOCAL_MACHINE','HKLM:') | Select-Object -ExpandProperty VersionMajor
+        }
+        else 
+        {
+            $Version = Invoke-Command -computername $ServerName -scriptblock {param($keys)Get-ItemProperty $keys[0].toString().replace('HKEY_LOCAL_MACHINE','HKLM:') | Select-Object -ExpandProperty VersionMajor} -ArgumentList $keys
+        }
         Switch($Version){
             '15' {Return '2013'}
             '16' {Return '2016'}
@@ -1546,7 +1553,7 @@ Function Install-PowerStigSQLDatabase
 
     $PowerStigVersion = "3.2.0"
     $CopyTest = $false
-    $ImportOrgXML = $false
+    $ImportOrgXML = $true
     $workingPath    = Split-Path $PsCommandPath
 
     & $workingPath\..\SQL\DBdeployer.ps1 -DBServerName $SqlInstanceName -DatabaseName $DatabaseName
@@ -1583,12 +1590,10 @@ Function Install-PowerStigSQLDatabase
                 if($SqlInstanceName -like "*$env:COMPUTERNAME*")
                 {
                     Install-Module -Name PowerStig -RequiredVersion $PowerStigVersion -ErrorAction Stop
-                    $ImportOrgXML = $true
                 }
                 else 
                 {
                     Invoke-Command -ComputerName $ServerName -ScriptBlock {param($PowerStigVersion)Install-Module -Name PowerStig -RequiredVersion $PowerStigVersion -ErrorAction Stop} -ArgumentList $PowerStigVersion -ErrorAction Stop
-                    $ImportOrgXML = $true
                 }
             }
             catch 
@@ -1606,11 +1611,11 @@ Function Install-PowerStigSQLDatabase
                     try 
                     {
                         Copy-Item -Path (Get-Module PowerStig -listavailable| Where-Object {$_.Version -eq "3.2.0"} |Select-Object -ExpandProperty ModuleBase) -Destination "\\$ServerName\C$\Program Files\WindowsPowerShell\Modules\PowerStig\$PowerStigVersion\" -Recurse -Force
-                        $ImportOrgXML = $true
                     }
                     catch 
                     {
                         Write-Warning -Message "PowerStig $PowerStigVersion could not be copied to the target server."
+                        $ImportOrgXML = $false
                     }
                 }
             }

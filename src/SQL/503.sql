@@ -1587,6 +1587,10 @@ SET NOCOUNT ON
 -- ----------------------------------------
 	DROP TABLE IF EXISTS #RecentScan
 GO
+-- ==================================================================
+-- Update ORG setting file location
+-- ==================================================================
+UPDATE PowerSTIG.ComplianceConfig SET ConfigSetting = 'C:\Program Files\WindowsPowerShell\Modules\PowerSTIG\3.2.0\StigData\Processed' WHERE ConfigProperty = 'ORGsettingXML'
 -- ===============================================================================================
 -- ///////////////////////////////////////////////////////////////////////////////////////////////
 -- Logging

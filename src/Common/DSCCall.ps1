@@ -141,7 +141,18 @@ process
                     else
                     {
                         Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][ERROR]: Unable to determine Java install path."
+                        Return
                     }
+                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Testing Path to OracleJRE deployment.config file."
+                    if($ServerName -eq $env:COMPUTERNAME)
+                    {
+                        if(Test-Path "$installPath\deployment.config")
+                        {
+                            Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: deployment.config file exists. Checking if there is content."
+                            $depConfCont = Get-Content "$installPath\deployment.config"
+                        }
+                    }
+
                     Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding OracleJRE Configuration"
                     OracleJRE JRE
                     {

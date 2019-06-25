@@ -16,7 +16,7 @@ function Get-PowerStigScapVersionMap
         #PSTIGVer=1.16
         "IE_11"="1.12"
         #PSTIGVer=1.7
-        "MS_Dot_Net_Framework"="1.7"
+        "MS_Dot_Net_Framework"="1.6"
         #PSTIGVer=4.25
         "Mozilla_FireFox_Windows"="1.2"
         #Following does not have a corresponding PowerStig Equivilent

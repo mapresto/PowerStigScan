@@ -771,6 +771,7 @@ function Invoke-PowerStigScan
             if($PSVersion -notlike "5.1.*")
             {
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[ERROR]: WMF 5.1 is not installed on $s. PowerStig cannot run on $s."
+                Continue
             }
             $tempInfo = Get-PowerStigOSandFunction -ServerName $s
             if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s version is $($tempInfo.OSVersion)"}
@@ -1064,6 +1065,23 @@ function Invoke-PowerStigScan
         else 
         {
             Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Connection to $s successful"
+            
+        }
+        if ($s -eq $ENV:ComputerName) 
+        {
+            $PSVersion = $PSVersionTable.PSVersion.ToString()    
+        }
+        else 
+        {
+            $PSVersion = Invoke-Command -ComputerName $s -ScriptBlock {$PSVersionTable.PSVersion.ToString()}    
+        }
+        if($PSVersion -notlike "5.1.*")
+        {
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[ERROR]: WMF 5.1 is not installed on $s. PowerStig cannot run on $s."
+            Continue
+        }
+        else 
+        {
             $evalServers += $s
         }
         # Check WSMan Settings

@@ -760,6 +760,18 @@ function Invoke-PowerStigScan
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[ERROR]: Could not connect to $s over WINRM. Moving to next server."
                 Continue
             }
+            if ($s -eq $ENV:ComputerName) 
+            {
+                $PSVersion = $PSVersionTable.PSVersion.ToString()    
+            }
+            else 
+            {
+                $PSVersion = Invoke-Command -ComputerName $s -ScriptBlock {$PSVersionTable.PSVersion.ToString()}    
+            }
+            if($PSVersion -notlike "5.1.*")
+            {
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[ERROR]: WMF 5.1 is not installed on $s. PowerStig cannot run on $s."
+            }
             $tempInfo = Get-PowerStigOSandFunction -ServerName $s
             if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s version is $($tempInfo.OSVersion)"}
             if($tempInfo.OsVersion -eq "2012R2")

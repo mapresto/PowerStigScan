@@ -396,32 +396,55 @@ function Get-PowerStigIsOffice
     if($ServerName -eq $env:COMPUTERNAME)
     {
         $keys = @(Get-ChildItem -path $uninstallPath | Where-Object {$_.name -like "*0FF1CE}"})
+        if($keys.count -ge 1)
+        {
+            $highVersion = 0
+            foreach($k in $keys)
+            {
+                [int]$workingVersion = Get-ItemProperty $k.toString().replace('HKEY_LOCAL_MACHINE','HKLM:') | Select-Object -ExpandProperty VersionMajor
+                if($workingVersion -gt $highVersion)
+                {
+                    $highVersion = $workingVersion
+                }
+            }
+            Switch($highVersion){
+                '15' {Return '2013'}
+                '16' {Return '2016'}
+                'Default' {Return $null}
+            }    
+        }
+        else 
+        {
+            Return $null
+        }
     }
     else 
     {
         $keys = @(Invoke-Command -computername $ServerName -scriptblock {param($uninstallPath) Get-ChildItem -path $uninstallPath | Where-Object {$_.name -like "*0FF1CE}"}} -ArgumentList $uninstallPath)
-    }
-    if($keys.count -ge 1)
-    {
-        if($ServerName -eq $env:COMPUTERNAME)
+        if($keys.count -ge 1)
         {
-            $Version = Get-ItemProperty $keys[0].toString().replace('HKEY_LOCAL_MACHINE','HKLM:') | Select-Object -ExpandProperty VersionMajor
+            $highVersion = 0
+            foreach($k in $keys)
+            {
+                [int]$workingVersion =  Invoke-Command -computername $ServerName -scriptblock {param($keys)Get-ItemProperty $keys[0].toString().replace('HKEY_LOCAL_MACHINE','HKLM:') | Select-Object -ExpandProperty VersionMajor} -ArgumentList $keys
+                if($workingVersion -gt $highVersion)
+                {
+                    $highVersion = $workingVersion
+                }
+            }
+            Switch($highVersion){
+                '15' {Return '2013'}
+                '16' {Return '2016'}
+                'Default' {Return $null}
+            }    
         }
         else 
         {
-            $Version = Invoke-Command -computername $ServerName -scriptblock {param($keys)Get-ItemProperty $keys[0].toString().replace('HKEY_LOCAL_MACHINE','HKLM:') | Select-Object -ExpandProperty VersionMajor} -ArgumentList $keys
-        }
-        Switch($Version){
-            '15' {Return '2013'}
-            '16' {Return '2016'}
-            'Default' {Return $null}
+            Return $null
         }
     }
-    else {
-        Return $null
-    }
-}
 
+}
 # R02
 function Get-PowerStigIsIE
 {

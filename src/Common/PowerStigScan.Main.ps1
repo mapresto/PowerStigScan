@@ -1461,7 +1461,7 @@ Function Start-PowerStigDSCScan
         }
         try
         {
-            $ScanObj = Test-DscConfiguration -ComputerName $ServerName -ReferenceConfiguration $m.FullName
+            $ScanObj = Test-DscConfiguration -ComputerName $ServerName -ReferenceConfiguration $m.FullName -ErrorAction Stop
         }
         catch
         {

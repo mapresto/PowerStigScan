@@ -30,7 +30,7 @@ function Convert-PowerStigRoleToSql
 {
     [cmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,Position=0)]
         [String]$Role
     )
 
@@ -64,7 +64,7 @@ function Convert-PowerStigRoleToSql
 }
 
 
-#H02
+
 <#
 .SYNOPSIS
 Retrieves configuration data from a standard .ini file and returns it as a hashtable
@@ -78,11 +78,12 @@ Path to the .ini file to be put to a variable
 .EXAMPLE
 Import-PowerStigConfig -configFilePath C:\users\test.user\documents\config.ini
 #>
+
 function Import-PowerStigConfig 
 {
     [CmdletBinding()]
     Param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,Position=0)]
         [ValidateNotNullorEmpty()]
         [String]$configFilePath
     )

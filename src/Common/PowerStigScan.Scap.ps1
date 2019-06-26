@@ -199,7 +199,7 @@ function Get-PowerStigScapVersion
 {
     [cmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,Position=0)]
         [String]$ScapRole
     )
 

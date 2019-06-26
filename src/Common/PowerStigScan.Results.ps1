@@ -1,6 +1,6 @@
 #region Private
 
-#R01
+
 <#
 .SYNOPSIS
 Queries SQL for results based on date to generate .ckl file
@@ -30,6 +30,7 @@ Update-PowerStigCkl -Role DC -osVersion 2012R2 -TargetServerName TestDC1 -sqlIns
 .NOTES
 General notes
 #>
+
 function Update-PowerStigCkl
 {
     [CmdletBinding()]
@@ -38,9 +39,9 @@ function Update-PowerStigCkl
         [ValidateSet("2012R2","2016","10","All")]
         [String]$osVersion,
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,Position=0)]
         [ValidateNotNullorEmpty()]
-        [String]$ServerName,
+        [String]$ComputerName,
 
         [Parameter(Mandatory=$true)]
         [ValidateNotNullorEmpty()]
@@ -67,7 +68,7 @@ function Update-PowerStigCkl
     }
 
     $Timestamp = (get-date).ToString("MMddyyyyHHmmss")
-    $outFileName = $ServerName + "_" + $Role + "_" + $Timestamp + ".ckl"
+    $outFileName = $ComputerName + "_" + $Role + "_" + $Timestamp + ".ckl"
 
     # generate file name
     If($role -notlike "WindowsServer*" -and $role -notlike "*WindowsDNSServer*")
@@ -177,7 +178,7 @@ function Update-PowerStigCkl
     
 }
 
-#R02
+
 <#
 .SYNOPSIS
 Creates and returns a hashtable based on a input object generated from SQL results.
@@ -190,11 +191,12 @@ Returns a hash table that can be easily searched for results
 .PARAMETER inputObject
 Object that includes database results, best used with the function Get-PowerStigFindings
 #>
+
 function Set-PowerStigResultHashTable
 {
     [CmdletBinding()]
     Param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,Position=0)]
         [ValidateNotNullorEmpty()]
         [PSObject]$inputObject
     )
@@ -213,7 +215,7 @@ Function Set-PowerStigResultHashTableFromObject
 {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,Position=0)]
         [ValidateNotNullorEmpty()]
         [PSObject]$InputObject
     )
@@ -261,7 +263,7 @@ Function Set-PowerStigResultHashTableFromObject
     Return $outHash
 }
 
-#R03
+
 <#
 .SYNOPSIS
 Retrieves the most recent PowerStig findings from the database and returns the database results.
@@ -282,8 +284,9 @@ Name of database on server that holds the PowerStig tables
 Name of Server to retrieve results for.
 
 .EXAMPLE
-Get-PowerStigFindings -SqlInstance "SQL2012TEST,49314" -DatabaseName Master -ServerName dc2012test
+Get-PowerStigFindings -SqlInstance "SQL2012TEST,49314" -DatabaseName Master -ComputerName dc2012test
 #>
+
 function Get-PowerStigFindings
 {
     #Returns Columns Finding, InDesiredState
@@ -297,11 +300,11 @@ function Get-PowerStigFindings
         [Parameter(Mandatory=$false)]
         [String]$DatabaseName,
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,Position=0)]
         [ValidateNotNullorEmpty()]
-        [String]$ServerName,
+        [String]$ComputerName,
 
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,Position=1)]
         [ValidateNotNullorEmpty()]
         [String]$GUID
     )
@@ -318,7 +321,7 @@ function Get-PowerStigFindings
         $DatabaseName = $iniVar.DatabaseName
     }
 
-    $query = "EXEC PowerSTIG.sproc_GetComplianceStateByServer @TargetComputer = '$ServerName', @GUID = '$GUID'"
+    $query = "EXEC PowerSTIG.sproc_GetComplianceStateByServer @TargetComputer = '$ComputerName', @GUID = '$GUID'"
     $Results = Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query
 
     Return $Results
@@ -329,7 +332,7 @@ function Convert-PowerStigTest
 {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,Position=0)]
         [PSObject]$TestResults
     )
     [Regex]$VIDRegex = "V-([1-9}])[0-9]{3}[0-9]?\.?[a-z]?"
@@ -381,8 +384,8 @@ function Import-PowerStigObject
 {
     [cmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName,
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName,
 
         [Parameter(Mandatory=$true)]
         [PSObject[]]$inputObj,
@@ -403,7 +406,7 @@ function Import-PowerStigObject
 
     foreach($o in $inputObj)
     {
-        $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ServerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`', @StigType=`'$Role`', @ScanSource = `'$ScanSource`', @ScanVersion=`'$ScanVersion`'"
+        $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ComputerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`', @StigType=`'$Role`', @ScanSource = `'$ScanSource`', @ScanVersion=`'$ScanVersion`'"
         Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query | Out-Null
     }
 

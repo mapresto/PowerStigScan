@@ -144,7 +144,7 @@ process
                         Return
                     }
                     Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Testing Path to OracleJRE deployment.config file."
-                    if($ServerName -eq $env:COMPUTERNAME)
+                    if($ComputerName -eq $env:COMPUTERNAME)
                     {
                         if(Test-Path "$installPath\deployment.config")
                         {
@@ -270,7 +270,7 @@ process
                     
                     try
                     {
-                        $installDirectory = (Get-PowerStigFireFoxDirectory -ServerName $ComputerName)
+                        $installDirectory = (Get-PowerStigFireFoxDirectory -ComputerName $ComputerName)
                     }
                     catch
                     {

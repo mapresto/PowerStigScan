@@ -3,7 +3,7 @@
 #endregion Private
 
 #region Public
-#CN01
+
 <#
 .SYNOPSIS
 Command to retrieve configuration data from the PowerStig database
@@ -21,8 +21,8 @@ Name of the database that hosts the PowerStig tables. If empty, this will use th
 Get-PowerStigSqlConfig -SqlInstance TestSQL01 -DatabaseName Master -OrgSettingXML
 
 Get-PowerStigSqlConfig -OrgSettingXML
-
 #>
+
 function Get-PowerStigSqlConfig
 {
     [CmdletBinding()]
@@ -88,7 +88,7 @@ function Get-PowerStigSqlConfig
     
 }
 
-#CN02
+
 <#
 .SYNOPSIS
 Command to allow changes to the configuration database for PowerStig
@@ -106,9 +106,8 @@ Name of the database that hosts the PowerStig tables. If empty, this will use th
 Set-PowerStigSqlConfig -SqlInstance TestSQL01 -DatabaseName Master -OrgSettingXML "C:\Program Files\WindowsPowerShell\Modules\PowerSTIG\3.2.0\StigData\Processed\"
 
 Set-PowerStigSqlConfig -OrgSettingXML C:\Temp\CSV
-
-
 #>
+
 function Set-PowerStigSqlConfig
 {
     [CmdletBinding()]
@@ -208,7 +207,7 @@ function Set-PowerStigSqlConfig
     
 }
 
-#CN03
+
 <#
 .SYNOPSIS
 Function to return the current configuration stored in the config.ini that is hosted in the PowerStigScan module path
@@ -237,7 +236,7 @@ function Get-PowerStigConfig
     Return $configObject
 }
 
-#CN04
+
 <#
 .SYNOPSIS
 Function to correctly configure the config.ini file within the PowerStigScan module path.
@@ -408,6 +407,7 @@ Name of the Database to connect to. If this is blank, the value in the config.in
 .EXAMPLE
 Get-PowerStigOrgSettings -Role WindowsServer-MS -Version 2012R2 -OutPath $home\desktop\2012R2-WindowsServer-MS_org.xml
 #>
+
 
 Function Get-PowerStigOrgSettings
 {

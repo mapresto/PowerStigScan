@@ -135,7 +135,9 @@
             # IconUri = ''
     
             # ReleaseNotes of this module
-            ReleaseNotes = ''
+            ReleaseNotes = 'Added Get-Help information
+            Added Office 2016 Support
+            Changed all instance of ServerName to ComputerName'
     
         } # End of PSData hashtable
     

@@ -60,7 +60,7 @@ function Get-PowerStigXMLPath
     Return $powerStigXMLPath
 }
 
-#M04
+
 <#
 .SYNOPSIS
 Determine the newest stig version that is in the PowerStig directory
@@ -76,8 +76,8 @@ Operating System version that is being targeted. Valid options are 2012R2 and 20
 
 .EXAMPLE
 Get-PowerStigXmlVersion -Role DC -osVersion 2012R2
-
 #>
+
 function Get-PowerStigXmlVersion
 {
     [cmdletBinding()]
@@ -194,12 +194,12 @@ function Get-PowerStigOSandFunction
 {
     [cmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
     )
 
-    $osVersion = (Get-WmiObject -Class Win32_OperatingSystem -ComputerName $ServerName).Version
-    $domainRole = (Get-WmiObject -Class Win32_ComputerSystem -ComputerName $ServerName).DomainRole
+    $osVersion = (Get-WmiObject -Class Win32_OperatingSystem -ComputerName $ComputerName).Version
+    $domainRole = (Get-WmiObject -Class Win32_ComputerSystem -ComputerName $ComputerName).DomainRole
 
     if($domainRole -eq 4 -or $domainRole -eq 5)
     {
@@ -227,16 +227,16 @@ function Get-PowerStigServerRole
 {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
     )
 
     # Initialize Role Array
     $arrRole = @()
 
     # Gather domain role and OS version
-    $domainRole = (Get-WmiObject -Class Win32_ComputerSystem -ComputerName $ServerName).DomainRole
-    $osVersion = (Get-WmiObject -Class Win32_OperatingSystem -ComputerName $ServerName).Version
+    $domainRole = (Get-WmiObject -Class Win32_ComputerSystem -ComputerName $ComputerName).DomainRole
+    $osVersion = (Get-WmiObject -Class Win32_OperatingSystem -ComputerName $ComputerName).Version
 
     # Determine MemberServer/Client/DomainController
     if($domainRole -eq 4 -or $domainRole -eq 5)
@@ -260,7 +260,7 @@ function Get-PowerStigServerRole
 
     if($arrRole -contains "WindowsServer-MS" -or $arrRole -contains "WindowsServer-DC")
     {
-        $isOffice = Get-PowerStigIsOffice -ServerName $ServerName
+        $isOffice = Get-PowerStigIsOffice -ComputerName $ComputerName
         if($null -ne $isOffice)
         {
             if($isOffice -eq '2013')
@@ -278,42 +278,42 @@ function Get-PowerStigServerRole
                 $arrRole += "Word2016" 
             }
         }
-        if(Get-PowerStigIsIE -ServerName $ServerName)
+        if(Get-PowerStigIsIE -ComputerName $ComputerName)
         {
             $arrRole += "InternetExplorer"
         }
-        if(Get-PowerStigIsDotNet -ServerName $ServerName)
+        if(Get-PowerStigIsDotNet -ComputerName $ComputerName)
         {
             $arrRole += "DotNetFramework"
         }
-        if(Get-PowerStigIsFireFox -ServerName $ServerName)
+        if(Get-PowerStigIsFireFox -ComputerName $ComputerName)
         {
             $arrRole += "FireFox"
         }
-        if(Get-PowerStigIsFirewall -ServerName $ServerName)
+        if(Get-PowerStigIsFirewall -ComputerName $ComputerName)
         {
             $arrRole += "WindowsFirewall"
         }
-        if(Get-PowerStigIsIIS -ServerName $ServerName) # MUSTREDO
+        if(Get-PowerStigIsIIS -ComputerName $ComputerName) # MUSTREDO
         {
             $arrRole += "IISServer"
             $arrRole += "IISSite"
         }
-        if(Get-PowerStigIsSQL -ServerName $ServerName) # MUSTREDO
+        if(Get-PowerStigIsSQL -ComputerName $ComputerName) # MUSTREDO
         {
             $arrRole += "SQL"
         }
-        if(Get-PowerStigIsJRE -ServerName $ServerName)
+        if(Get-PowerStigIsJRE -ComputerName $ComputerName)
         {
             $arrRole += "OracleJRE"
         }
-        if((Get-PowerStigIsDNS -ServerName $ServerName) -and $osVersion -notlike "10.*")
+        if((Get-PowerStigIsDNS -ComputerName $ComputerName) -and $osVersion -notlike "10.*")
         {
             $arrRole += "WindowsDNSServer"
         }
     }elseif($arrRole -contains "WindowsClient")
     {
-        $isOffice = Get-PowerStigIsOffice -ServerName $ServerName
+        $isOffice = Get-PowerStigIsOffice -ComputerName $ComputerName
         if($null -ne $isOffice)
         {
             if($isOffice -eq '2013')
@@ -331,27 +331,27 @@ function Get-PowerStigServerRole
                 $arrRole += "Word2016" 
             }
         }
-        if(Get-PowerStigIsIE -ServerName $ServerName)
+        if(Get-PowerStigIsIE -ComputerName $ComputerName)
         {
             $arrRole += "InternetExplorer"
         }
-        if(Get-PowerStigIsDotNet -ServerName $ServerName)
+        if(Get-PowerStigIsDotNet -ComputerName $ComputerName)
         {
             $arrRole += "DotNetFramework"
         }
-        if(Get-PowerStigIsFireFox -ServerName $ServerName)
+        if(Get-PowerStigIsFireFox -ComputerName $ComputerName)
         {
             $arrRole += "FireFox"
         }
-        if(Get-PowerStigIsFirewall -ServerName $ServerName)
+        if(Get-PowerStigIsFirewall -ComputerName $ComputerName)
         {
             $arrRole += "WindowsFirewall"
         }
-        if(Get-PowerStigIsSQL -ServerName $ServerName) # MUSTREDO
+        if(Get-PowerStigIsSQL -ComputerName $ComputerName) # MUSTREDO
         {
             $arrRole += "SQL"
         }
-        if(Get-PowerStigIsJRE -ServerName $ServerName)
+        if(Get-PowerStigIsJRE -ComputerName $ComputerName)
         {
             $arrRole += "OracleJRE"
         }
@@ -370,7 +370,7 @@ function Get-ServerVersion
 {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,Position=0)]
         [String]$osVersion
     )
 
@@ -388,12 +388,12 @@ function Get-PowerStigIsOffice
 {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
     )
 
     $uninstallPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
-    if($ServerName -eq $env:COMPUTERNAME)
+    if($ComputerName -eq $env:COMPUTERNAME)
     {
         $keys = @(Get-ChildItem -path $uninstallPath | Where-Object {$_.name -like "*0FF1CE}"})
         if($keys.count -ge 1)
@@ -420,13 +420,13 @@ function Get-PowerStigIsOffice
     }
     else 
     {
-        $keys = @(Invoke-Command -computername $ServerName -scriptblock {param($uninstallPath) Get-ChildItem -path $uninstallPath | Where-Object {$_.name -like "*0FF1CE}"}} -ArgumentList $uninstallPath)
+        $keys = @(Invoke-Command -computername $ComputerName -scriptblock {param($uninstallPath) Get-ChildItem -path $uninstallPath | Where-Object {$_.name -like "*0FF1CE}"}} -ArgumentList $uninstallPath)
         if($keys.count -ge 1)
         {
             $highVersion = 0
             foreach($k in $keys)
             {
-                [int]$workingVersion =  Invoke-Command -computername $ServerName -scriptblock {param($keys)Get-ItemProperty $keys[0].toString().replace('HKEY_LOCAL_MACHINE','HKLM:') | Select-Object -ExpandProperty VersionMajor} -ArgumentList $keys
+                [int]$workingVersion =  Invoke-Command -computername $ComputerName -scriptblock {param($keys)Get-ItemProperty $keys[0].toString().replace('HKEY_LOCAL_MACHINE','HKLM:') | Select-Object -ExpandProperty VersionMajor} -ArgumentList $keys
                 if($workingVersion -gt $highVersion)
                 {
                     $highVersion = $workingVersion
@@ -450,17 +450,17 @@ function Get-PowerStigIsIE
 {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
     )
 
-    if($ServerName -eq $env:COMPUTERNAME)
+    if($ComputerName -eq $env:COMPUTERNAME)
     {
         $outVal = (Get-windowsoptionalfeature -FeatureName Internet-Explorer-Optional-amd64 -online).state -eq "Enabled"
     }
     else 
     {
-        $outVal = Invoke-Command -ComputerName $ServerName -Scriptblock {(Get-windowsoptionalfeature -FeatureName Internet-Explorer-Optional-amd64 -online).state -eq "Enabled"}
+        $outVal = Invoke-Command -ComputerName $ComputerName -Scriptblock {(Get-windowsoptionalfeature -FeatureName Internet-Explorer-Optional-amd64 -online).state -eq "Enabled"}
     }
 
     Return $outVal
@@ -471,8 +471,8 @@ function Get-PowerStigIsDotNet
 {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
     )
 
     # DotNet is currently unsupported by PowerStig. This will return false until further notice.
@@ -485,17 +485,17 @@ function Get-PowerStigIsFireFox
 {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
     )
 
-    if($ServerName -eq $env:COMPUTERNAME)
+    if($ComputerName -eq $env:COMPUTERNAME)
     {
         $outVal = Test-Path -path "HKLM:\Software\Mozilla\Mozilla Firefox\"
     }
     else 
     {
-        $outVal = Invoke-Command -ComputerName $ServerName -scriptblock {Test-Path -path "HKLM:\Software\Mozilla\Mozilla Firefox\"}
+        $outVal = Invoke-Command -ComputerName $ComputerName -scriptblock {Test-Path -path "HKLM:\Software\Mozilla\Mozilla Firefox\"}
     }
     Return $outVal
 }
@@ -503,10 +503,10 @@ function Get-PowerStigIsFireFox
 function Get-PowerStigFireFoxDirectory
 {
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
     )
-    $InstallDirectory = invoke-command -ComputerName $ServerName -scriptblock {(get-itemproperty "$((Get-ChildItem "HKLM:\SOFTWARE\Mozilla\Mozilla FireFox").Name.Replace("HKEY_LOCAL_MACHINE","HKLM:"))\Main")."Install Directory"}
+    $InstallDirectory = invoke-command -ComputerName $ComputerName -scriptblock {(get-itemproperty "$((Get-ChildItem "HKLM:\SOFTWARE\Mozilla\Mozilla FireFox").Name.Replace("HKEY_LOCAL_MACHINE","HKLM:"))\Main")."Install Directory"}
 
     Return $InstallDirectory
 }
@@ -516,8 +516,8 @@ function Get-PowerStigIsFirewall
 {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
     )
 
     Return $true
@@ -528,22 +528,22 @@ function Get-PowerStigIsIIS
 {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
     )
 
-    Return $false #(Get-WindowsFeature -ComputerName $ServerName -Name Web-Server).installstate -eq "Installed"
+    Return $false #(Get-WindowsFeature -ComputerName $ComputerName -Name Web-Server).installstate -eq "Installed"
 }
 
 # R07
 function Get-PowerStigIsDNS
 {
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
     )
 
-    Return (Get-WindowsFeature -ComputerName $ServerName -Name DNS).installstate -eq "Installed"
+    Return (Get-WindowsFeature -ComputerName $ComputerName -Name DNS).installstate -eq "Installed"
 }
 
 # R08
@@ -551,8 +551,8 @@ function Get-PowerStigIsSQL
 {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
     )
 
     Return $false
@@ -563,11 +563,11 @@ function Get-PowerStigIsJRE
 {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
     )
 
-    Return $false #Invoke-Command -ComputerName $ServerName -ScriptBlock {if ((Test-Path -Path "HKLM:\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment") -or (Test-Path -Path "HKLM:\SOFTWARE\JavaSoft\Java Runtime Environment")){Return $true}else{Return $false}}
+    Return $false #Invoke-Command -ComputerName $ComputerName -ScriptBlock {if ((Test-Path -Path "HKLM:\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment") -or (Test-Path -Path "HKLM:\SOFTWARE\JavaSoft\Java Runtime Environment")){Return $true}else{Return $false}}
 }
 #endregion Private
 
@@ -594,7 +594,7 @@ function Get-PowerStigIsJRE
     #if Neither database nor fileExists, copy from PowerSTIG module path to OrgPath. This will allow for a persistent
     #org settings file that can be reused, even after reinstall.
 
-# M07
+
 <#
 .SYNOPSIS
 Scans the target Computers with PowerStig reference configurations and, optionally, SCAP 5.1
@@ -624,7 +624,7 @@ Database to be used for the scan in coordination with SqlBatch. If no value is s
 Enhanced logging is enabled for the PowerStig log located in the logPath configured in the $ModulePath\Common directory.
 
 .EXAMPLE
-Invoke-PowerStigScan -ServerName STIGDCTest01,Sql2012Test,Win10 -RunScap
+Invoke-PowerStigScan -ComputerName STIGDCTest01,Sql2012Test,Win10 -RunScap
 
 Will run a scan against STIGDCTest01, Sql2012Test, and Win10 and will also run a SCAP scan at the same time. The Scap results will take precedence over the PowerStig results if there is a conflict
 
@@ -635,20 +635,20 @@ Will run a scan against every target that exists in the database. This will also
 Invoke-PowerStigScan -SqlBatch
 
 Will run only the PowerStig scans against every target in the database. This will generate a CKL file for each scan completed
-
 #>
+
 function Invoke-PowerStigScan
 {
     # Two ways to get ServerName info is by Name or by SQL.
     # By Name can take an array of ServerNames passed to the property
-    # Example: $ServerName = Get-AdComputer -filter * | Select-Object -ExpandProperty Name
+    # Example: $ComputerName = Get-AdComputer -filter * | Select-Object -ExpandProperty Name
     # RunScap will only run SCAP scans that coordinate with a PowerStig Scan
     # FullScap will run all valid SCAP scans on the target
     [cmdletBinding()]
     param(
         [Parameter(Mandatory=$true,Position=0,ParameterSetName='ByName')]
         [ValidateNotNullorEmpty()]
-        [String[]]$ServerName,
+        [String[]]$ComputerName,
 
         [Parameter(Mandatory=$false,ParameterSetName='SqlBatch')]
         [Parameter(Mandatory=$false,ParameterSetName='ByName')]
@@ -717,7 +717,7 @@ function Invoke-PowerStigScan
 
         # Get list of Servers from SQL.
         # If you do not cast the result as [String[]], ServerName will not take it due to the Parameter value
-        $ServerName = [string[]](Get-PowerStigComputer | Select-Object -ExpandProperty TargetComputer)
+        $ComputerName = [string[]](Get-PowerStigComputer | Select-Object -ExpandProperty TargetComputer)
     }
 
     if($DebugScript)
@@ -786,7 +786,7 @@ function Invoke-PowerStigScan
         $Client = @()
         
         # Determing type of batch
-        foreach($s in $ServerName)
+        foreach($s in $ComputerName)
         {
             if($s -eq 'localhost')
             {
@@ -799,7 +799,7 @@ function Invoke-PowerStigScan
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[ERROR]: Could not connect to $s over WINRM. Moving to next server."
                 Continue
             }
-            $tempInfo = Get-PowerStigOSandFunction -ServerName $s
+            $tempInfo = Get-PowerStigOSandFunction -ComputerName $s
             if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s version is $($tempInfo.OSVersion)"}
             if($tempInfo.OsVersion -eq "2012R2")
             {
@@ -1011,7 +1011,7 @@ function Invoke-PowerStigScan
 
             if($importRole -eq "Windows_Server_2016")
             {
-                $tempObj = Get-PowerStigOSandFunction -ServerName $sScap
+                $tempObj = Get-PowerStigOSandFunction -ComputerName $sScap
                 if($tempObj.Role -eq "DC")
                 {
                     $isDC = $true
@@ -1045,19 +1045,19 @@ function Invoke-PowerStigScan
 
             if($SqlBatch -eq $true)
             {
-                Import-PowerStigObject -ServerName $sScap -InputObj $scapResults -Role $psRole -ScanSource 'SCAP' -ScanVersion $pStigVersion
+                Import-PowerStigObject -ComputerName $sScap -InputObj $scapResults -Role $psRole -ScanSource 'SCAP' -ScanVersion $pStigVersion
             }
 
             if($ScapOnlyRoles -contains $importRole)
             {
                 $sourceHash = @{}
                 $scapHash = Set-PowerStigResultHashTableFromObject -InputObject $scapResults
-                $sInfo = Get-PowerStigOSandFunction -ServerName $sScap
+                $sInfo = Get-PowerStigOSandFunction -ComputerName $sScap
                 foreach($k in $scapHash.keys)
                 {
                     $SourceHash.add("$k","1")
                 }
-                Update-PowerStigCkl -ServerName $sScap -Role $importRole -osVersion $sInfo.OSVersion -InputObject $scapHash -outPath $cklOutPath -SourceHash $SourceHash
+                Update-PowerStigCkl -ComputerName $sScap -Role $importRole -osVersion $sInfo.OSVersion -InputObject $scapHash -outPath $cklOutPath -SourceHash $SourceHash
 
             }
         }
@@ -1074,7 +1074,7 @@ function Invoke-PowerStigScan
     ## Start of MOF Generation
     ##
     ########################################################################
-    foreach($s in $ServerName)
+    foreach($s in $ComputerName)
     {
         if($s -eq 'localhost')
         {
@@ -1170,14 +1170,14 @@ function Invoke-PowerStigScan
         }
     
         # Gather Role information
-        $roles = Get-PowerStigServerRole -ServerName $s
+        $roles = Get-PowerStigServerRole -ComputerName $s
         Add-Content $logFilePath -Value "$(Get-Time):[$s][Info]: PowerStig scan started on $s for role $($roles.roles) and version $($roles.version)."
 
         # If SQL - Update role and OS information
         if($SqlBatch -eq $true)
         {
             Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
-            Set-PowerStigComputer -ServerName $s -osVersion $roles.Version -DebugScript:$DebugScript
+            Set-PowerStigComputer -ComputerName $s -osVersion $roles.Version
         }
 
         
@@ -1319,8 +1319,8 @@ function Invoke-PowerStigScan
 
     foreach ($s in $evalServers)
     {
-        $sOsVersion = (Get-PowerStigOSandFunction -ServerName $s).OSVersion
-        $jobScript = {param($s,$sOsVersion,$RunScap,$SqlBatch,$DebugScript)Start-PowerStigDSCScan -ServerName $s -osVersion $sOsVersion -isScap:$RunScap -isSql:$SqlBatch -DebugScript:$DebugScript}
+        $sOsVersion = (Get-PowerStigOSandFunction -ComputerName $s).OSVersion
+        $jobScript = {param($s,$sOsVersion,$RunScap,$SqlBatch,$DebugScript)Start-PowerStigDSCScan -ComputerName $s -osVersion $sOsVersion -isScap:$RunScap -isSql:$SqlBatch -DebugScript:$DebugScript}
 
         Start-Job -Name "PowerStig_$s" -ScriptBlock $jobScript -ArgumentList $s,$sOsVersion,$RunScap,$SqlBatch,$DebugScript | Out-Null
         $jobCount -= 1
@@ -1385,10 +1385,10 @@ If true, results will be imported into the SQL instance and database stored in t
 Increases the verbosity of the logs that are created for this scan.
 
 .EXAMPLE
-Start-PowerStigDSCScan -ServerName 2012R2DC01 -osVersion 2012R2 -isScap -isSql
+Start-PowerStigDSCScan -ComputerName 2012R2DC01 -osVersion 2012R2 -isScap -isSql
 This will run scans for each mof present in the $logpath\2012R2DC01\PowerStig\, import the SCANs to SQL, compare the results with SCAP, and save the compared results as a fresh CKL.
 
-Start-PowerStigDSCScan -ServerName Win10_01 -osVersion 10
+Start-PowerStigDSCScan -ComputerName Win10_01 -osVersion 10
 This will run scans for each mof present in the $logpath\Win10_01\PowerStig\ directory and process the findings into a CKL.
 
 .NOTES
@@ -1401,8 +1401,8 @@ Function Start-PowerStigDSCScan
     #params required include logging information, is it SCAP/SQL based, MofName, ServerName
     [cmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
-        [String]$ServerName,
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName,
 
         [Parameter(Mandatory=$true)]
         [String]$osVersion,
@@ -1461,49 +1461,49 @@ Function Start-PowerStigDSCScan
         }
     }
 
-    Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][Info]: Starting DSC Scan for $ServerName"
+    Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][DSC][Info]: Starting DSC Scan for $ComputerName"
     if($DebugScript)
     {
-        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: Initialized Values:"
-        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: isScap is $isScap"
-        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: isSql is $isSql"
-        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: SqlInstanceName is $SqlInstanceName"
-        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: DatabaseName is $DatabaseName"
-        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: cklOutPath is $cklOutPath"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][DSC][DEBUG]: Initialized Values:"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][DSC][DEBUG]: isScap is $isScap"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][DSC][DEBUG]: isSql is $isSql"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][DSC][DEBUG]: SqlInstanceName is $SqlInstanceName"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][DSC][DEBUG]: DatabaseName is $DatabaseName"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][DSC][DEBUG]: cklOutPath is $cklOutPath"
     }
 
-    $mofList = @(get-childitem -Path "C:\Temp\PowerStig\$ServerName\PowerStig\*" -Include "$ServerName*.mof" -Recurse)
+    $mofList = @(get-childitem -Path "C:\Temp\PowerStig\$ComputerName\PowerStig\*" -Include "$ComputerName*.mof" -Recurse)
 
     if($DebugScript)
     {
-        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: Found the following mofs"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][DSC][DEBUG]: Found the following mofs"
         foreach($m in $mofList)
         {
             $tech = $m.Name.split("_")[$m.Name.Split("_").count - 1].replace(".mof","")
-            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][DSC][DEBUG]: $tech"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][DSC][DEBUG]: $tech"
         }
     }
 
     foreach($m in $mofList)
     {
         $r = $m.Name.split("_")[$m.Name.Split("_").count - 1].replace(".mof","")
-        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][DSC]: Starting scan for $r on $ServerName"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][$r][DSC]: Starting scan for $r on $ComputerName"
         if($DebugScript)
         {
-            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][DSC][DEBUG]: Test-DscConfiguration -ComputerName $Servername -ReferenceConfiguration $($m.FullName)"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][$r][DSC][DEBUG]: Test-DscConfiguration -ComputerName $ComputerName -ReferenceConfiguration $($m.FullName)"
         }
         try
         {
-            $ScanObj = Test-DscConfiguration -ComputerName $ServerName -ReferenceConfiguration $m.FullName -ErrorAction Stop
+            $ScanObj = Test-DscConfiguration -ComputerName $ComputerName -ReferenceConfiguration $m.FullName -ErrorAction Stop
         }
         catch
         {
-            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][ERROR]: $_"
-            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][ERROR]: mof variable is $($m.FullName)"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][$r][ERROR]: $_"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][$r][ERROR]: mof variable is $($m.FullName)"
             Continue
         }
 
-        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][Info]: Converting results to PSObjects"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][$r][Info]: Converting results to PSObjects"
 
         try
         {
@@ -1512,15 +1512,15 @@ Function Start-PowerStigDSCScan
         }
         catch
         {
-            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][$r][ERROR]: $_"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][$r][ERROR]: $_"
             Continue
         }
 
         if($isSql)
         {
-            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Importing Results to Database for $ServerName and role $r."
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][Info]: Importing Results to Database for $ComputerName and role $r."
 
-            Import-PowerStigObject -Servername $ServerName -InputObj $convertObj -Role $r -ScanSource 'POWERSTIG' -ScanVersion (Get-PowerStigXmlVersion -Role $r -osVersion $osVersion)
+            Import-PowerStigObject -ComputerName $ComputerName -InputObj $convertObj -Role $r -ScanSource 'POWERSTIG' -ScanVersion (Get-PowerStigXmlVersion -Role $r -osVersion $osVersion)
         }
 
         $SourceHash = @{}
@@ -1533,7 +1533,7 @@ Function Start-PowerStigDSCScan
             if($Null -ne $ScapRole)
             {
                 # Determine SCAP Results File or Pass Hash
-                $ScapFile = Get-ChildItem "$logPath\SCC\Results\$ServerName\XML\" -Recurse | Where-Object {$_.Name -like "*XCCDF*" -and $_.Name -like "*$ScapRole*"}
+                $ScapFile = Get-ChildItem "$logPath\SCC\Results\$ComputerName\XML\" -Recurse | Where-Object {$_.Name -like "*XCCDF*" -and $_.Name -like "*$ScapRole*"}
                 if($null -ne $ScapFile)
                 {
                     $ScapHash = Get-PowerStigScapResults -ScapResultsXccdf $ScapFile.FullName -OutHash
@@ -1551,17 +1551,17 @@ Function Start-PowerStigDSCScan
                             $SourceHash.add("$k","0")
                         }
                     }
-                    if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: SCAP and PowerShell results have been compared and hash tables created."}
+                    if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][Debug]: SCAP and PowerShell results have been compared and hash tables created."}
                 }
                 else 
                 {
                     foreach($k in $resultHash.keys)
                     {
-                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][Warning]: SCAP results not found for $ServerName and role $r."
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][Warning]: SCAP results not found for $ComputerName and role $r."
                         $SourceHash.add("$k","0")
                     }
                     $outHash = $resultHash 
-                    if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: Results Hash table created for $ServerName and $r created."}
+                    if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][Debug]: Results Hash table created for $ComputerName and $r created."}
                 }
 
                 # if DSC hash and SCAP hash has same key - Default to SCAP hash
@@ -1576,7 +1576,7 @@ Function Start-PowerStigDSCScan
                     $SourceHash.add("$k","0")
                 }
                 $outHash = $resultHash
-                if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][Debug]: Results Hash table created for $ServerName and $r created."}
+                if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][Debug]: Results Hash table created for $ComputerName and $r created."}
 
             }
 
@@ -1590,14 +1590,14 @@ Function Start-PowerStigDSCScan
             $outHash = $resultHash
         }
         
-        Update-PowerStigCkl -ServerName $ServerName -Role $r -osVersion $osVersion -InputObject $outHash -outPath $cklOutPath -SourceHash $SourceHash
+        Update-PowerStigCkl -ComputerName $ComputerName -Role $r -osVersion $osVersion -InputObject $outHash -outPath $cklOutPath -SourceHash $SourceHash
         # End -not isScap - Compare/Create Results
 
         
 
     }
 
-    Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Job complete for server $ServerName"
+    Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][Info]: Job complete for server $ComputerName"
 }
 
 <#
@@ -1653,13 +1653,13 @@ Function Install-PowerStigSQLDatabase
         {
             if($SqlInstanceName -like "*\*")
             {
-                $ServerName = $SqlInstanceName.Split("\")[0]
+                $ComputerName = $SqlInstanceName.Split("\")[0]
             }
             else 
             {
-                $ServerName = $SqlInstanceName    
+                $ComputerName = $SqlInstanceName    
             }
-            $moduleTest = Invoke-Command -ComputerName $ServerName -ScriptBlock {Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq "3.2.0"}}    
+            $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq "3.2.0"}}    
         }
         if($null -eq $moduleTest)
         {
@@ -1672,7 +1672,7 @@ Function Install-PowerStigSQLDatabase
                 }
                 else 
                 {
-                    Invoke-Command -ComputerName $ServerName -ScriptBlock {param($PowerStigVersion)Install-Module -Name PowerStig -RequiredVersion $PowerStigVersion -ErrorAction Stop} -ArgumentList $PowerStigVersion -ErrorAction Stop
+                    Invoke-Command -ComputerName $ComputerName -ScriptBlock {param($PowerStigVersion)Install-Module -Name PowerStig -RequiredVersion $PowerStigVersion -ErrorAction Stop} -ArgumentList $PowerStigVersion -ErrorAction Stop
                 }
             }
             catch 
@@ -1681,7 +1681,7 @@ Function Install-PowerStigSQLDatabase
                 $CopyTest = $true
             }
 
-            if($ServerName -ne $env:COMPUTERNAME)
+            if($ComputerName -ne $env:COMPUTERNAME)
             {
                 $localModTest = Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq $PowerStigVersion}
                 if($null -ne $localModTest -and $CopyTest -eq $true)
@@ -1689,7 +1689,7 @@ Function Install-PowerStigSQLDatabase
                     Write-Warning -Message "Attempting to copy PowerStig $PowerStigVersion from local machine."
                     try 
                     {
-                        Copy-Item -Path (Get-Module PowerStig -listavailable| Where-Object {$_.Version -eq "3.2.0"} |Select-Object -ExpandProperty ModuleBase) -Destination "\\$ServerName\C$\Program Files\WindowsPowerShell\Modules\PowerStig\$PowerStigVersion\" -Recurse -Force
+                        Copy-Item -Path (Get-Module PowerStig -listavailable| Where-Object {$_.Version -eq "3.2.0"} |Select-Object -ExpandProperty ModuleBase) -Destination "\\$ComputerName\C$\Program Files\WindowsPowerShell\Modules\PowerStig\$PowerStigVersion\" -Recurse -Force
                     }
                     catch 
                     {
@@ -1716,13 +1716,13 @@ Function Install-PowerStigSQLDatabase
             {
                 if($SqlInstanceName -like "*\*")
                 {
-                    $ServerName = $SqlInstanceName.Split("\")[0]
+                    $ComputerName = $SqlInstanceName.Split("\")[0]
                 }
                 else 
                 {
-                    $ServerName = $SqlInstanceName    
+                    $ComputerName = $SqlInstanceName    
                 }
-                $moduleTest = Invoke-Command -ComputerName $ServerName -ScriptBlock {Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq "3.2.0"}}    
+                $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq "3.2.0"}}    
             }
             if($null -eq $moduleTest)
             {

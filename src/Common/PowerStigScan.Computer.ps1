@@ -4,7 +4,7 @@
 
 #region Public
 
-#CM01
+
 <#
 .SYNOPSIS
 Adds a new computer target to the PowerStig database
@@ -22,17 +22,17 @@ SQL instance name that hosts the PowerStig database. If empty, this will use the
 Name of the database that hosts the PowerStig tables. If empty, this will use the settings in the ModuleBase\Common\config.ini file.
 
 .EXAMPLE
-Add-PowerStigComputer -ServerName DC2012Test -SqlInstanceName SQLTest -DatabaseName Master
-Add-PowerStigComputer -ServerName PowerStigTest
-
+Add-PowerStigComputer -ComputerName DC2012Test -SqlInstanceName SQLTest -DatabaseName Master
+Add-PowerStigComputer -ComputerName PowerStigTest
 #>
+
 function Add-PowerStigComputer
 {
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory=$true)]
         [ValidateNotNullorEmpty()]
-        [String]$ServerName,
+        [String]$ComputerName,
 
         [switch]$DebugScript,
 
@@ -57,7 +57,7 @@ function Add-PowerStigComputer
 
     
 
-    $Query = "PowerSTIG.sproc_AddTargetComputer @TargetComputerName = `"$ServerName`""
+    $Query = "PowerSTIG.sproc_AddTargetComputer @TargetComputerName = `"$ComputerName`""
 
     if($DebugScript)
     {
@@ -68,7 +68,7 @@ function Add-PowerStigComputer
     
 }
 
-#CM02
+
 <#
 .SYNOPSIS
 Retrieves the name of computers that are listed in SQL to scan against.
@@ -84,7 +84,6 @@ Name of the Database to connect to. If this is blank, the value in the config.in
 
 .EXAMPLE
 Get-PowerStigComputer
-
 #>
 
 function Get-PowerStigComputer
@@ -125,7 +124,7 @@ function Set-PowerStigComputer
     [cmdletBinding()]
     param(
         [Parameter(Mandatory=$true)]
-        [String]$ServerName,
+        [String]$ComputerName,
 
         [Parameter(Mandatory=$true)]
         [ValidateSet('2012R2','2016','10')]
@@ -151,12 +150,12 @@ function Set-PowerStigComputer
     }
 
 
-    $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateTargetOS @TargetComputer=`"$ServerName`", @OSname=`"$osVersion`""
+    $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateTargetOS @TargetComputer=`"$ComputerName`", @OSname=`"$osVersion`""
     Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $UpdateComputer
     
 }
 
-#CM04
+
 <#
 .SYNOPSIS
 Function to remove a computer from the database for any SQL batch runs
@@ -177,11 +176,8 @@ Name of the Sql Instance to connect to. If this is blank, the value in the confi
 Name of the Database to connect to. If this is blank, the value in the config.ini file is used instead. This value can be seen by using Get-PowerStigConfig.
 
 .EXAMPLE
-Remove-PowerStigComputer -ServerName BadServer01 -Force
+Remove-PowerStigComputer -ComputerName BadServer01 -Force
 Remove-PowerStigComputer BadServer01
-
-.NOTES
-General notes
 #>
 
 function Remove-PowerStigComputer
@@ -189,7 +185,7 @@ function Remove-PowerStigComputer
     [cmdletBinding()]
     param(
         [Parameter(Mandatory=$true,Position=0)]
-        [String]$ServerName,
+        [String]$ComputerName,
 
         [Parameter()]
         [Switch]$Force,
@@ -216,7 +212,7 @@ function Remove-PowerStigComputer
     if(!($Force))
     {
         
-        $readIn = Read-Host "This will remove $ServerName and all data related to the computer from the database. Continue?(Y/N)"
+        $readIn = Read-Host "This will remove $ComputerName and all data related to the computer from the database. Continue?(Y/N)"
         do{
             if($readIn -eq "N")
             {
@@ -229,13 +225,13 @@ function Remove-PowerStigComputer
             }
             else
             {
-                $readIn = Read-Host "Invalid response. Do you want to remove $ServerName? (Y/N)"
+                $readIn = Read-Host "Invalid response. Do you want to remove $ComputerName? (Y/N)"
             }
         }While($proceed -eq $false)
     }
     
 
-    $deleteComputer = "EXEC PowerSTIG.sproc_DeleteTargetComputerAndData @TargetComputer = `'$ServerName`'"
+    $deleteComputer = "EXEC PowerSTIG.sproc_DeleteTargetComputerAndData @TargetComputer = `'$ComputerName`'"
 
     Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $deleteComputer 
 

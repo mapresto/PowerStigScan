@@ -1362,6 +1362,39 @@ function Invoke-PowerStigScan
 
 }
 
+<#
+.SYNOPSIS
+This cmdlet is used by the Invoke-PowerStigScan function. Do not call this function directly!
+
+.DESCRIPTION
+This cmdlet is used by the Invoke-PowerStigScan function. Do not call this function directly! This function is used during the Invoke-PowerStigScan to be used as a per server job. This will use the mofs that are stored in the logpath\computername\powerstig\ path to implement a scan and create checklists for each mof. If SCAP finding are present in logpath\scc\results then it will check to see if there are relevent findings to be compared.
+
+.PARAMETER ServerName
+Name of the Server to be scanned
+
+.PARAMETER osVersion
+Version of Windows installed. Options are 2012R2, 2016, and 10
+
+.PARAMETER isScap
+Whether or not SCAP was used during the scan. If true, the function will attempt to find results and compare. SCAP findings are authoritative if there is a conflict.
+
+.PARAMETER isSql
+If true, results will be imported into the SQL instance and database stored in the config.ini. You can use Get-PowerStigConfig and Set-PowerStigConfig to modify connection properties.
+
+.PARAMETER DebugScript
+Increases the verbosity of the logs that are created for this scan.
+
+.EXAMPLE
+Start-PowerStigDSCScan -ServerName 2012R2DC01 -osVersion 2012R2 -isScap -isSql
+This will run scans for each mof present in the $logpath\2012R2DC01\PowerStig\, import the SCANs to SQL, compare the results with SCAP, and save the compared results as a fresh CKL.
+
+Start-PowerStigDSCScan -ServerName Win10_01 -osVersion 10
+This will run scans for each mof present in the $logpath\Win10_01\PowerStig\ directory and process the findings into a CKL.
+
+.NOTES
+This function is used from the Invoke-PowerStigScan and is not intended to be ran separately!
+#>
+
 Function Start-PowerStigDSCScan
 {
     #The goal of this script is to take a MOF file and Generate results
@@ -1566,6 +1599,29 @@ Function Start-PowerStigDSCScan
 
     Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ServerName][Info]: Job complete for server $ServerName"
 }
+
+<#
+.SYNOPSIS
+Install-PowerStigSQLDatabase will install the tables and stored procedures necessary for SQL integration with PowerStigScan
+
+.DESCRIPTION
+This cmdlet will install the named database on the target server and carry out the necessary tasks to configure this workstation to function with it.
+
+If the database is already installed, this function will instead update the database to the current version. If the database is fully updated then this script will not make any changes.
+
+.PARAMETER SqlInstanceName
+Name of the SQL Instance that the database will be installed to. This function will only support a computer name for the instance.
+
+.PARAMETER DatabaseName
+Name of the database that you wish to update or install.
+
+.EXAMPLE
+Install-PowerStigSQLDatabase -SqlInstanceName SqlServer01 -DatabaseName PowerStigScan
+
+.NOTES
+This cmdlet will also modify the config.ini file that is hosted with this module to point to the instance, creating a more seamless installation.
+This cmdlet will finally attempt to import all of the organization settings xml files from the PowerStig STIG settings folder into the database to act as an authoritative source.
+#>
 
 Function Install-PowerStigSQLDatabase
 {

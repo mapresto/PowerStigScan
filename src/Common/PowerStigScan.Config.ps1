@@ -11,7 +11,6 @@ Command to retrieve configuration data from the PowerStig database
 .DESCRIPTION
 Retrieves information from the ConfigData table in the PowerStig database. This can only retrieve one configuration setting at a time.
 
-
 .PARAMETER SqlInstance
 SQL instance name that hosts the PowerStig database. If empty, this will use the settings in the ModuleBase\Common\config.ini file. 
 
@@ -19,9 +18,9 @@ SQL instance name that hosts the PowerStig database. If empty, this will use the
 Name of the database that hosts the PowerStig tables. If empty, this will use the settings in the ModuleBase\Common\config.ini file.
 
 .EXAMPLE
-Get-PowerStigSqlConfig -SqlInstance TestSQL01 -DatabaseName Master -OutputFileLoc
+Get-PowerStigSqlConfig -SqlInstance TestSQL01 -DatabaseName Master -OrgSettingXML
 
-Get-PowerStigSqlConfig -OutputFileLoc
+Get-PowerStigSqlConfig -OrgSettingXML
 
 #>
 function Get-PowerStigSqlConfig
@@ -104,9 +103,9 @@ SQL instance name that hosts the PowerStig database. If empty, this will use the
 Name of the database that hosts the PowerStig tables. If empty, this will use the settings in the ModuleBase\Common\config.ini file.
 
 .EXAMPLE
-Set-PowerStigSqlConfig -SqlInstance TestSQL01 -DatabaseName Master -OutputFileLoc C:\Temp\CSV
+Set-PowerStigSqlConfig -SqlInstance TestSQL01 -DatabaseName Master -OrgSettingXML "C:\Program Files\WindowsPowerShell\Modules\PowerSTIG\3.2.0\StigData\Processed\"
 
-Set-PowerStigSqlConfig -OutputFileLoc C:\Temp\CSV
+Set-PowerStigSqlConfig -OrgSettingXML C:\Temp\CSV
 
 
 #>
@@ -211,8 +210,16 @@ function Set-PowerStigSqlConfig
 
 #CN03
 <#
+.SYNOPSIS
+Function to return the current configuration stored in the config.ini that is hosted in the PowerStigScan module path
 
+.DESCRIPTION
+These are configurable options that are called for by many of the functions within PowerStigScan. Proper configuration here is critical for integration with either SQL or SCAP,
+
+.EXAMPLE
+Get-PowerStigConfig
 #>
+
 function Get-PowerStigConfig
 {
     $workingPath = Split-Path $PsCommandPath
@@ -232,8 +239,37 @@ function Get-PowerStigConfig
 
 #CN04
 <#
+.SYNOPSIS
+Function to correctly configure the config.ini file within the PowerStigScan module path.
 
+.DESCRIPTION
+This function adds additional formating checks to ensure that the config.ini file is managed correctly to be used by various functions with the PowerStigScan module.
+
+.PARAMETER CKLOutPath
+The path where the CKL files will be saved to as scans complete from Invoke-PowerStigScan
+
+.PARAMETER LogPath
+Path where log files and supporting files are saved during the run time of Invoke-PowerStigScan
+
+.PARAMETER ConcurrentScans
+The amount of concurrent DSC tests that can take place at one time. This does not affect the number of jobs that will be created during the SCAP phase as that has a cap of 5 due to mechanisms within SCAP.
+
+.PARAMETER ScapProfile
+The profile used within scap to scan against. Valid Profiles are part of the parameter set and tabable.
+
+.PARAMETER ScapInstallDir
+The file path location of the cscc.exe application that SCAP command line uses.
+
+.PARAMETER SqlInstanceName
+SQL instance to be used for SQL integration.
+
+.PARAMETER DatabaseName
+SQL database name to be used for SQL integration
+
+.NOTES
+This function recreates the config.ini file every time that it runs. The config.ini can also be transplanted between machines if necessary to carry settings across.
 #>
+
 function Set-PowerStigConfig
 {
     [CmdletBinding()]
@@ -346,6 +382,32 @@ function Set-PowerStigConfig
     $workingPath = Split-Path $PsCommandPath
     $someFile | Out-File -FilePath $workingPath\Config.ini
 }
+
+<#
+.SYNOPSIS
+Generated the Organizational Settings XML that PowerStig can consume based on what is present in the database
+
+.DESCRIPTION
+PowerStig utilizes Organizational Settings when vulnerabilities allow for a range of options to be used to mitigate the STIG. This allows the organization to set a standard to be enforced on each new instance. When using Install-PowerStigSQLDatabase, the default xmls are imported from the PowerStig module. This function recalls those on each run of Invoke-PowerStigScan when -SqlBatch is used. The files are stored in $logPath\PSOrgSettings and can be reused for further, offline, scans.
+
+.PARAMETER Role
+The type of role that org settings are being requested for.
+
+.PARAMETER Version
+Version of the operating system that is being used. This is in reference to how the STIG data is labeled within the PowerStig Module.
+
+.PARAMETER OutPath
+Path where the .xml file will be exported to.
+
+.PARAMETER SqlInstanceName
+Name of the Sql Instance to connect to. If this is blank, the value in the config.ini file is used instead. This value can be seen by using Get-PowerStigConfig.
+
+.PARAMETER DatabaseName
+Name of the Database to connect to. If this is blank, the value in the config.ini file is used instead. This value can be seen by using Get-PowerStigConfig.
+
+.EXAMPLE
+Get-PowerStigOrgSettings -Role WindowsServer-MS -Version 2012R2 -OutPath $home\desktop\2012R2-WindowsServer-MS_org.xml
+#>
 
 Function Get-PowerStigOrgSettings
 {

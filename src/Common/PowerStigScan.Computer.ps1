@@ -13,16 +13,16 @@ Adds a new computer target to the PowerStig database
 Adds a new computer target to the PowerStig database to be scanned with the -SQLBatch switch on Invoke-PowerStigScan
 
 .PARAMETER ServerName
-Name of server to add
+Name of the computer you would like to add.
 
-.PARAMETER SqlInstance
+.PARAMETER SqlInstanceName
 SQL instance name that hosts the PowerStig database. If empty, this will use the settings in the ModuleBase\Common\config.ini file.
 
 .PARAMETER DatabaseName
 Name of the database that hosts the PowerStig tables. If empty, this will use the settings in the ModuleBase\Common\config.ini file.
 
 .EXAMPLE
-Add-PowerStigComputer -ServerName DC2012Test -SqlInstance SQLTest -DatabaseName Master
+Add-PowerStigComputer -ServerName DC2012Test -SqlInstanceName SQLTest -DatabaseName Master
 Add-PowerStigComputer -ServerName PowerStigTest
 
 #>
@@ -37,7 +37,7 @@ function Add-PowerStigComputer
         [switch]$DebugScript,
 
         [Parameter(Mandatory=$false)]
-        [String]$SqlInstance,
+        [String]$SqlInstanceName,
 
         [Parameter(Mandatory=$false)]
         [String]$DatabaseName
@@ -46,9 +46,9 @@ function Add-PowerStigComputer
     $workingPath = Split-Path $PsCommandPath
     $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
 
-    if($null -eq $sqlInstance -or $sqlInstance -eq '')
+    if($null -eq $sqlInstanceName -or $sqlInstanceName -eq '')
     {
-        $sqlInstance = $iniVar.SqlInstanceName
+        $sqlInstanceName = $iniVar.SqlInstanceName
     }
     if($null -eq $DatabaseName -or $DatabaseName -eq '')
     {
@@ -69,15 +69,30 @@ function Add-PowerStigComputer
 }
 
 #CM02
+<#
+.SYNOPSIS
+Retrieves the name of computers that are listed in SQL to scan against.
+
+.DESCRIPTION
+In order to use the SQL batch function of Invoke-PowerStigScan. You must prepopulate the table with computers that you want to scan. This functions lists the comptuers that will be targeted.
+
+.PARAMETER SqlInstanceName
+Name of the Sql Instance to connect to. If this is blank, the value in the config.ini file is used instead. This value can be seen by using Get-PowerStigConfig.
+
+.PARAMETER DatabaseName
+Name of the Database to connect to. If this is blank, the value in the config.ini file is used instead. This value can be seen by using Get-PowerStigConfig.
+
+.EXAMPLE
+Get-PowerStigComputer
+
+#>
+
 function Get-PowerStigComputer
 {
     [CmdletBinding()]
     param(
         [Parameter()]
-        [switch]$DebugScript,
-
-        [Parameter()]
-        [String]$SqlInstance,
+        [String]$SqlInstanceName,
         
         [Parameter()]
         [String]$DatabaseName
@@ -87,9 +102,9 @@ function Get-PowerStigComputer
     $workingPath = Split-Path $PsCommandPath
     $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
 
-    if($null -eq $SqlInstance -or $SqlInstance -eq '')
+    if($null -eq $SqlInstanceName -or $SqlInstanceName -eq '')
     {
-        $SqlInstance = $iniVar.SqlInstanceName
+        $SqlInstanceName = $iniVar.SqlInstanceName
     }
     if($null -eq $DatabaseName -or $DatabaseName -eq '')
     {
@@ -98,11 +113,8 @@ function Get-PowerStigComputer
 
 
     $GetAllServers = "EXEC PowerSTIG.sproc_GetActiveServers"
-    if($DebugScript)
-    {
-        Write-Host $GetAllServers
-    }
-    $RunGetAllServers = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $GetAllServers)
+
+    $RunGetAllServers = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $GetAllServers)
 
     Return $RunGetAllServers
 }
@@ -119,10 +131,8 @@ function Set-PowerStigComputer
         [ValidateSet('2012R2','2016','10')]
         [String]$osVersion,
 
-        [switch]$DebugScript,
-
         [Parameter()]
-        [String]$SqlInstance,
+        [String]$SqlInstanceName,
 
         [Parameter()]
         [String]$DatabaseName
@@ -131,9 +141,9 @@ function Set-PowerStigComputer
     $workingPath = Split-Path $PsCommandPath
     $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
 
-    if($null -eq $SqlInstance -or $SqlInstance -eq '')
+    if($null -eq $SqlInstanceName -or $SqlInstanceName -eq '')
     {
-        $SqlInstance = $iniVar.SqlInstanceName
+        $SqlInstanceName = $iniVar.SqlInstanceName
     }
     if($null -eq $DatabaseName -or $DatabaseName -eq '')
     {
@@ -142,25 +152,50 @@ function Set-PowerStigComputer
 
 
     $UpdateComputer = "EXEC PowerSTIG.sproc_UpdateTargetOS @TargetComputer=`"$ServerName`", @OSname=`"$osVersion`""
-    Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $UpdateComputer
+    Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $UpdateComputer
     
 }
 
 #CM04
+<#
+.SYNOPSIS
+Function to remove a computer from the database for any SQL batch runs
+
+.DESCRIPTION
+In order to use the SQL batch function of Invoke-PowerStigScan. You must prepopulate the table with computers that you want to scan. This function allows you to remove computers that you have added, all data associated to that computer will also be removed.
+
+.PARAMETER ServerName
+Name of the server you want to remove from the database
+
+.PARAMETER Force
+Removes the prompt to check that you meant to remove the computer or server.
+
+.PARAMETER SqlInstanceName
+Name of the Sql Instance to connect to. If this is blank, the value in the config.ini file is used instead. This value can be seen by using Get-PowerStigConfig.
+
+.PARAMETER DatabaseName
+Name of the Database to connect to. If this is blank, the value in the config.ini file is used instead. This value can be seen by using Get-PowerStigConfig.
+
+.EXAMPLE
+Remove-PowerStigComputer -ServerName BadServer01 -Force
+Remove-PowerStigComputer BadServer01
+
+.NOTES
+General notes
+#>
+
 function Remove-PowerStigComputer
 {
     [cmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,Position=0)]
         [String]$ServerName,
 
         [Parameter()]
         [Switch]$Force,
 
-        [switch]$DebugScript,
-
         [Parameter()]
-        [String]$SqlInstance,
+        [String]$SqlInstanceName,
 
         [Parameter()]
         [String]$DatabaseName
@@ -169,9 +204,9 @@ function Remove-PowerStigComputer
     $workingPath = Split-Path $PsCommandPath
     $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
 
-    if($null -eq $SqlInstance -or $SqlInstance -eq '')
+    if($null -eq $SqlInstanceName -or $SqlInstanceName -eq '')
     {
-        $SqlInstance = $iniVar.SqlInstanceName
+        $SqlInstanceName = $iniVar.SqlInstanceName
     }
     if($null -eq $DatabaseName -or $DatabaseName -eq '')
     {
@@ -201,11 +236,8 @@ function Remove-PowerStigComputer
     
 
     $deleteComputer = "EXEC PowerSTIG.sproc_DeleteTargetComputerAndData @TargetComputer = `'$ServerName`'"
-    if($DebugScript)
-    {
-        Write-Host $deleteComputer
-    }
-    Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $deleteComputer 
+
+    Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $deleteComputer 
 
 }
 

@@ -21,7 +21,7 @@
     GUID = '453265f6-5529-4e29-9918-7aca081ca986'
     
     # Author of this module
-    Author = 'Matt Preston'
+    Author = 'Matt Preston, Kevin Bartlett'
     
     # Company or vendor of this module
     CompanyName = 'Microsoft'
@@ -137,7 +137,9 @@
             # ReleaseNotes of this module
             ReleaseNotes = 'Added Get-Help information
             Added Office 2016 Support
-            Changed all instance of ServerName to ComputerName'
+            Changed all instance of ServerName to ComputerName
+            Added support for org settings update in database
+            Org settings are now stored on a temporal table'
     
         } # End of PSData hashtable
     

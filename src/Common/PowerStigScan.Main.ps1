@@ -22,13 +22,11 @@
 
 #region Private
 
-#M01
 function Get-Time
 {
     return (get-date -UFormat %H:%M.%S)
 }
 
-#M02
 function InsertLog 
 {
     param( 
@@ -39,7 +37,7 @@ function InsertLog
         [string]$LogMessage,
         
         [Parameter(Mandatory=$true)]
-        [ValidateSet('Insert', 'Update', 'Delete', 'Deploy', 'Error')]
+        [ValidateSet('Insert', 'Update', 'Delete', 'Deploy', 'Error')] # Constraint has been removed in 504
         [string]$ActionTaken,
 
         [Parameter(Mandatory=$true)]
@@ -53,7 +51,6 @@ function InsertLog
     Invoke-PowerStigSqlCommand -SQLInstance $CMSserver -DatabaseName $CMSDatabaseName -query $InsertLog
 }   
 
-#M03
 function Get-PowerStigXMLPath
 {
     $powerStigXMLPath = "$($(get-module PowerSTIG).ModuleBase)\StigData\Processed"
@@ -113,7 +110,7 @@ function Get-PowerStigXmlVersion
         $highVer = $null
         [System.Array]$StigXmlOs = @()
     
-        # Test if the role is similar to ADDomain, ADForest, IE, or FW. If so then ensure that the OS Version is set to all
+        # Convert the role name from roles.csv to the name of the xml file that PowerStig uses.
         Switch($Role)
         {
             "DotNetFramework"           {$rRole = "DotNetFramework-4";      $osVersion = $null}
@@ -169,6 +166,7 @@ function Get-PowerStigXmlVersion
             {
                 if($g -match $RegexTest)
                 {
+                    # Version objects allow for more accurate comparisons between two versions such as 2.12 is higher than 2.2
                     [version]$wStigVer = ($RegexTest.Matches($g)).value
                 }
     
@@ -182,6 +180,7 @@ function Get-PowerStigXmlVersion
                 }
             }
         }
+        #convert the version object to the two part version/release number used by the STIG xml
         $stringout = $highVer.Major.ToString() + "." + $highVer.Minor.ToString()
         
         Return $stringout
@@ -190,6 +189,7 @@ function Get-PowerStigXmlVersion
 
 }
 
+# Simple function to return just the OS version (2012R2,2016,10) and domain role (MS,DC,Client)
 function Get-PowerStigOSandFunction
 {
     [cmdletBinding()]
@@ -223,6 +223,7 @@ function Get-PowerStigOSandFunction
     }
 }
 
+# Full function that returns the OsVersion (2012R2,2016,10) and PowerStigRole types, runs tests to determine if the roles are used on the target computer
 function Get-PowerStigServerRole
 {
     [CmdletBinding()]
@@ -260,6 +261,7 @@ function Get-PowerStigServerRole
 
     if($arrRole -contains "WindowsServer-MS" -or $arrRole -contains "WindowsServer-DC")
     {
+        #Get-PowerStigIsOffice does not return a Boolean, rather an object for which version is installed.
         $isOffice = Get-PowerStigIsOffice -ComputerName $ComputerName
         if($null -ne $isOffice)
         {
@@ -313,6 +315,7 @@ function Get-PowerStigServerRole
         }
     }elseif($arrRole -contains "WindowsClient")
     {
+        #Get-PowerStigIsOffice does not return a Boolean, rather an object for which version is installed.
         $isOffice = Get-PowerStigIsOffice -ComputerName $ComputerName
         if($null -ne $isOffice)
         {
@@ -365,7 +368,7 @@ function Get-PowerStigServerRole
 
 }
 
-# M06
+# Returns the controlled output of the OsVersion type depending on the returned WMI values from the Win32_OperatingSystem class
 function Get-ServerVersion
 {
     [CmdletBinding()]
@@ -383,7 +386,7 @@ function Get-ServerVersion
     }
 }
 
-# R01
+# Checks the uninstall keys on the target system and returns the highest version of Office found.
 function Get-PowerStigIsOffice
 {
     [CmdletBinding()]
@@ -445,7 +448,7 @@ function Get-PowerStigIsOffice
     }
 
 }
-# R02
+# Checks to see if the WindowsOptionalFeature for IE is enabled
 function Get-PowerStigIsIE
 {
     [CmdletBinding()]
@@ -466,7 +469,7 @@ function Get-PowerStigIsIE
     Return $outVal
 }
 
-# R03
+# Standing function to determine if DotNet is installed, DotNet is not currently supported by PowerStig.
 function Get-PowerStigIsDotNet
 {
     [CmdletBinding()]
@@ -480,7 +483,7 @@ function Get-PowerStigIsDotNet
     Return $false
 }
 
-# R04
+# Tests for the registry keys for Firefox, will only find 64 bit versions currently.
 function Get-PowerStigIsFireFox
 {
     [CmdletBinding()]
@@ -500,6 +503,7 @@ function Get-PowerStigIsFireFox
     Return $outVal
 }
 
+# Finds the install directory of Firefox. For use during the mof creation event
 function Get-PowerStigFireFoxDirectory
 {
     param(
@@ -511,7 +515,7 @@ function Get-PowerStigFireFoxDirectory
     Return $InstallDirectory
 }
 
-# R05
+# Function to determine if Firewall is installed. May expand in the future to determine if it is currently active
 function Get-PowerStigIsFirewall
 {
     [CmdletBinding()]
@@ -523,7 +527,7 @@ function Get-PowerStigIsFirewall
     Return $true
 }
 
-# R06
+# Determines if IIS is Enabled
 function Get-PowerStigIsIIS
 {
     [CmdletBinding()]
@@ -535,7 +539,7 @@ function Get-PowerStigIsIIS
     Return $false #(Get-WindowsFeature -ComputerName $ComputerName -Name Web-Server).installstate -eq "Installed"
 }
 
-# R07
+# Determines if DNS is enabled. DNS STIG is baked into the Server 2016 STIG
 function Get-PowerStigIsDNS
 {
     param(
@@ -546,7 +550,7 @@ function Get-PowerStigIsDNS
     Return (Get-WindowsFeature -ComputerName $ComputerName -Name DNS).installstate -eq "Installed"
 }
 
-# R08
+# Determines if SQL is installed.
 function Get-PowerStigIsSQL
 {
     [CmdletBinding()]
@@ -558,7 +562,7 @@ function Get-PowerStigIsSQL
     Return $false
 }
 
-# R09
+# Determines if Oracle Java Runtime is installed.
 function Get-PowerStigIsJRE
 {
     [CmdletBinding()]
@@ -770,7 +774,7 @@ function Invoke-PowerStigScan
             Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Created Scap Path at $scapPath"
         }
 
-        # Initialize Hash Table to get list of SCAP scans that are required
+        # Initialize Hash Table to get list of SCAP scans that are required. 0 does not run, 1 will run Scap for that type
         $runList = @{
             "2012R2_MS" = 0
             "2012R2_DC" = 0
@@ -801,6 +805,9 @@ function Invoke-PowerStigScan
             }
             $tempInfo = Get-PowerStigOSandFunction -ComputerName $s
             if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s version is $($tempInfo.OSVersion)"}
+
+            # For each server this will determine which OS and role is being scanned and add it to the variable that will build the hosts file.
+            # If it is the first of the type, it will also toggle the runList switch to enable the scan.
             if($tempInfo.OsVersion -eq "2012R2")
             {
                 if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s is 2012R2 = True"}
@@ -878,13 +885,16 @@ function Invoke-PowerStigScan
             Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: Setting base configuration for SCAP"
         }
 
+        # this function will create the options.xml file if it doesn't exist and customize the settings for what is needed for this run.
         Set-PowerStigScapBasicOptions
+        # Loop to wait for the options.xml to finish being created.
         while(((Get-Process | Where-Object {$_.ProcessName -like "cscc*"}).count) -gt 0)
         {
             Start-Sleep -seconds 1
         }
 
         Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: The following option and hosts files will be generated and ran"
+        # foreach key that was set to 1. Generate a new options.xml and hosts file saved to the logfile\Scap Path. Finally, start Scap Job
         foreach($r in $runList.Keys)
         {
             Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Processing $r"
@@ -976,6 +986,8 @@ function Invoke-PowerStigScan
 
         Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP has started to run. Waiting until all jobs complete."
 
+        # Wait until all SCAP jobs have finished. The PowerShell jobs will complete shortly after starting, leaving the scans running.
+        # Checking by process will ensure that scans are complete prior to moving forward.
         while (((Get-Process | Where-Object {$_.ProcessName -like "cscc*"}).count) -gt 0 -or (Get-Job | Where-Object {$_.state -eq "Running" -and $_.name -like "SCAP*"}).count -gt 0)
         {
             Start-Sleep -Seconds 2
@@ -987,7 +999,9 @@ function Invoke-PowerStigScan
 
         Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Processing SCAP results"
 
+        # Grab the SCAP results xccdf files for parsing into results.
         $scapResultXccdf = Get-Childitem -path C:\Temp\PowerStig\SCC\Results -Include "*Xccdf*" -Recurse
+        # Get a list of SCAP technologies.
         $scapTech = Get-PowerStigScapVersionMap
 
 

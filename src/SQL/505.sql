@@ -129,6 +129,83 @@ ALTER TABLE [PowerSTIG].[FindingRepo]  WITH NOCHECK ADD  CONSTRAINT [FK_FindingR
 
 GO
 -- ==================================================================
+-- sproc_InsertFindingImport
+-- ==================================================================
+CREATE OR ALTER PROCEDURE [PowerSTIG].[sproc_InsertFindingImport]
+				@PScomputerName varchar(255)
+				,@VulnID varchar(25) 
+				,@StigType varchar(256) 
+				,@DesiredState varchar(25)
+				,@ScanDate datetime
+				,@GUID UNIQUEIDENTIFIER
+				,@ScanSource varchar(25)
+				,@ScanVersion varchar(8)
+				,@GlobalScanGUID UNIQUEIDENTIFIER
+AS
+SET NOCOUNT ON
+--------------------------------------------------------------------------------- 
+-- The sample scripts are not supported under any Microsoft standard support 
+-- program or service. The sample scripts are provided AS IS without warranty  
+-- of any kind. Microsoft further disclaims all implied warranties including,  
+-- without limitation, any implied warranties of merchantability or of fitness for 
+-- a particular purpose. The entire risk arising out of the use or performance of  
+-- the sample scripts and documentation remains with you. In no event shall 
+-- Microsoft, its authors, or anyone else involved in the creation, production, or 
+-- delivery of the scripts be liable for any damages whatsoever (including, 
+-- without limitation, damages for loss of business profits, business interruption, 
+-- loss of business information, or other pecuniary loss) arising out of the use 
+-- of or inability to use the sample scripts or documentation, even if Microsoft 
+-- has been advised of the possibility of such damages 
+---------------------------------------------------------------------------------
+-- ===============================================================================================
+-- Purpose:
+-- Revisions:
+-- 07162018 - Kevin Barlett, Microsoft - Initial creation.
+-- 04082019 - Kevin Barlett, Microsoft - Modifications for SCAP + PowerSTIG integration.
+--Use example:
+--EXEC PowerSTIG.sproc_InsertFindingImport 'SERVER2012','V-26529','OracleJRE','True','09/17/2018 14:32:42','5B1DD2AD-025A-4264-AD0C-E11107F88004','SCAP','1.03','4B9D4AEC-41AE-465B-914B-FA98A42EB01C'
+--EXEC PowerSTIG.sproc_InsertFindingImport 'SERVER2012','V-26529','DotNetFramework','True','09/17/2018 14:32:42','5B1DD2AD-025A-4264-AD0C-E11107F88004','POWERSTIG','4.31','4B9D4AEC-41AE-465B-914B-FA98A42EB01C'
+-- ===============================================================================================
+DECLARE @ErrorMessage varchar(2000)
+DECLARE @ErrorSeverity tinyint
+DECLARE @ErrorState tinyint
+--
+BEGIN TRY
+	INSERT INTO PowerSTIG.FindingImport
+		(
+		TargetComputer,
+		VulnID,
+		StigType,
+		DesiredState,
+		ScanDate,
+		[GUID],
+		ScanSource,
+		ImportDate,
+		ScanVersion,
+		GlobalScanGUID
+		)
+	VALUES
+		(
+		@PScomputerName,
+		@VulnID,
+		@StigType,
+		@DesiredState,
+		@ScanDate,
+		@GUID,
+		@ScanSource,
+		GETDATE(),
+		@ScanVersion,
+		@GlobalScanGUID
+		)
+END TRY
+	BEGIN CATCH
+		    SET @ErrorMessage  = ERROR_MESSAGE()
+			SET @ErrorSeverity = ERROR_SEVERITY()
+			SET @ErrorState    = ERROR_STATE()
+			RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState)
+	END CATCH
+GO
+-- ==================================================================
 -- sproc_ProcessFindings
 -- ==================================================================
 CREATE OR ALTER  PROCEDURE [PowerSTIG].[sproc_ProcessFindings] 

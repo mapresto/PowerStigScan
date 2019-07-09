@@ -4,7 +4,8 @@
 1.0.0.0 - Released February 8, 2019  
 1.0.0.2 - Released Feburary 25, 2019  
 1.1.0.0 - Released March 1, 2019  
-2.0.0.0 - Released June 17, 2019 
+2.0.0.0 - Released June 17, 2019  
+2.0.1.0 - Released July 8, 2019  
 
 ## What's New!
 ## Support for PowerStig 3.2.0
@@ -67,6 +68,12 @@ these settings.
 
 ### Adding Target Computers
 In order to use the SQL Batch functionality, the target servers must exist in the SQL database prior to attempting to running Invoke-PowerStigScan with the -SqlBatch switch. You can add servers to the database with the Add-PowerStigComputer cmdlet with the -ServerName parameter.
+
+### BugFixes
+### 2.0.1.0
+Added detection for PowerShell 5.1  
+Fixed issues preventing .Net SCAP scan from proceding  
+Added support to automatically set Non-Applicable rules for 2016 STIG to NA  
 
 ## Supported STIGs
 

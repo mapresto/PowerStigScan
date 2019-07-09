@@ -79,7 +79,14 @@ function Update-PowerStigCkl
     }
 
     $Timestamp = (get-date).ToString("MMddyyyyHHmmss")
-    $outFileName = $ServerName + "_" + $Role + "_" + $Timestamp + ".ckl"
+    if($Role -notlike "WindowsServer*")
+    {
+        $outFileName = $ServerName + "_" + $Role + "_" + $Timestamp + ".ckl"
+    }
+    elseif($Role -like "WindowsServer*")
+    {
+        $outFileName = $ServerName + "_" + $osVersion + "_" + $Role + "_" + $Timestamp + ".ckl"
+    }
 
     # generate file name
     If($role -notlike "WindowsServer*" -and $role -notlike "*WindowsDNSServer*")
@@ -92,14 +99,7 @@ function Update-PowerStigCkl
     }
     elseif($Role -like "WindowsServer*")
     {
-        if($osVersion -eq "2012R2")
-        {
-            [String]$fileName = $osVersion + $role + "Empty.ckl"
-        }
-        elseif($osVersion -eq '2016')
-        {
-        [String]$fileName = $osVersion + "WindowsServerEmpty.ckl"
-        }
+        [String]$fileName = $osVersion + $role + "Empty.ckl"
     }
     
 
@@ -174,7 +174,7 @@ function Update-PowerStigCkl
                 $i.COMMENTS = "Result is from SCAP"
             }
         }
-        elseif($null -eq $boolNotAFinding)
+        elseif($null -eq $boolNotAFinding -and $i.STATUS -ne "Not_Applicable")
         {
             $i.STATUS = $isNull
         }

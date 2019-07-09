@@ -12,7 +12,7 @@
     RootModule = 'PowerStigScan.psm1'
     
     # Version number of this module.
-    ModuleVersion = '2.0.0.0'
+    ModuleVersion = '2.0.1.0'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -141,7 +141,10 @@
             Added additional, optional integration with SCAP
             Removed dependency on SQL for bulk scan and CKL generation
             Added switches to make SQL and SCAP optional components
-            Added Install-PowerStigSQLDatabase to ease the creation of SQL objects'
+            Added Install-PowerStigSQLDatabase to ease the creation of SQL objects
+            Added detection for PowerShell 5.1  
+            Fixed issues preventing .Net SCAP scan from proceding  
+            Added support to automatically set Non-Applicable rules for 2016 STIG to NA'
     
         } # End of PSData hashtable
     

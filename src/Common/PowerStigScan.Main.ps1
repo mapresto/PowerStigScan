@@ -760,6 +760,19 @@ function Invoke-PowerStigScan
                 Add-Content -Path $logFilePath -Value "$(Get-Time):[ERROR]: Could not connect to $s over WINRM. Moving to next server."
                 Continue
             }
+            if ($s -eq $ENV:ComputerName) 
+            {
+                $PSVersion = $PSVersionTable.PSVersion.ToString()    
+            }
+            else 
+            {
+                $PSVersion = Invoke-Command -ComputerName $s -ScriptBlock {$PSVersionTable.PSVersion.ToString()}    
+            }
+            if($PSVersion -notlike "5.1.*")
+            {
+                Add-Content -Path $logFilePath -Value "$(Get-Time):[ERROR]: WMF 5.1 is not installed on $s. PowerStig cannot run on $s."
+                Continue
+            }
             $tempInfo = Get-PowerStigOSandFunction -ServerName $s
             if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s version is $($tempInfo.OSVersion)"}
             if($tempInfo.OsVersion -eq "2012R2")
@@ -1052,6 +1065,23 @@ function Invoke-PowerStigScan
         else 
         {
             Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Connection to $s successful"
+            
+        }
+        if ($s -eq $ENV:ComputerName) 
+        {
+            $PSVersion = $PSVersionTable.PSVersion.ToString()    
+        }
+        else 
+        {
+            $PSVersion = Invoke-Command -ComputerName $s -ScriptBlock {$PSVersionTable.PSVersion.ToString()}    
+        }
+        if($PSVersion -notlike "5.1.*")
+        {
+            Add-Content -Path $logFilePath -Value "$(Get-Time):[ERROR]: WMF 5.1 is not installed on $s. PowerStig cannot run on $s."
+            Continue
+        }
+        else 
+        {
             $evalServers += $s
         }
         # Check WSMan Settings
@@ -1422,7 +1452,7 @@ Function Start-PowerStigDSCScan
         }
         try
         {
-            $ScanObj = Test-DscConfiguration -ComputerName $ServerName -ReferenceConfiguration $m.FullName
+            $ScanObj = Test-DscConfiguration -ComputerName $ServerName -ReferenceConfiguration $m.FullName -ErrorAction Stop
         }
         catch
         {

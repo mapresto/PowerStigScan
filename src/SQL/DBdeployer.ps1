@@ -1,8 +1,8 @@
 # =================================================================================================================
 # Purpose:
 # Revisions:
-# 05242019 - Kevin Barlett, Microsoft - Initial creation.
-# 
+# 05242019 - Kevin Barlett, Microsoft - v0.1 - Initial creation.
+# 07092019 - Kevin Barlett, Microsoft - v0.2 - Added yes/no logic for database creation versus automatic creation.
 # =================================================================================================================
 # -----------------------------------------------------------------------------
 #
@@ -45,7 +45,7 @@ function log($string, $color)
 $HeaderMessage = "
 ///////////////////////////////////////////////////////////////////////////////
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-                PowerSTIGscan Database Installer - v0.1
+                PowerSTIGscan Database Installer - v0.2
                     $CurTime
 ///////////////////////////////////////////////////////////////////////////////
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -113,9 +113,45 @@ $DBexistsQuery = "SELECT 1 AS DatabaseExists FROM sys.databases
 
 if ($DBexists -ne 1)
     {
+        [console]::ForegroundColor = "yellow"
+        $LogMessage = "---> Specified database [$DatabaseName] was not found.  Type [Yes] to create the database or [No] to exit the DBdeployer utility and create the database manually."
+        Write-Host $LogMessage
+    [console]::ForegroundColor = "green"
+
+    #
+     $CreateDBchoice = read-host -prompt "Enter [Yes] or [No].  
+        --> Yes = The DBdeployer utility will create a database named [$DatabaseName] 
+        --> No = The DBdeployer utility will perform no actions and will exit.
+        
+        *****[Yes] or [No]***** --> "
+
+        while("Yes","No" -notcontains $CreateDBchoice)
+            {
+                $CreateDBchoice = read-host -prompt "Enter [Yes] or [No].  
+                     --> Yes = The DBdeployer utility will create a database named [$DatabaseName] 
+                     --> No = The DBdeployer utility will perform no actions and will exit.
+        
+                  *****[Yes] or [No]***** --> "
+            }
+
+            $CreateDBchoice = $CreateDBchoice.Trim()
+
+            # Exit the utility if No is specified.
+            if ($CreateDBchoice -eq "No")
+                {
+                    $CurTime = get-date
+                    [console]::ForegroundColor = "Yellow"
+                    $LogMessage = "---> Specified database [$DatabaseName] was not found and [$CreateDBchoice] was specified.  No actions performed.  DBdeployer utility exiting."
+                    Write-Host $LogMessage
+                    [console]::ResetColor()
+                    #
+                    log [$CurTime]$LogMessage 
+                    EXIT
+                }
+            
         $CurTime = get-date
         [console]::ForegroundColor = "Yellow"
-        $LogMessage = "---> Specified database [$DatabaseName] was not found.  Creating database [$DatabaseName] now."
+        $LogMessage = "---> Specified database [$DatabaseName] was not found and [$CreateDBchoice] was specified.  Creating database [$DatabaseName] now."
         Write-Host $LogMessage
         [console]::ResetColor()
         #

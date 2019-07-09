@@ -571,7 +571,21 @@ function Get-PowerStigIsJRE
         [String]$ComputerName
     )
 
-    Return $false #Invoke-Command -ComputerName $ComputerName -ScriptBlock {if ((Test-Path -Path "HKLM:\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment") -or (Test-Path -Path "HKLM:\SOFTWARE\JavaSoft\Java Runtime Environment")){Return $true}else{Return $false}}
+    Return $false 
+    if(Test-Path "HKLM:\\SOFTWARE\JavaSoft\Java RunTime Environment\1.8")
+    {
+        Return $true
+
+    }
+    elseif(Test-Path "HKLM:\\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment\1.8")
+    {
+        Return $true
+    }
+    else
+    {
+        Return $false
+    }
+
 }
 #endregion Private
 

@@ -126,7 +126,12 @@ process
                     }
                 }
                 "OracleJRE" {
-                    #HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+
+                    [Regex]$PropRegex = "file:\/\/\/[a-zA-Z]:[\/|\\]"
+
+                    #######################
+                    # Determin Install Path
+                    #######################
                     if($ComputerName -eq $env:COMPUTERNAME)
                     {
                         if(Test-Path "HKLM:\\SOFTWARE\JavaSoft\Java RunTime Environment\1.8")
@@ -161,6 +166,9 @@ process
 
                     }
 
+                    #########################################################################################
+                    # Determine location of Deployment.config, create it it doesnt exist, and get the content
+                    #########################################################################################
                     Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Testing Path to OracleJRE deployment.config file."
                     if($ComputerName -eq $env:COMPUTERNAME)
                     {
@@ -187,12 +195,12 @@ process
                         if(Invoke-Command -ComputerName $ComputerName -ScriptBlock {param($installPath)Test-Path "$installPath\lib\deployment.config"} -ArgumentList $installPath)
                         {
                             $confPath = "$installPath\lib\deployment.config"
-                            Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file exist. Checking for content."
+                            Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file exists. Checking for content."
                         }
                         elseif(Invoke-Command -ComputerName $ComputerName -ScriptBlock {Test-Path "$env:WINDIR\Sun\Java\Deployment\deployment.config"})
                         {
                             $confPath = "$env:WINDIR\Sun\Java\Deployment\deployment.config"
-                            Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file exist. Checking for content."
+                            Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file exists. Checking for content."
                         }
                         else
                         {
@@ -203,10 +211,16 @@ process
                         $depConfCont = Invoke-Command -ComputerName $ComputerName -ScriptBlock {param($confPath)Get-Content $confPath} -ArgumentList $confPath
                     }
 
-                    if($depConfCont -eq 0)
+                    ###########################################################################################
+                    # If the config file is empty, add a filler value or else the configuration/test will fail.
+                    ###########################################################################################
+                    if($depConfCont.count -eq 0)
                     {
-                        $OracleJREXML   = Get-Content "$((get-module PowerSTIG).ModuleBase)\StigData\Processed\OracleJRE-8-1.5.xml"
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Warning]: deployment.config file is empty."
+                        [xml]$OracleJREXML   = Get-Content "$((get-module powerstig -ListAvailable | sort version -Descending | select -First 1).ModuleBase)\StigData\Processed\OracleJRE-8-1.5.xml"
+                        # Properties path will be pulled from the STIG, file and path will be created for it.
                         $PropertiesPath = ($OracleJREXML.DISASTIG.FileContentRule.Rule | Where-Object {$_.value -like "*deployment.properties"} | Select-Object -expandproperty Value).replace("file:///","")
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: PropertiesPath is set to $PropertiesPath"
                         if($ComputerName -eq $env:COMPUTERNAME)
                         {
                             Add-content $ConfPath -Value "1"
@@ -219,15 +233,26 @@ process
                     }
                     else
                     {
-                        if(($depConfCont | Where-Object {$_ -like "deployment.system.config*" -and $_ -notlike "deployment.system.config.mandatory*"}) -ne 0)
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file has content. Trying to determine properties path"
+                        if(($depConfCont | Where-Object {$_ -like "deployment.system.config*" -and $_ -notlike "deployment.system.config.mandatory*"}).count -ne 0)
                         {
-                            $PropertiesPath = (($depConfCont | Where-Object {$_ -like "deployment.system.config*" -and $_ -notlike "deployment.system.config.mandatory*"}) -split "=")[1].replace("file:///","")
+                            if((($depConfCont | Where-Object {$_ -like "deployment.system.config*" -and $_ -notlike "deployment.system.config.mandatory*"}) -split "=")[1] -match $PropRegex)
+                            {
+                                $PropertiesPath = (($depConfCont | Where-Object {$_ -like "deployment.system.config*" -and $_ -notlike "deployment.system.config.mandatory*"}) -split "=")[1].replace("file:///","")
+                            }
+                            else
+                            {
+                                Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Warning]: Property path in deployment.config has an incorrect syntax. Please check."
+                                [xml]$OracleJREXML   = Get-Content "$((get-module powerstig -ListAvailable | sort version -Descending | select -First 1).ModuleBase)\StigData\Processed\OracleJRE-8-1.5.xml"
+                                $PropertiesPath = ($OracleJREXML.DISASTIG.FileContentRule.Rule | Where-Object {$_.value -like "*deployment.properties"} | Select-Object -expandproperty Value).replace("file:///","")        
+                            }
                         }
                         else
                         {
-                            $OracleJREXML   = Get-Content "$((get-module PowerSTIG).ModuleBase)\StigData\Processed\OracleJRE-8-1.5.xml"
+                            [xml]$OracleJREXML   = Get-Content "$((get-module powerstig -ListAvailable | sort version -Descending | select -First 1).ModuleBase)\StigData\Processed\OracleJRE-8-1.5.xml"
                             $PropertiesPath = ($OracleJREXML.DISASTIG.FileContentRule.Rule | Where-Object {$_.value -like "*deployment.properties"} | Select-Object -expandproperty Value).replace("file:///","")    
                         }
+                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: PropertiesPath is set to $PropertiesPath"
                     }
 
                     if($ComputerName -eq $env:ComputerName)
@@ -267,6 +292,7 @@ process
                         PropertiesPath  = $PropertiesPath
                         StigVersion     = (Get-PowerStigXMLVersion -Role "OracleJRE")
                         OrgSettings     = $OrgSettingsFilePath
+                        Exception       = @{'V-66941.a'="file:///$PropertiesPath"}
                     }
                 }
                 "IISServer" {

@@ -1717,7 +1717,7 @@ Function Install-PowerStigSQLDatabase
     }
     if($null -eq $moduleTest)
     {
-        Write-Warning -Message "PowerStig $PowerStigVersion is not installed on the target server. Attempting to install via Install-Module."
+        Write-Warning -Message "PowerStigScan $PowerStigScanVersion is not installed on the target server. Attempting to install via Install-Module."
         try 
         {
             if($SqlInstanceName -like "*$env:COMPUTERNAME*")
@@ -1742,7 +1742,7 @@ Function Install-PowerStigSQLDatabase
                 Write-Warning -Message "Attempting to copy PowerStig $PowerStigScanVersion from local machine."
                 try 
                 {
-                    Copy-Item -Path (Get-Module PowerStigScan -listavailable| Where-Object {$_.Version -eq $PowerStigScanVersion} |Select-Object -ExpandProperty ModuleBase) -Destination "\\$ComputerName\C$\Program Files\WindowsPowerShell\Modules\PowerStig\$PowerStigVersion\" -Recurse -Force
+                    Copy-Item -Path (Get-Module PowerStigScan -listavailable| Where-Object {$_.Version -eq $PowerStigScanVersion} |Select-Object -ExpandProperty ModuleBase) -Destination "\\$ComputerName\C$\Program Files\WindowsPowerShell\Modules\PowerStigScan\$PowerStigScanVersion\" -Recurse -Force
                 }
                 catch 
                 {
@@ -1828,23 +1828,10 @@ Function Install-PowerStigSQLDatabase
             Write-Warning -Message "Importing PowerStig Organizational Settings from PowerStig $PowerStigVersion module directory"
             $query = "EXEC PowerStig.sproc_ImportOrgSettingsXML"
             Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $query | Out-Null   
-            if($SqlInstanceName -like "*$env:COMPUTERNAME*")
-            {
-                $moduleTest = Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq $PowerStigVersion}
-            }
-            else 
-            {
-                if($SqlInstanceName -like "*\*")
-                {
-                    $ComputerName = $SqlInstanceName.Split("\")[0]
-                }
-                else 
-                {
-                    $ComputerName = $SqlInstanceName    
-                }
-                $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq "3.2.0"}}    
-            }
-            if($null -eq $moduleTest)
+
+            $moduleTest = Get-PowerStigOrgSettings -Version 2012R2 -Role WindowsServer-MS -ErrorAction SilentlyContinue 
+            
+            if($null -ne $moduleTest)
             {
                 Write-Warning -Message "Organizational Settings were not imported into the Database. PowerStigScan can still function but the issue should be resolved to provide log term retention of organizational specific settings."
             }

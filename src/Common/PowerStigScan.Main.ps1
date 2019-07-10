@@ -313,6 +313,13 @@ function Get-PowerStigServerRole
         {
             $arrRole += "WindowsDNSServer"
         }
+        if($osVersion -like "10.*")
+        {
+            if(Get-PowerStigIsDefender -ComputerName $ComputerName)
+            {
+                $arrRole += "WindowsDefender"
+            }
+        }
     }elseif($arrRole -contains "WindowsClient")
     {
         #Get-PowerStigIsOffice does not return a Boolean, rather an object for which version is installed.
@@ -357,6 +364,10 @@ function Get-PowerStigServerRole
         if(Get-PowerStigIsJRE -ComputerName $ComputerName)
         {
             $arrRole += "OracleJRE"
+        }
+        if(Get-PowerStigIsDefender -ComputerName $ComputerName)
+        {
+            $arrRole += "WindowsDefender"
         }
     }
 
@@ -536,7 +547,9 @@ function Get-PowerStigIsIIS
         [String]$ComputerName
     )
 
-    Return $false #(Get-WindowsFeature -ComputerName $ComputerName -Name Web-Server).installstate -eq "Installed"
+    Return $false
+
+    Return (Get-WindowsFeature -ComputerName $ComputerName -Name Web-Server).installstate -eq "Installed"
 }
 
 # Determines if DNS is enabled. DNS STIG is baked into the Server 2016 STIG
@@ -560,6 +573,18 @@ function Get-PowerStigIsSQL
     )
 
     Return $false
+}
+
+function Get-PowerStigIsDefender
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
+    )
+
+    Return $false
+    # Determine if Defender is the active antivirus
 }
 
 # Determines if Oracle Java Runtime is installed.
@@ -846,6 +871,11 @@ function Invoke-PowerStigScan
                 if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s is 2012R2 = True"}
                 if($tempinfo.Role -eq "DC" -and $runList."2012R2_DC" -ne 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2012R2_DC"}
                     $runList."2012R2_DC" = 1
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012DC"}
@@ -853,6 +883,11 @@ function Invoke-PowerStigScan
                 }
                 elseif($tempInfo.Role -eq "MS" -and $runList."2012R2_MS" -ne 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2012R2_MS"}
                     $runList."2012R2_MS" = 1
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012MS"}
@@ -860,11 +895,21 @@ function Invoke-PowerStigScan
                 }
                 elseif($tempInfo.Role -eq "MS" -and $runList."2012R2_MS" -eq 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012MS"}
                     $2012MS += $s
                 }
                 elseif($tempInfo.Role -eq "DC" -and $runList."2012_DC" -eq 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012DC"}
                     $2012DC += $s
                 }
@@ -873,6 +918,11 @@ function Invoke-PowerStigScan
             {
                 if($tempInfo.Role -eq "DC" -and $runList."2016_DC" -ne 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2016_DC"}
                     $runList."2016_DC" = 1
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016DC"}
@@ -880,6 +930,11 @@ function Invoke-PowerStigScan
                 }
                 elseif($tempInfo.Role -eq "MS" -and $runList."2016_MS" -ne 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2016_MS"}
                     $runList."2016_MS" = 1
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016MS"}
@@ -887,19 +942,34 @@ function Invoke-PowerStigScan
                 }
                 elseif($tempInfo.Role -eq "MS" -and $runlist."2016_MS" -eq 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016MS"}
                     $2016MS += $s
                 }
                 elseif($tempInfo.Role -eq "DC" -and $runList."2016_DC" -eq 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016DC"}
                     $2016DC += $s
                 }
             }
-            elseif($tempInfo.OsVersion -eq "10" -and $runList."Client" -ne 1)
+            elseif($tempInfo.OsVersion -eq "10")
             {
                 if($runList."Client" -ne 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for Client"}
                     $runList."Client" = 1
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable Client"}
@@ -907,6 +977,11 @@ function Invoke-PowerStigScan
                 }
                 else 
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable Client"}
                     $Client += $s
                 }
@@ -1237,7 +1312,7 @@ function Invoke-PowerStigScan
         Add-Content $logFilePath -Value "$(Get-Time):[$s][Info]: PowerStig scan started on $s for role $($roles.roles) and version $($roles.version)."
 
         # If SQL - Update role and OS information
-        if($SqlBatch -eq $true)
+        if($SqlBatch -eq $true -and $RunScap -eq $false)
         {
             Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
             Set-PowerStigComputer -ComputerName $s -osVersion $roles.Version

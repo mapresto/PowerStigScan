@@ -570,20 +570,39 @@ function Get-PowerStigIsJRE
         [Parameter(Mandatory=$true,Position=0)]
         [String]$ComputerName
     )
+ 
+    if($ComputerName -eq $env:COMPUTERNAME)
+    {
+        if(Test-Path "HKLM:\\SOFTWARE\JavaSoft\Java RunTime Environment\1.8")
+        {
+            Return $true
 
-    Return $false 
-    if(Test-Path "HKLM:\\SOFTWARE\JavaSoft\Java RunTime Environment\1.8")
+        }
+        elseif(Test-Path "HKLM:\\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment\1.8")
+        {
+            Return $true
+        }
+        else
+        {
+            Return $false
+        }
+    }
+    else 
     {
-        Return $true
+        if(Invoke-Command -ComputerName $ComputerName -ScriptBlock {Test-Path "HKLM:\\SOFTWARE\JavaSoft\Java RunTime Environment\1.8"})
+        {
+            Return $true
 
-    }
-    elseif(Test-Path "HKLM:\\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment\1.8")
-    {
-        Return $true
-    }
-    else
-    {
-        Return $false
+        }
+        elseif(Invoke-Command -ComputerName $ComputerName -ScriptBlock {Test-Path "HKLM:\\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment\1.8"})
+        {
+            Return $true
+        }
+        else
+        {
+            Return $false
+        }
+
     }
 
 }
@@ -1675,9 +1694,65 @@ Function Install-PowerStigSQLDatabase
     )
 
     $PowerStigVersion = "3.2.0"
+    $PowerStigScanVersion = "2.1.0.0"
     $CopyTest = $false
     $ImportOrgXML = $true
-    $workingPath    = Split-Path $PsCommandPath
+    $workingPath = Split-Path $PsCommandPath
+
+    if($SqlInstanceName -like "$env:COMPUTERNAME*")
+    {
+        $moduleTest = Get-Module -Name PowerStigScan -ListAvailable | Where-Object {$_.Version -eq $PowerStigScanVersion}
+    }
+    else 
+    {
+        if($SqlInstanceName -like "*\*")
+        {
+            $ComputerName = $SqlInstanceName.Split("\")[0]
+        }
+        else 
+        {
+            $ComputerName = $SqlInstanceName    
+        }
+        $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {Get-Module -Name PowerStigScan -ListAvailable | Where-Object {$_.Version -eq $PowerStigScanVersion}}    
+    }
+    if($null -eq $moduleTest)
+    {
+        Write-Warning -Message "PowerStig $PowerStigVersion is not installed on the target server. Attempting to install via Install-Module."
+        try 
+        {
+            if($SqlInstanceName -like "*$env:COMPUTERNAME*")
+            {
+                Install-Module -Name PowerStigScan -RequiredVersion $PowerStigScanVersion -ErrorAction Stop
+            }
+            else 
+            {
+                Invoke-Command -ComputerName $ComputerName -ScriptBlock {param($PowerStigScanVersion)Install-Module -Name PowerStigScan -RequiredVersion $PowerStigScanVersion -ErrorAction Stop} -ArgumentList $PowerStigScanVersion -ErrorAction Stop
+            }
+        }
+        catch 
+        {
+            Write-Warning -Message "PowerStigScan $PowerStigScanVersion could not be installed via Install-Module."
+            $CopyTest = $true
+        }
+
+        if($ComputerName -ne $env:COMPUTERNAME)
+        {
+            if($CopyTest -eq $true)
+            {
+                Write-Warning -Message "Attempting to copy PowerStig $PowerStigScanVersion from local machine."
+                try 
+                {
+                    Copy-Item -Path (Get-Module PowerStigScan -listavailable| Where-Object {$_.Version -eq $PowerStigScanVersion} |Select-Object -ExpandProperty ModuleBase) -Destination "\\$ComputerName\C$\Program Files\WindowsPowerShell\Modules\PowerStig\$PowerStigVersion\" -Recurse -Force
+                }
+                catch 
+                {
+                    Write-Warning -Message "PowerStigScan $PowerStigScanVersion could not be copied to the target server."
+                    Write-Warning -Message "After PowerStigScan is installed on the SQL server run the stored procedure 'PowerStig.sproc_ImportStigXML' to complete installation"
+                    Write-Warning -Message "Do not run Invoke-PowerStigScan with the -SqlBatch switch until the stored proc above is ran."
+                }
+            }
+        }
+    }
 
     & $workingPath\..\SQL\DBdeployer.ps1 -DBServerName $SqlInstanceName -DatabaseName $DatabaseName
 
@@ -1689,6 +1764,7 @@ Function Install-PowerStigSQLDatabase
 
     if($null -eq $orgTest)
     {
+        $moduleTest = $null
         if($SqlInstanceName -like "*$env:COMPUTERNAME*")
         {
             $moduleTest = Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq $PowerStigVersion}
@@ -1703,7 +1779,7 @@ Function Install-PowerStigSQLDatabase
             {
                 $ComputerName = $SqlInstanceName    
             }
-            $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq "3.2.0"}}    
+            $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq $PowerStigVersion}}    
         }
         if($null -eq $moduleTest)
         {
@@ -1733,7 +1809,7 @@ Function Install-PowerStigSQLDatabase
                     Write-Warning -Message "Attempting to copy PowerStig $PowerStigVersion from local machine."
                     try 
                     {
-                        Copy-Item -Path (Get-Module PowerStig -listavailable| Where-Object {$_.Version -eq "3.2.0"} |Select-Object -ExpandProperty ModuleBase) -Destination "\\$ComputerName\C$\Program Files\WindowsPowerShell\Modules\PowerStig\$PowerStigVersion\" -Recurse -Force
+                        Copy-Item -Path (Get-Module PowerStig -listavailable| Where-Object {$_.Version -eq $PowerStigVersion} |Select-Object -ExpandProperty ModuleBase) -Destination "\\$ComputerName\C$\Program Files\WindowsPowerShell\Modules\PowerStig\$PowerStigVersion\" -Recurse -Force
                     }
                     catch 
                     {

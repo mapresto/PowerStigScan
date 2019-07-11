@@ -313,6 +313,13 @@ function Get-PowerStigServerRole
         {
             $arrRole += "WindowsDNSServer"
         }
+        if($osVersion -like "10.*")
+        {
+            if(Get-PowerStigIsDefender -ComputerName $ComputerName)
+            {
+                $arrRole += "WindowsDefender"
+            }
+        }
     }elseif($arrRole -contains "WindowsClient")
     {
         #Get-PowerStigIsOffice does not return a Boolean, rather an object for which version is installed.
@@ -357,6 +364,10 @@ function Get-PowerStigServerRole
         if(Get-PowerStigIsJRE -ComputerName $ComputerName)
         {
             $arrRole += "OracleJRE"
+        }
+        if(Get-PowerStigIsDefender -ComputerName $ComputerName)
+        {
+            $arrRole += "WindowsDefender"
         }
     }
 
@@ -536,7 +547,9 @@ function Get-PowerStigIsIIS
         [String]$ComputerName
     )
 
-    Return $false #(Get-WindowsFeature -ComputerName $ComputerName -Name Web-Server).installstate -eq "Installed"
+    Return $false
+
+    Return (Get-WindowsFeature -ComputerName $ComputerName -Name Web-Server).installstate -eq "Installed"
 }
 
 # Determines if DNS is enabled. DNS STIG is baked into the Server 2016 STIG
@@ -562,6 +575,18 @@ function Get-PowerStigIsSQL
     Return $false
 }
 
+function Get-PowerStigIsDefender
+{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true,Position=0)]
+        [String]$ComputerName
+    )
+
+    Return $false
+    # Determine if Defender is the active antivirus
+}
+
 # Determines if Oracle Java Runtime is installed.
 function Get-PowerStigIsJRE
 {
@@ -570,8 +595,41 @@ function Get-PowerStigIsJRE
         [Parameter(Mandatory=$true,Position=0)]
         [String]$ComputerName
     )
+ 
+    if($ComputerName -eq $env:COMPUTERNAME)
+    {
+        if(Test-Path "HKLM:\\SOFTWARE\JavaSoft\Java RunTime Environment\1.8")
+        {
+            Return $true
 
-    Return $false #Invoke-Command -ComputerName $ComputerName -ScriptBlock {if ((Test-Path -Path "HKLM:\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment") -or (Test-Path -Path "HKLM:\SOFTWARE\JavaSoft\Java Runtime Environment")){Return $true}else{Return $false}}
+        }
+        elseif(Test-Path "HKLM:\\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment\1.8")
+        {
+            Return $true
+        }
+        else
+        {
+            Return $false
+        }
+    }
+    else 
+    {
+        if(Invoke-Command -ComputerName $ComputerName -ScriptBlock {Test-Path "HKLM:\\SOFTWARE\JavaSoft\Java RunTime Environment\1.8"})
+        {
+            Return $true
+
+        }
+        elseif(Invoke-Command -ComputerName $ComputerName -ScriptBlock {Test-Path "HKLM:\\SOFTWARE\WOW6432Node\JavaSoft\Java Runtime Environment\1.8"})
+        {
+            Return $true
+        }
+        else
+        {
+            Return $false
+        }
+
+    }
+
 }
 #endregion Private
 
@@ -813,6 +871,11 @@ function Invoke-PowerStigScan
                 if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s is 2012R2 = True"}
                 if($tempinfo.Role -eq "DC" -and $runList."2012R2_DC" -ne 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2012R2_DC"}
                     $runList."2012R2_DC" = 1
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012DC"}
@@ -820,6 +883,11 @@ function Invoke-PowerStigScan
                 }
                 elseif($tempInfo.Role -eq "MS" -and $runList."2012R2_MS" -ne 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2012R2_MS"}
                     $runList."2012R2_MS" = 1
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012MS"}
@@ -827,11 +895,21 @@ function Invoke-PowerStigScan
                 }
                 elseif($tempInfo.Role -eq "MS" -and $runList."2012R2_MS" -eq 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012MS"}
                     $2012MS += $s
                 }
                 elseif($tempInfo.Role -eq "DC" -and $runList."2012_DC" -eq 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012DC"}
                     $2012DC += $s
                 }
@@ -840,6 +918,11 @@ function Invoke-PowerStigScan
             {
                 if($tempInfo.Role -eq "DC" -and $runList."2016_DC" -ne 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2016_DC"}
                     $runList."2016_DC" = 1
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016DC"}
@@ -847,6 +930,11 @@ function Invoke-PowerStigScan
                 }
                 elseif($tempInfo.Role -eq "MS" -and $runList."2016_MS" -ne 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2016_MS"}
                     $runList."2016_MS" = 1
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016MS"}
@@ -854,19 +942,34 @@ function Invoke-PowerStigScan
                 }
                 elseif($tempInfo.Role -eq "MS" -and $runlist."2016_MS" -eq 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016MS"}
                     $2016MS += $s
                 }
                 elseif($tempInfo.Role -eq "DC" -and $runList."2016_DC" -eq 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016DC"}
                     $2016DC += $s
                 }
             }
-            elseif($tempInfo.OsVersion -eq "10" -and $runList."Client" -ne 1)
+            elseif($tempInfo.OsVersion -eq "10")
             {
                 if($runList."Client" -ne 1)
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for Client"}
                     $runList."Client" = 1
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable Client"}
@@ -874,6 +977,11 @@ function Invoke-PowerStigScan
                 }
                 else 
                 {
+                    if($SqlBatch)
+                    {
+                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
+                    }
                     if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable Client"}
                     $Client += $s
                 }
@@ -1204,7 +1312,7 @@ function Invoke-PowerStigScan
         Add-Content $logFilePath -Value "$(Get-Time):[$s][Info]: PowerStig scan started on $s for role $($roles.roles) and version $($roles.version)."
 
         # If SQL - Update role and OS information
-        if($SqlBatch -eq $true)
+        if($SqlBatch -eq $true -and $RunScap -eq $false)
         {
             Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
             Set-PowerStigComputer -ComputerName $s -osVersion $roles.Version
@@ -1661,9 +1769,65 @@ Function Install-PowerStigSQLDatabase
     )
 
     $PowerStigVersion = "3.2.0"
+    $PowerStigScanVersion = "2.1.0.0"
     $CopyTest = $false
     $ImportOrgXML = $true
-    $workingPath    = Split-Path $PsCommandPath
+    $workingPath = Split-Path $PsCommandPath
+
+    if($SqlInstanceName -like "$env:COMPUTERNAME*")
+    {
+        $moduleTest = Get-Module -Name PowerStigScan -ListAvailable | Where-Object {$_.Version -eq $PowerStigScanVersion}
+    }
+    else 
+    {
+        if($SqlInstanceName -like "*\*")
+        {
+            $ComputerName = $SqlInstanceName.Split("\")[0]
+        }
+        else 
+        {
+            $ComputerName = $SqlInstanceName    
+        }
+        $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {Get-Module -Name PowerStigScan -ListAvailable | Where-Object {$_.Version -eq $PowerStigScanVersion}}    
+    }
+    if($null -eq $moduleTest)
+    {
+        Write-Warning -Message "PowerStigScan $PowerStigScanVersion is not installed on the target server. Attempting to install via Install-Module."
+        try 
+        {
+            if($SqlInstanceName -like "*$env:COMPUTERNAME*")
+            {
+                Install-Module -Name PowerStigScan -RequiredVersion $PowerStigScanVersion -ErrorAction Stop
+            }
+            else 
+            {
+                Invoke-Command -ComputerName $ComputerName -ScriptBlock {param($PowerStigScanVersion)Install-Module -Name PowerStigScan -RequiredVersion $PowerStigScanVersion -ErrorAction Stop} -ArgumentList $PowerStigScanVersion -ErrorAction Stop
+            }
+        }
+        catch 
+        {
+            Write-Warning -Message "PowerStigScan $PowerStigScanVersion could not be installed via Install-Module."
+            $CopyTest = $true
+        }
+
+        if($ComputerName -ne $env:COMPUTERNAME)
+        {
+            if($CopyTest -eq $true)
+            {
+                Write-Warning -Message "Attempting to copy PowerStig $PowerStigScanVersion from local machine."
+                try 
+                {
+                    Copy-Item -Path (Get-Module PowerStigScan -listavailable| Where-Object {$_.Version -eq $PowerStigScanVersion} |Select-Object -ExpandProperty ModuleBase) -Destination "\\$ComputerName\C$\Program Files\WindowsPowerShell\Modules\PowerStigScan\$PowerStigScanVersion\" -Recurse -Force
+                }
+                catch 
+                {
+                    Write-Warning -Message "PowerStigScan $PowerStigScanVersion could not be copied to the target server."
+                    Write-Warning -Message "After PowerStigScan is installed on the SQL server run the stored procedure 'PowerStig.sproc_ImportStigXML' to complete installation"
+                    Write-Warning -Message "Do not run Invoke-PowerStigScan with the -SqlBatch switch until the stored proc above is ran."
+                }
+            }
+        }
+    }
 
     & $workingPath\..\SQL\DBdeployer.ps1 -DBServerName $SqlInstanceName -DatabaseName $DatabaseName
 
@@ -1675,6 +1839,7 @@ Function Install-PowerStigSQLDatabase
 
     if($null -eq $orgTest)
     {
+        $moduleTest = $null
         if($SqlInstanceName -like "*$env:COMPUTERNAME*")
         {
             $moduleTest = Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq $PowerStigVersion}
@@ -1689,7 +1854,7 @@ Function Install-PowerStigSQLDatabase
             {
                 $ComputerName = $SqlInstanceName    
             }
-            $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq "3.2.0"}}    
+            $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq $PowerStigVersion}}    
         }
         if($null -eq $moduleTest)
         {
@@ -1719,7 +1884,7 @@ Function Install-PowerStigSQLDatabase
                     Write-Warning -Message "Attempting to copy PowerStig $PowerStigVersion from local machine."
                     try 
                     {
-                        Copy-Item -Path (Get-Module PowerStig -listavailable| Where-Object {$_.Version -eq "3.2.0"} |Select-Object -ExpandProperty ModuleBase) -Destination "\\$ComputerName\C$\Program Files\WindowsPowerShell\Modules\PowerStig\$PowerStigVersion\" -Recurse -Force
+                        Copy-Item -Path (Get-Module PowerStig -listavailable| Where-Object {$_.Version -eq $PowerStigVersion} |Select-Object -ExpandProperty ModuleBase) -Destination "\\$ComputerName\C$\Program Files\WindowsPowerShell\Modules\PowerStig\$PowerStigVersion\" -Recurse -Force
                     }
                     catch 
                     {
@@ -1738,23 +1903,10 @@ Function Install-PowerStigSQLDatabase
             Write-Warning -Message "Importing PowerStig Organizational Settings from PowerStig $PowerStigVersion module directory"
             $query = "EXEC PowerStig.sproc_ImportOrgSettingsXML"
             Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $query | Out-Null   
-            if($SqlInstanceName -like "*$env:COMPUTERNAME*")
-            {
-                $moduleTest = Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq $PowerStigVersion}
-            }
-            else 
-            {
-                if($SqlInstanceName -like "*\*")
-                {
-                    $ComputerName = $SqlInstanceName.Split("\")[0]
-                }
-                else 
-                {
-                    $ComputerName = $SqlInstanceName    
-                }
-                $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq "3.2.0"}}    
-            }
-            if($null -eq $moduleTest)
+
+            $moduleTest = Get-PowerStigOrgSettings -Version 2012R2 -Role WindowsServer-MS -ErrorAction SilentlyContinue 
+            
+            if($null -ne $moduleTest)
             {
                 Write-Warning -Message "Organizational Settings were not imported into the Database. PowerStigScan can still function but the issue should be resolved to provide log term retention of organizational specific settings."
             }

@@ -144,6 +144,7 @@ function Invoke-PowerStigSqlCommand
     $DataSet = New-Object System.Data.DataSet
     $SqlAdapter.Fill($DataSet) | Out-Null
     $SqlConnection.Close()
+    $SqlAdapter.Dispose()
     
     return $DataSet.Tables[0]
 }

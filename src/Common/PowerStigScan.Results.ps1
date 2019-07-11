@@ -70,11 +70,11 @@ function Update-PowerStigCkl
     $Timestamp = (get-date).ToString("MMddyyyyHHmmss")
     if($Role -notlike "WindowsServer*")
     {
-        $outFileName = $ServerName + "_" + $Role + "_" + $Timestamp + ".ckl"
+        $outFileName = $ComputerName + "_" + $Role + "_" + $Timestamp + ".ckl"
     }
     elseif($Role -like "WindowsServer*")
     {
-        $outFileName = $ServerName + "_" + $osVersion + "_" + $Role + "_" + $Timestamp + ".ckl"
+        $outFileName = $ComputerName + "_" + $osVersion + "_" + $Role + "_" + $Timestamp + ".ckl"
     }
 
     # generate file name

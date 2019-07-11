@@ -1248,7 +1248,7 @@ BEGIN TRY
 			F.Technology = 'Office-Outlook2013'
 	------------
 	INSERT INTO PowerSTIG.ComplianceTypesInfo(ComplianceTypeID,OSid,OrgValue,OrgSettingAlias,OrgSettingFile,RoleAlias)
-		SELECT T.ComplianceTypeID,O.OSid,F.OrgVersion,F.Technology,F.OrgSettingFile,'UMSOutlook2016STIG' AS RoleAlias
+		SELECT T.ComplianceTypeID,O.OSid,F.OrgVersion,F.Technology,F.OrgSettingFile,'UMicrosoftOutlook2016STIG' AS RoleAlias
 		FROM 
 			PowerSTIG.ComplianceTypes T
 				,PowerSTIG.TargetTypeOS O
@@ -1274,7 +1274,7 @@ BEGIN TRY
 			F.Technology = 'Office-PowerPoint2013'
 	------------
 	INSERT INTO PowerSTIG.ComplianceTypesInfo(ComplianceTypeID,OSid,OrgValue,OrgSettingAlias,OrgSettingFile,RoleAlias)
-		SELECT T.ComplianceTypeID,O.OSid,F.OrgVersion,F.Technology,F.OrgSettingFile,'UMSPowerPoint2016' AS RoleAlias
+		SELECT T.ComplianceTypeID,O.OSid,F.OrgVersion,F.Technology,F.OrgSettingFile,'UMicrosoftPowerPoint2016STIG' AS RoleAlias
 		FROM 
 			PowerSTIG.ComplianceTypes T
 				,PowerSTIG.TargetTypeOS O
@@ -1339,7 +1339,7 @@ BEGIN TRY
 			F.Technology = 'Office-Word2013'
 	------------
 	INSERT INTO PowerSTIG.ComplianceTypesInfo(ComplianceTypeID,OSid,OrgValue,OrgSettingAlias,OrgSettingFile,RoleAlias)
-		SELECT T.ComplianceTypeID,O.OSid,F.OrgVersion,F.Technology,F.OrgSettingFile,'UMSWord2016STIG' AS RoleAlias
+		SELECT T.ComplianceTypeID,O.OSid,F.OrgVersion,F.Technology,F.OrgSettingFile,'UMicrosoftWord2016STIG' AS RoleAlias
 		FROM 
 			PowerSTIG.ComplianceTypes T
 				,PowerSTIG.TargetTypeOS O

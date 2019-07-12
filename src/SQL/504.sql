@@ -35,7 +35,7 @@ DECLARE @UpdateVersion smallint
 DECLARE @CurrentVersion smallint
 DECLARE @VersionNotes varchar(MAX)
 SET @UpdateVersion = 504
-SET @VersionNotes = 'Add temporal table feature to OrgSettingsRepo to guard against accidental changes or deletions and prepare for future enhancements | New proc: sproc_UpdateOrgSetting to facilitate updates to a specific ORG value | Support for Office2016 | Drop tables: Finding, StigTextRepo | Drop check_ActionTaken constraint on ScanLog.  You will not be missed. | Added logic to sproc_ImportOrgSettingsXML to preserve non-default settings | sproc_GenerateCKLfile bug fix | sproc_ImportSTIGxml logic addition for RoleAlias to support CKL generation | Update to sproc_ProcessFindings to support StigName column | New column ComplianceTypes.StigName | New column CheckListInfo.RoleAlias | Update CKLfilePath in ComplianceConfig'
+SET @VersionNotes = 'Add temporal table feature to OrgSettingsRepo to guard against accidental changes or deletions and prepare for future enhancements | New proc: sproc_UpdateOrgSetting to facilitate updates to a specific ORG value | Support for Office2016 | Drop tables: Finding, StigTextRepo | Drop check_ActionTaken constraint on ScanLog.  You will not be missed. | Added logic to sproc_ImportOrgSettingsXML to preserve non-default settings | sproc_GenerateCKLfile bug fix | sproc_ImportSTIGxml logic addition for RoleAlias to support CKL generation | Update to sproc_ProcessFindings to support StigName column | New column ComplianceTypes.StigName | New column CheckListInfo.RoleAlias | Update CKLfilePath in ComplianceConfig | sproc_ProcessFindings fix for sub-vulnerability handling'
 -- ===============================================================================================
 -- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 -- ===============================================================================================
@@ -127,6 +127,8 @@ GO
 --
 -- Make backup just in case
 --
+DROP TABLE IF EXISTS dbo.C2DE41B069764ED3A132E421721BCB4A
+--
 SELECT
 	*
 INTO 
@@ -134,28 +136,71 @@ INTO
 FROM
 	PowerSTIG.OrgSettingsRepo
 GO
---
-ALTER TABLE PowerSTIG.OrgSettingsRepo ADD SysStartTime datetime2
---
-ALTER TABLE PowerSTIG.OrgSettingsRepo ADD SysEndTime datetime2
+-- Add datetime columns for temporal support
+IF NOT EXISTS (
+		SELECT [name] FROM sys.columns 
+			WHERE  object_id = OBJECT_ID(N'PowerSTIG.OrgSettingsRepo') 
+				AND [name] = 'SysStartTime')
+	BEGIN
+		DECLARE @DeployCMD varchar(MAX)
+		SET @DeployCMD = 'ALTER TABLE PowerSTIG.OrgSettingsRepo ADD SysStartTime datetime2'
+		EXEC (@DeployCMD)
+		--
+		SET @DeployCMD = 'UPDATE PowerSTIG.OrgSettingsRepo SET SysStartTime = GETDATE()'
+		EXEC (@DeployCMD)
+	END
 GO
 --
-UPDATE PowerSTIG.OrgSettingsRepo
-	SET 
-		SysStartTime = GETDATE(),
-		SysEndTime = '9999-12-31 23:59:59.9999999'
+--
+-- Add datetime columns for temporal support
+IF NOT EXISTS (
+		SELECT [name] FROM sys.columns 
+			WHERE  object_id = OBJECT_ID(N'[PowerSTIG].[OrgSettingsRepo]') 
+				AND [name] = 'SysEndTime')
+	BEGIN
+		DECLARE @DeployCMD varchar(MAX)
+		SET @DeployCMD = 'ALTER TABLE PowerSTIG.OrgSettingsRepo ADD SysEndTime datetime2'
+		EXEC (@DeployCMD)
+		--
+		SET @DeployCMD = 'UPDATE PowerSTIG.OrgSettingsRepo SET SysEndTime = ''9999-12-31 23:59:59.9999999'''
+		EXEC (@DeployCMD)
+	END
 GO
 --
-ALTER TABLE PowerSTIG.OrgSettingsRepo ALTER COLUMN SysStartTime datetime2 NOT NULL
+IF EXISTS (
+		SELECT [name] FROM sys.columns 
+			WHERE  object_id = OBJECT_ID(N'[PowerSTIG].[OrgSettingsRepo]') 
+				AND [name] = 'SysStartTime' AND is_nullable = 1)
+	BEGIN
+		DECLARE @DeployCMD varchar(MAX)
+		SET @DeployCMD = 'ALTER TABLE PowerSTIG.OrgSettingsRepo ALTER COLUMN SysStartTime datetime2 NOT NULL'
+		EXEC (@DeployCMD)
+	END
 GO
 --
-ALTER TABLE PowerSTIG.OrgSettingsRepo ALTER COLUMN SysEndTime datetime2 NOT NULL
+IF EXISTS (
+		SELECT [name] FROM sys.columns 
+			WHERE  object_id = OBJECT_ID(N'[PowerSTIG].[OrgSettingsRepo]') 
+				AND [name] = 'SysEndTime'AND is_nullable = 1)
+	BEGIN
+		DECLARE @DeployCMD varchar(MAX)
+		SET @DeployCMD = 'ALTER TABLE PowerSTIG.OrgSettingsRepo ALTER COLUMN SysEndTime datetime2 NOT NULL'
+		EXEC (@DeployCMD)
+	END
 GO
 --
-ALTER TABLE PowerSTIG.OrgSettingsRepo ADD PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime)
+IF (SELECT temporal_type FROM sys.tables WHERE object_id = OBJECT_ID('PowerSTIG.OrgSettingsRepo', 'u')) = 0
+	BEGIN
+		DECLARE @DeployCMD varchar(MAX)
+		SET @DeployCMD = 'ALTER TABLE PowerSTIG.OrgSettingsRepo ADD PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime)'
+		EXEC (@DeployCMD)
+	END
 GO
 --
-ALTER TABLE PowerSTIG.OrgSettingsRepo SET (SYSTEM_VERSIONING = ON (HISTORY_TABLE = PowerSTIG.OrgSettingsRepoHistory));
+IF NOT EXISTS (SELECT [name] FROM sys.tables WHERE object_ID = OBJECT_ID('PowerSTIG.OrgSettingsRepoHistory','u'))
+	BEGIN
+		ALTER TABLE PowerSTIG.OrgSettingsRepo SET (SYSTEM_VERSIONING = ON (HISTORY_TABLE = PowerSTIG.OrgSettingsRepoHistory));
+	END
 GO
 -- ==================================================================
 -- PowerStig.sproc_UpdateOrgSetting 
@@ -1816,7 +1861,7 @@ SET @OSid = 9999
 --
 	DROP TABLE IF EXISTS #RecentScan
 	DROP TABLE IF EXISTS #ResultsForPivot
-	DROP TABLE IF EXISTS ##__ResultsCompare
+	DROP TABLE IF EXISTS #__ResultsCompare
 --
 
 SELECT * INTO #RecentScan FROM 
@@ -1878,7 +1923,7 @@ SELECT * INTO #RecentScan FROM
 -- ----------------------------------------
 		SELECT 
 			*
-			INTO ##__ResultsCompare
+			INTO #__ResultsCompare
 		FROM
 				(
 				SELECT
@@ -1917,10 +1962,10 @@ SELECT * INTO #RecentScan FROM
 	SET @Checklist = (SELECT CKLfile FROM PowerSTIG.CheckListInfo WHERE CheckListInfoID = @CheckListInfoID)
 	SET @MaxiSTIG = (SELECT @Checklist.value('count(/CHECKLIST/STIGS/iSTIG)', 'int'))
 			--
-			DROP TABLE IF EXISTS ##__CreateCKL
-			CREATE TABLE ##__CreateCKL (CheckList XML NULL)
+			DROP TABLE IF EXISTS #__CreateCKL
+			CREATE TABLE #__CreateCKL (CheckList XML NULL)
 			--
-			INSERT INTO ##__CreateCKL (CheckList) VALUES (@Checklist)
+			INSERT INTO #__CreateCKL (CheckList) VALUES (@Checklist)
 
 
 WHILE @iSTIG <= @MaxiSTIG
@@ -1947,21 +1992,21 @@ WHILE @iSTIG <= @MaxiSTIG
 						WHEN T.PowerSTIG IS NULL AND T.SCAP = 1 THEN 'NotAFinding'
 						END
 			FROM
-					##__ResultsCompare T
+					#__ResultsCompare T
 			WHERE
 				T.RuleID = @VulnId)
 			--
 			-- STIGs with no check - need to improve this in a future release, like so many other things
 			--
 			IF NOT EXISTS
-				(SELECT RuleID FROM ##__ResultsCompare WHERE RuleID = @VulnId)
+				(SELECT RuleID FROM #__ResultsCompare WHERE RuleID = @VulnId)
 					BEGIN
 						SET @Status = 'Not_Reviewed'
 					END
 	
 		--
 		UPDATE
-			##__CreateCKL
+			#__CreateCKL
         SET 
 			checklist.modify('replace value of ((/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/STATUS)[1]/text())[1] with sql:variable("@Status")')
         WHERE
@@ -1984,12 +2029,12 @@ WHILE @iSTIG <= @MaxiSTIG
 							WHEN T.PowerSTIG IS NULL AND T.SCAP = 1 THEN 'Results from SCAP'
 							END
 					FROM
-						##__ResultsCompare T
+						#__ResultsCompare T
 					WHERE
 						T.RuleID = @VulnId)
 			--
            UPDATE
-				##__CreateCKL
+				#__CreateCKL
            SET 
 				checklist.modify('insert text{sql:variable("@Comments")} into (/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/COMMENTS)[1]')
 
@@ -2006,12 +2051,12 @@ WHILE @iSTIG <= @MaxiSTIG
 	SELECT
 		CheckList
 	FROM
-		##__CreateCKL
+		#__CreateCKL
 -- ----------------------------------------
 -- Cleanup
 -- ----------------------------------------
-DROP TABLE IF EXISTS ##__CreateCKL
-DROP TABLE IF EXISTS ##__ResultsCompare
+DROP TABLE IF EXISTS #__CreateCKL
+DROP TABLE IF EXISTS #__ResultsCompare
 DROP TABLE IF EXISTS #ResultsForPivot
 GO
 -- ==================================================================
@@ -2058,6 +2103,7 @@ DECLARE @ErrorState tinyint
 --DECLARE @RevMapVuln varchar(25)
 DECLARE @OSid smallint
 DECLARE @CheckListInfoID int
+DECLARE @VulnID varchar(25)
 --------------------------------------------------------
 SET @StepName = 'Retrieve new GUIDs'
 --------------------------------------------------------
@@ -2103,7 +2149,7 @@ SET @StepName = 'Retrieve new GUIDs'
 	END CATCH
 
 --------------------------------------------------------
-SET @StepName = 'Hydrate ComplianceType'
+--SET @StepName = 'Hydrate ComplianceType'
 --------------------------------------------------------
 	------BEGIN TRY
 	------	INSERT INTO 
@@ -2140,9 +2186,113 @@ SET @StepName = 'Hydrate ComplianceType'
 	------		   ,@ActionTaken = @StepAction
 	------		RETURN
 	------END CATCH
---
+------------------------------------------------
+-- Here we go.  Does the GUID have sub-vulnerabilities (e.g. V-1234.a or V-1234.b)
+------------------------------------------------
+	IF EXISTS
+		(SELECT VulnID FROM PowerSTIG.FindingImport WHERE VulnID LIKE '%.%' AND [GUID] = @GUID)
+
+			BEGIN
+
+				DROP TABLE IF EXISTS #__VulnScrubA
+				--
+				SELECT 
+					*
+					,LEFT([Vulnid], CHARINDEX('.',[Vulnid])-1) AS ScrubbedVuln
+					,0 AS isCompliant
+					,0 AS isProcessed
+				INTO
+					#__VulnScrubA 
+				FROM
+					PowerSTIG.FindingImport
+				WHERE
+					VulnID like '%.%'
+				AND 
+					[GUID] = @GUID
+				
+------------------------------------------------
+-- Roll through the VulnIDs and apply "logic" to determine DesiredState.  There is definitely a better way to do this.
+------------------------------------------------
+
+WHILE EXISTS
+		(SELECT DISTINCT TOP 1 ScrubbedVuln from #__VulnScrubA where isProcessed = 0)
+			BEGIN
+				SET @VulnID = (SELECT DISTINCT TOP 1 ScrubbedVuln FROM #__VulnScrubA WHERE isProcessed = 0)
+
+					IF (SELECT COUNT(VulnID) FROM #__VulnScrubA WHERE DesiredState = 'False' AND ScrubbedVuln = @VulnID) > 0
+						BEGIN
+							UPDATE
+								#__VulnScrubA
+							SET
+								isCompliant = 0
+							WHERE
+								ScrubbedVuln = @VulnID
+						END
+					ELSE
+						BEGIN
+							UPDATE
+								#__VulnScrubA
+							SET
+								isCompliant = 1
+							WHERE
+								ScrubbedVuln = @VulnID
+						END
+				--
+				UPDATE
+					#__VulnScrubA
+				SET
+					isProcessed = 1
+				WHERE
+					ScrubbedVuln  = @VulnID
+		END
+
+------------------------------------------------
+-- Put the scrubbed/whatever VulnID back into FindingImport for processing
+------------------------------------------------
+
+		INSERT INTO PowerSTIG.FindingImport
+					(TargetComputer
+					,VulnID
+					,StigType
+					,DesiredState
+					,ScanDate
+					,[GUID]
+					,ScanSource
+					,ImportDate
+					,ScanVersion)
+
+		SELECT 
+			TargetComputer
+			,ScrubbedVuln
+			,StigType
+			,DesiredState
+			,ScanDate
+			,[GUID]
+			,ScanSource
+			,ImportDate
+			,ScanVersion
+		FROM    (SELECT 
+					TargetComputer
+					,ScrubbedVuln
+					,StigType
+					,CASE 
+						WHEN isCompliant = 0 THEN 'False'
+						WHEN isCompliant = 1 THEN 'True'
+						END AS DesiredState
+					,ScanDate
+					,[GUID]
+					,ScanSource
+					,ImportDate
+					,ScanVersion
+					,ROW_NUMBER() OVER (PARTITION BY ScrubbedVuln ORDER BY ScanDate) AS RowNumber
+				 FROM  
+					#__VulnScrubA) AS a
+		WHERE  
+			a.RowNumber = 1
+END
+------------------------------------------------
 -- Retrieve ScanID
---
+------------------------------------------------
 		SET @OSid = (SELECT OSid FROM PowerSTIG.ComplianceTargets WHERE TargetComputer = (SELECT DISTINCT TargetComputer FROM PowerSTIG.FindingImport WHERE [GUID] = @GUID))
 		SET @ScanID = (SELECT ScanID FROM PowerSTIG.Scans WHERE [ScanGUID] = @GUID AND isProcessed = 0)
 
@@ -2322,6 +2472,7 @@ SET @StepName = 'Update ComplianceTargets'
 -- Cleanup
 -- =======================================================
 	DROP TABLE IF EXISTS #NewComplianceTarget
+	DROP TABLE IF EXISTS #__VulnScrubA
 GO
 -- ==================================================================
 -- Update CKLfilePath in ComplianceConfig

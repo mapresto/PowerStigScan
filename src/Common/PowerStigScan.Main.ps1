@@ -299,7 +299,6 @@ function Get-PowerStigServerRole
         if(Get-PowerStigIsIIS -ComputerName $ComputerName) # MUSTREDO
         {
             $arrRole += "IISServer"
-            $arrRole += "IISSite"
         }
         if(Get-PowerStigIsSQL -ComputerName $ComputerName) # MUSTREDO
         {
@@ -1328,7 +1327,14 @@ function Invoke-PowerStigScan
     
         foreach($r in $roles.roles)
         {
-            $orgFileName = "$orgPath\$($r)_org.xml"
+            if($r -like "*WindowsServer*")
+            {
+                $orgFileName = "$orgPath\$($roles.Version)_$($r)_org.xml"
+            }
+            else {
+                $orgFileName = "$orgPath\$($r)_org.xml"
+            }
+            
             try
             {
                 # Do scripting magic to build the orgsettings from the database. However, if there is not a database run,

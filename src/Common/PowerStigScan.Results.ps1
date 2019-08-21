@@ -55,7 +55,10 @@ function Update-PowerStigCkl
 
         [Parameter(Mandatory=$false)]
         [ValidateNotNullorEmpty()]
-        [String]$OutPath
+        [String]$OutPath,
+
+        [Parameter(Mandatory=$false)]
+        [String]$SiteName
     )
 
     
@@ -68,13 +71,17 @@ function Update-PowerStigCkl
     }
 
     $Timestamp = (get-date).ToString("MMddyyyyHHmmss")
-    if($Role -notlike "WindowsServer*")
+    if($Role -notlike "WindowsServer*" -and $Role -ne "IISSite")
     {
         $outFileName = $ComputerName + "_" + $Role + "_" + $Timestamp + ".ckl"
     }
     elseif($Role -like "WindowsServer*")
     {
         $outFileName = $ComputerName + "_" + $osVersion + "_" + $Role + "_" + $Timestamp + ".ckl"
+    }
+    elseif($Role -eq "IISSite")
+    {
+        $outFileName = $ComputerName + "_" + $Role + "_" + $Sitename + "_" + $Timestamp + ".ckl"
     }
 
     # generate file name
@@ -333,9 +340,12 @@ function Convert-PowerStigTest
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true,Position=0)]
-        [PSObject]$TestResults
+        [PSObject]$TestResults,
+
+        [Parameter(Mandatory=$false)]
+        [Switch]$IsIIS
     )
-    [Regex]$VIDRegex = "V-([1-9}])[0-9]{3}[0-9]?\.?[a-z]?"
+    [Regex]$VIDRegex = "V-([1-9])[0-9]{3}[0-9]?\.?[a-z]?"
     $FullResults = $TestResults.ResourcesInDesiredState + $TestResults.ResourcesNotInDesiredState
 
     $OutputArr = @()
@@ -356,18 +366,68 @@ function Convert-PowerStigTest
         { Continue }
         Else
         {
-            $VidOutPut = $VIDRegex.match($i.InstanceName).value
+            if($IsIIS -eq $true)
+            {
+                if($strMod[1].Split(" ").count -gt 1)
+                {
+                
+                    $vArr = $strMod[1].Split(" ")
+                    foreach($v in $vArr)
+                    {
+                        $VidOutPut = $v
+                        $SiteName = $strMod[-1]
+                        $propHash = @{
+                            VulnID = $VidOutPut
+                            DesiredState = $BoolState
+                            ScanDate = $ScanDate
+                            Site = $SiteName
+                        }
 
-            $propHash = @{
-                VulnID = $VidOutPut
-                DesiredState = $BoolState
-                ScanDate = $ScanDate
+                        $currentObj = New-Object PSObject -Property $propHash
+
+
+                        $outputArr += $currentObj
+
+                    }
+
+                }
+                else
+                {
+                    $vArr = $strMod[1].Split(" ")
+                    foreach($v in $vArr)
+                    {
+                        $VidOutPut = $v
+                        $SiteName = $strMod[-1]
+                        $propHash = @{
+                            VulnID = $VidOutPut
+                            DesiredState = $BoolState
+                            ScanDate = $ScanDate
+                            Site = $SiteName
+                        }
+
+                        $currentObj = New-Object PSObject -Property $propHash
+
+
+                        $outputArr += $currentObj
+
+                    }
+                }
             }
+            else
+            {
+                $VidOutPut = $VIDRegex.match($i.InstanceName).value
 
-            $currentObj = New-Object PSObject -Property $propHash
+                $propHash = @{
+                    VulnID = $VidOutPut
+                    DesiredState = $BoolState
+                    ScanDate = $ScanDate
+                }
+
+                $currentObj = New-Object PSObject -Property $propHash
 
 
-            $outputArr += $currentObj
+                $outputArr += $currentObj
+            }
         }
 
         
@@ -399,15 +459,36 @@ function Import-PowerStigObject
         [String]$ScanSource,
 
         [Parameter(Mandatory=$true)]
-        [String]$ScanVersion
+        [String]$ScanVersion,
+
+        [Parameter(Mandatory=$false)]
+        [Switch]$IsIIS
     )
 
     $guid = New-Guid
-
-    foreach($o in $inputObj)
+    if($IsIIS)
     {
-        $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ComputerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`', @StigType=`'$Role`', @ScanSource = `'$ScanSource`', @ScanVersion=`'$ScanVersion`'"
-        Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query | Out-Null
+        foreach($o in $inputObj.Results)
+        {
+            if($Site -like "IIS-Server-*")
+            {
+                $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ComputerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`', @StigType=`'IISServer`', @ScanSource = `'$ScanSource`', @ScanVersion=`'$ScanVersion`'"
+                Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query | Out-Null
+            }
+            else
+            {
+                $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ComputerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`', @StigType=`'IISSite`', @ScanSource = `'$ScanSource`', @ScanVersion=`'$ScanVersion`', @IISSiteName = `"$($o.Site)`""
+                Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query | Out-Null
+            }
+        }
+    }
+    else
+    {
+        foreach($o in $inputObj)
+        {
+            $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ComputerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`', @StigType=`'$Role`', @ScanSource = `'$ScanSource`', @ScanVersion=`'$ScanVersion`'"
+            Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query | Out-Null
+        }
     }
 
     #Process Finding

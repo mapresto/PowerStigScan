@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--DISA STIG Viewer :: 2.9-->
-<!--STIG Version:1.6-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -39,11 +38,11 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>filename</SID_NAME>
-					<SID_DATA>U_MS_IIS_8-5_Server_STIG_V1R6_Manual-xccdf.xml</SID_DATA>
+					<SID_DATA>U_MS_IIS_8-5_Server_STIG_V1R7_Manual-xccdf.xml</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>releaseinfo</SID_NAME>
-					<SID_DATA>Release: 6 Benchmark Date: 25 Jan 2019</SID_DATA>
+					<SID_DATA>Release: 7 Benchmark Date: 26 Apr 2019</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>title</SID_NAME>
@@ -51,7 +50,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>71d2fb49-7974-4fe6-902d-ceeead606de1</SID_DATA>
+					<SID_DATA>0d39f0a1-a34e-4096-a019-7d90fc031272</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>
@@ -176,7 +175,7 @@ If remote management is utilized and does not meet the criteria listed above, th
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -309,7 +308,7 @@ Under the "Actions" pane, click "Apply".</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -456,7 +455,7 @@ Under the "Actions" pane, click "Apply".</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -495,7 +494,7 @@ Under the "Actions" pane, click "Apply".</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>Rule_ID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>SV-91381r1_rule</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>SV-91381r2_rule</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>Rule_Ver</VULN_ATTRIBUTE>
@@ -535,7 +534,11 @@ Click on "View log files" under the "Actions" pane.
 
 When the log file is displayed, review source IP information in log entries and verify the entries do not reflect the IP address of the proxy server.
 
-If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.</ATTRIBUTE_DATA>
+If the website is not behind a load balancer or proxy server, this is Not Applicable.
+
+If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.
+
+If provisions have been made to log the client IP via another field (i.e., utilizing X-Forwarded-For), this is not a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>Fix_Text</VULN_ATTRIBUTE>
@@ -591,7 +594,7 @@ If the log entries in the log file(s) reflect the IP address of the proxy server
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -733,7 +736,7 @@ Click "Apply" under the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -870,7 +873,7 @@ Click "Apply" under the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1006,7 +1009,7 @@ Select "Apply" in the "Actions" pane.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1139,7 +1142,7 @@ If the paths of all log files are not part of the system backup and/or not backe
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1258,7 +1261,7 @@ Document how the hosted application user management is accomplished.</ATTRIBUTE_
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1377,7 +1380,7 @@ Note: If additional software is needed supporting documentation must be signed b
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1506,7 +1509,7 @@ Click "Apply" in the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1619,7 +1622,7 @@ If the folder or sub-folders contain any executable sample code, example applica
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1744,7 +1747,7 @@ Delete any local accounts which were created by features which have been uninsta
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1859,7 +1862,7 @@ If any unnecessary Operating System features are installed, this is a finding.</
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2002,7 +2005,7 @@ Under the "Actions" pane, click "Apply".</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2133,7 +2136,7 @@ De-select "WebDAV Publishing" and click "Next" to complete removing the WebDAV P
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2250,7 +2253,7 @@ Import a valid DoD certificate and remove any non-DoD certificates.</ATTRIBUTE_D
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2363,7 +2366,7 @@ If files with .java or .jpp extensions are found, this is a finding.</ATTRIBUTE_
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2482,7 +2485,7 @@ All non-administrator access to shell scripts and operating system functions mus
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2599,7 +2602,7 @@ If the IIS 8.5 web server management and the application's management functional
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2723,7 +2726,7 @@ Click "Apply" in the "Actions" pane.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2853,7 +2856,7 @@ Under “Time-out (in minutes), enter a value of “20 or less”.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2968,7 +2971,7 @@ Document and test the disaster recovery methods designed.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3094,7 +3097,7 @@ Click "Apply" in the "Actions" pane.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3217,7 +3220,7 @@ Under the "Actions" pane, click "Apply".</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3340,7 +3343,7 @@ Edit the indexed directories to only include web document directories.</ATTRIBUT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3463,7 +3466,7 @@ Set each error message to “Detailed errors for local requests and custom error
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3592,7 +3595,7 @@ If remote management is utilized and does not meet the criteria listed above, th
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3727,7 +3730,7 @@ Restart the Web Management Service under the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3874,7 +3877,7 @@ In the "Actions" pane, under "Manage Server", click on "Stop".</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4007,7 +4010,7 @@ Creator/Owner: special permissions to subkeys</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4142,7 +4145,7 @@ Configure a schedule to rollover log files on a regular basis.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4278,7 +4281,7 @@ If any other access is observed, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4411,7 +4414,7 @@ Note: If additional software is needed and has supporting documentation signed b
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4536,7 +4539,7 @@ If the Internet Printing option is checked, clear the check box, click “Next�
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4672,7 +4675,7 @@ Configure the following registry keys to levels to accommodate the hosted applic
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4803,7 +4806,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4834,7 +4837,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>Rule_ID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>SV-91455r1_rule</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>SV-91455r2_rule</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>Rule_Ver</VULN_ATTRIBUTE>
@@ -4875,8 +4878,10 @@ HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
 Verify a REG_DWORD value of "1" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "Enabled"
 
-If any of the respective registry paths are not existent or configured with the wrong value, this is a finding.</ATTRIBUTE_DATA>
+
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>Fix_Text</VULN_ATTRIBUTE>
@@ -4898,7 +4903,9 @@ HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
 
-With a REG_DWORD value of "1" for "DisabledByDefault"</ATTRIBUTE_DATA>
+With a REG_DWORD value of "1" for "DisabledByDefault"
+
+With a REG_DWORD value of "0" for "Enabled"</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>False_Positives</VULN_ATTRIBUTE>
@@ -4950,7 +4957,7 @@ With a REG_DWORD value of "1" for "DisabledByDefault"</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5061,7 +5068,7 @@ If the TLS version is not TLS 1.1 or higher, according to NIST SP 800-52, or if 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5175,7 +5182,7 @@ If the version is more than one version behind the most recent patch level, this
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5304,7 +5311,7 @@ Develop an internal process for changing passwords on a regular basis.</ATTRIBUT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5417,7 +5424,7 @@ Note: If the File System Object component is required for operations and has sup
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5544,7 +5551,7 @@ Click OK.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5666,7 +5673,7 @@ Remove all users other than “Administrator”.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Server Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>

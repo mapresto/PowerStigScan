@@ -66,8 +66,7 @@ Begin
             Add-Content -path $Path -Value $Value -ErrorAction Stop
         }
         catch{
-            Write-Host "Logging failed due to process holding the log file open"
-            Write-Host $Value
+            
         }
         finally{
             $mutex.ReleaseMutex()

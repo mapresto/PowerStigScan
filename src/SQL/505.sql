@@ -293,7 +293,6 @@ SET @StepName = 'Retrieve StigType'
 ------------------------------------------------
 	IF EXISTS
 		(SELECT VulnID FROM PowerSTIG.FindingImport WHERE VulnID LIKE '%.%' AND [GUID] = @GUID)
-		print 'getting here'
 			BEGIN
 
 				DROP TABLE IF EXISTS #__VulnScrubA
@@ -352,14 +351,13 @@ SET @StepName = 'Retrieve StigType'
 					VulnID like '%.%'
 				AND 
 					[GUID] = @GUID
-			END
 
 ------------------------------------------------
 -- Roll through the VulnIDs and apply "logic" to determine DesiredState.  There is definitely a better way to do this.
 ------------------------------------------------
 
 WHILE EXISTS
-		(SELECT DISTINCT TOP 1 ScrubbedVuln from #__VulnScrubA where isProcessed = 0)
+		(SELECT DISTINCT TOP 1 ScrubbedVuln FROM #__VulnScrubA WHERE isProcessed = 0)
 			BEGIN
 				SET @VulnID = (SELECT DISTINCT TOP 1 ScrubbedVuln FROM #__VulnScrubA WHERE isProcessed = 0)
 
@@ -388,7 +386,7 @@ WHILE EXISTS
 					isProcessed = 1
 				WHERE
 					ScrubbedVuln  = @VulnID
-		END
+		
 
 ------------------------------------------------
 -- Put the scrubbed/whatever VulnID back into FindingImport for processing
@@ -436,7 +434,8 @@ WHILE EXISTS
 					#__VulnScrubA) AS a
 		WHERE  
 			a.RowNumber = 1
-
+	END
+END
 --------------------------------------------------------
 -- Retrieve ScanID
 --------------------------------------------------------
@@ -447,13 +446,12 @@ SET @ScanID = (SELECT ScanID FROM PowerSTIG.Scans WHERE [ScanGUID] = @GUID AND i
 -- The IIS items below are a bit of a hack.
 --------------------------------------------------------
 IF @StigType = 'IISsite'
---
+	BEGIN
 --------------------------------------------------------
 SET @StepName = 'Hydrate IISsites'
 --------------------------------------------------------
 		BEGIN TRY		
-			BEGIN
-				INSERT INTO
+			INSERT INTO
 					PowerSTIG.IISsites
 						(
 						SiteName
@@ -481,6 +479,7 @@ SET @StepName = 'Hydrate IISsites'
 			-- Associate SiteID to a ScanID
 			--
 				INSERT INTO PowerSTIG.IISsitesScans
+				
 					(SiteID,ScanID)
 				VALUES
 					(@SiteID,@ScanID)
@@ -495,7 +494,7 @@ SET @StepName = 'Hydrate IISsites'
 					@LogEntryTitle = @StepName
 					,@LogMessage = @StepMessage
 					,@ActionTaken = @StepAction
-		END
+		
 	END TRY
 	BEGIN CATCH
 			SET @ErrorMessage  = ERROR_MESSAGE()
@@ -512,6 +511,7 @@ SET @StepName = 'Hydrate IISsites'
 			   ,@ActionTaken = @StepAction
 			RETURN
 	END CATCH
+END
 ----------------------------------------------------------
 --SET @StepName = 'Hydrate IISsitesScans'
 ----------------------------------------------------------

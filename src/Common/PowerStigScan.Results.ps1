@@ -468,9 +468,10 @@ function Import-PowerStigObject
     $guid = New-Guid
     if($IsIIS)
     {
-        foreach($o in $inputObj.Results)
+        foreach($o in $inputObj)
         {
-            if($Site -like "IIS-Server-*")
+            $guid = New-Guid
+            if($o.Site -like "IIS-Server-*")
             {
                 $query = "EXEC PowerSTIG.sproc_InsertFindingImport @PSComputerName = `'$ComputerName`', @VulnID = `'$($o.VulnID)`', @DesiredState = `'$($o.DesiredState)`', @ScanDate = `'$($o.ScanDate)`', @GUID = `'$($guid.guid)`', @StigType=`'IISServer`', @ScanSource = `'$ScanSource`', @ScanVersion=`'$ScanVersion`'"
                 Invoke-PowerStigSqlCommand -SqlInstance $SqlInstance -DatabaseName $DatabaseName -Query $query | Out-Null

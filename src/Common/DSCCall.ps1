@@ -326,7 +326,7 @@ process
                     if($ComputerName -eq $env:COMPUTERNAME)
                     {
                         Import-Module WebAdministration
-                        $SiteList = @(Get-IISSite | Select-Object -ExpandProperty Name)
+                        $SiteList = @(Get-WebSite | Select-Object -ExpandProperty Name)
                         $ServerLogPath = (Get-Item IIS:\).SiteDefaults.LogFile.Directory
                         if($ServerLogPath -like "%*%*")
                         {
@@ -336,7 +336,7 @@ process
             
                         foreach($site in $SiteList)
                         {
-                            $wAppPool = (Get-IISSite $site).applications.applicationpoolname
+                            $wAppPool = (Get-website $site).applicationpool
                             $wLogPath = (Get-Item IIS:\Sites\$site).logfile.directory
             
                             if($wLogPath -like "%*%*")
@@ -361,11 +361,10 @@ process
                             $ServerLogPath = Invoke-Command -Session $session -ScriptBlock {param($tempLogPath)invoke-expression "`"$tempLogPath`""} -ArgumentList $tempLogPath
                         }
                         
-                        $SiteList = @(Invoke-Command -Session $session -ScriptBlock {Get-IISSite | Select-Object -ExpandProperty Name})
+                        $SiteList = @(Invoke-Command -Session $session -ScriptBlock {Get-WebSite | Select-Object -ExpandProperty Name})
                         foreach ($site in $SiteList)
                         {
-                            Write-Host $Site
-                            $wAppPool = Invoke-Command -Session $session -ScriptBlock {param($site)(Get-IISSite $site).applications.applicationpoolname} -ArgumentList $site
+                            $wAppPool = Invoke-Command -Session $session -ScriptBlock {param($site)(Get-website $site).applicationpool} -ArgumentList $site
                             $wLogPath = Invoke-Command -Session $session -ScriptBlock {param($site)(Get-Item IIS:\Sites\$site).logfile.directory}
                             if($wLogPath -like "%*%*")
                             {
@@ -381,12 +380,6 @@ process
                     $IisServerOrgFile = "$(Split-Path $logPath)\PSOrgSettings\IISServer_org.xml"
 
                     $ResourceName = "IIS-Server-$ComputerName"
-                    do
-                    {
-                        Write-Host "SiteFile = $(Test-Path $IisSiteOrgFile), ServerFile = $(Test-Path $IisServerOrgFile)"
-                        Start-Sleep -seconds 5
-                    }Until((Test-Path $IisSiteOrgFile) -and (Test-Path $IisServerOrgFile))
-
                     IisServer $ResourceName
                     {
                         StigVersion     = (Get-PowerStigXMLVersion -Role "IISServer")

@@ -1459,7 +1459,7 @@ function Invoke-PowerStigScan
                 Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
             }
 
-            if(($isIISSite -eq $false -or $isIISSite -eq $false) -and $r -like "IIS*")
+            if(($isIISSite -eq $false -or $isIISServer -eq $false) -and $r -like "IIS*")
             {
                 Continue
             }

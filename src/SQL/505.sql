@@ -240,13 +240,15 @@ DECLARE @VulnID varchar(25)
 DECLARE @StigType varchar(256)
 DECLARE @SiteID INT
 DECLARE @SiteName varchar(512)
+--declare @guid varchar(128)
+--set @guid = 'C68E3CFB-33C5-4737-B335-FBB34E7EC7F6'
 --------------------------------------------------------
 SET @StepName = 'Retrieve new GUIDs'
 --------------------------------------------------------
 	BEGIN TRY
 		INSERT INTO 
 			PowerSTIG.Scans (ScanGUID,ScanSourceID,ScanDate,ScanVersion)
-		SELECT DISTINCT
+		SELECT DISTINCT TOP 1
 			I.[GUID]
 			,S.ScanSourceID
 			,I.ScanDate
@@ -256,7 +258,9 @@ SET @StepName = 'Retrieve new GUIDs'
 				JOIN PowerSTIG.ScanSource S
 					ON I.ScanSource = S.ScanSource
 		WHERE 
-			I.[GUID] = @GUID
+			I.[GUID] NOT IN (SELECT DISTINCT ScanGUID FROM PowerSTIG.Scans)
+			--I.[GUID] = @GUID
+			--AND
 				--
 				-- Do Logging
 				--
@@ -439,7 +443,8 @@ END
 --------------------------------------------------------
 -- Retrieve ScanID
 --------------------------------------------------------
-SET @ScanID = (SELECT ScanID FROM PowerSTIG.Scans WHERE [ScanGUID] = @GUID AND isProcessed = 0)
+SET @ScanID = (SELECT DISTINCT ScanID FROM PowerSTIG.Scans WHERE [ScanGUID] = @GUID AND isProcessed = 0)
+
 --
 --------------------------------------------------------
 -- Late breaking need to include IIS sites which do not fit the model for most of the other roles.
@@ -761,6 +766,535 @@ GO
 -- ==================================================================
 -- 
 -- ==================================================================
+
+-- ==================================================================
+-- PowerStig.sproc_GenerateCKLfile
+-- ==================================================================
+CREATE OR ALTER PROCEDURE [PowerSTIG].[sproc_GenerateCKLfile]
+				@TargetComputer varchar(256),
+				@TargetRole varchar(256)
+AS
+--------------------------------------------------------------------------------- 
+-- The sample scripts are not supported under any Microsoft standard support 
+-- program or service. The sample scripts are provided AS IS without warranty  
+-- of any kind. Microsoft further disclaims all implied warranties including,  
+-- without limitation, any implied warranties of merchantability or of fitness for 
+-- a particular purpose. The entire risk arising out of the use or performance of  
+-- the sample scripts and documentation remains with you. In no event shall 
+-- Microsoft, its authors, or anyone else involved in the creation, production, or 
+-- delivery of the scripts be liable for any damages whatsoever (including, 
+-- without limitation, damages for loss of business profits, business interruption, 
+-- loss of business information, or other pecuniary loss) arising out of the use 
+-- of or inability to use the sample scripts or documentation, even if Microsoft 
+-- has been advised of the possibility of such damages 
+---------------------------------------------------------------------------------
+-- ====================================================================================
+-- Purpose:
+-- Revisions:
+-- 06182019 - Kevin Barlett, Microsoft - Initial creation.
+-- Use examples:
+-- EXEC PowerSTIG.sproc_GenerateCKLfile @TargetComputer = 'STIG',@TargetRole='InternetExplorer'
+-- ====================================================================================
+SET NOCOUNT ON
+DECLARE @StepName varchar(256)
+DECLARE @StepMessage varchar(768)
+DECLARE @ErrorMessage varchar(2000)
+DECLARE @ErrorSeverity tinyint
+DECLARE @ErrorState tinyint
+DECLARE @StepAction varchar(25)
+DECLARE @TargetComputerID INT
+DECLARE @ComplianceTypeID smallint
+DECLARE @Checklist XML
+DECLARE @i        int           = 1
+DECLARE @max      int           = 1
+DECLARE @iSTIG    int           = 1
+DECLARE @MaxiSTIG int           
+DECLARE @VulnId   nvarchar(10)
+DECLARE @Status varchar(25)
+DECLARE @Comments nvarchar(MAX)
+DECLARE @UpdatedComments nvarchar(MAX)
+DECLARE @ImportID smallint
+--DECLARE @RevMapVuln varchar(13)
+DECLARE @CheckListInfoID INT
+DECLARE @CheckListID smallint
+DECLARE @OSid smallint
+--DECLARE @TargetComputer varchar(256)
+--DECLARE @TargetRole varchar(256)
+--set @TargetComputer='STIG'
+--set @TargetRole='IISsite'
+SET @TargetComputerID = (SELECT TargetComputerID FROM PowerSTIG.ComplianceTargets WHERE TargetComputer = @TargetComputer)
+SET @ComplianceTypeID = (SELECT ComplianceTypeID FROM PowerSTIG.ComplianceTypes WHERE ComplianceType = @TargetRole)
+SET @OSid = 9999
+		--
+		IF @TargetRole IN ('DotNetFramework','Firefox','WindowsFirewall','IISServer','IISSite','Word2013','Excel2013','PowerPoint2013','Outlook2013','Word2016','Excel2016','PowerPoint2016','Outlook2016','OracleJRE','InternetExplorer','WindowsDefender','SqlServer-2012-Database','SqlServer-2012-Instance','SqlServer-2016-Instance')
+		--
+			BEGIN
+				SET @OSid = (SELECT OSid FROM PowerSTIG.TargetTypeOS WHERE OSname = 'ALL')
+			END
+		--
+		IF @TargetRole IN ('WindowsClient')
+		--
+			BEGIN
+				SET @OSid = (SELECT OSid FROM PowerSTIG.TargetTypeOS WHERE OSname = '10')
+			END
+		--
+		IF @OSid = 9999
+		--
+			BEGIN
+				SET @OSid = (SELECT OSid FROM PowerSTIG.ComplianceTargets WHERE TargetComputerID = @TargetComputerID)
+			END
+-- ----------------------------------------
+-- Find most recent scan for everything but IIS sites
+-- ----------------------------------------
+--
+	DROP TABLE IF EXISTS #__CreateCKLiis
+	DROP TABLE IF EXISTS #RecentScan
+	DROP TABLE IF EXISTS #RecentScanIIS
+	DROP TABLE IF EXISTS #__CreateCKL
+	DROP TABLE IF EXISTS #__ResultsCompare
+	DROP TABLE IF EXISTS #ResultsForPivot
+	DROP TABLE IF EXISTS #__ResultsCompareIIS
+	DROP TABLE IF EXISTS #ResultsForPivotIIS
+
+--
+IF @TargetRole != 'IISsite'
+	BEGIN
+		SELECT * INTO #RecentScan FROM 
+				 (
+				 SELECT  M.*, ROW_NUMBER() OVER (PARTITION BY TargetComputerID,ComplianceTypeID,ScanSourceID ORDER BY LastComplianceCheck DESC) RN
+				 FROM    PowerSTIG.ComplianceSourceMap M
+				 ) T
+				WHERE
+					T.RN = 1
+					AND
+					ComplianceTypeID = @ComplianceTypeID
+-- ----------------------------------------
+-- Hydrate #ResultsForPivot
+-- ----------------------------------------
+	SELECT 
+		R.InDesiredState
+		,O.ScanSource
+		,F.VulnerabilityNum AS RuleID
+		,L.LastComplianceCheck
+	INTO
+		#ResultsForPivot
+	FROM
+			#RecentScan C
+		JOIN
+			PowerSTIG.FindingRepo R
+		ON
+			C.ScanID = R.ScanID
+		JOIN 
+			PowerSTIG.Scans S
+		ON 
+			R.ScanID = S.ScanID
+		JOIN
+			PowerSTIG.ScanSource O
+		ON
+			O.ScanSourceID = S.ScanSourceID
+		JOIN
+			PowerSTIG.CheckListAttributes F
+		ON
+			F.CheckListAttributeID = R.CheckListAttributeID
+		JOIN
+			PowerSTIG.ComplianceCheckLog L
+		ON
+			S.ScanID = L.ScanID
+		WHERE
+			R.ScanID IN (SELECT scanid FROM #RecentScan)
+		AND
+				R.TargetComputerID = @TargetComputerID
+		AND
+				R.ComplianceTypeID = @ComplianceTypeID
+	GROUP BY				
+		R.InDesiredState
+		,O.ScanSource
+		,F.VulnerabilityNum
+		,L.LastComplianceCheck
+	ORDER BY
+		VulnerabilityNum
+	END
+-- ----------------------------------------
+-- Find most recent scan for all IIS sites
+-- ----------------------------------------
+IF @TargetRole = 'IISsite'
+--
+	BEGIN
+		SELECT * INTO #RecentScanIIS  FROM 
+         (
+         SELECT  M.*,T.SiteName, ROW_NUMBER() OVER (PARTITION BY TargetComputerID,T.SiteID,ScanSourceID ORDER BY LastComplianceCheck DESC) RN
+         FROM    PowerSTIG.ComplianceSourceMap M
+					JOIN
+						PowerSTIG.IISsitesScans S
+					ON
+						M.ScanID = S.ScanID
+					JOIN
+						PowerSTIG.IISsites T
+					ON
+						T.SiteID = S.SiteID					
+         ) T
+		WHERE
+			T.RN = 1
+			AND
+			ComplianceTypeID = @ComplianceTypeID
+-- ----------------------------------------
+-- Hydrate #ResultsForPivot
+-- ----------------------------------------
+	SELECT 
+		R.InDesiredState
+		,O.ScanSource
+		,F.VulnerabilityNum AS RuleID
+		,L.LastComplianceCheck
+	INTO
+		#ResultsForPivotIIS
+	FROM
+			#RecentScanIIS C
+		JOIN
+			PowerSTIG.FindingRepo R
+		ON
+			C.ScanID = R.ScanID
+		JOIN 
+			PowerSTIG.Scans S
+		ON 
+			R.ScanID = S.ScanID
+		JOIN
+			PowerSTIG.ScanSource O
+		ON
+			O.ScanSourceID = S.ScanSourceID
+		JOIN
+			PowerSTIG.CheckListAttributes F
+		ON
+			F.CheckListAttributeID = R.CheckListAttributeID
+		JOIN
+			PowerSTIG.ComplianceCheckLog L
+		ON
+			S.ScanID = L.ScanID
+		WHERE
+			R.ScanID IN (SELECT scanid FROM #RecentScanIIS)
+		AND
+				R.TargetComputerID = @TargetComputerID
+		AND
+				R.ComplianceTypeID = @ComplianceTypeID
+	GROUP BY				
+		R.InDesiredState
+		,O.ScanSource
+		,F.VulnerabilityNum
+		,L.LastComplianceCheck
+	ORDER BY
+		VulnerabilityNum
+
+END
+
+-- ----------------------------------------
+-- ----------------------------------------
+-- ----------------------------------------
+IF @TargetRole != 'IISsite'
+	BEGIN
+		SELECT 
+			*
+			INTO #__ResultsCompare
+		FROM
+				(
+				SELECT
+					RuleID,
+					CAST(InDesiredState AS tinyint) AS InDesiredState,
+					ScanSource
+				FROM 
+					#ResultsForPivot
+				) 
+					AS SourceTable PIVOT(AVG([InDesiredState]) FOR ScanSource IN([POWERSTIG],[SCAP])) AS PivotTable;
+-- ----------------------------------------
+-- Load CKL to temp table for manipulation
+-- ----------------------------------------
+					SET @CheckListInfoID =	(
+											SELECT
+												MAX(I.CheckListInfoID)
+											FROM 
+												PowerSTIG.CheckListInfo I
+											JOIN
+												PowerSTIG.ComplianceTypesInfo O
+											ON
+												I.RoleAlias = O.RoleAlias
+											JOIN
+												PowerSTIG.ComplianceTypes T
+											ON
+												T.ComplianceTypeID = O.ComplianceTypeID
+											WHERE
+												T.ComplianceTypeID = @ComplianceTypeID
+											AND 
+												O.OSid = @OSid
+											)
+--
+--
+--
+	SET @Checklist = (SELECT CKLfile FROM PowerSTIG.CheckListInfo WHERE CheckListInfoID = @CheckListInfoID)
+	SET @MaxiSTIG = (SELECT @Checklist.value('count(/CHECKLIST/STIGS/iSTIG)', 'int'))
+			--
+			DROP TABLE IF EXISTS #__CreateCKL
+			CREATE TABLE #__CreateCKL (CheckList XML NULL)
+			--
+			INSERT INTO #__CreateCKL (CheckList) VALUES (@Checklist)
+
+
+WHILE @iSTIG <= @MaxiSTIG
+
+   BEGIN
+         SET @i   = 1
+         SET @max = (SELECT @Checklist.value('count(/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN)', 'int'))
+
+         WHILE @i <= @max
+         BEGIN
+            SELECT @VulnId = @Checklist.value('((/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/STIG_DATA/ATTRIBUTE_DATA)[1]/text())[1]', 'nvarchar(10)')
+-- ----------------------------------------
+-- Update the Status
+-- ----------------------------------------
+			SET @Status = 	(SELECT
+					[STATUS] = CASE
+						WHEN T.PowerSTIG = 0 AND T.SCAP = 0 THEN 'Open'
+						WHEN T.PowerSTIG = 0 AND T.SCAP = 1 THEN 'NotAFinding'
+						WHEN T.PowerSTIG = 1 AND T.SCAP = 1 THEN 'NotAFinding'
+						WHEN T.PowerSTIG = 0 AND T.SCAP IS NULL THEN 'Open'
+						WHEN T.PowerSTIG = 1 AND T.SCAP IS NULL THEN 'NotAFinding'
+						WHEN T.PowerSTIG = 1 AND T.SCAP = 0 THEN 'NotAFinding'
+						WHEN T.PowerSTIG IS NULL AND T.SCAP = 0 THEN 'Open'
+						WHEN T.PowerSTIG IS NULL AND T.SCAP = 1 THEN 'NotAFinding'
+						END
+			FROM
+					#__ResultsCompare T
+			WHERE
+				T.RuleID = @VulnId)
+			--
+			-- STIGs with no check - need to improve this in a future release, like so many other things
+			--
+			IF NOT EXISTS
+				(SELECT RuleID FROM #__ResultsCompare WHERE RuleID = @VulnId)
+					BEGIN
+						SET @Status = 'Not_Reviewed'
+					END
+	
+		--
+		UPDATE
+			#__CreateCKL
+        SET 
+			checklist.modify('replace value of ((/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/STATUS)[1]/text())[1] with sql:variable("@Status")')
+        WHERE
+			checklist.exist('((/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/STATUS)[1]/text())[1]') = 1
+		
+-- ----------------------------------------
+-- Update the Comments
+-- ----------------------------------------
+				SET @Comments = (SELECT
+						[COMMENTS] = CASE
+							WHEN T.PowerSTIG = 0 AND T.SCAP = 0 THEN 'Results from PowerSTIG and SCAP'
+							WHEN T.PowerSTIG = 0 AND T.SCAP = 1 THEN 'Results from SCAP'
+							WHEN T.PowerSTIG = 1 AND T.SCAP = 1 THEN 'Results from PowerSTIG and SCAP'
+							WHEN T.PowerSTIG = 0 AND T.SCAP IS NULL THEN 'Results from PowerSTIG'
+							WHEN T.PowerSTIG = 1 AND T.SCAP IS NULL THEN 'Results from PowerSTIG'
+							WHEN T.PowerSTIG = 1 AND T.SCAP = 0 THEN 'Results from PowerSTIG'
+							WHEN T.PowerSTIG IS NULL AND T.SCAP = 0 THEN 'Results from SCAP'
+							WHEN T.PowerSTIG IS NULL AND T.SCAP = 1 THEN 'Results from SCAP'
+							END
+					FROM
+						#__ResultsCompare T
+					WHERE
+						T.RuleID = @VulnId)
+			--
+           UPDATE
+				#__CreateCKL
+           SET 
+				checklist.modify('insert text{sql:variable("@Comments")} into (/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/COMMENTS)[1]')
+
+           SET @i += 1
+
+         END
+
+      SET @iSTIG += 1
+
+   END
+ 
+SELECT * FROM #RecentScan
+SELECT * FROM #__CreateCKL
+SELECT * FROM #__ResultsCompare
+SELECT * FROM #ResultsForPivot
+
+-- ----------------------------------------
+-- Return the CKL
+-- ----------------------------------------
+	SELECT
+		CheckList
+	FROM
+		#__CreateCKL
+END
+-- ----------------------------------------
+-- Handling target role IISsite completely separately, mostly for expediency, also for reasons.
+-- ----------------------------------------
+IF @TargetRole = 'IISsite'
+	BEGIN
+		SELECT 
+			*
+			INTO #__ResultsCompareIIS
+		FROM
+				(
+				SELECT
+					RuleID,
+					CAST(InDesiredState AS tinyint) AS InDesiredState,
+					ScanSource
+				FROM 
+					#ResultsForPivotIIS
+				) 
+					AS SourceTable PIVOT(AVG([InDesiredState]) FOR ScanSource IN([POWERSTIG],[SCAP])) AS PivotTable;
+						SET @CheckListInfoID =	(
+											SELECT
+												MAX(I.CheckListInfoID)
+											FROM 
+												PowerSTIG.CheckListInfo I
+											JOIN
+												PowerSTIG.ComplianceTypesInfo O
+											ON
+												I.RoleAlias = O.RoleAlias
+											JOIN
+												PowerSTIG.ComplianceTypes T
+											ON
+												T.ComplianceTypeID = O.ComplianceTypeID
+											WHERE
+												T.ComplianceTypeID = @ComplianceTypeID
+											AND 
+												O.OSid = @OSid
+											)
+--
+--
+--
+		SET @Checklist = (SELECT CKLfile FROM PowerSTIG.CheckListInfo WHERE CheckListInfoID = @CheckListInfoID)
+		SET @MaxiSTIG = (SELECT @Checklist.value('count(/CHECKLIST/STIGS/iSTIG)', 'int'))
+			--
+			DROP TABLE IF EXISTS #__CreateCKLiis
+			CREATE TABLE #__CreateCKLiis (CheckListID smallint IDENTITY(1,1),CheckList XML NULL,IISsiteName varchar(512),isProcessed BIT)
+			--
+			INSERT INTO #__CreateCKLiis 
+				(
+				CheckList,
+				IISsiteName,
+				isProcessed
+				)
+			SELECT 
+				@CheckList AS CheckList,
+				SiteName,
+				0 AS isProcessed
+			FROM
+				#RecentScanIIS
+--
+--
+--
+WHILE EXISTS
+	(SELECT TOP 1 CheckListID FROM #__CreateCKLiis WHERE isProcessed = 0)
+		BEGIN
+			SET @CheckListID = (SELECT TOP 1 CheckListID FROM #__CreateCKLiis WHERE isProcessed = 0)
+
+WHILE @iSTIG <= @MaxiSTIG
+
+   BEGIN
+         SET @i   = 1
+         SET @max = (SELECT @Checklist.value('count(/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN)', 'int'))
+
+         WHILE @i <= @max
+         BEGIN
+            SELECT @VulnId = @Checklist.value('((/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/STIG_DATA/ATTRIBUTE_DATA)[1]/text())[1]', 'nvarchar(10)')
+-- ----------------------------------------
+-- Update the Status
+-- ----------------------------------------
+			SET @Status = 	(SELECT
+					[STATUS] = CASE
+						WHEN T.PowerSTIG = 0 AND T.SCAP = 0 THEN 'Open'
+						WHEN T.PowerSTIG = 0 AND T.SCAP = 1 THEN 'NotAFinding'
+						WHEN T.PowerSTIG = 1 AND T.SCAP = 1 THEN 'NotAFinding'
+						WHEN T.PowerSTIG = 0 AND T.SCAP IS NULL THEN 'Open'
+						WHEN T.PowerSTIG = 1 AND T.SCAP IS NULL THEN 'NotAFinding'
+						WHEN T.PowerSTIG = 1 AND T.SCAP = 0 THEN 'NotAFinding'
+						WHEN T.PowerSTIG IS NULL AND T.SCAP = 0 THEN 'Open'
+						WHEN T.PowerSTIG IS NULL AND T.SCAP = 1 THEN 'NotAFinding'
+						END
+			FROM
+					#__ResultsCompareIIS T
+			WHERE
+				T.RuleID = @VulnId)
+			--
+			-- STIGs with no check - need to improve this in a future release, like so many other things
+			--
+			IF NOT EXISTS
+				(SELECT RuleID FROM #__ResultsCompareIIS WHERE RuleID = @VulnId)
+					BEGIN
+						SET @Status = 'Not_Reviewed'
+					END
+		--
+		UPDATE
+			#__CreateCKLiis
+        SET 
+			checklist.modify('replace value of ((/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/STATUS)[1]/text())[1] with sql:variable("@Status")')
+        WHERE
+			checklist.exist('((/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/STATUS)[1]/text())[1]') = 1
+		AND
+			CheckListID = @CheckListID
+		
+-- ----------------------------------------
+-- Update the Comments
+-- ----------------------------------------
+				SET @Comments = (SELECT
+						[COMMENTS] = CASE
+							WHEN T.PowerSTIG = 0 AND T.SCAP = 0 THEN 'Results from PowerSTIG and SCAP'
+							WHEN T.PowerSTIG = 0 AND T.SCAP = 1 THEN 'Results from SCAP'
+							WHEN T.PowerSTIG = 1 AND T.SCAP = 1 THEN 'Results from PowerSTIG and SCAP'
+							WHEN T.PowerSTIG = 0 AND T.SCAP IS NULL THEN 'Results from PowerSTIG'
+							WHEN T.PowerSTIG = 1 AND T.SCAP IS NULL THEN 'Results from PowerSTIG'
+							WHEN T.PowerSTIG = 1 AND T.SCAP = 0 THEN 'Results from PowerSTIG'
+							WHEN T.PowerSTIG IS NULL AND T.SCAP = 0 THEN 'Results from SCAP'
+							WHEN T.PowerSTIG IS NULL AND T.SCAP = 1 THEN 'Results from SCAP'
+							END
+					FROM
+						#__ResultsCompareIIS T
+					WHERE
+						T.RuleID = @VulnId)
+			--
+           UPDATE
+				#__CreateCKLiis
+           SET 
+				checklist.modify('insert text{sql:variable("@Comments")} into (/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/COMMENTS)[1]')
+		   WHERE
+				CheckListID = @CheckListID
+           SET 
+				@i += 1
+
+         END
+
+      SET @iSTIG += 1
+
+   END
+   	  --
+	  -- Set IIS CheckList as processed
+	  --
+		UPDATE #__CreateCKLiis SET isProcessed = 1 WHERE CheckListID = @CheckListID
+	--END
+END
+-- ----------------------------------------
+-- Return the CKL
+-- ----------------------------------------
+	SELECT
+		CheckList,IISsiteName
+	FROM
+		#__CreateCKLiis
+
+END
+-- ----------------------------------------
+-- Cleanup
+-- ----------------------------------------
+DROP TABLE IF EXISTS #__CreateCKLiis
+DROP TABLE IF EXISTS #RecentScan
+DROP TABLE IF EXISTS #RecentScanIIS
+DROP TABLE IF EXISTS #__CreateCKL
+DROP TABLE IF EXISTS #__ResultsCompare
+DROP TABLE IF EXISTS #ResultsForPivot
+DROP TABLE IF EXISTS #__ResultsCompareIIS
+DROP TABLE IF EXISTS #ResultsForPivotIIS
+GO
 
 -- ===============================================================================================
 -- ///////////////////////////////////////////////////////////////////////////////////////////////

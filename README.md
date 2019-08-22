@@ -6,7 +6,7 @@
 1.1.0.0 - Released March 1, 2019  
 2.0.0.0 - Released June 17, 2019  
 2.0.1.0 - Released July 8, 2019  
-2.1.0.0 - Released End of July/Early July
+2.1.0.0 - Released End of August
 
 ## What's New!
 ## Support for PowerStig 3.2.0

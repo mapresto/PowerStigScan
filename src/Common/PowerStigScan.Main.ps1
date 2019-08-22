@@ -1052,7 +1052,7 @@ function Invoke-PowerStigScan
                     {
                         Set-PowerStigScapRoleXML -OsVersion "2012R2" -isDomainController:$false
                     }
-                    Write-PowerStigPSLog -Path "$scapPath\$($r)_Hosts.txt" -value $2012MS -Force
+                    Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2012MS -Force
                     $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2012R2_MS_options.xml`" -q"
                     Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
                     if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
@@ -1068,7 +1068,7 @@ function Invoke-PowerStigScan
                     {
                         Set-PowerStigScapRoleXML -OsVersion "2016" -isDomainController:$false
                     }
-                    Write-PowerStigPSLog -Path "$scapPath\$($r)_Hosts.txt" -value $2016MS -Force
+                    Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2016MS -Force
                     $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2016_MS_options.xml`" -q"
                     Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
                     if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
@@ -1084,7 +1084,7 @@ function Invoke-PowerStigScan
                     {
                         Set-PowerStigScapRoleXML -OsVersion "2012R2" -isDomainController:$true
                     }
-                    Write-PowerStigPSLog -Path "$scapPath\$($r)_Hosts.txt" -value $2012DC -Force
+                    Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2012DC -Force
                     $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2012R2_DC_options.xml`" -q"
                     Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
                     if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
@@ -1100,7 +1100,7 @@ function Invoke-PowerStigScan
                     {
                         Set-PowerStigScapRoleXML -OsVersion "2016" -isDomainController:$true
                     }
-                    Write-PowerStigPSLog -Path "$scapPath\$($r)_Hosts.txt" -value $2016DC -Force
+                    Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2016DC -Force
                     $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2016_DC_options.xml`" -q"
                     Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
                     if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
@@ -1116,7 +1116,7 @@ function Invoke-PowerStigScan
                     {
                         Set-PowerStigScapRoleXML -OsVersion "10" -isDomainController:$false
                     }
-                    Write-PowerStigPSLog -Path "$scapPath\$($r)_Hosts.txt" -Value $Client -Force
+                    Add-Content -Path "$scapPath\$($r)_Hosts.txt" -Value $Client -Force
                     $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\Client_options.xml`" -q"
                     Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
                     if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
@@ -1697,11 +1697,7 @@ Function Start-PowerStigDSCScan
             Continue
         }
 
-        #if($r -like "IISS*")
-        #{
-        #    Write-PowerStigPSLog -Path $LogFilePath -Value "$(Get-Time):[$ComputerName][$r][Warning]: IISServer detected, will not continue processing results."
-        #    Continue
-        #}
+
         Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][$r][Info]: Converting results to PSObjects"
 
         try

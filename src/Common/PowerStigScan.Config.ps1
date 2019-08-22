@@ -224,14 +224,17 @@ function Get-PowerStigConfig
     $workingPath = Split-Path $PsCommandPath
     $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
 
-    $configObject = New-Object PSobject
-    Add-Member -InputObject $configObject -NotePropertyName "CKLOutPath" -NotePropertyValue $iniVar.CKLOutPath
-    Add-Member -InputObject $configObject -NotePropertyName "LogPath" -NotePropertyValue $iniVar.LogPath
-    Add-Member -InputObject $configObject -NotePropertyName "ConcurrentScans" -NotePropertyValue $iniVar.ConcurrentScans
-    Add-Member -InputObject $configObject -NotePropertyName "ScapProfile" -NotePropertyValue $iniVar.ScapProfile
-    Add-Member -InputObject $configObject -NotePropertyName "ScapInstallDir" -NotePropertyValue $iniVar.ScapInstallDir
-    Add-Member -InputObject $configObject -NotePropertyName "SQLInstanceName" -NotePropertyValue $iniVar.SQLInstanceName
-    Add-Member -InputObject $configObject -NotePropertyName "DatabaseName" -NotePropertyValue $iniVar.DatabaseName
+    $configObject = [PSCustomObject]@{
+        "CKLOutPath"            = $iniVar.CKLOutPath
+        "LogPath"               = $iniVar.LogPath
+        "ConcurrentScans"       = $iniVar.ConcurrentScans
+        "PowerStigVersion"      = $iniVar.PowerStigVersion
+        "PowerStigScanVersion"  = $iniVar.PowerStigScanVersion
+        "ScapProfile"           = $iniVar.ScapProfile
+        "ScapInstallDir"        = $iniVar.ScapInstallDir
+        "SQLInstanceName"       = $iniVar.SqlInstanceName
+        "DatabaseName"          = $iniVar.DatabaseName
+    }
 
     Return $configObject
 }
@@ -284,6 +287,14 @@ function Set-PowerStigConfig
         [Parameter(Mandatory=$false)]
         [ValidateNotNullorEmpty()]
         [String]$ConcurrentScans,
+
+        [Parameter(Mandatory=$false)]
+        [ValidateNotNullorEmpty()]
+        [String]$PowerStigVersion,
+
+        [Parameter(Mandatory=$false)]
+        [ValidateNotNullOrEmpty()]
+        [String]$PowerStigScanVersion,
 
         [Parameter(Mandatory=$false)]
         [ValidateNotNullorEmpty()]
@@ -360,6 +371,14 @@ function Set-PowerStigConfig
     {
         $workingObj.ConcurrentScans = $ConcurrentScans
     }
+    if($PowerStigVersion -ne '')
+    {
+        $workingObj.PowerStigVersion = $PowerStigVersion
+    }
+    if($PowerStigScanVersion -ne '')
+    {
+        $workingObj.PowerStigScanVersion = $PowerStigScanVersion
+    }
 
     $someFile += "; All Entries are space sensitive. Further versions will fix input validation.`r`n"
     $someFile += "; Concurrent scan option is only used here if you are running a standalone function`r`n"
@@ -369,6 +388,8 @@ function Set-PowerStigConfig
     $someFile += "CKLOutPath=$($workingObj.CKLOutPath)`r`n"
     $someFile += "LogPath=$($workingObj.LogPath)`r`n"
     $someFile += "ConcurrentScans=$($workingObj.ConcurrentScans)`r`n"
+    $someFile += "PowerStigVersion=$($workingObj.PowerStigVersion)`r`n"
+    $someFile += "PowerStigScanVersion=$($workingObj.PowerStigScanVersion)`r`n"
     $someFile += "`r`n"
     $someFile += "[SCAP]`r`n"
     $someFile += "ScapProfile=$($WorkingObj.ScapProfile)`r`n"

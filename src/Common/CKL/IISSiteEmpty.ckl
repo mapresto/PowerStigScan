@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--DISA STIG Viewer :: 2.9-->
-<!--STIG Version:1.6-->
 <CHECKLIST>
 	<ASSET>
 		<ROLE>None</ROLE>
@@ -39,11 +38,11 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>filename</SID_NAME>
-					<SID_DATA>U_MS_IIS_8-5_Site_STIG_V1R6_Manual-xccdf.xml</SID_DATA>
+					<SID_DATA>U_MS_IIS_8-5_Site_STIG_V1R7_Manual-xccdf.xml</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>releaseinfo</SID_NAME>
-					<SID_DATA>Release: 6 Benchmark Date: 25 Jan 2019</SID_DATA>
+					<SID_DATA>Release: 7 Benchmark Date: 26 Apr 2019</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>title</SID_NAME>
@@ -51,7 +50,7 @@
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>uuid</SID_NAME>
-					<SID_DATA>4d50fa37-6de8-42f4-8146-ce40729de828</SID_DATA>
+					<SID_DATA>29e7b32c-792f-4765-8ef7-ec51058d559e</SID_DATA>
 				</SI_DATA>
 				<SI_DATA>
 					<SID_NAME>notice</SID_NAME>
@@ -176,7 +175,7 @@ Set the "maxconnections" parameter to a value greater than zero.</ATTRIBUTE_DATA
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -319,7 +318,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -457,7 +456,7 @@ Select "Apply" from the "Actions" pane.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -585,7 +584,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -718,7 +717,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -855,7 +854,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -990,7 +989,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1025,7 +1024,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>Rule_ID</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>SV-91483r2_rule</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>SV-91483r3_rule</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>Rule_Ver</VULN_ATTRIBUTE>
@@ -1065,8 +1064,11 @@ Click on "View log file" button.
 
 When log file is displaced, review source IP information in log entries and verify entries do not reflect the IP address of the proxy server.
 
+If the website is not behind a load balancer or proxy server, this is Not Applicable.
+
 If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.
-If the website is not behind a load balancer or proxy server, this is Not Applicable.</ATTRIBUTE_DATA>
+
+If provisions have been made to log the client IP via another field (i.e., utilizing X-Forwarded-For), this is not a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>Fix_Text</VULN_ATTRIBUTE>
@@ -1122,7 +1124,7 @@ If the website is not behind a load balancer or proxy server, this is Not Applic
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1267,7 +1269,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1422,7 +1424,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1555,7 +1557,7 @@ Set the log file permissions for the appropriate group.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1706,7 +1708,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1831,7 +1833,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -1964,7 +1966,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2101,7 +2103,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2234,7 +2236,7 @@ Select "Apply" from the "Actions" pane.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2365,7 +2367,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2494,7 +2496,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2651,7 +2653,7 @@ If the IUSR account or any account noted above used for anonymous access is a me
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2792,7 +2794,7 @@ Under "Session State" Mode Settings, select the "In Process" mode.</ATTRIBUTE_DA
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -2917,7 +2919,7 @@ Change the Physical Path to the new partition and directory location.</ATTRIBUTE
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3042,7 +3044,7 @@ Set the "maxURL" value to "4096" or less.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3170,7 +3172,7 @@ Set the "maxAllowedContentLength" value to "30000000" or less.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3297,7 +3299,7 @@ Set the "Maximum Query String" value to "2048" or less.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3424,7 +3426,7 @@ Uncheck the "Allow high-bit characters" check box.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3551,7 +3553,7 @@ Uncheck the "Allow double escaping" check box.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3678,7 +3680,7 @@ Uncheck the "Allow unlisted file extensions" check box.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3803,7 +3805,7 @@ Under the "Actions" pane click "Disabled".</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -3936,7 +3938,7 @@ Click the "Content View" tab, click on each listed "Default Document" and click 
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4061,7 +4063,7 @@ Click each error message and click "Edit Feature" Setting from the "Actions" pan
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4188,7 +4190,7 @@ Scroll down to the "Behavior" section and set the value for "Debug" to "False".<
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4317,7 +4319,7 @@ Scroll down to the "Process Model" section and set the value for "Idle Time-out"
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4455,7 +4457,7 @@ In the "Actions" pane, click "Apply".
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4600,7 +4602,7 @@ In the "Actions" pane, under "Manage Server", click on "Stop".</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4733,7 +4735,7 @@ Configure a schedule to rollover log files on a regular basis.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -4864,7 +4866,7 @@ Edit to change an existing binding and set the correct ports and protocol.</ATTR
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5007,7 +5009,7 @@ Assign the certificate to the website by choosing it under the “SSL Certificat
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5156,7 +5158,7 @@ Click "Apply" in the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5291,7 +5293,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5436,7 +5438,7 @@ Select "Apply" from the "Actions" pane.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5576,7 +5578,7 @@ Select "Require SSL" check box.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5698,7 +5700,7 @@ Assign a unique application pool to each website.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5826,7 +5828,7 @@ Click “OK”.
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -5956,7 +5958,7 @@ Click “OK”.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6083,7 +6085,7 @@ Scroll down to the "Recycling" section and set the value for "Private Memory Lim
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6214,7 +6216,7 @@ Set both the "Regular time interval" and "Specific time" options to "True".</ATT
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6339,7 +6341,7 @@ Click “OK”.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6466,7 +6468,7 @@ Click “OK”.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6593,7 +6595,7 @@ Click “OK”.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6720,7 +6722,7 @@ Click “OK”.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -6856,7 +6858,7 @@ ALL APPLICATION PACKAGES: READ
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7007,7 +7009,7 @@ Users: READ</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7126,7 +7128,7 @@ If files with these extensions are found, this is a finding.</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>
@@ -7259,7 +7261,7 @@ If the access-controlled website does not display this banner page before entry,
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>STIGRef</VULN_ATTRIBUTE>
-					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 6 Benchmark Date: 25 Jan 2019</ATTRIBUTE_DATA>
+					<ATTRIBUTE_DATA>IIS 8.5 Site Security Technical Implementation Guide :: Version 1, Release: 7 Benchmark Date: 26 Apr 2019</ATTRIBUTE_DATA>
 				</STIG_DATA>
 				<STIG_DATA>
 					<VULN_ATTRIBUTE>TargetKey</VULN_ATTRIBUTE>

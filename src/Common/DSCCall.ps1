@@ -49,6 +49,30 @@ Begin
 {
     #Bound the dynamic parameter to a new Variable
     $Role = $PSBoundParameters[$ParameterName]
+    
+    Function Write-PowerStigPSLog
+    {
+        param(
+            [Parameter(Position=0)]
+            [String]$Path,
+            [String]$Value
+        )
+
+        $mutex = [System.Threading.Mutex]::new($false,'MainLogWrite')
+
+        $mutex.WaitOne() | Out-Null
+
+        try{
+            Add-Content -path $Path -Value $Value -ErrorAction Stop
+        }
+        catch{
+            
+        }
+        finally{
+            $mutex.ReleaseMutex()
+            $mutex.Dispose()
+        }
+    }
 }
 
 process
@@ -56,12 +80,12 @@ process
 
     if($null -ne $LogPath -and $LogPath -ne "")
     {
-        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Starting mof generation for $ComputerName"
+        Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Starting mof generation for $ComputerName"
     }
 
     Configuration PowerSTIG
     {
-        Import-DscResource -ModuleName PowerStig -ModuleVersion 3.2.0
+        Import-DscResource -ModuleName PowerStig -ModuleVersion '3.2.0'
 
         Node $ComputerName
         {
@@ -70,7 +94,7 @@ process
             # if Skip rule is not empty/null do 1 else do 2
             Switch($Role){
                 "WindowsServer-DC" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding DomainController Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding DomainController Configuration"
                     WindowsServer DomainController
                     {
                         OsVersion       = $OsVersion
@@ -81,7 +105,7 @@ process
                     
                 }
                 "WindowsDNSServer" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding DNS Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding DNS Configuration"
                     WindowsDnsServer DNS
                     {
                         OsVersion       = $OsVersion
@@ -90,7 +114,7 @@ process
                     }
                 }
                 "WindowsServer-MS" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding MemberServer Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding MemberServer Configuration"
                     WindowsServer MemberServer
                     {
                         OsVersion       = $OsVersion
@@ -100,7 +124,7 @@ process
                     } 
                 }
                 "InternetExplorer" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding InternetExplorer Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding InternetExplorer Configuration"
                     InternetExplorer IE
                     {
                         BrowserVersion  = '11'
@@ -109,7 +133,7 @@ process
                     } 
                 }
                 "WindowsFirewall" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding FireWall Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding FireWall Configuration"
                     WindowsFirewall Firewall
                     {
                         StigVersion     = (Get-PowerStigXMLVersion -Role "WindowsFirewall")
@@ -117,7 +141,7 @@ process
                     } 
                 }
                 "WindowsClient" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Windows10 Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Windows10 Configuration"
                     WindowsClient Client
                     {
                         OsVersion       = '10'
@@ -144,7 +168,7 @@ process
                         }
                         else
                         {
-                            Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][ERROR]: Unable to determine Java install path."
+                            Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][ERROR]: Unable to determine Java install path."
                             Return
                         }
                     }
@@ -160,7 +184,7 @@ process
                         }
                         else
                         {
-                            Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][ERROR]: Unable to determine Java install path."
+                            Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][ERROR]: Unable to determine Java install path."
                             Return
                         }
 
@@ -169,22 +193,22 @@ process
                     #########################################################################################
                     # Determine location of Deployment.config, create it it doesnt exist, and get the content
                     #########################################################################################
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Testing Path to OracleJRE deployment.config file."
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Testing Path to OracleJRE deployment.config file."
                     if($ComputerName -eq $env:COMPUTERNAME)
                     {
                         if(Test-Path "$installPath\lib\deployment.config")
                         {
                             $confPath = "$installPath\lib\deployment.config"
-                            Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file exists. Checking for content."
+                            Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file exists. Checking for content."
                         }
                         elseif(Test-Path "$env:WINDIR\Sun\Java\Deployment\deployment.config")
                         {
                             $confPath = "$env:WINDIR\Sun\Java\Deployment\deployment.config"
-                            Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file exists. Checking for content."
+                            Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file exists. Checking for content."
                         }
                         else
                         {
-                            Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Warning]: deployment.config file does not exist. Creating file in $installPath"
+                            Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Warning]: deployment.config file does not exist. Creating file in $installPath"
                             $confPath = "$installPath\lib\deployment.config"
                             New-Item $confPath -ItemType File
                         }
@@ -195,16 +219,16 @@ process
                         if(Invoke-Command -ComputerName $ComputerName -ScriptBlock {param($installPath)Test-Path "$installPath\lib\deployment.config"} -ArgumentList $installPath)
                         {
                             $confPath = "$installPath\lib\deployment.config"
-                            Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file exists. Checking for content."
+                            Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file exists. Checking for content."
                         }
                         elseif(Invoke-Command -ComputerName $ComputerName -ScriptBlock {Test-Path "$env:WINDIR\Sun\Java\Deployment\deployment.config"})
                         {
                             $confPath = "$env:WINDIR\Sun\Java\Deployment\deployment.config"
-                            Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file exists. Checking for content."
+                            Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file exists. Checking for content."
                         }
                         else
                         {
-                            Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Warning]: deployment.config file does not exist. Creating file in $installPath"
+                            Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Warning]: deployment.config file does not exist. Creating file in $installPath"
                             $confPath = "$installPath\lib\deployment.config"
                             Invoke-Command -ComputerName $ComputerName -ScriptBlock {param($confPath)New-Item $confPath -ItemType File} -ArgumentList $confPath
                         }
@@ -216,14 +240,14 @@ process
                     ###########################################################################################
                     if($depConfCont.count -eq 0)
                     {
-                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Warning]: deployment.config file is empty."
-                        [xml]$OracleJREXML   = Get-Content "$((get-module powerstig -ListAvailable | sort version -Descending | select -First 1).ModuleBase)\StigData\Processed\OracleJRE-8-1.5.xml"
+                        Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Warning]: deployment.config file is empty."
+                        [xml]$OracleJREXML   = Get-Content "$((get-module powerstig -ListAvailable | Sort-Object version -Descending | Select-Object -First 1).ModuleBase)\StigData\Processed\OracleJRE-8-1.5.xml"
                         # Properties path will be pulled from the STIG, file and path will be created for it.
                         $PropertiesPath = ($OracleJREXML.DISASTIG.FileContentRule.Rule | Where-Object {$_.value -like "*deployment.properties"} | Select-Object -expandproperty Value).replace("file:///","")
-                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: PropertiesPath is set to $PropertiesPath"
+                        Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: PropertiesPath is set to $PropertiesPath"
                         if($ComputerName -eq $env:COMPUTERNAME)
                         {
-                            Add-content $ConfPath -Value "1"
+                            Add-Content $ConfPath -Value "1"
                             
                         }
                         else
@@ -233,7 +257,7 @@ process
                     }
                     else
                     {
-                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file has content. Trying to determine properties path"
+                        Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: deployment.config file has content. Trying to determine properties path"
                         if(($depConfCont | Where-Object {$_ -like "deployment.system.config*" -and $_ -notlike "deployment.system.config.mandatory*"}).count -ne 0)
                         {
                             if((($depConfCont | Where-Object {$_ -like "deployment.system.config*" -and $_ -notlike "deployment.system.config.mandatory*"}) -split "=")[1] -match $PropRegex)
@@ -242,17 +266,17 @@ process
                             }
                             else
                             {
-                                Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Warning]: Property path in deployment.config has an incorrect syntax. Please check."
-                                [xml]$OracleJREXML   = Get-Content "$((get-module powerstig -ListAvailable | sort version -Descending | select -First 1).ModuleBase)\StigData\Processed\OracleJRE-8-1.5.xml"
+                                Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Warning]: Property path in deployment.config has an incorrect syntax. Please check."
+                                [xml]$OracleJREXML   = Get-Content "$((get-module powerstig -ListAvailable | Sort-Object version -Descending | Select-Object -First 1).ModuleBase)\StigData\Processed\OracleJRE-8-1.5.xml"
                                 $PropertiesPath = ($OracleJREXML.DISASTIG.FileContentRule.Rule | Where-Object {$_.value -like "*deployment.properties"} | Select-Object -expandproperty Value).replace("file:///","")        
                             }
                         }
                         else
                         {
-                            [xml]$OracleJREXML   = Get-Content "$((get-module powerstig -ListAvailable | sort version -Descending | select -First 1).ModuleBase)\StigData\Processed\OracleJRE-8-1.5.xml"
+                            [xml]$OracleJREXML   = Get-Content "$((get-module powerstig -ListAvailable | Sort-Object version -Descending | Select-Object -First 1).ModuleBase)\StigData\Processed\OracleJRE-8-1.5.xml"
                             $PropertiesPath = ($OracleJREXML.DISASTIG.FileContentRule.Rule | Where-Object {$_.value -like "*deployment.properties"} | Select-Object -expandproperty Value).replace("file:///","")    
                         }
-                        Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: PropertiesPath is set to $PropertiesPath"
+                        Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: PropertiesPath is set to $PropertiesPath"
                     }
 
                     if($ComputerName -eq $env:ComputerName)
@@ -283,9 +307,9 @@ process
                     }
 
 
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: Adding OracleJRE Configuration"
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: ConfigPath = $confPath"
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: PropertiesPath = $PropertiesPath"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: Adding OracleJRE Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: ConfigPath = $confPath"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][JRE][Info]: PropertiesPath = $PropertiesPath"
                     OracleJRE JRE
                     {
                         ConfigPath      = $confPath
@@ -295,27 +319,91 @@ process
                         Exception       = @{'V-66941.a'="file:///$PropertiesPath"}
                     }
                 }
-                "IISServer" {
-                    #continue until this is finalized - must find app pool website relationships
-                    Return
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding IIS Configuration"
-                    IisServer IIS-Server-$ComputerName
+                {($_ -eq "IISServer") -or ($_ -eq "IISSite")} {
+                    
+                    $SiteAppHash = @{}
+                    $SiteLogHash = @{}
+                    if($ComputerName -eq $env:COMPUTERNAME)
+                    {
+                        Import-Module WebAdministration
+                        $SiteList = @(Get-WebSite | Select-Object -ExpandProperty Name)
+                        $ServerLogPath = (Get-Item IIS:\).SiteDefaults.LogFile.Directory
+                        if($ServerLogPath -like "%*%*")
+                        {
+                            $tempLogPath = '$env:' + $ServerLogPath.replace("%","")
+                            $ServerLogPath = Invoke-Expression "`"$tempLogPath`""
+                        }
+            
+                        foreach($site in $SiteList)
+                        {
+                            $wAppPool = (Get-website $site).applicationpool
+                            $wLogPath = (Get-Item IIS:\Sites\$site).logfile.directory
+            
+                            if($wLogPath -like "%*%*")
+                            {
+                                $tempLogPath = '$env:' + $wLogPath.replace("%","")
+                                $wLogPath = Invoke-Expression "`"$tempLogPath`""
+                            }
+                            $SiteHash.add($Site,$wAppPool)
+                            $SiteLogHash.add($Site,$wLogPath)
+            
+                        }
+                    }
+                    else
+                    {
+                        $session = New-PSSession -ComputerName $ComputerName
+                        Invoke-Command -Session $session -ScriptBlock {Import-Module WebAdministration}
+                        $ServerLogPath = Invoke-Command -Session $session -ScriptBlock {(get-item IIS:\).sitedefaults.logfile.directory}
+                        if($ServerLogPath -like "%*%*")
+                        {
+                            $tempLogPath = '$env:' + $ServerLogPath.replace("%","")
+                            # Weirdness in this string requires the second set of quotations within the expression for the $env to expand correctly
+                            $ServerLogPath = Invoke-Command -Session $session -ScriptBlock {param($tempLogPath)invoke-expression "`"$tempLogPath`""} -ArgumentList $tempLogPath
+                        }
+                        
+                        $SiteList = @(Invoke-Command -Session $session -ScriptBlock {Get-WebSite | Select-Object -ExpandProperty Name})
+                        foreach ($site in $SiteList)
+                        {
+                            $wAppPool = Invoke-Command -Session $session -ScriptBlock {param($site)(Get-website $site).applicationpool} -ArgumentList $site
+                            $wLogPath = Invoke-Command -Session $session -ScriptBlock {param($site)(Get-Item IIS:\Sites\$site).logfile.directory}
+                            if($wLogPath -like "%*%*")
+                            {
+                                $tempLogPath = '$env:' + $wLogPath.replace("%","")
+                                $wLogPath = Invoke-Command -Session $session -Scriptblockk {param($tempLogPath)Invoke-Expression "`"$tempLogPath`""} -ArgumentList $tempLogPath
+                            } 
+                            $SiteAppHash.add($Site,$wAppPool)
+                            $SiteLogHash.add($Site,$wLogPath)
+                        }
+                    }
+            
+                    $IisSiteOrgFile   = "$(Split-Path $logPath)\PSOrgSettings\IISSite_org.xml"
+                    $IisServerOrgFile = "$(Split-Path $logPath)\PSOrgSettings\IISServer_org.xml"
+
+                    $ResourceName = "IIS-Server-$ComputerName"
+                    IisServer $ResourceName
                     {
                         StigVersion     = (Get-PowerStigXMLVersion -Role "IISServer")
-                        OrgSettings     = $OrgSettingsFilePath
+                        LogPath         = $ServerLogPath
+                        IisVersion      = '8.5'
+                        OrgSettings     = $IisServerOrgFile
                     }
-                    IisSite IIS-Site-$WebsiteName
+                    foreach($Site in $SiteList)
                     {
-                        WebsiteName     = $WebsiteName
-                        WebAppPool      = $WebAppPool
-                        StigVersion     = (Get-PowerStigXMLVersion -Role "IISSite")
-                        OrgSettings     = $OrgSettingsFilePath
-                    } 
+                        $ResourceName = "$Site"
+                        IisSite $ResourceName
+                        {
+                            WebsiteName     = $Site
+                            WebAppPool      = $SiteAppHash.$Site
+                            IisVersion      = '8.5'
+                            StigVersion     = (Get-PowerStigXMLVersion -Role "IISSite")
+                            OrgSettings     = $IisSiteOrgFile
+                        }
+                    }    
                 }
                 "SqlServer-2012-Database" {
                     #continue until finalized, must find instance and database relationships
                     Return
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding SQL Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding SQL Configuration"
                     SqlServer Sql-$Database
                     {
                         SqlVersion      = $SqlVersion
@@ -327,7 +415,7 @@ process
                     }
                 }
                 "Outlook2013" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Outlook2013 Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Outlook2013 Configuration"
                     Office Outlook
                     {
                         OfficeApp       = "Outlook2013"
@@ -336,7 +424,7 @@ process
                     }
                 }
                 "PowerPoint2013"{
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding PowerPoint2013 Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding PowerPoint2013 Configuration"
                     Office PowerPoint
                     {
                         OfficeApp       = "PowerPoint2013"
@@ -345,7 +433,7 @@ process
                     } 
                 }
                 "Excel2013" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Excel2013 Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Excel2013 Configuration"
                     Office Excel
                     {
                         OfficeApp       = "Excel2013"
@@ -354,7 +442,7 @@ process
                     }
                 }
                 "Word2013" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Word2013 Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Word2013 Configuration"
                     Office Word
                     {
                         OfficeApp       = "Word2013"
@@ -363,7 +451,7 @@ process
                     } 
                 }
                 "Outlook2016" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Outlook2016 Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Outlook2016 Configuration"
                     Office Outlook
                     {
                         OfficeApp       = "Outlook2016"
@@ -372,7 +460,7 @@ process
                     }
                 }
                 "PowerPoint2016"{
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding PowerPoint2016 Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding PowerPoint2016 Configuration"
                     Office PowerPoint
                     {
                         OfficeApp       = "PowerPoint2016"
@@ -381,7 +469,7 @@ process
                     } 
                 }
                 "Excel2016" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Excel2016 Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Excel2016 Configuration"
                     Office Excel
                     {
                         OfficeApp       = "Excel2016"
@@ -390,7 +478,7 @@ process
                     }
                 }
                 "Word2016" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Word2016 Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding Word2016 Configuration"
                     Office Word
                     {
                         OfficeApp       = "Word2016"
@@ -399,7 +487,7 @@ process
                     } 
                 }
                 "FireFox" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding FireFox Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding FireFox Configuration"
                     
                     try
                     {
@@ -407,13 +495,13 @@ process
                     }
                     catch
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ComputerName][FireFoxDSC][ERROR]:$_"
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][FireFoxDSC][ERROR]:$_"
                         Return
                     }
 
                     if($null -eq $installDirectory -or $installDirectory -eq "")
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$ComputerName][FireFoxDSC][ERROR]:Could not find FireFox install directory."
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][FireFoxDSC][ERROR]:Could not find FireFox install directory."
                         Return
                     }
                     
@@ -425,7 +513,7 @@ process
                     }
                 }
                 "DotNetFramework" {
-                    Add-Content -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding DotNet Configuration"
+                    Write-PowerStigPSLog -Path $LogPath -Value "$(Get-Time):[$ComputerName][Info]: Adding DotNet Configuration"
                     DotNetFramework DotNet
                     {
                         FrameworkVersion    = 'DotNet4'

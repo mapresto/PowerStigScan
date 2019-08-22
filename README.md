@@ -94,7 +94,9 @@ Word 2016 - 1.1
 Outlook 2013 - 1.13  
 Outlook 2016 - 1.2  
 Oracle JRE - 1.5  
-Windows Server 2012R2 DNS Server - 1.11    
+Windows Server 2012R2 DNS Server - 1.11  
+IIS Site 8.5 - 1.7  
+IIS Server 8.5 - 1.7  
 
 ### SCAP Only (Versions listed are for manual checklists)
 Adobe Acrobat Reader DC Classic - 1.4  

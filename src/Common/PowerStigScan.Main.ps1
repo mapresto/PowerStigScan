@@ -53,7 +53,11 @@ function InsertLog
 
 function Get-PowerStigXMLPath
 {
-    $powerStigXMLPath = "$($(get-module PowerSTIG).ModuleBase)\StigData\Processed"
+    $workingPath = Split-Path $PsCommandPath
+    $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
+    $versionNum = $iniVar.PowerStigVersion
+    $fullyQualifiedName = @{ModuleName="PowerStig";ModuleVersion="$versionNum"}
+    $powerStigXMLPath = "$($(get-module -FullyQualifiedName $fullyQualifiedName -ListAvailable ).ModuleBase)\StigData\Processed"
     Return $powerStigXMLPath
 }
 
@@ -167,7 +171,9 @@ function Get-PowerStigXmlVersion
                 if($g -match $RegexTest)
                 {
                     # Version objects allow for more accurate comparisons between two versions such as 2.12 is higher than 2.2
-                    [version]$wStigVer = ($RegexTest.Matches($g)).value
+                    # Casting to an array prior to grabbing the version. IIS has a the IIS version in the file name that breaks a more direct attempt.
+                    $wObj = @($RegexTest.Matches($g).value)
+                    [version]$wStigVer = $wObj[-1]
                 }
     
                 if($null -eq $highVer)
@@ -547,8 +553,6 @@ function Get-PowerStigIsIIS
         [String]$ComputerName
     )
 
-    Return $false
-
     Return (Get-WindowsFeature -ComputerName $ComputerName -Name Web-Server).installstate -eq "Installed"
 }
 
@@ -733,6 +737,35 @@ function Invoke-PowerStigScan
         [Switch]$DebugScript
     )
 
+    Function Write-PowerStigPSLog
+    {
+        param(
+            [Parameter(Position=0)]
+            [String]$Path,
+            [String]$Value
+        )
+
+        $mutex = [System.Threading.Mutex]::new($false,'MainLogWrite')
+
+        $mutex.WaitOne() | Out-Null
+
+        try{
+            Add-Content -path $Path -Value $Value -ErrorAction Stop
+        }
+        catch{
+            if($DebugScript)
+            {
+                Write-Host "Logging failed due to process holding the log file open"
+                Write-Host $Value
+            }
+        }
+        finally{
+            $mutex.ReleaseMutex()
+            $mutex.Dispose()
+        }
+    }
+
+
     #########################
     #Initialize Variables   #
     #########################
@@ -763,7 +796,7 @@ function Invoke-PowerStigScan
         $RunScap = $true
     }
 
-    Add-Content $logFilePath -Value "$(Get-Time):[Info]: New Scan Started - $(Get-Time)"
+    Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[Info]: New Scan Started - $(Get-Time)"
 
     # Initialize SQL options
     if($PSCmdlet.ParameterSetName -eq "SqlBatch")
@@ -784,18 +817,18 @@ function Invoke-PowerStigScan
 
     if($DebugScript)
     {
-        Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Variables Initialized as follows:"
-        Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: RunScap = $RunScap"
-        Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: FullScap = $FullScap"
-        Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: SqlBatch = $SqlBatch"
+        Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Variables Initialized as follows:"
+        Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: RunScap = $RunScap"
+        Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: FullScap = $FullScap"
+        Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: SqlBatch = $SqlBatch"
         if($SqlBatch)
         {
-            Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: SqlInstanceName = $SqlInstanceName"
-            Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: DatabaseName = $DatabaseName"
+            Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: SqlInstanceName = $SqlInstanceName"
+            Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: DatabaseName = $DatabaseName"
         }
     }
 
-    Add-Content $logFilePath -Value "$(Get-Time):[Info]: Cleaning old files."
+    Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[Info]: Cleaning old files."
     Get-ChildItem $logPath -Directory -Recurse | Where-Object {$_.Name -notlike "*SCAP*" -and $_.Name -notlike "*SCC*" -and $CKLOutPath -notlike "$($_.FullName)*" -and $_.FullName -notlike "$CKLOutPath*" -and $_.Name -notlike "*PSOrgSettings*"} | Remove-Item -Force -Recurse
     
     # If Scap enabled
@@ -805,7 +838,7 @@ function Invoke-PowerStigScan
         $ScapInstallDir = $iniVar.ScapInstallDir
         $ScapOnlyRoles = Get-ScapOnlyRoles
         
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP Processing initialized."
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP Processing initialized."
         # scapPath will hold SCAP settings such as hosts file and options.xml
         # logPath\SCC will hold all SCAP results. Remove the old results to ensure there are no conflicts
         ################  TODO  #####################
@@ -823,13 +856,13 @@ function Invoke-PowerStigScan
             Remove-Item $scapPath -Recurse -Force
         }
 
-        if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: scapPath = $scapPath"}
+        if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: scapPath = $scapPath"}
 
         # Create scapPath if it does not exist
         if(-not(Test-Path $scapPath))
         {
             New-Item -Path $scapPath -ItemType Directory | Out-Null
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Created Scap Path at $scapPath"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Created Scap Path at $scapPath"
         }
 
         # Initialize Hash Table to get list of SCAP scans that are required. 0 does not run, 1 will run Scap for that type
@@ -855,62 +888,62 @@ function Invoke-PowerStigScan
                 $s = $ENV:ComputerName
             }
             # Get-PowerStigOSandFunction is the lightweight information grab that just returns OSVerion and domain role (DC,MS,Client)
-            if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Current Server is $s"}
+            if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Current Server is $s"}
             if((Test-NetConnection -ComputerName $s -CommonTCPPort WINRM -WarningAction SilentlyContinue).TcpTestSucceeded -eq $false)
             {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[ERROR]: Could not connect to $s over WINRM. Moving to next server."
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[ERROR]: Could not connect to $s over WINRM. Moving to next server."
                 Continue
             }
             $tempInfo = Get-PowerStigOSandFunction -ComputerName $s
-            if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s version is $($tempInfo.OSVersion)"}
+            if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: $s version is $($tempInfo.OSVersion)"}
 
             # For each server this will determine which OS and role is being scanned and add it to the variable that will build the hosts file.
             # If it is the first of the type, it will also toggle the runList switch to enable the scan.
             if($tempInfo.OsVersion -eq "2012R2")
             {
-                if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: $s is 2012R2 = True"}
+                if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: $s is 2012R2 = True"}
                 if($tempinfo.Role -eq "DC" -and $runList."2012R2_DC" -ne 1)
                 {
                     if($SqlBatch)
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
                         Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
                     }
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2012R2_DC"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2012R2_DC"}
                     $runList."2012R2_DC" = 1
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012DC"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012DC"}
                     $2012DC += $s
                 }
                 elseif($tempInfo.Role -eq "MS" -and $runList."2012R2_MS" -ne 1)
                 {
                     if($SqlBatch)
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
                         Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
                     }
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2012R2_MS"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2012R2_MS"}
                     $runList."2012R2_MS" = 1
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012MS"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012MS"}
                     $2012MS += $s
                 }
                 elseif($tempInfo.Role -eq "MS" -and $runList."2012R2_MS" -eq 1)
                 {
                     if($SqlBatch)
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
                         Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
                     }
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012MS"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012MS"}
                     $2012MS += $s
                 }
                 elseif($tempInfo.Role -eq "DC" -and $runList."2012_DC" -eq 1)
                 {
                     if($SqlBatch)
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
                         Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
                     }
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012DC"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2012DC"}
                     $2012DC += $s
                 }
             }
@@ -920,44 +953,44 @@ function Invoke-PowerStigScan
                 {
                     if($SqlBatch)
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
                         Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
                     }
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2016_DC"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2016_DC"}
                     $runList."2016_DC" = 1
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016DC"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016DC"}
                     $2016DC += $s
                 }
                 elseif($tempInfo.Role -eq "MS" -and $runList."2016_MS" -ne 1)
                 {
                     if($SqlBatch)
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
                         Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
                     }
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2016_MS"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for 2016_MS"}
                     $runList."2016_MS" = 1
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016MS"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016MS"}
                     $2016MS += $s
                 }
                 elseif($tempInfo.Role -eq "MS" -and $runlist."2016_MS" -eq 1)
                 {
                     if($SqlBatch)
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
                         Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
                     }
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016MS"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016MS"}
                     $2016MS += $s
                 }
                 elseif($tempInfo.Role -eq "DC" -and $runList."2016_DC" -eq 1)
                 {
                     if($SqlBatch)
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
                         Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
                     }
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016DC"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable 2016DC"}
                     $2016DC += $s
                 }
             }
@@ -967,22 +1000,22 @@ function Invoke-PowerStigScan
                 {
                     if($SqlBatch)
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
                         Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
                     }
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for Client"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Toggle switch for Client"}
                     $runList."Client" = 1
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable Client"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable Client"}
                     $Client += $s
                 }
                 else 
                 {
                     if($SqlBatch)
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
                         Set-PowerStigComputer -ComputerName $s -osVersion $tempInfo.OsVersion
                     }
-                    if($DebugScript){Add-Content $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable Client"}
+                    if($DebugScript){Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[DEBUG]: Adding $s to variable Client"}
                     $Client += $s
                 }
             }
@@ -990,7 +1023,7 @@ function Invoke-PowerStigScan
 
         if($DebugScript)
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: Setting base configuration for SCAP"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: Setting base configuration for SCAP"
         }
 
         # this function will create the options.xml file if it doesn't exist and customize the settings for what is needed for this run.
@@ -1001,11 +1034,11 @@ function Invoke-PowerStigScan
             Start-Sleep -seconds 1
         }
 
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: The following option and hosts files will be generated and ran"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: The following option and hosts files will be generated and ran"
         # foreach key that was set to 1. Generate a new options.xml and hosts file saved to the logfile\Scap Path. Finally, start Scap Job
         foreach($r in $runList.Keys)
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Processing $r"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Processing $r"
             if(($runList.$r) -eq 1)
             {
                 New-Item -Path "$LogPath\SCAP\$($r)_Hosts.txt" -ItemType File -Force | Out-Null
@@ -1021,8 +1054,8 @@ function Invoke-PowerStigScan
                     }
                     Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2012MS -Force
                     $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2012R2_MS_options.xml`" -q"
-                    Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                    if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                    Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                    if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
                     Start-Job -Name "SCAP_2012R2_MS" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
                 }
                 elseif  ($r -eq "2016_MS")  
@@ -1037,8 +1070,8 @@ function Invoke-PowerStigScan
                     }
                     Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2016MS -Force
                     $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2016_MS_options.xml`" -q"
-                    Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                    if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                    Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                    if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
                     Start-Job -Name "SCAP_2016_MS" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
                 }
                 elseif  ($r -eq "2012R2_DC")
@@ -1053,8 +1086,8 @@ function Invoke-PowerStigScan
                     }
                     Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2012DC -Force
                     $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2012R2_DC_options.xml`" -q"
-                    Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                    if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                    Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                    if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
                     Start-Job -Name "SCAP_2012R2_DC" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
                 }
                 elseif  ($r -eq "2016_DC")  
@@ -1069,8 +1102,8 @@ function Invoke-PowerStigScan
                     }
                     Add-Content -Path "$scapPath\$($r)_Hosts.txt" -value $2016DC -Force
                     $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\2016_DC_options.xml`" -q"
-                    Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                    if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                    Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                    if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
                     Start-Job -Name "SCAP_2016_DC" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
                 }
                 elseif  ($r -eq "Client")   
@@ -1085,14 +1118,14 @@ function Invoke-PowerStigScan
                     }
                     Add-Content -Path "$scapPath\$($r)_Hosts.txt" -Value $Client -Force
                     $params = " -f `"$scapPath\$($r)_Hosts.txt`" -o `"$scapPath\Client_options.xml`" -q"
-                    Add-Content -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
-                    if($DebugScript){Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
+                    Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Starting SCAP Scan for $r"
+                    if($DebugScript){Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: params = $params"}
                     Start-Job -Name "SCAP_Client" -ScriptBlock {param($params,$ScapInstallDir)write-host "ScapInstallDir = $ScapInstallDir";Write-Host "Params = $params";Invoke-Expression "& `"$ScapInstallDir\Cscc.exe`"$params"} -ArgumentList $params,$ScapInstallDir | Out-Null
                 }
             }
         }
 
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP has started to run. Waiting until all jobs complete."
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP has started to run. Waiting until all jobs complete."
 
         # Wait until all SCAP jobs have finished. The PowerShell jobs will complete shortly after starting, leaving the scans running.
         # Checking by process will ensure that scans are complete prior to moving forward.
@@ -1103,9 +1136,9 @@ function Invoke-PowerStigScan
 
         if($DebugScript){Write-Host "SCAP has ended."}
         
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP scans have finished."
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: SCAP scans have finished."
 
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Processing SCAP results"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Processing SCAP results"
 
         # Grab the SCAP results xccdf files for parsing into results.
         $scapResultXccdf = Get-Childitem -path C:\Temp\PowerStig\SCC\Results -Include "*Xccdf*" -Recurse
@@ -1151,16 +1184,16 @@ function Invoke-PowerStigScan
                 $pStigVersion = $scapTech.$importRole
             }
 
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Adding results for $psRole for $sScap"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][Info]: Adding results for $psRole for $sScap"
 
             if($debugScript)
             {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: sScap=$sScap"
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: workingRole=$workingRole"
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: importRole=$importRole"
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: isDC=$isDC"
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: pStigVersion=$pStigVersion"
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: psRole=$psRole"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: sScap=$sScap"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: workingRole=$workingRole"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: importRole=$importRole"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: isDC=$isDC"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: pStigVersion=$pStigVersion"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[SCAP][DEBUG]: psRole=$psRole"
             }
 
             $scapResults = Get-PowerStigScapResults -ScapResultsXccdf $x.FullName
@@ -1203,16 +1236,16 @@ function Invoke-PowerStigScan
             $s = $ENV:ComputerName
         }
         # Check connection to remote server on WinRM
-        Add-Content $logFilePath -Value "$(Get-Time):[$s][Info]: Testing Connectivity on port 5985 (WinRM)"
+        Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[$s][Info]: Testing Connectivity on port 5985 (WinRM)"
 
         if((Test-NetConnection -ComputerName $s -CommonTCPPort WINRM -WarningAction SilentlyContinue).TcpTestSucceeded -eq $false)
         {
-            Add-Content -path $logFilePath -Value "$(Get-Time):[$s][Error]: Connection to $s Failed. Check network connectivity and that the server is listening for WinRM"
+            Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[$s][Error]: Connection to $s Failed. Check network connectivity and that the server is listening for WinRM"
             Continue
         }
         else 
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Connection to $s successful"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Connection to $s successful"
         }
         if ($s -eq $ENV:ComputerName) 
         {
@@ -1224,7 +1257,7 @@ function Invoke-PowerStigScan
         }
         if($PSVersion -notlike "5.1.*")
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[ERROR]: WMF 5.1 is not installed on $s. PowerStig cannot run on $s."
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[ERROR]: WMF 5.1 is not installed on $s. PowerStig cannot run on $s."
             Continue
         }
         else 
@@ -1232,7 +1265,7 @@ function Invoke-PowerStigScan
             $evalServers += $s
         }
         # Check WSMan Settings
-        Add-Content $logFilePath -Value "$(Get-Time):[$s][Info]: Testing WSMAN configuration on target server"
+        Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[$s][Info]: Testing WSMAN configuration on target server"
 
         if($s -eq $ENV:ComputerName)
         {
@@ -1240,8 +1273,8 @@ function Invoke-PowerStigScan
                 [int]$maxEnvelope = (get-childitem "wsman:\localhost\MaxEnvelopeSizekb").value
             }
             catch {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Query for WSMAN properties failed. Check user context that this is running under."
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Query for WSMAN properties failed. Check user context that this is running under."
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
                 Continue
             }
             
@@ -1252,8 +1285,8 @@ function Invoke-PowerStigScan
                 [int]$maxEnvelope = invoke-command -ComputerName $s -ScriptBlock {((get-childitem "wsman:\localhost\MaxEnvelopeSizekb").value)}
             }
             catch {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Query for WSMAN properties failed. Check user context that this is running under."
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Query for WSMAN properties failed. Check user context that this is running under."
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
                 Continue
             }
         }
@@ -1261,37 +1294,37 @@ function Invoke-PowerStigScan
         #Configure WSMAN if necessary
         if($maxEnvelope -lt 10000 -and $s -ne $ENV:ComputerName)
         {
-            Add-Content -path $logFilePath -Value "$(Get-Time):[$s][Warning]: Attempting to set MaxEnvelopeSizeKb on $s."
+            Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[$s][Warning]: Attempting to set MaxEnvelopeSizeKb on $s."
             try 
             {
                 invoke-command -computername $s -ScriptBlock {Set-Item -Path "WSMAN:\localhost\MaxEnvelopeSizekb" -Value 10000}
-                Add-Content -path $logFilePath -Value "$(Get-Time):[$s][Info]: MaxEnvelopeSizeKb successfully configured on $s."
+                Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[$s][Info]: MaxEnvelopeSizeKb successfully configured on $s."
             }
             catch 
             {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Setting WSMAN failed on $s."
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Setting WSMAN failed on $s."
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
                 Continue
             }
         }
         elseif($maxEnvelope -lt 10000 -and $s -eq $ENV:ComputerName)
         {
-            Add-Content -path $logFilePath -Value "$(Get-Time):[$s][Warning]: Attempting to set MaxEnvelopeSizeKb on $s."
+            Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[$s][Warning]: Attempting to set MaxEnvelopeSizeKb on $s."
             try 
             {
                 Set-Item -Path "WSMAN:\localhost\MaxEnvelopeSizekb" -Value 10000
-                Add-Content -path $logFilePath -Value "$(Get-Time):[$s][Info]: MaxEnvelopeSizeKb successfully configured on $s."
+                Write-PowerStigPSLog -path $logFilePath -Value "$(Get-Time):[$s][Info]: MaxEnvelopeSizeKb successfully configured on $s."
             }
             catch 
             {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Setting WSMAN failed on $s."
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: Setting WSMAN failed on $s."
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][ERROR]: $_"
                 Continue
             }
         }
         else
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: WSMan is correctly configured."
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: WSMan is correctly configured."
         }
     
         ###############################
@@ -1303,18 +1336,18 @@ function Invoke-PowerStigScan
         if(-not(test-path $ServerFilePath))
         {
             
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Creating file path for this server at $ServerFilePath"            
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Creating file path for this server at $ServerFilePath"            
             New-Item -ItemType Directory -Path $ServerFilePath | Out-Null
         }
     
         # Gather Role information
         $roles = Get-PowerStigServerRole -ComputerName $s
-        Add-Content $logFilePath -Value "$(Get-Time):[$s][Info]: PowerStig scan started on $s for role $($roles.roles) and version $($roles.version)."
+        Write-PowerStigPSLog $logFilePath -Value "$(Get-Time):[$s][Info]: PowerStig scan started on $s for role $($roles.roles) and version $($roles.version)."
 
         # If SQL - Update role and OS information
         if($SqlBatch -eq $true -and $RunScap -eq $false)
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Updating server information in SQL."
             Set-PowerStigComputer -ComputerName $s -osVersion $roles.Version
         }
 
@@ -1322,13 +1355,30 @@ function Invoke-PowerStigScan
         $OrgPath = "$logPath\PSOrgSettings\"
         if(-not(Test-Path $OrgPath))
         {
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Creating Org Settings path at $OrgPath"
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][Info]: Creating Org Settings path at $OrgPath"
             New-Item -Path $OrgPath -ItemType Directory -Force | Out-Null
         }
     
+        $isIISSite   = $false
+        $isIISServer = $false
         foreach($r in $roles.roles)
         {
-            $orgFileName = "$orgPath\$($r)_org.xml"
+            if($r -eq "IISSite")
+            {
+                $isIISSite = $true
+            }
+            elseif($r -eq "IISServer")
+            {
+                $isIISServer = $true
+            }
+            if($r -like "*WindowsServer*")
+            {
+                $orgFileName = "$orgPath\$($roles.Version)_$($r)_org.xml"
+            }
+            else {
+                $orgFileName = "$orgPath\$($r)_org.xml"
+            }
+            
             try
             {
                 # Do scripting magic to build the orgsettings from the database. However, if there is not a database run,
@@ -1338,64 +1388,64 @@ function Invoke-PowerStigScan
                 {
                     try 
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Creating OrgSettings file for $r at $orgFileName"
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Creating OrgSettings file for $r at $orgFileName"
                         if($DebugScript)
                         {
-                            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: Command Passed is: Get-PowerStigOrgSettings -Version $($roles.Version) -Role $r -OutPath $orgFileName"
+                            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: Command Passed is: Get-PowerStigOrgSettings -Version $($roles.Version) -Role $r -OutPath $orgFileName"
                         }
                         Get-PowerStigOrgSettings -Version $roles.Version -Role $r -OutPath $orgFileName
                         $orgSettingsProcessed.Add("$r","1")
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Org Settings generate from Database"
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Org Settings generated from Database"
                     }
                     catch 
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: OrgSettings failed to generate:"
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: OrgSettings failed to generate:"
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
                     }
                 }
                 
                 if (-not(Test-Path $orgFileName))
                 {
-                    Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Processing Org Settings from local machine."
+                    Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Processing Org Settings from local machine."
                     # If OrgSettings file exist in $OrgPath, use that else, copy from PowerStig and use the copied version
                     if(Test-Path $orgFileName)
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: OrgSettings exist in $orgFileName"
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: OrgSettings exist in $orgFileName"
                     }
                     elseif(-not(Test-Path $orgFileName))
                     {
-                        Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: No previous org files in location. Attempting to copy from default PowerStig Location ($(Get-PowerStigXMLPath)"
+                        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: No previous org files in location. Attempting to copy from default PowerStig Location ($(Get-PowerStigXMLPath)"
                         if($r -like "*WindowsServer*")
                         {
                             $xmlEval = $r.split("-")[0] + "-" + $roles.Version + "-" + $r.split("-")[1]
                             $highVer = Get-PowerStigXmlVersion -Role $r -osVersion $roles.Version
                             if($DebugScript)
                             {
-                                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: xml evaluation term is $xmlEval"
-                                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: High Version is $highVer"
+                                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: xml evaluation term is $xmlEval"
+                                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: High Version is $highVer"
                             }
                             $srcOrgFileName = Get-ChildItem -Path "$(Get-PowerStigXMLPath)" | Where-Object {$_.Name -like "*$xmlEval*" -and $_.Name -like "*$highVer*" -and $_.Name -like "*.org.default.xml"} | Select-Object -ExpandProperty Name
                             if($DebugScript)
                             {
-                                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: Source xml file is $srcOrgFileName"
+                                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: Source xml file is $srcOrgFileName"
                             }
                             Copy-Item -Path "$(Get-PowerStigXMLPath)\$srcOrgFileName" -Destination $orgFileName
-                            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Org Settings Copied from PowerStig Directory"
+                            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Org Settings Copied from PowerStig Directory"
                         }
                         else
                         {
                             $highVer = Get-PowerStigXmlVersion -Role $r -osVersion $roles.Version
                             if($DebugScript)
                             {
-                                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: High Version is $highVer"
+                                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: High Version is $highVer"
                             }
                             $srcOrgFileName = Get-ChildItem -Path "$(Get-PowerStigXMLPath)" | Where-Object {$_.Name -like "*$r*" -and $_.Name -like "*$highVer*" -and $_.Name -like "*.org.default.xml"} | Select-Object -ExpandProperty Name
                             if($DebugScript)
                             {
-                                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: Source xml file is $srcOrgFileName"
+                                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][DEBUG]: Source xml file is $srcOrgFileName"
                             }
                             Copy-Item -Path "$(Get-PowerStigXMLPath)\$srcOrgFileName" -Destination $orgFileName
-                            Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Org Settings Copied from PowerStig Directory"
+                            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: Org Settings Copied from PowerStig Directory"
                         }
                     }
                 }
@@ -1405,8 +1455,13 @@ function Invoke-PowerStigScan
             }
             catch
             {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: OrgSettings failed when running:"
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: OrgSettings failed when running:"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
+            }
+
+            if(($isIISSite -eq $false -or $isIISServer -eq $false) -and $r -like "IIS*")
+            {
+                Continue
             }
 
             Push-Location $ServerFilePath
@@ -1418,7 +1473,7 @@ function Invoke-PowerStigScan
                     $RunExpression += " -SkipRules $arrSkipRule"
                 }
                 Invoke-Expression -Command $RunExpression | Out-Null
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: MOF Created for $s for role $r"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][Info]: MOF Created for $s for role $r"
                 $mofPath = "$ServerFilePath\PowerStig\"
                 $origMof = Get-ChildItem $mofPath | Where-Object {$_.Name -like "$s.mof"} | Select-Object -ExpandProperty FullName
                 $mofName = $origMof.Replace(".mof","_$r.mof")
@@ -1426,9 +1481,9 @@ function Invoke-PowerStigScan
             }
             catch
             {
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: mof generation failed when running:"
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $RunExpression"
-                Add-Content -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: mof generation failed when running:"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $RunExpression"
+                Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$s][$r][ERROR]: $_"
                 Pop-Location
                 Continue
             }
@@ -1436,7 +1491,7 @@ function Invoke-PowerStigScan
 
             if($DebugScript)
             {
-                Add-Content -Path $logFilePath -value "$(Get-Time):[$s][$r][Debug]: mofName is $mofName"
+                Write-PowerStigPSLog -Path $logFilePath -value "$(Get-Time):[$s][$r][Debug]: mofName is $mofName"
             }
             Pop-Location
 
@@ -1463,7 +1518,7 @@ function Invoke-PowerStigScan
         Start-Job -Name "PowerStig_$s" -ScriptBlock $jobScript -ArgumentList $s,$sOsVersion,$RunScap,$SqlBatch,$DebugScript | Out-Null
         $jobCount -= 1
 
-        Add-Content -Path $logFilePath -Value "$(Get-Time):[DSCMain][Info]: There are $jobCount jobs left to start"
+        Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[DSCMain][Info]: There are $jobCount jobs left to start"
         
         While((Get-Job | Where-Object {$_.state -eq "Running" -and $_.name -like "*PowerSTIG*"}).count -ge $concurrentScans)
         {
@@ -1479,7 +1534,7 @@ function Invoke-PowerStigScan
         if($jobCount -ne $newJobCount)
         {
             $jobCount = (Get-Job | Where-Object {$_.state -eq "Running" -and $_.name -like "*PowerSTIG*"}).count
-            Add-Content -Path $logFilePath -Value "$(Get-Time):[DSCMain][Info]: There are $jobCount jobs remaining."
+            Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[DSCMain][Info]: There are $jobCount jobs remaining."
         }
         Start-Sleep -Seconds 2
         $newJobCount = (Get-Job | Where-Object {$_.state -eq "Running" -and $_.name -like "*PowerSTIG*"}).count
@@ -1496,7 +1551,7 @@ function Invoke-PowerStigScan
 
     Get-ChildItem $cklOutPath | Where-Object {$_.mode -notlike "d*" -and $_.CreationTime -gt $startTime} | ForEach-Object {Move-Item -path $_.FullName -Destination "$cklOutPath\$folderName\$($_.Name)" -Force}
 
-    Add-Content -Path $logFilePath -Value "$(Get-Time):[Info]: SCAN COMPLETE"
+    Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[Info]: SCAN COMPLETE"
 
 }
 
@@ -1588,10 +1643,11 @@ Function Start-PowerStigDSCScan
         $mutex.WaitOne() | Out-Null
 
         try{
-            Add-Content -path $Path -Value $Value
+            Add-Content -path $Path -Value $Value -ErrorAction Stop
         }
         catch{
             Write-Host "Logging failed due to process holding the log file open"
+            Write-Host $Value
         }
         finally{
             $mutex.ReleaseMutex()
@@ -1641,12 +1697,38 @@ Function Start-PowerStigDSCScan
             Continue
         }
 
+
         Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][$r][Info]: Converting results to PSObjects"
 
         try
         {
-            $convertObj = Convert-PowerStigTest -TestResults $scanObj
-            $resultHash = Set-PowerStigResultHashTableFromObject -InputObject $ConvertObj
+            if($r -like "IISS*")
+            {
+                $convertObj = Convert-PowerStigTest -TestResults $ScanObj -IsIIS
+            }
+            else
+            {
+                $convertObj = Convert-PowerStigTest -TestResults $scanObj
+            }
+            if($r -like "IIS*")
+            {
+                $siteArr = @()
+                $sites = $convertObj | Select-Object -ExpandProperty Site | Sort-Object -Unique
+                foreach($s in $sites)
+                {
+                    $tempObj = $convertObj | Where-Object {$_.Site -eq $s}
+                    $tempHash = Set-PowerStigResultHashTableFromObject -InputObject $tempObj
+                    $SiteHashObj = [PSCustomObject]@{
+                                    "SiteName"=$s
+                                    "Results"=$tempHash
+                                    }
+                    $siteArr += $SiteHashObj
+                }
+            }
+            else
+            {
+                $resultHash = Set-PowerStigResultHashTableFromObject -InputObject $ConvertObj
+            }
         }
         catch
         {
@@ -1657,8 +1739,19 @@ Function Start-PowerStigDSCScan
         if($isSql)
         {
             Write-PowerStigPSLog -Path $logFilePath -Value "$(Get-Time):[$ComputerName][Info]: Importing Results to Database for $ComputerName and role $r."
+            if($r -like "IIS*")
+            {
+                $sites = $convertObj | Select-Object -ExpandProperty Site | Sort-Object -Unique
+                foreach($s in $sites)
+                {
+                    Import-PowerStigObject -ComputerName $ComputerName -inputObj $convertObj -Role $r -ScanSource 'POWERSTIG' -ScanVersion (Get-PowerStigXmlVersion -Role $r -osVersion $osVersion) -IsIIS
+                }
 
-            Import-PowerStigObject -ComputerName $ComputerName -InputObj $convertObj -Role $r -ScanSource 'POWERSTIG' -ScanVersion (Get-PowerStigXmlVersion -Role $r -osVersion $osVersion)
+            }
+            else
+            {
+                Import-PowerStigObject -ComputerName $ComputerName -InputObj $convertObj -Role $r -ScanSource 'POWERSTIG' -ScanVersion (Get-PowerStigXmlVersion -Role $r -osVersion $osVersion)
+            }
         }
 
         $SourceHash = @{}
@@ -1719,7 +1812,7 @@ Function Start-PowerStigDSCScan
             }
 
         } #End isScap - Compare/Create Results
-        else
+        elseif($r -notlike "IIS*")
         {
             foreach($k in $resultHash.keys)
             {
@@ -1728,7 +1821,31 @@ Function Start-PowerStigDSCScan
             $outHash = $resultHash
         }
         
-        Update-PowerStigCkl -ComputerName $ComputerName -Role $r -osVersion $osVersion -InputObject $outHash -outPath $cklOutPath -SourceHash $SourceHash
+        if($r -like "IIS*")
+        {
+            foreach($g in $siteArr)
+            {
+                $SourceHash = @{}
+                foreach($k in $g.Results.keys)
+                {
+                    $SourceHash.add("$k","0")
+                }
+
+                if($g.SiteName -like "IIS-Server*")
+                {
+                    Update-PowerStigCkl -ComputerName $ComputerName -Role "IISServer" -osVersion $osVersion -InputObject $($g.results) -outPath $cklOutPath -SourceHash $SourceHash
+                }
+                else
+                {
+                    Update-PowerStigCkl -ComputerName $ComputerName -Role $r -osVersion $osVersion -InputObject $($g.results) -outPath $cklOutPath -SourceHash $SourceHash -SiteName $($g.SiteName)
+                }
+            }
+        }
+        else
+        {
+            Update-PowerStigCkl -ComputerName $ComputerName -Role $r -osVersion $osVersion -InputObject $outHash -outPath $cklOutPath -SourceHash $SourceHash
+        }
+
         # End -not isScap - Compare/Create Results
 
         
@@ -1768,12 +1885,14 @@ Function Install-PowerStigSQLDatabase
         [parameter(ParameterSetName='Set1',Position=1,Mandatory=$true)][String]$DatabaseName    
     )
 
-    $PowerStigVersion = "3.2.0"
-    $PowerStigScanVersion = "2.1.0.0"
+    $workingPath = Split-Path $PSCommandPath
+    $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
+
+    $PowerStigVersion = $iniVar.PowerStigVersion
+    $PowerStigScanVersion = $iniVar.PowerStigScanVersion
     $CopyTest = $false
     $ImportOrgXML = $true
-    $workingPath = Split-Path $PsCommandPath
-
+    
     if($SqlInstanceName -like "$env:COMPUTERNAME*")
     {
         $moduleTest = Get-Module -Name PowerStigScan -ListAvailable | Where-Object {$_.Version -eq $PowerStigScanVersion}
@@ -1901,7 +2020,7 @@ Function Install-PowerStigSQLDatabase
         if($ImportOrgXML)
         {
             Write-Warning -Message "Importing PowerStig Organizational Settings from PowerStig $PowerStigVersion module directory"
-            $query = "EXEC PowerStig.sproc_ImportOrgSettingsXML"
+            $query = "EXEC PowerStig.sproc_ImportOrgSettingsXML @OrgFilePath = `"C:\Program Files\WindowsPowerShell\Modules\PowerStig\$PowerStigVersion\StigData\Processed`""
             Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $query | Out-Null   
 
             $moduleTest = Get-PowerStigOrgSettings -Version 2012R2 -Role WindowsServer-MS -ErrorAction SilentlyContinue 

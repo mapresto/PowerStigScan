@@ -1744,7 +1744,8 @@ Function Start-PowerStigDSCScan
                 $sites = $convertObj | Select-Object -ExpandProperty Site | Sort-Object -Unique
                 foreach($s in $sites)
                 {
-                    Import-PowerStigObject -ComputerName $ComputerName -inputObj $convertObj -Role $r -ScanSource 'POWERSTIG' -ScanVersion (Get-PowerStigXmlVersion -Role $r -osVersion $osVersion) -IsIIS
+                    $importObj = $convertObj | Where-Object {$_.Site -eq $s}
+                    Import-PowerStigObject -ComputerName $ComputerName -inputObj $importObj -Role $r -ScanSource 'POWERSTIG' -ScanVersion (Get-PowerStigXmlVersion -Role $r -osVersion $osVersion) -IsIIS
                 }
 
             }

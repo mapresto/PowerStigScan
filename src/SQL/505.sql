@@ -241,7 +241,7 @@ DECLARE @StigType varchar(256)
 DECLARE @SiteID INT
 DECLARE @SiteName varchar(512)
 --declare @guid varchar(128)
---set @guid = 'C68E3CFB-33C5-4737-B335-FBB34E7EC7F6'
+--set @guid = 'AAAE2D13-1D7B-4D8C-8A6B-B8AB0CB7FC52'
 --------------------------------------------------------
 SET @StepName = 'Retrieve new GUIDs'
 --------------------------------------------------------
@@ -259,8 +259,9 @@ SET @StepName = 'Retrieve new GUIDs'
 					ON I.ScanSource = S.ScanSource
 		WHERE 
 			I.[GUID] NOT IN (SELECT DISTINCT ScanGUID FROM PowerSTIG.Scans)
-			--I.[GUID] = @GUID
-			--AND
+			AND
+			I.[GUID] = @GUID
+	
 				--
 				-- Do Logging
 				--
@@ -444,7 +445,6 @@ END
 -- Retrieve ScanID
 --------------------------------------------------------
 SET @ScanID = (SELECT DISTINCT ScanID FROM PowerSTIG.Scans WHERE [ScanGUID] = @GUID AND isProcessed = 0)
-
 --
 --------------------------------------------------------
 -- Late breaking need to include IIS sites which do not fit the model for most of the other roles.
@@ -455,13 +455,13 @@ IF @StigType = 'IISsite'
 --------------------------------------------------------
 SET @StepName = 'Hydrate IISsites'
 --------------------------------------------------------
-		BEGIN TRY		
+	BEGIN TRY		
 			INSERT INTO
 					PowerSTIG.IISsites
 						(
 						SiteName
 						)
-				SELECT
+				SELECT DISTINCT
 						IISsiteName
 				FROM
 						PowerSTIG.FindingImport
@@ -469,7 +469,7 @@ SET @StepName = 'Hydrate IISsites'
 						IISsiteName NOT IN
 					(
 						SELECT
-							SiteName
+							DISTINCT SiteName
 						FROM
 							PowerSTIG.IISsites
 					)
@@ -478,13 +478,12 @@ SET @StepName = 'Hydrate IISsites'
 			--
 			-- Retrieve SiteID and associate a scan to a site.  Such a hack.
 			--
-			SET @SiteName = (SELECT IISsiteName FROM PowerSTIG.FindingImport WHERE [GUID] = @GUID)
+			SET @SiteName = (SELECT DISTINCT IISsiteName FROM PowerSTIG.FindingImport WHERE [GUID] = @GUID)
 				SET @SiteID = (SELECT SiteID FROM PowerSTIG.IISsites WHERE SiteName = @SiteName)
 			--
 			-- Associate SiteID to a ScanID
 			--
 				INSERT INTO PowerSTIG.IISsitesScans
-				
 					(SiteID,ScanID)
 				VALUES
 					(@SiteID,@ScanID)
@@ -565,7 +564,6 @@ END
 ------------------------------------------------
 -- Retrieve CheckListInfoID
 ------------------------------------------------
-		SET @OSid = (SELECT OSid FROM PowerSTIG.ComplianceTargets WHERE TargetComputer = (SELECT DISTINCT TargetComputer FROM PowerSTIG.FindingImport WHERE [GUID] = @GUID))
 		--					
 		-- So much technical debt to retrieve the CheckListInfoID.  Displeased with this.
 		--
@@ -592,8 +590,9 @@ END
 								WHERE
 									I.[GUID] = @GUID
 						)
+
 --------------------------------------------------------
-SET @StepName = 'Hydrate FindingRepo'
+--SET @StepName = 'Hydrate FindingRepo'
 --------------------------------------------------------
 	BEGIN TRY
 				INSERT INTO
@@ -635,7 +634,7 @@ SET @StepName = 'Hydrate FindingRepo'
 						isProcessed = 1
 					WHERE
 						ScanID = @ScanID
-				--
+				
 				SET @StepMessage = 'Process raw scan data from FindingImport to Finding table.'
 				SET @StepAction = 'INSERT'
 				--
@@ -659,6 +658,7 @@ SET @StepName = 'Hydrate FindingRepo'
 			   ,@ActionTaken = @StepAction
 			RETURN
 	END CATCH
+
 --------------------------------------------------------
 SET @StepName = 'Update ComplianceCheckLog'
 --------------------------------------------------------
@@ -766,7 +766,15 @@ GO
 -- ==================================================================
 -- 
 -- ==================================================================
-
+ALTER TABLE [PowerSTIG].[IISsitesScans]  WITH NOCHECK ADD  CONSTRAINT [FK_IISsitesScans_ScanID] FOREIGN KEY([ScanID])
+REFERENCES [PowerSTIG].[Scans] ([ScanID])
+GO
+-- ==================================================================
+-- 
+-- ==================================================================
+ALTER TABLE [PowerSTIG].[IISsitesScans]  WITH NOCHECK ADD  CONSTRAINT [FK_IISsites_SiteID] FOREIGN KEY([SiteID])
+REFERENCES [PowerSTIG].[IISsites] ([SiteID])
+GO
 -- ==================================================================
 -- PowerStig.sproc_GenerateCKLfile
 -- ==================================================================
@@ -820,7 +828,9 @@ DECLARE @CheckListID smallint
 DECLARE @OSid smallint
 --DECLARE @TargetComputer varchar(256)
 --DECLARE @TargetRole varchar(256)
---set @TargetComputer='STIG'
+DECLARE @SiteName varchar(512)
+DECLARE @SiteNameID smallint
+--set @TargetComputer='server2012r2'
 --set @TargetRole='IISsite'
 SET @TargetComputerID = (SELECT TargetComputerID FROM PowerSTIG.ComplianceTargets WHERE TargetComputer = @TargetComputer)
 SET @ComplianceTypeID = (SELECT ComplianceTypeID FROM PowerSTIG.ComplianceTypes WHERE ComplianceType = @TargetRole)
@@ -914,76 +924,6 @@ IF @TargetRole != 'IISsite'
 	ORDER BY
 		VulnerabilityNum
 	END
--- ----------------------------------------
--- Find most recent scan for all IIS sites
--- ----------------------------------------
-IF @TargetRole = 'IISsite'
---
-	BEGIN
-		SELECT * INTO #RecentScanIIS  FROM 
-         (
-         SELECT  M.*,T.SiteName, ROW_NUMBER() OVER (PARTITION BY TargetComputerID,T.SiteID,ScanSourceID ORDER BY LastComplianceCheck DESC) RN
-         FROM    PowerSTIG.ComplianceSourceMap M
-					JOIN
-						PowerSTIG.IISsitesScans S
-					ON
-						M.ScanID = S.ScanID
-					JOIN
-						PowerSTIG.IISsites T
-					ON
-						T.SiteID = S.SiteID					
-         ) T
-		WHERE
-			T.RN = 1
-			AND
-			ComplianceTypeID = @ComplianceTypeID
--- ----------------------------------------
--- Hydrate #ResultsForPivot
--- ----------------------------------------
-	SELECT 
-		R.InDesiredState
-		,O.ScanSource
-		,F.VulnerabilityNum AS RuleID
-		,L.LastComplianceCheck
-	INTO
-		#ResultsForPivotIIS
-	FROM
-			#RecentScanIIS C
-		JOIN
-			PowerSTIG.FindingRepo R
-		ON
-			C.ScanID = R.ScanID
-		JOIN 
-			PowerSTIG.Scans S
-		ON 
-			R.ScanID = S.ScanID
-		JOIN
-			PowerSTIG.ScanSource O
-		ON
-			O.ScanSourceID = S.ScanSourceID
-		JOIN
-			PowerSTIG.CheckListAttributes F
-		ON
-			F.CheckListAttributeID = R.CheckListAttributeID
-		JOIN
-			PowerSTIG.ComplianceCheckLog L
-		ON
-			S.ScanID = L.ScanID
-		WHERE
-			R.ScanID IN (SELECT scanid FROM #RecentScanIIS)
-		AND
-				R.TargetComputerID = @TargetComputerID
-		AND
-				R.ComplianceTypeID = @ComplianceTypeID
-	GROUP BY				
-		R.InDesiredState
-		,O.ScanSource
-		,F.VulnerabilityNum
-		,L.LastComplianceCheck
-	ORDER BY
-		VulnerabilityNum
-
-END
 
 -- ----------------------------------------
 -- ----------------------------------------
@@ -1112,10 +1052,6 @@ WHILE @iSTIG <= @MaxiSTIG
 
    END
  
-SELECT * FROM #RecentScan
-SELECT * FROM #__CreateCKL
-SELECT * FROM #__ResultsCompare
-SELECT * FROM #ResultsForPivot
 
 -- ----------------------------------------
 -- Return the CKL
@@ -1125,11 +1061,128 @@ SELECT * FROM #ResultsForPivot
 	FROM
 		#__CreateCKL
 END
--- ----------------------------------------
+-- ----------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------------
 -- Handling target role IISsite completely separately, mostly for expediency, also for reasons.
--- ----------------------------------------
+-- ----------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------------
 IF @TargetRole = 'IISsite'
+-- ----------------------------------------
+-- Find most recent scan for all IIS sites
+-- ----------------------------------------
+--
+BEGIN
+		--
+		DROP TABLE IF EXISTS #RecentScanIIS
+		--
+		SELECT * INTO #RecentScanIIS  FROM 
+         (
+         SELECT  M.*,T.SiteName, ROW_NUMBER() OVER (PARTITION BY TargetComputerID,T.SiteID,ScanSourceID ORDER BY LastComplianceCheck DESC) RN
+         FROM    PowerSTIG.ComplianceSourceMap M
+					JOIN
+						PowerSTIG.IISsitesScans S
+					ON
+						M.ScanID = S.ScanID
+					JOIN
+						PowerSTIG.IISsites T
+					ON
+						T.SiteID = S.SiteID					
+         ) T
+		WHERE
+			T.RN = 1
+			--AND
+			--ComplianceTypeID = @ComplianceTypeID
+			
+	--
+	-- Loop through the sites to create CKLs.  This is not ideal.
+	--
+	
+		DROP TABLE IF EXISTS #__SitesCKL
+		--
+		CREATE TABLE #__SitesCKL (
+		SiteNameID smallint IDENTITY(1,1) NOT NULL,
+		SiteName varchar(512),
+		isProcessed BIT DEFAULT(0))
+		--
+			INSERT INTO
+				#__SitesCKL (SiteName,isProcessed)
+			SELECT
+				SiteName,0 AS isProcessed
+			FROM
+				#RecentScanIIS
+-- -------------------------------------------------
+-- Start the big, messy IIS loop
+-- -------------------------------------------------
+WHILE EXISTS (SELECT SiteNameID FROM #__SitesCKL WHERE isProcessed = 0)
 	BEGIN
+		SET @SiteNameID = (SELECT TOP 1 SiteNameID FROM #__SitesCKL WHERE isProcessed = 0)
+		SET @SiteName = (SELECT TOP 1 SiteName FROM #__SitesCKL WHERE SiteNameID = @SiteNameID)
+-- ----------------------------------------
+-- Reset variables for traversing XML
+-- ----------------------------------------
+		SET @i= 1
+		SET @max = 1
+		SET @iSTIG= 1
+
+-- ----------------------------------------
+-- Hydrate #ResultsForPivot
+-- ----------------------------------------
+--
+	DROP TABLE IF EXISTS #ResultsForPivotIIS
+	DROP TABLE IF EXISTS #__ResultsCompareIIS
+	
+--
+
+	SELECT 
+		R.InDesiredState
+		,O.ScanSource
+		,F.VulnerabilityNum AS RuleID
+		,L.LastComplianceCheck
+	INTO
+		#ResultsForPivotIIS
+	FROM
+		#RecentScanIIS C
+		JOIN
+			PowerSTIG.FindingRepo R
+		ON
+			C.ScanID = R.ScanID
+		JOIN 
+			PowerSTIG.Scans S
+		ON 
+			R.ScanID = S.ScanID
+		JOIN
+			PowerSTIG.ScanSource O
+		ON
+			O.ScanSourceID = S.ScanSourceID
+		JOIN
+			PowerSTIG.CheckListAttributes F
+		ON
+			F.CheckListAttributeID = R.CheckListAttributeID
+		JOIN
+			PowerSTIG.ComplianceCheckLog L
+		ON
+			S.ScanID = L.ScanID
+		WHERE
+			R.ScanID IN (SELECT scanid FROM #RecentScanIIS WHERE SiteName=@SiteName)
+		AND
+				R.TargetComputerID = @TargetComputerID
+		--AND
+		--		R.ComplianceTypeID = @ComplianceTypeID
+	GROUP BY				
+		R.InDesiredState
+		,O.ScanSource
+		,F.VulnerabilityNum
+		,L.LastComplianceCheck
+	ORDER BY
+		VulnerabilityNum
+
+
+--------------------------------------------
+-- Comment
+--------------------------------------------
+--
+	DROP TABLE IF EXISTS #__ResultsCompareIIS
+--
 		SELECT 
 			*
 			INTO #__ResultsCompareIIS
@@ -1143,6 +1196,8 @@ IF @TargetRole = 'IISsite'
 					#ResultsForPivotIIS
 				) 
 					AS SourceTable PIVOT(AVG([InDesiredState]) FOR ScanSource IN([POWERSTIG],[SCAP])) AS PivotTable;
+
+
 						SET @CheckListInfoID =	(
 											SELECT
 												MAX(I.CheckListInfoID)
@@ -1182,13 +1237,12 @@ IF @TargetRole = 'IISsite'
 				0 AS isProcessed
 			FROM
 				#RecentScanIIS
+			WHERE
+				SiteName = @SiteName
+
 --
 --
 --
-WHILE EXISTS
-	(SELECT TOP 1 CheckListID FROM #__CreateCKLiis WHERE isProcessed = 0)
-		BEGIN
-			SET @CheckListID = (SELECT TOP 1 CheckListID FROM #__CreateCKLiis WHERE isProcessed = 0)
 
 WHILE @iSTIG <= @MaxiSTIG
 
@@ -1225,6 +1279,7 @@ WHILE @iSTIG <= @MaxiSTIG
 					BEGIN
 						SET @Status = 'Not_Reviewed'
 					END
+
 		--
 		UPDATE
 			#__CreateCKLiis
@@ -1232,8 +1287,8 @@ WHILE @iSTIG <= @MaxiSTIG
 			checklist.modify('replace value of ((/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/STATUS)[1]/text())[1] with sql:variable("@Status")')
         WHERE
 			checklist.exist('((/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/STATUS)[1]/text())[1]') = 1
-		AND
-			CheckListID = @CheckListID
+		--AND
+		--	CheckListID = @CheckListID
 		
 -- ----------------------------------------
 -- Update the Comments
@@ -1258,8 +1313,8 @@ WHILE @iSTIG <= @MaxiSTIG
 				#__CreateCKLiis
            SET 
 				checklist.modify('insert text{sql:variable("@Comments")} into (/CHECKLIST/STIGS/iSTIG[sql:variable("@iSTIG")]/VULN[sql:variable("@i")]/COMMENTS)[1]')
-		   WHERE
-				CheckListID = @CheckListID
+		  -- WHERE
+				--CheckListID = @CheckListID
            SET 
 				@i += 1
 
@@ -1268,12 +1323,6 @@ WHILE @iSTIG <= @MaxiSTIG
       SET @iSTIG += 1
 
    END
-   	  --
-	  -- Set IIS CheckList as processed
-	  --
-		UPDATE #__CreateCKLiis SET isProcessed = 1 WHERE CheckListID = @CheckListID
-	--END
-END
 -- ----------------------------------------
 -- Return the CKL
 -- ----------------------------------------
@@ -1281,7 +1330,12 @@ END
 		CheckList,IISsiteName
 	FROM
 		#__CreateCKLiis
+   	  --
+	  -- Set Site as processed
+	  --
 
+		UPDATE #__SitesCKL SET isProcessed = 1 WHERE SiteNameID = @SiteNameID
+	END
 END
 -- ----------------------------------------
 -- Cleanup

@@ -747,33 +747,41 @@ GO
 -- ==================================================================
 -- Create table PowerSTIG.IISsites
 -- ==================================================================
-DROP TABLE IF EXISTS PowerSTIG.IISsites
---
-    CREATE TABLE PowerSTIG.IISsites (
+IF (OBJECT_ID('PowerSTIG.IISsites', 'U') IS NULL)
+	BEGIN
+    	CREATE TABLE PowerSTIG.IISsites (
         SiteID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
         SiteName varchar(512) NOT NULL)
+	END
 GO
 -- ==================================================================
 -- Create table PowerSTIG.IISsitesScans
 -- ==================================================================
-DROP TABLE IF EXISTS PowerSTIG.IISsitesScans
---
-    CREATE TABLE PowerSTIG.IISsitesScans (
-        SiteScanID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-        SiteID INT NOT NULL,
-        ScanID INT NOT NULL)
+IF (OBJECT_ID('PowerSTIG.IISsitesScans', 'U') IS NULL)
+	BEGIN
+    	CREATE TABLE PowerSTIG.IISsitesScans (
+        	SiteScanID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        	SiteID INT NOT NULL,
+        	ScanID INT NOT NULL)
+		END
 GO
 -- ==================================================================
 -- 
 -- ==================================================================
-ALTER TABLE [PowerSTIG].[IISsitesScans]  WITH NOCHECK ADD  CONSTRAINT [FK_IISsitesScans_ScanID] FOREIGN KEY([ScanID])
-REFERENCES [PowerSTIG].[Scans] ([ScanID])
+IF (OBJECT_ID('PowerSTIG.FK_IISsitesScans_ScanID', 'F') IS NULL)
+		BEGIN
+			ALTER TABLE [PowerSTIG].[IISsitesScans]  WITH NOCHECK ADD  CONSTRAINT [FK_IISsitesScans_ScanID] FOREIGN KEY([ScanID])
+			REFERENCES [PowerSTIG].[Scans] ([ScanID])
+		END
 GO
 -- ==================================================================
 -- 
 -- ==================================================================
-ALTER TABLE [PowerSTIG].[IISsitesScans]  WITH NOCHECK ADD  CONSTRAINT [FK_IISsites_SiteID] FOREIGN KEY([SiteID])
-REFERENCES [PowerSTIG].[IISsites] ([SiteID])
+IF (OBJECT_ID('PowerSTIG.FK_IISsites_SiteID', 'F') IS NULL)
+		BEGIN
+			ALTER TABLE [PowerSTIG].[IISsitesScans]  WITH NOCHECK ADD  CONSTRAINT [FK_IISsites_SiteID] FOREIGN KEY([SiteID])
+			REFERENCES [PowerSTIG].[IISsites] ([SiteID])
+		END
 GO
 -- ==================================================================
 -- PowerStig.sproc_GenerateCKLfile

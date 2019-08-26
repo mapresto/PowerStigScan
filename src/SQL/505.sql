@@ -1098,8 +1098,8 @@ BEGIN
          ) T
 		WHERE
 			T.RN = 1
-			--AND
-			--ComplianceTypeID = @ComplianceTypeID
+			AND
+			TargetComputerID = @TargetComputerID
 			
 	--
 	-- Loop through the sites to create CKLs.  This is not ideal.

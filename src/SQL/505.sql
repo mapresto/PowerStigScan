@@ -35,7 +35,7 @@ DECLARE @UpdateVersion smallint
 DECLARE @CurrentVersion smallint
 DECLARE @VersionNotes varchar(MAX)
 SET @UpdateVersion = 505
-SET @VersionNotes = 'IIS Server/Site support'
+SET @VersionNotes = 'IIS Server/Site support | Additional referential integrity'
 -- ===============================================================================================
 -- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 -- ===============================================================================================
@@ -784,6 +784,24 @@ IF (OBJECT_ID('PowerSTIG.FK_IISsites_SiteID', 'F') IS NULL)
 		END
 GO
 -- ==================================================================
+-- 
+-- ==================================================================
+IF (OBJECT_ID('PowerSTIG.FK_ComplianceTypesInfo_OSid', 'F') IS NULL)
+		BEGIN
+			ALTER TABLE [PowerSTIG].[ComplianceTypesInfo]  WITH NOCHECK ADD  CONSTRAINT [FK_ComplianceTypesInfo_OSid] FOREIGN KEY([OSid])
+			REFERENCES [PowerSTIG].[TargetTypeOS] ([OSid])
+		END
+GO
+-- ==================================================================
+-- 
+-- ==================================================================
+IF (OBJECT_ID('PowerSTIG.FK_OrgSettingsRepo_TypesInfoID', 'F') IS NULL)
+		BEGIN
+			ALTER TABLE [PowerSTIG].[OrgSettingsRepo]  WITH NOCHECK ADD  CONSTRAINT [FK_OrgSettingsRepo_TypesInfoID] FOREIGN KEY([TypesInfoID])
+			REFERENCES [PowerSTIG].[ComplianceTypesInfo] ([TypesInfoID])
+		END
+GO
+-- ==================================================================
 -- PowerStig.sproc_GenerateCKLfile
 -- ==================================================================
 CREATE OR ALTER PROCEDURE [PowerSTIG].[sproc_GenerateCKLfile]
@@ -1357,7 +1375,10 @@ DROP TABLE IF EXISTS #ResultsForPivot
 DROP TABLE IF EXISTS #__ResultsCompareIIS
 DROP TABLE IF EXISTS #ResultsForPivotIIS
 GO
-
+-- ==================================================================
+-- Ensure CheckListInfo and CheckListAttributes are hydrated 
+-- ==================================================================
+		EXEC PowerSTIG.sproc_ImportSTIGxml
 -- ===============================================================================================
 -- ///////////////////////////////////////////////////////////////////////////////////////////////
 -- Logging

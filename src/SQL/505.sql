@@ -35,7 +35,7 @@ DECLARE @UpdateVersion smallint
 DECLARE @CurrentVersion smallint
 DECLARE @VersionNotes varchar(MAX)
 SET @UpdateVersion = 505
-SET @VersionNotes = 'IIS Server/Site support'
+SET @VersionNotes = 'IIS Server/Site support | Additional referential integrity | New object: sproc_CKLversionCheck'
 -- ===============================================================================================
 -- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 -- ===============================================================================================
@@ -747,33 +747,59 @@ GO
 -- ==================================================================
 -- Create table PowerSTIG.IISsites
 -- ==================================================================
-DROP TABLE IF EXISTS PowerSTIG.IISsites
---
-    CREATE TABLE PowerSTIG.IISsites (
+IF (OBJECT_ID('PowerSTIG.IISsites', 'U') IS NULL)
+	BEGIN
+    	CREATE TABLE PowerSTIG.IISsites (
         SiteID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
         SiteName varchar(512) NOT NULL)
+	END
 GO
 -- ==================================================================
 -- Create table PowerSTIG.IISsitesScans
 -- ==================================================================
-DROP TABLE IF EXISTS PowerSTIG.IISsitesScans
---
-    CREATE TABLE PowerSTIG.IISsitesScans (
-        SiteScanID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-        SiteID INT NOT NULL,
-        ScanID INT NOT NULL)
+IF (OBJECT_ID('PowerSTIG.IISsitesScans', 'U') IS NULL)
+	BEGIN
+    	CREATE TABLE PowerSTIG.IISsitesScans (
+        	SiteScanID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        	SiteID INT NOT NULL,
+        	ScanID INT NOT NULL)
+		END
 GO
 -- ==================================================================
 -- 
 -- ==================================================================
-ALTER TABLE [PowerSTIG].[IISsitesScans]  WITH NOCHECK ADD  CONSTRAINT [FK_IISsitesScans_ScanID] FOREIGN KEY([ScanID])
-REFERENCES [PowerSTIG].[Scans] ([ScanID])
+IF (OBJECT_ID('PowerSTIG.FK_IISsitesScans_ScanID', 'F') IS NULL)
+		BEGIN
+			ALTER TABLE [PowerSTIG].[IISsitesScans]  WITH NOCHECK ADD  CONSTRAINT [FK_IISsitesScans_ScanID] FOREIGN KEY([ScanID])
+			REFERENCES [PowerSTIG].[Scans] ([ScanID])
+		END
 GO
 -- ==================================================================
 -- 
 -- ==================================================================
-ALTER TABLE [PowerSTIG].[IISsitesScans]  WITH NOCHECK ADD  CONSTRAINT [FK_IISsites_SiteID] FOREIGN KEY([SiteID])
-REFERENCES [PowerSTIG].[IISsites] ([SiteID])
+IF (OBJECT_ID('PowerSTIG.FK_IISsites_SiteID', 'F') IS NULL)
+		BEGIN
+			ALTER TABLE [PowerSTIG].[IISsitesScans]  WITH NOCHECK ADD  CONSTRAINT [FK_IISsites_SiteID] FOREIGN KEY([SiteID])
+			REFERENCES [PowerSTIG].[IISsites] ([SiteID])
+		END
+GO
+-- ==================================================================
+-- 
+-- ==================================================================
+IF (OBJECT_ID('PowerSTIG.FK_ComplianceTypesInfo_OSid', 'F') IS NULL)
+		BEGIN
+			ALTER TABLE [PowerSTIG].[ComplianceTypesInfo]  WITH NOCHECK ADD  CONSTRAINT [FK_ComplianceTypesInfo_OSid] FOREIGN KEY([OSid])
+			REFERENCES [PowerSTIG].[TargetTypeOS] ([OSid])
+		END
+GO
+-- ==================================================================
+-- 
+-- ==================================================================
+IF (OBJECT_ID('PowerSTIG.FK_OrgSettingsRepo_TypesInfoID', 'F') IS NULL)
+		BEGIN
+			ALTER TABLE [PowerSTIG].[OrgSettingsRepo]  WITH NOCHECK ADD  CONSTRAINT [FK_OrgSettingsRepo_TypesInfoID] FOREIGN KEY([TypesInfoID])
+			REFERENCES [PowerSTIG].[ComplianceTypesInfo] ([TypesInfoID])
+		END
 GO
 -- ==================================================================
 -- PowerStig.sproc_GenerateCKLfile
@@ -1090,8 +1116,8 @@ BEGIN
          ) T
 		WHERE
 			T.RN = 1
-			--AND
-			--ComplianceTypeID = @ComplianceTypeID
+			AND
+			TargetComputerID = @TargetComputerID
 			
 	--
 	-- Loop through the sites to create CKLs.  This is not ideal.
@@ -1349,7 +1375,77 @@ DROP TABLE IF EXISTS #ResultsForPivot
 DROP TABLE IF EXISTS #__ResultsCompareIIS
 DROP TABLE IF EXISTS #ResultsForPivotIIS
 GO
-
+-- ==================================================================
+-- Ensure CheckListInfo and CheckListAttributes are hydrated 
+-- ==================================================================
+		EXEC PowerSTIG.sproc_ImportSTIGxml
+GO
+-- ==================================================================
+-- PowerSTIG.sproc_CKLversionCheck
+-- ==================================================================
+CREATE OR ALTER PROCEDURE PowerSTIG.sproc_CKLversionCheck
+		@Role varchar(256),
+		@CKLversion varchar(6),
+		@OS varchar(256)
+AS
+SET NOCOUNT ON
+--------------------------------------------------------------------------------- 
+-- The sample scripts are not supported under any Microsoft standard support 
+-- program or service. The sample scripts are provided AS IS without warranty  
+-- of any kind. Microsoft further disclaims all implied warranties including,  
+-- without limitation, any implied warranties of merchantability or of fitness for 
+-- a particular purpose. The entire risk arising out of the use or performance of  
+-- the sample scripts and documentation remains with you. In no event shall 
+-- Microsoft, its authors, or anyone else involved in the creation, production, or 
+-- delivery of the scripts be liable for any damages whatsoever (including, 
+-- without limitation, damages for loss of business profits, business interruption, 
+-- loss of business information, or other pecuniary loss) arising out of the use 
+-- of or inability to use the sample scripts or documentation, even if Microsoft 
+-- has been advised of the possibility of such damages 
+---------------------------------------------------------------------------------
+-- ===============================================================================================
+-- Purpose:
+-- Revisions:
+-- 08272019 - Kevin Barlett,Microsoft - Initial version.
+--Use example:
+--EXEC PowerSTIG.sproc_CKLversionCheck @ROLE = 'Excel2016',@cklversion='1.2',@OS='2012R2'
+--EXEC PowerSTIG.sproc_CKLversionCheck @ROLE = 'Excel2016',@cklversion='1.2',@OS='ALL'
+--EXEC PowerSTIG.sproc_CKLversionCheck @ROLE = 'WindowsServer-MS',@cklversion='1.7',@OS='2012R2'
+--EXEC PowerSTIG.sproc_CKLversionCheck @ROLE = 'WindowsServer-MS',@cklversion='1.7',@OS='2016'
+-- ===============================================================================================
+		SELECT
+			CASE
+				WHEN 
+					(
+						SELECT 1 AS CKLexists
+							FROM
+								PowerSTIG.CheckListInfo I
+							JOIN
+								PowerSTIG.ComplianceTypesInfo T
+							ON
+								I.RoleAlias = T.RoleAlias
+							JOIN
+								PowerSTIG.ComplianceTypes Y
+							ON
+								Y.ComplianceTypeID = T.ComplianceTypeID
+							JOIN
+								PowerSTIG.TargetTypeOS O
+							ON
+								O.OSid = T.OSid
+							WHERE
+								Y.ComplianceType = @Role
+								AND
+								I.ReleaseVersion = @CKLversion
+								AND
+								O.OSname = @OS
+					) = 1 
+				THEN
+					(SELECT 1 AS CKLexists)
+				ELSE
+					(SELECT 0 AS CKLexists)
+			END AS 
+				CKLexists
+GO
 -- ===============================================================================================
 -- ///////////////////////////////////////////////////////////////////////////////////////////////
 -- Logging

@@ -5,9 +5,9 @@ param(
 )
 
 # Imports the CKL twice, once for the DC STIG and once for the MS STIG. PreserveWhiteSpace is necessary for formatting.
-[xml]$msCKL = Get-Content -Path (Join-Path -Path $2016SourceCKLPath -ChildPath "2016WindowsServerEmpty.ckl")
+[xml]$msCKL = Get-Content -Path (Join-Path -Path $Source2016CKLPath -ChildPath "2016WindowsServerEmpty.ckl")
 $msCKL.PreserveWhitespace = $true
-[xml]$dcCKL = Get-Content -Path (Join-Path -Path $2016SourceCKLPath -ChildPath "2016WindowsServerEmpty.ckl")
+[xml]$dcCKL = Get-Content -Path (Join-Path -Path $Source2016CKLPath -ChildPath "2016WindowsServerEmpty.ckl")
 $dcCKL.PreserveWhitespace = $true
 
 # Incremental value to help track between three documents in one script

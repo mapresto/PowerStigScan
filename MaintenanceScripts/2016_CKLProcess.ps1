@@ -1,18 +1,21 @@
 ﻿#Path must be to base path for 2016 CKL with no changes
 param(
-    [String]$2016SourceCKLPath,
+    [String]$Source2016CKLPath,
     [String]$RepoPath
 )
 
+# Imports the CKL twice, once for the DC STIG and once for the MS STIG. PreserveWhiteSpace is necessary for formatting.
 [xml]$msCKL = Get-Content -Path (Join-Path -Path $2016SourceCKLPath -ChildPath "2016WindowsServerEmpty.ckl")
 $msCKL.PreserveWhitespace = $true
 [xml]$dcCKL = Get-Content -Path (Join-Path -Path $2016SourceCKLPath -ChildPath "2016WindowsServerEmpty.ckl")
 $dcCKL.PreserveWhitespace = $true
 
+# Incremental value to help track between three documents in one script
 $x = 0
+# Hard code expected value for STIG when N/A is chosen.
 $NotApplicable = "Not_Applicable"
 
-foreach($i in $ckl.CHECKLIST.STIGS.iSTIG.VULN)
+foreach($i in $msCKL.CHECKLIST.STIGS.iSTIG.VULN)
 {
     if($i.STIG_DATA[4].ATTRIBUTE_DATA -like "WN16-MS-*")
     {

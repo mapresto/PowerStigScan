@@ -344,7 +344,7 @@ process
                                 $tempLogPath = '$env:' + $wLogPath.replace("%","")
                                 $wLogPath = Invoke-Expression "`"$tempLogPath`""
                             }
-                            $SiteHash.add($Site,$wAppPool)
+                            $SiteAppHash.add($Site,$wAppPool)
                             $SiteLogHash.add($Site,$wLogPath)
             
                         }

@@ -1908,7 +1908,7 @@ Function Install-PowerStigSQLDatabase
         {
             $ComputerName = $SqlInstanceName    
         }
-        $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {Get-Module -Name PowerStigScan -ListAvailable | Where-Object {$_.Version -eq $PowerStigScanVersion}}    
+        $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {param($PowerStigScanVersion)Get-Module -Name PowerStigScan -ListAvailable | Where-Object {$_.Version -eq $PowerStigScanVersion}} -ArgumentList $PowerStigScanVersion    
     }
     if($null -eq $moduleTest)
     {
@@ -1974,7 +1974,7 @@ Function Install-PowerStigSQLDatabase
             {
                 $ComputerName = $SqlInstanceName    
             }
-            $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq $PowerStigVersion}}    
+            $moduleTest = Invoke-Command -ComputerName $ComputerName -ScriptBlock {param($PowerStigVersion)Get-Module -Name PowerStig -ListAvailable | Where-Object {$_.Version -eq $PowerStigVersion}} -ArgumentList $PowerStigVersion    
         }
         if($null -eq $moduleTest)
         {

@@ -3,6 +3,7 @@
 # Revisions:
 # 05242019 - Kevin Barlett, Microsoft - v0.1 - Initial creation.
 # 07092019 - Kevin Barlett, Microsoft - v0.2 - Added yes/no logic for database creation versus automatic creation.
+# 09112019 - Kevin Barlett, Microsoft - v0.3 - Addition of query timeout to database connections.
 # =================================================================================================================
 # -----------------------------------------------------------------------------
 #
@@ -33,6 +34,7 @@ param(
 $Timestamp = (get-date).ToString("MMddyyyyHHmmss")
 $CurTime = get-date
 $LogFile = ".\DBdeployLog_$Timestamp.txt"
+$QueryTimeoutSeconds=300
 #========================================================================
 # Create logging function
 #========================================================================
@@ -95,10 +97,11 @@ Else
         #
         log [$CurTime]$LogMessage
 
+
 $DBexistsQuery = "SELECT 1 AS DatabaseExists FROM sys.databases
                             where [name] = '$DatabaseName' and [state] = 0 and is_read_only = 0"
                             $SqlConnection = New-Object System.Data.SqlClient.SqlConnection
-                            $SqlConnection.ConnectionString = "Server=$DBServerName;Database=master;Integrated Security=True"
+                            $SqlConnection.ConnectionString = "Server=$DBServerName;Database=master;Connect Timeout=$QueryTimeoutSeconds;Integrated Security=True"
                             $SqlCmd = New-Object System.Data.SqlClient.SqlCommand
                             $SqlCmd.CommandText = $DBexistsQuery
                             $SqlCmd.Connection = $SqlConnection
@@ -109,7 +112,7 @@ $DBexistsQuery = "SELECT 1 AS DatabaseExists FROM sys.databases
                             $SqlConnection.Close()
                             
                             $DBexists =  $DataSet.Tables[0] | Select-Object DatabaseExists -ExpandProperty DatabaseExists
-                    
+                  
 
 if ($DBexists -ne 1)
     {
@@ -158,7 +161,8 @@ if ($DBexists -ne 1)
         log [$CurTime]$LogMessage                    
                         
     try
-        {          
+        {     
+  
             $CreateDatabaseQuery = "
                 DECLARE @DatabaseName varchar(256)
                 SET @DatabaseName = '$DatabaseName'
@@ -183,7 +187,7 @@ if ($DBexists -ne 1)
                     EXEC(@SQLCMD)
                         "
                         $SqlConnection = New-Object System.Data.SqlClient.SqlConnection
-                        $SqlConnection.ConnectionString = "Server=$DBServerName;Database=master;Integrated Security=True"
+                        $SqlConnection.ConnectionString = "Server=$DBServerName;Database=master;Connect Timeout=$QueryTimeoutSeconds;Integrated Security=True"
                         $SqlCmd = New-Object System.Data.SqlClient.SqlCommand
                         $SqlCmd.CommandText = $CreateDatabaseQuery
                         $SqlCmd.Connection = $SqlConnection
@@ -191,7 +195,8 @@ if ($DBexists -ne 1)
                         $SqlAdapter.SelectCommand = $SqlCmd
                         $DataSet = New-Object System.Data.DataSet
                         [void]$SqlAdapter.Fill($DataSet)
-                        $SqlConnection.Close()            
+                        $SqlConnection.Close()     
+
     
         $CurTime = get-date
         [console]::ForegroundColor = "Green"
@@ -246,8 +251,9 @@ $DeployScripts = Get-ChildItem "$(Split-Path $PsCommandPath)\" | Where-Object {$
                 $ScriptBatches = $DatabaseScript -split "GO\r\n"
                     foreach ($Batch in $ScriptBatches)
                     {
+                        
                         $SqlConnection = New-Object System.Data.SqlClient.SqlConnection
-                        $SqlConnection.ConnectionString = "Server=$DBServerName;Database=$DatabaseName;Integrated Security=True"
+                        $SqlConnection.ConnectionString = "Server=$DBServerName;Database=$DatabaseName;Connect Timeout=$QueryTimeoutSeconds;Integrated Security=True"
                         $SqlCmd = New-Object System.Data.SqlClient.SqlCommand
                         $SqlCmd.CommandText = $Batch;
                         $SqlCmd.Connection = $SqlConnection

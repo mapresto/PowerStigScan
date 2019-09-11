@@ -12,7 +12,7 @@
     RootModule = 'PowerStigScan.psm1'
     
     # Version number of this module.
-    ModuleVersion = '2.1.0.0'
+    ModuleVersion = '3.0.0'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -56,6 +56,7 @@
     RequiredModules = @(
         @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.2.0.0'},
         @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.4.0.0'},
+        @{ModuleName = 'AuditSystemDsc'; ModuleVersion = '1.0.0'},
         @{ModuleName = 'ComputerManagementDsc'; ModuleVersion = '6.2.0.0'}
         @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.1.0.108'},
         @{ModuleName = 'PolicyFileEditor'; ModuleVersion = '3.0.1'},
@@ -65,9 +66,9 @@
         @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
         @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
         @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'},
-        @{ModuleName = 'PowerStig'; ModuleVersion = '3.2.0'}
-    
+        @{ModuleName = 'PowerStig'; ModuleVersion = '4.0.0'}
     )
+
     
     # Assemblies that must be loaded prior to importing this module
     # RequiredAssemblies = @()

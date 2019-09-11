@@ -34,7 +34,7 @@ param(
 $Timestamp = (get-date).ToString("MMddyyyyHHmmss")
 $CurTime = get-date
 $LogFile = ".\DBdeployLog_$Timestamp.txt"
-$QueryTimeoutSeconds=300
+[int]$QueryTimeoutSeconds=300
 #========================================================================
 # Create logging function
 #========================================================================
@@ -101,10 +101,11 @@ Else
 $DBexistsQuery = "SELECT 1 AS DatabaseExists FROM sys.databases
                             where [name] = '$DatabaseName' and [state] = 0 and is_read_only = 0"
                             $SqlConnection = New-Object System.Data.SqlClient.SqlConnection
-                            $SqlConnection.ConnectionString = "Server=$DBServerName;Database=master;Connect Timeout=$QueryTimeoutSeconds;Integrated Security=True"
+                            $SqlConnection.ConnectionString = "Server=$DBServerName;Database=master;Connection Timeout=$QueryTimeoutSeconds;Integrated Security=True"
                             $SqlCmd = New-Object System.Data.SqlClient.SqlCommand
                             $SqlCmd.CommandText = $DBexistsQuery
                             $SqlCmd.Connection = $SqlConnection
+                            $SqlCmd.CommandTimeout = $QueryTimeoutSeconds
                             $SqlAdapter = New-Object System.Data.SqlClient.SqlDataAdapter
                             $SqlAdapter.SelectCommand = $SqlCmd
                             $DataSet = New-Object System.Data.DataSet
@@ -191,6 +192,7 @@ if ($DBexists -ne 1)
                         $SqlCmd = New-Object System.Data.SqlClient.SqlCommand
                         $SqlCmd.CommandText = $CreateDatabaseQuery
                         $SqlCmd.Connection = $SqlConnection
+                        $SqlCmd.CommandTimeout = $QueryTimeoutSeconds
                         $SqlAdapter = New-Object System.Data.SqlClient.SqlDataAdapter
                         $SqlAdapter.SelectCommand = $SqlCmd
                         $DataSet = New-Object System.Data.DataSet
@@ -257,6 +259,7 @@ $DeployScripts = Get-ChildItem "$(Split-Path $PsCommandPath)\" | Where-Object {$
                         $SqlCmd = New-Object System.Data.SqlClient.SqlCommand
                         $SqlCmd.CommandText = $Batch;
                         $SqlCmd.Connection = $SqlConnection
+                        $SqlCmd.CommandTimeout = $QueryTimeoutSeconds
                         $SqlAdapter = New-Object System.Data.SqlClient.SqlDataAdapter
                         $SqlAdapter.SelectCommand = $SqlCmd
                         $DataSet = New-Object System.Data.DataSet

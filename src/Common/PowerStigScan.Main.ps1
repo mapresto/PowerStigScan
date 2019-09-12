@@ -56,7 +56,7 @@ function Get-PowerStigXMLPath
     $workingPath = Split-Path $PsCommandPath
     $iniVar = Import-PowerStigConfig -configFilePath $workingPath\Config.ini
     $versionNum = $iniVar.PowerStigVersion
-    $fullyQualifiedName = @{ModuleName="PowerStig";ModuleVersion="$versionNum"}
+    $fullyQualifiedName = @{ModuleName="PowerStig";RequiredVersion="$versionNum"}
     $powerStigXMLPath = "$($(get-module -FullyQualifiedName $fullyQualifiedName -ListAvailable ).ModuleBase)\StigData\Processed"
     Return $powerStigXMLPath
 }

@@ -445,7 +445,10 @@ Function Get-PowerStigOrgSettings
         [String]$SqlInstanceName,
 
         [Parameter(Mandatory=$false)]
-        [String]$DatabaseName
+        [String]$DatabaseName,
+
+        [Parameter(Mandatory=$false)]
+        [Switch]$ReturnObject
     )
 
     DynamicParam {
@@ -491,6 +494,10 @@ Function Get-PowerStigOrgSettings
         $generateOrgXML = "PowerSTIG.sproc_GenerateORGxml @OSName = `"$Version`", @ComplianceType = `"$Role`""
         [xml]$orgFile = (Invoke-PowerStigSqlCommand -SqlInstance $SqlInstanceName -DatabaseName $DatabaseName -Query $GenerateOrgXML).OrgXML
     
+        if($ReturnObject)
+        {
+            Return $orgFile
+        }
         $orgFile.Save($OutPath) | Out-Null
     }
 

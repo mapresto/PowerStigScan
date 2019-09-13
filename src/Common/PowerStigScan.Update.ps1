@@ -111,11 +111,15 @@ Function Get-OrgSettingsFromFile
 Function Set-OrganizationalSettings
 {
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true,ParameterSetName="Check")]
+        [Parameter(Mandatory=$true,ParameterSetName="Import")]
         [String]$OsVersion,
 
-        [Parameter(Mandatory=$false)]
-        [Switch]$SqlConnected
+        [Parameter(Mandatory=$false,ParameterSetName="Check")]
+        [Switch]$SqlConnected,
+
+        [Parameter(Mandatory=$true,ParameterSetName="Import")]
+        [String]$CSVFilePath
     )
 
     DynamicParam {
@@ -124,6 +128,7 @@ Function Set-OrganizationalSettings
         $AttributeCollection = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
         $ParameterAttribute = New-Object System.Management.Automation.ParameterAttribute
         $ParameterAttribute.Mandatory = $true
+        $ParameterAttribute.ParameterSetName = "__AllParameterSets"
         $AttributeCollection.Add($ParameterAttribute)
         $roleSet = Import-CSV "$(Split-Path $PsCommandPath)\Roles.csv" -Header Role | Select-Object -ExpandProperty Role
         $ValidateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($roleSet)
@@ -160,6 +165,75 @@ Function Set-OrganizationalSettings
             $orgFileName = "$($Role)_org.xml"
         }
 
+        if($SqlConnected -eq $false)
+        {
+            $savePath = "$($iniVar.LogPath)\PSOrgSettings\"
+        }
+        else
+        {
+            $savePath = "$($iniVar.LogPath)\PSOrgImport\"
+        }
+        if((Test-Path $savePath) -eq $false)
+        {
+            New-Item $savePath -ItemType Directory -Force | Out-Null
+        }
+        
+
+        [xml]$defaultOrg = Get-Content -Encoding UTF8 -Path (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
+                                                                                            $_.name -like "*$($xmlVersion.ToString())*" -and `
+                                                                                            $_.name -like "*.org.default.xml"}).FullName 
+        $defaultOrg.PreserveWhitespace = $true 
+
+        if($PSCmdlet.ParameterSetName -eq 'Import')
+        {
+            $tempObj = Import-Csv $CSVFilePath
+            foreach($o in $tempObj)
+            {
+                if($o.TestString -like "*{0}*")
+                {
+                    $test = $o.TestString -f $o.value
+                    if(-not (Invoke-Expression $test))
+                    {
+                        Write-Host "Invalid entry!"
+                        Write-Host "Please ensure that the value for $($o.VulnID) meets the following"
+                        Write-Host "$($o.TestString)"
+                        Return
+                    }
+                }
+                elseif($o.Type -eq "StartupType")
+                {
+                    $testString = '"{0}" -eq "Automatic" -or "{0}" -eq "Boot" -or "{0}" -eq "Disabled" -or "{0}" -eq "Manual" -or "{0}" -eq "System"'
+                    $test = $testString -f $o.Value
+                    if(-not (Invoke-Expression $test))
+                    {
+                        Write-Host "Invalid entry!"
+                        Write-Host "Please ensure that the value for $($o.VulnID) meets the following"
+                        Write-Host "$($o.TestString)"
+                        Return
+                    }
+                }
+
+            }
+            [xml]$workingOrgXML = Get-Content -Encoding UTF8 -Path (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
+                                                                                                                        $_.name -like "*$($xmlVersion.ToString())*" -and `
+                                                                                                                        $_.name -like "*.org.default.xml"}).FullName
+            $workingOrgXML.PreserveWhitespace = $true
+            foreach($i in $workingOrgXML.OrganizationalSettings.OrganizationalSetting)
+            {
+                if($null -ne ($tempObj | Where-Object {$_.vulnID -eq $i.id}))
+                {
+                    $wObj = $tempObj | Where-Object {$_.vulnID -eq $i.id}
+                    foreach($t in $wObj.Type)
+                    {
+                        $i."$t" = "$(($wObj | Where-Object {$_.Type -eq $t}).value)"
+                    }
+                }
+            }
+
+            $workingOrgXml.Save($(Join-Path $savePath -ChildPath $orgFileName))
+            Return 10
+        }
+
         $notFound = $false
         if($SqlConnected -eq $true)
         {
@@ -177,10 +251,15 @@ Function Set-OrganizationalSettings
             # Check PSOrgSettings in LogPath for older versions of orgSettings, This should be overwritten at the end of the function
             if(Test-Path -Path "$($iniVar.LogPath)\PSOrgSettings\$($orgFileName)")
             {
-                [xml]$importedSettings = Get-Content "$($iniVar.LogPath)\PSOrgSettings\$($orgFileName)"
+                [xml]$importedSettings = Get-Content "$($iniVar.LogPath)\PSOrgSettings\$($orgFileName)" -Encoding UTF8
+                $importedSettings.PreserveWhitespace = $true
             }
             else
             {
+                [xml]$importedSettings = Get-Content -Encoding UTF8 -Path (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
+                                                                                            $_.name -like "*$($xmlVersion.ToString())*" -and `
+                                                                                            $_.name -like "*.org.default.xml"}).FullName
+                $importedSettings.PreserveWhitespace = $true
                 $notFound = $true
             }
         }
@@ -193,10 +272,6 @@ Function Set-OrganizationalSettings
         elseif($notFound -eq $true)
         {
             #OrgSettings were not found, create new, import/generate xml
-            #Determine location of Org Files
-            [xml]$defaultOrg = Get-Content (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
-                                                                                                 $_.name -like "*$($xmlVersion.ToString())*" -and `
-                                                                                                 $_.name -like "*.org.default.xml"}).FullName 
             
             # Retrieve Settings without values
             $vidGroup = @()
@@ -220,13 +295,141 @@ Function Set-OrganizationalSettings
                 }
             }
 
+            #Prompt user
+            $shell = New-Object -ComObject WScript.Shell
+            $sInput = $shell.Popup("There are Org Settings without value. Do you want to export to a file? ('No' will proceed to prompt for information)",0,"Important",3)
+            # Yes=6 No=7 Cancel=2
+            if($sInput -eq 6)
+            {
+                #TODO Out to CSV
+                $outPath = "$($iniVar.LogPath)\OrgFileUpdate"
+                $outFilename = "$($orgFileRoleName)_$($xmlVersion).csv"
+                if((Test-Path $outPath) -eq $false)
+                {
+                    New-Item $outPath -ItemType Directory -Force | Out-Null
+                }
+                $tempObj =@()
+                foreach($a in $vidGroup)
+                {
+                    $tempObj += [PSCustomObject]@{
+                            'VulnID' = $a.VID
+                            'Value'  = $null
+                            'Type'   = $a.Type
+                            'TestString' = $a.testString
+                    }
+                }
+                $tempObj | Export-Csv -Path (Join-Path -Path $outPath -ChildPath $outFilename) -NoTypeInformation
+                Return
+            }
+            elseif($sInput -eq 7)
+            {
+                $tempObj = @()
+                #TODO Prompt for input
+                Write-Host "Set configuration on $Role on $OsVersion"
+                foreach($a in $vidGroup)
+                {
+                    Write-Host "`n`nVulnerability ID is: $($a.VID)"
+                    Write-Host "Verification String is: $($a.testString)"
+                    Write-Host "ValueType is: $($a.Type)`n"
+                    $userInput = Read-Host "Please enter Value for $($a.VID)"
+                    if($a.TestString -like "*{0}*")
+                    {
+                        $test = $a.TestString -f $userInput
+                        while(-not(Invoke-Expression $test))
+                        {
+                            Write-Host "Invalid entry!"
+                            Write-Host "Please ensure that the value meets the following"
+                            Write-Host "$($a.TestString)"
+                            $userInput = Read-Host "Please enter Value for $($a.VID)"
+                            $test = $a.TestString -f $userInput
+                        }
+                    }
+                    if($a.Type -eq "StartupType")
+                    {
+                        $testString = '"{0}" -eq "Automatic" -or "{0}" -eq "Boot" -or "{0}" -eq "Disabled" -or "{0}" -eq "Manual" -or "{0}" -eq "System"'
+                        $test = $testString -f $userInput
+                        while(-not(Invoke-Expression $test))
+                        {
+                            Write-Host "Invalid entry!"
+                            Write-Host "Please ensure that the value meets the following"
+                            Write-Host "$($testString)"
+                            $userInput = Read-Host "Please enter Value for $($a.VID)"
+                            $test = $testString -f $userInput
+                        }
+                    }
+
+                    $tempObj += [PSCustomObject]@{
+                        'VulnID' = $a.VID
+                        'Value'  = $userInput
+                        'Type'   = $a.Type
+                        'TestString' = $a.testString
+                    }
+                }
+            }
+            elseif($sInput -eq 2)
+            {
+                # User Terminated
+                Write-Host "User Terminated Function. Exiting..."
+                Return
+            }
+
         }
-        elseif([Version]($importedSettings.OrganizationalSettings.FullVersion) -ne $xmlVersion)
+        
+        if([Version]($importedSettings.OrganizationalSettings.FullVersion) -ne $xmlVersion -and $null -ne ($importedSettings.OrganizationalSettings))
         {
             #Import old, compare values, compare teststring, create new, import/generate xml
-        }
+            #old settings are in $importedSettings, check testvalue on old and new, if match, move old to new, if not check old value to new test, if good move to new, else prompt.
+            #new settings are in $defaultOrg
+            $oldObj      = @()
+            $newObj      = @()
+            $combinedObj = @()
+            foreach($i in $importedSettings.OrganizationalSettings.OrganizationalSetting)
+            {
+                $workingType = $stigTypeMap | Where-Object {$_.VID -eq $i.id} | Select-Object -ExpandProperty Values
+                if($i."$workingType" -eq '' -or $null -eq $i."$workingType")
+                {
+                    $workingVal = $i.value
+                    $workingType = @("value")
+                }
+                else 
+                {
+                    $workingVal = $i."$WorkingType"
+                    $workingType = @($workingType)
+                }
+                $oldObj += [PSCustomObject]@{
 
-        Return 0
+                }
+            }
+            foreach($i in $defaultOrg.OrganizationalSettings.OrganizationalSetting)
+            {
+                $newObj += [PSCustomObject]@{
+
+                }
+            }
+        }
+        elseif($notFound)
+        {
+            [xml]$workingOrgXML = Get-Content -Encoding UTF8 -Path (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
+                                                                                                                        $_.name -like "*$($xmlVersion.ToString())*" -and `
+                                                                                                                        $_.name -like "*.org.default.xml"}).FullName
+            $workingOrgXML.PreserveWhitespace = $true
+            foreach($i in $workingOrgXML.OrganizationalSettings.OrganizationalSetting)
+            {
+                if($null -ne ($tempObj | Where-Object {$_.vulnID -eq $i.id}))
+                {
+                    $wObj = $tempObj | Where-Object {$_.vulnID -eq $i.id}
+                    foreach($t in $wObj.Type)
+                    {
+                        $i."$t" = "$(($wObj | Where-Object {$_.Type -eq $t}).value)"
+                    }
+                }
+            }
+
+            
+            
+            $workingOrgXml.Save($(Join-Path $savePath -ChildPath $orgFileName))           
+        }
+        Return $tempObj
     }
 }
 
@@ -394,7 +597,5 @@ Function Get-PowerStigXMLRoleNames
             "WindowsServer-DC"          {if($osVersion -eq "2012R2"){Return "WindowsServer-2012R2-DC"}else{Return "WindowsServer-2016-DC"}}
             "WindowsServer-MS"          {if($osVersion -eq "2012R2"){Return "WindowsServer-2012R2-MS"}else{Return "WindowsServer-2016-MS"}}
         }
-    
-
     }
 }

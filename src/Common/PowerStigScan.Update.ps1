@@ -155,7 +155,7 @@ Function Set-OrganizationalSettings
         $stigTypeMap = Get-OrgValuesNeeded -FilePath (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
                                                                                                  $_.name -like "*$($xmlVersion.ToString())*" -and `
                                                                                                  $_.name -notlike "*.org.default.xml"}).FullName 
-        
+
         #Generate OrgFileName
         if($Role -like "*WindowsServer*")
         {
@@ -167,26 +167,24 @@ Function Set-OrganizationalSettings
 
         if($SqlConnected -eq $false)
         {
-            $savePath = "$($iniVar.LogPath)\PSOrgSettings\"
+            $savePath = Join-Path "$($iniVar.LogPath)" -ChildPath "\PSOrgSettings\"
         }
         else
         {
-            $savePath = "$($iniVar.LogPath)\PSOrgImport\"
+            $savePath = Join-Path "$($iniVar.LogPath)" -ChildPath "\PSOrgImport\"
         }
+
         if((Test-Path $savePath) -eq $false)
         {
             New-Item $savePath -ItemType Directory -Force | Out-Null
         }
         
 
-        [xml]$defaultOrg = Get-Content -Encoding UTF8 -Path (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
-                                                                                            $_.name -like "*$($xmlVersion.ToString())*" -and `
-                                                                                            $_.name -like "*.org.default.xml"}).FullName 
-        $defaultOrg.PreserveWhitespace = $true 
 
         if($PSCmdlet.ParameterSetName -eq 'Import')
         {
             $tempObj = Import-Csv $CSVFilePath
+
             foreach($o in $tempObj)
             {
                 if($o.TestString -like "*{0}*")
@@ -214,10 +212,20 @@ Function Set-OrganizationalSettings
                 }
 
             }
-            [xml]$workingOrgXML = Get-Content -Encoding UTF8 -Path (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
-                                                                                                                        $_.name -like "*$($xmlVersion.ToString())*" -and `
-                                                                                                                        $_.name -like "*.org.default.xml"}).FullName
-            $workingOrgXML.PreserveWhitespace = $true
+
+            if(Test-Path -Path "$($iniVar.LogPath)\PSOrgSettings\$($orgFileName)")
+            {
+                [xml]$workingOrgXML = Get-Content "$($iniVar.LogPath)\PSOrgSettings\$($orgFileName)" -Encoding UTF8
+                $workingOrgXML.PreserveWhitespace = $true
+            }
+            else
+            {
+                [xml]$workingOrgXML = Get-Content -Encoding UTF8 -Path (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
+                                                                                            $_.name -like "*$($xmlVersion.ToString())*" -and `
+                                                                                            $_.name -like "*.org.default.xml"}).FullName
+                $workingOrgXML.PreserveWhitespace = $true
+            }
+
             foreach($i in $workingOrgXML.OrganizationalSettings.OrganizationalSetting)
             {
                 if($null -ne ($tempObj | Where-Object {$_.vulnID -eq $i.id}))
@@ -230,7 +238,24 @@ Function Set-OrganizationalSettings
                 }
             }
 
+            $toContinue = $false
+            foreach($w in $workingOrgXML.OrganizationalSettings.OrganizationalSetting)
+            {
+                $workingType = $stigTypeMap | Where-Object {$_.VID -eq $w.id} 
+                if(($null -eq $w."$workingType" -or $w."$workingType" -eq '') -and $toContinue -eq $false)
+                {
+                    #####TODO>>>>>#####
+                    $sShell = New-Object -ComObject Wscript.Shell
+                    $response = $sShell.Popup("There are Org Settings without value. Would you like to enter values now? ('No' will return to the prompt so that you can run the export again.)",0,"Important",1)
+                }
+
+            }
+
             $workingOrgXml.Save($(Join-Path $savePath -ChildPath $orgFileName))
+            if($SqlConnected)
+            {
+                #TODO Trigger SQL Import
+            }
             Return 10
         }
 
@@ -246,7 +271,7 @@ Function Set-OrganizationalSettings
             }
         }
 
-        if($null -eq $importedSettings -or $SqlConnected -eq $false)
+        if($null -eq $importedSettings.OrganizationalSettings -or $SqlConnected -eq $false)
         {
             # Check PSOrgSettings in LogPath for older versions of orgSettings, This should be overwritten at the end of the function
             if(Test-Path -Path "$($iniVar.LogPath)\PSOrgSettings\$($orgFileName)")
@@ -272,7 +297,11 @@ Function Set-OrganizationalSettings
         elseif($notFound -eq $true)
         {
             #OrgSettings were not found, create new, import/generate xml
-            
+            [xml]$defaultOrg = Get-Content -Encoding UTF8 -Path (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
+                                                                                                                $_.name -like "*$($xmlVersion.ToString())*" -and `
+                                                                                                                $_.name -like "*.org.default.xml"}).FullName 
+            $defaultOrg.PreserveWhitespace = $true 
+
             # Retrieve Settings without values
             $vidGroup = @()
             foreach($i in $defaultOrg.OrganizationalSettings.OrganizationalSetting)
@@ -295,119 +324,303 @@ Function Set-OrganizationalSettings
                 }
             }
 
-            #Prompt user
-            $shell = New-Object -ComObject WScript.Shell
-            $sInput = $shell.Popup("There are Org Settings without value. Do you want to export to a file? ('No' will proceed to prompt for information)",0,"Important",3)
-            # Yes=6 No=7 Cancel=2
-            if($sInput -eq 6)
+            if($vidGroup.Count -gt 0)
             {
-                #TODO Out to CSV
-                $outPath = "$($iniVar.LogPath)\OrgFileUpdate"
-                $outFilename = "$($orgFileRoleName)_$($xmlVersion).csv"
-                if((Test-Path $outPath) -eq $false)
+                #Prompt user
+                $shell = New-Object -ComObject WScript.Shell
+                $sInput = $shell.Popup("There are Org Settings without value. Do you want to export to a file? ('No' will proceed to prompt for information)",0,"Important",3)
+                # Yes=6 No=7 Cancel=2
+                if($sInput -eq 6)
                 {
-                    New-Item $outPath -ItemType Directory -Force | Out-Null
+                    #TODO Out to CSV
+                    $outPath = "$($iniVar.LogPath)\OrgFileUpdate"
+                    $outFilename = "$($orgFileRoleName)_$($xmlVersion).csv"
+                    if((Test-Path $outPath) -eq $false)
+                    {
+                        New-Item $outPath -ItemType Directory -Force | Out-Null
+                    }
+                    $tempObj =@()
+                    foreach($a in $vidGroup)
+                    {
+                        $tempObj += [PSCustomObject]@{
+                                'VulnID' = $a.VID
+                                'Value'  = $null
+                                'Type'   = $a.Type
+                                'TestString' = $a.testString
+                        }
+                    }
+                    $tempObj | Export-Csv -Path (Join-Path -Path $outPath -ChildPath $outFilename) -NoTypeInformation
+                    Return
                 }
-                $tempObj =@()
-                foreach($a in $vidGroup)
+                elseif($sInput -eq 7)
                 {
-                    $tempObj += [PSCustomObject]@{
+                    $tempObj = @()
+                    #TODO Prompt for input
+                    Write-Host "Set configuration on $Role on $OsVersion"
+                    foreach($a in $vidGroup)
+                    {
+                        Write-Host "`n`nVulnerability ID is: $($a.VID)"
+                        Write-Host "Verification String is: $($a.testString)"
+                        Write-Host "ValueType is: $($a.Type)`n"
+                        $userInput = Read-Host "Please enter Value for $($a.VID)"
+                        if($a.TestString -like "*{0}*")
+                        {
+                            $test = $a.TestString -f $userInput
+                            while(-not(Invoke-Expression $test))
+                            {
+                                Write-Host "Invalid entry!"
+                                Write-Host "Please ensure that the value meets the following"
+                                Write-Host "$($a.TestString)"
+                                $userInput = Read-Host "Please enter Value for $($a.VID)"
+                                $test = $a.TestString -f $userInput
+                            }
+                        }
+                        if($a.Type -eq "StartupType")
+                        {
+                            $testString = '"{0}" -eq "Automatic" -or "{0}" -eq "Boot" -or "{0}" -eq "Disabled" -or "{0}" -eq "Manual" -or "{0}" -eq "System"'
+                            $test = $testString -f $userInput
+                            while(-not(Invoke-Expression $test))
+                            {
+                                Write-Host "Invalid entry!"
+                                Write-Host "Please ensure that the value meets the following"
+                                Write-Host "$($testString)"
+                                $userInput = Read-Host "Please enter Value for $($a.VID)"
+                                $test = $testString -f $userInput
+                            }
+                        }
+
+                        $tempObj += [PSCustomObject]@{
                             'VulnID' = $a.VID
-                            'Value'  = $null
+                            'Value'  = $userInput
                             'Type'   = $a.Type
                             'TestString' = $a.testString
+                        }
                     }
                 }
-                $tempObj | Export-Csv -Path (Join-Path -Path $outPath -ChildPath $outFilename) -NoTypeInformation
-                Return
-            }
-            elseif($sInput -eq 7)
-            {
-                $tempObj = @()
-                #TODO Prompt for input
-                Write-Host "Set configuration on $Role on $OsVersion"
-                foreach($a in $vidGroup)
+                elseif($sInput -eq 2)
                 {
-                    Write-Host "`n`nVulnerability ID is: $($a.VID)"
-                    Write-Host "Verification String is: $($a.testString)"
-                    Write-Host "ValueType is: $($a.Type)`n"
-                    $userInput = Read-Host "Please enter Value for $($a.VID)"
-                    if($a.TestString -like "*{0}*")
-                    {
-                        $test = $a.TestString -f $userInput
-                        while(-not(Invoke-Expression $test))
-                        {
-                            Write-Host "Invalid entry!"
-                            Write-Host "Please ensure that the value meets the following"
-                            Write-Host "$($a.TestString)"
-                            $userInput = Read-Host "Please enter Value for $($a.VID)"
-                            $test = $a.TestString -f $userInput
-                        }
-                    }
-                    if($a.Type -eq "StartupType")
-                    {
-                        $testString = '"{0}" -eq "Automatic" -or "{0}" -eq "Boot" -or "{0}" -eq "Disabled" -or "{0}" -eq "Manual" -or "{0}" -eq "System"'
-                        $test = $testString -f $userInput
-                        while(-not(Invoke-Expression $test))
-                        {
-                            Write-Host "Invalid entry!"
-                            Write-Host "Please ensure that the value meets the following"
-                            Write-Host "$($testString)"
-                            $userInput = Read-Host "Please enter Value for $($a.VID)"
-                            $test = $testString -f $userInput
-                        }
-                    }
-
-                    $tempObj += [PSCustomObject]@{
-                        'VulnID' = $a.VID
-                        'Value'  = $userInput
-                        'Type'   = $a.Type
-                        'TestString' = $a.testString
-                    }
+                    # User Terminated
+                    Write-Host "User Terminated Function. Exiting..."
+                    Return
                 }
-            }
-            elseif($sInput -eq 2)
-            {
-                # User Terminated
-                Write-Host "User Terminated Function. Exiting..."
-                Return
             }
 
         }
-        
-        if([Version]($importedSettings.OrganizationalSettings.FullVersion) -ne $xmlVersion -and $null -ne ($importedSettings.OrganizationalSettings))
+        elseif([Version]($importedSettings.OrganizationalSettings.FullVersion) -ne $xmlVersion -and $null -ne ($importedSettings.OrganizationalSettings))
         {
             #Import old, compare values, compare teststring, create new, import/generate xml
             #old settings are in $importedSettings, check testvalue on old and new, if match, move old to new, if not check old value to new test, if good move to new, else prompt.
             #new settings are in $defaultOrg
+            [xml]$defaultOrg = Get-Content -Encoding UTF8 -Path (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
+                                                                                                    $_.name -like "*$($xmlVersion.ToString())*" -and `
+                                                                                                    $_.name -like "*.org.default.xml"}).FullName 
+            $defaultOrg.PreserveWhitespace = $true 
+            
             $oldObj      = @()
             $newObj      = @()
             $combinedObj = @()
+            $toBeFilled  = @()
+            foreach($i in $defaultOrg.OrganizationalSettings.OrganizationalSetting)
+            {
+                $workingType = $stigTypeMap | Where-Object {$_.VID -eq $i.id} | Select-Object -ExpandProperty Values
+                if(($null -eq $i."$workingType" -or $i."$workingType" -eq '') -and $workingType -isnot [system.array] -and ($null -eq ($stigTypeMap | Where-Object {$_.VID -eq $i.id})))
+                {
+                    $workingValue = $i.value
+                    $workingType = 'value'
+                    $newObj += [PSCustomObject]@{
+                        "VulnID" = $i.id
+                        "Type"   = $workingType
+                        "Value"  = $workingValue
+                        }
+                }
+                elseif($workingType -isnot [system.array])
+                {
+                    $workingValue = $i."$workingType"
+                    $newObj += [PSCustomObject]@{
+                        "VulnID" = $i.id
+                        "Type"   = $workingType
+                        "Value"  = $workingValue
+                        }
+                }
+                else{
+                    foreach($w in $workingType)
+                    {
+                        $workingValue = $i."$w"
+                        $newObj += [PSCustomObject]@{
+                            "VulnID" = $i.id
+                            "Type"   = $w
+                            "Value"  = $workingValue
+                            }
+                    }
+                }
+
+            }
             foreach($i in $importedSettings.OrganizationalSettings.OrganizationalSetting)
             {
                 $workingType = $stigTypeMap | Where-Object {$_.VID -eq $i.id} | Select-Object -ExpandProperty Values
-                if($i."$workingType" -eq '' -or $null -eq $i."$workingType")
+                if($null -eq $i."$workingType" -or $i."$workingType" -eq '')
                 {
-                    $workingVal = $i.value
-                    $workingType = @("value")
+                    $workingValue = $i.value
+                    $workingType = 'value'
                 }
-                else 
+                else
                 {
-                    $workingVal = $i."$WorkingType"
-                    $workingType = @($workingType)
+                    $workingValue = $i."$workingType"
                 }
                 $oldObj += [PSCustomObject]@{
-
+                        "VulnID" = $i.id
+                        "Type"   = $workingType
+                        "Value"  = $workingValue
                 }
             }
-            foreach($i in $defaultOrg.OrganizationalSettings.OrganizationalSetting)
+            # Combined the values, testing the old value vs the TestString in the new STIG and attempting to transfer. If pass, take value. If fail, determine how to notify user.
+            foreach($n in $newObj)
             {
-                $newObj += [PSCustomObject]@{
+                $testString = Get-OrgSettingsTestString -VulnID $n.VulnID -FilePath (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
+                                                                                                        $_.name -like "*$($xmlVersion.ToString())*" -and `
+                                                                                                        $_.name -notlike "*.org.default.xml"}).FullName
+
+                if($null -eq ($oldObj | Where-Object {$_.VulnID -eq $n.VulnID}).value -or ($oldObj | Where-Object {$_.VulnID -eq $n.VulnID}).value -eq '')
+                {
+                    $value = ($newObj | Where-Object {$_.VulnID -eq $n.VulnID -and $_.Type -eq $n.Type}).value
+                }
+                else
+                {
+                    $value = ($oldObj | Where-Object {$_.VulnID -eq $n.VulnID -and ($_.Type -eq $n.Type -or $_.Type -eq 'value')}).value
+                }
+                if($testString -like "*{0}*")
+                {
+                    $test = $testString -f $value
+
+                    if(Invoke-Expression $test)
+                    {
+                        Write-Host Passed Test
+                        $combinedObj += [PSCustomObject]@{
+                                "VulnID" = $n.VulnId
+                                "Type"   = ($newObj | Where-Object {$_.VulnID -eq $n.VulnID -and $_.Type -eq $n.Type}).type
+                                "Value"  = $value
+                        }
+                    }
+                    else
+                    {
+                        Write-host "$($n.VulnID) Failed Test"
+                        $combinedObj += [PSCustomObject]@{
+                                "VulnID" = $n.VulnId
+                                "Type"   = ($newObj | Where-Object {$_.VulnID -eq $n.VulnID -and $_.Type -eq $n.Type}).type
+                                "Value"  = $null
+                        }
+                    }
+                }
+                else
+                {
+
+                        $combinedObj += [PSCustomObject]@{
+                                "VulnID" = $n.VulnId
+                                "Type"   = ($newObj | Where-Object {$_.VulnID -eq $n.VulnID -and $_.Type -eq $n.Type}).type
+                                "Value"  = $value
+                        }
 
                 }
+
+                if(($combinedObj | Where-Object {$_.VulnID -eq $n.VulnID -and $_.Type -eq $n.Type}).value -eq '' -or $null -eq ($combinedObj | Where-Object {$_.VulnID -eq $n.VulnID -and $_.Type -eq $n.Type}).value)
+                {
+                    $toBeFilled += [PSCustomObject]@{
+                            "VulnID"      = $n.VulnID
+                            "Value"       = $null
+                            "Type"        = $n.Type
+                            "TestString"  = $testString
+                    }
+                }
             }
+            if($toBeFilled.Count -gt 0)
+            {
+                #Prompt user
+                $shell = New-Object -ComObject WScript.Shell
+                $sInput = $shell.Popup("There are Org Settings without value. Do you want to export to a file? ('No' will proceed to prompt for information)",0,"Important",3)
+                # Yes=6 No=7 Cancel=2
+                if($sInput -eq 6)
+                {
+                    #TODO Out to CSV
+                    $outPath = "$($iniVar.LogPath)\OrgFileUpdate"
+                    $outFilename = "$($orgFileRoleName)_$($xmlVersion).csv"
+                    if((Test-Path $outPath) -eq $false)
+                    {
+                        New-Item $outPath -ItemType Directory -Force | Out-Null
+                    }
+                    $toBeFilled | Export-Csv -Path (Join-Path -Path $outPath -ChildPath $outFilename) -NoTypeInformation
+                    Return
+                }
+                elseif($sInput -eq 7)
+                {
+                    $tempObj = @()
+                    #TODO Prompt for input
+                    Write-Host "Set configuration on $Role on $OsVersion"
+                    foreach($a in $toBeFilled)
+                    {
+                        Write-Host "`n`nVulnerability ID is: $($a.VID)"
+                        Write-Host "Verification String is: $($a.testString)"
+                        Write-Host "ValueType is: $($a.Type)`n"
+                        $userInput = Read-Host "Please enter Value for $($a.VID)"
+                        if($a.TestString -like "*{0}*")
+                        {
+                            $test = $a.TestString -f $userInput
+                            while(-not(Invoke-Expression $test))
+                            {
+                                Write-Host "Invalid entry!"
+                                Write-Host "Please ensure that the value meets the following"
+                                Write-Host "$($a.TestString)"
+                                $userInput = Read-Host "Please enter Value for $($a.VID)"
+                                $test = $a.TestString -f $userInput
+                            }
+                        }
+                        if($a.Type -eq "StartupType")
+                        {
+                            $testString = '"{0}" -eq "Automatic" -or "{0}" -eq "Boot" -or "{0}" -eq "Disabled" -or "{0}" -eq "Manual" -or "{0}" -eq "System"'
+                            $test = $testString -f $userInput
+                            while(-not(Invoke-Expression $test))
+                            {
+                                Write-Host "Invalid entry!"
+                                Write-Host "Please ensure that the value meets the following"
+                                Write-Host "$($testString)"
+                                $userInput = Read-Host "Please enter Value for $($a.VID)"
+                                $test = $testString -f $userInput
+                            }
+                        }
+
+                        $tempObj += [PSCustomObject]@{
+                            'VulnID' = $a.VulnID
+                            'Value'  = $userInput
+                            'Type'   = $a.Type
+                            'TestString' = $a.testString
+                        }
+                    }
+                }
+                elseif($sInput -eq 2)
+                {
+                    # User Terminated
+                    Write-Host "User Terminated Function. Exiting..."
+                    Return
+                }
+
+                foreach($t in ($combinedObj |Where-Object {$null -eq $_.Value -or $_.Value -eq ''}))
+                {
+                    $t.Value = ($tempObj | Where-Object {$_.Type -eq $t.Type -and $_.VulnID -eq $t.VulnID}).value
+                }
+
+                foreach($i in $defaultOrg.OrganizationalSettings.OrganizationalSetting)
+                {
+                        $wObj = $combinedObj | Where-Object {$_.vulnID -eq $i.id}
+                        foreach($t in $wObj.Type)
+                        {
+                            $i."$t" = "$(($wObj | Where-Object {$_.Type -eq $t}).value)"
+                        }
+                }
+                $defaultOrg.Save($(Join-Path $savePath -ChildPath $orgFileName)) 
+            }
+            
         }
-        elseif($notFound)
+        
+        if($notFound -eq $true -and $tempObj.count -gt 0)
         {
             [xml]$workingOrgXML = Get-Content -Encoding UTF8 -Path (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
                                                                                                                         $_.name -like "*$($xmlVersion.ToString())*" -and `
@@ -429,6 +642,7 @@ Function Set-OrganizationalSettings
             
             $workingOrgXml.Save($(Join-Path $savePath -ChildPath $orgFileName))           
         }
+
         Return $tempObj
     }
 }

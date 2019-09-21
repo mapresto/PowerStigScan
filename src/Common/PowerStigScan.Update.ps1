@@ -230,7 +230,7 @@ Function Set-OrganizationalSettings
                     foreach($d in $defaultOrg.OrganizationalSettings.OrganizationalSetting)
                     {
                         
-                        $workingDefaultType = @($stigTypeMap | where {$_.VID -eq $d.id} | Select-Object -ExpandProperty Values)
+                        $workingDefaultType = @($stigTypeMap | Where-Object {$_.VID -eq $d.id} | Select-Object -ExpandProperty Values)
                         foreach($t in $workingDefaultType)
                         {
                             $testString = Get-OrgSettingsTestString -VulnID $d.ID -FilePath (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `

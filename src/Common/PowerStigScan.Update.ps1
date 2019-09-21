@@ -217,6 +217,55 @@ Function Set-OrganizationalSettings
             {
                 [xml]$workingOrgXML = Get-Content "$($iniVar.LogPath)\PSOrgSettings\$($orgFileName)" -Encoding UTF8
                 $workingOrgXML.PreserveWhitespace = $true
+                if($null -ne $workingOrgXML.OrganizationalSettings.OrganizationalSetting[0].value)
+                {
+                    $workingOrgValue = "value"
+                }
+
+                if([Version]$workingOrgXML.OrganizationalSettings.fullversion -ne $xmlVersion)
+                {
+                    [xml]$defaultOrg = Get-Content -Encoding UTF8 -Path (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
+                                                                                            $_.name -like "*$($xmlVersion.ToString())*" -and `
+                                                                                            $_.name -like "*.org.default.xml"}).FullName
+                    foreach($d in $defaultOrg.OrganizationalSettings.OrganizationalSetting)
+                    {
+                        
+                        $workingDefaultType = @($stigTypeMap | where {$_.VID -eq $d.id} | Select-Object -ExpandProperty Values)
+                        foreach($t in $workingDefaultType)
+                        {
+                            $testString = Get-OrgSettingsTestString -VulnID $d.ID -FilePath (Get-ChildItem (Get-PowerStigXMLPath) | Where-Object {$_.name -like "*$orgFileRoleName*" -and `
+                                                            $_.name -like "*$($xmlVersion.ToString())*" -and `
+                                                            $_.name -notlike "*.org.default.xml"}).FullName
+                            if($null -ne ($tempObj | Where-Object {$_.VulnID -eq $d.id}))
+                            {
+                                $wValue = $tempObj | Where-Object {$_.VulnID -eq $d.id -and $_.Type -eq $t} | Select-Object -ExpandProperty Value
+                            }
+                            elseif($workingOrgXML.OrganizationalSettings.OrganizationalSetting | Where-Object {$_.id -eq $d.id})
+                            {
+                                $workingSection = $workingOrgXML.OrganizationalSettings.OrganizationalSetting | Where-Object {$_.id -eq $d.id}
+                                if($workingOrgValue -eq 'value')
+                                {
+                                    $wValue = $workingSection | Select-Object -ExpandProperty value
+                                }
+                                else
+                                {
+                                    $wValue = $workingSection."$t"
+                                }
+                            }
+                            else
+                            {
+                                $wValue = $d."$t"
+                            }
+
+                            $d."$t" = "$wValue"
+
+                        }
+  
+                    }
+                    $defaultOrg.Save($(Join-Path $savePath -ChildPath $orgFileName))
+                    Return
+
+                }
             }
             else
             {
@@ -548,6 +597,8 @@ Function Set-OrganizationalSettings
                         New-Item $outPath -ItemType Directory -Force | Out-Null
                     }
                     $toBeFilled | Export-Csv -Path (Join-Path -Path $outPath -ChildPath $outFilename) -NoTypeInformation
+                    Write-Host "CSV has been saved to $(Join-Path -Path $outPath -ChildPath $outFileName)"
+                    Write-Host "Fill empty values and use this command with the -CSVFilePath parameter to finish the upgrade"
                     Return
                 }
                 elseif($sInput -eq 7)
